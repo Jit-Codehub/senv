@@ -1,0 +1,206 @@
+{%extends 'base/statistics_base2.html'%}
+{%load static%}
+{%block meta%}
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+  <link rel="shortcut icon" href="{% static 'images/logo/Chemistry-Calc.png' %}" type="icon">
+  {%block css%}
+  <link rel="stylesheet" href="{% static 'style.css' %}">
+  {%endblock%}
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+	<!-- META DATA STARTS --->
+    <title>Population Variance Calculator | How to Find Population Variance?</title>
+	<meta name="description" content="Online Population Variance Calculator finds the variance of population quickly. Check the steps to calculate population variance, population variance formula.">
+	<link rel="canonical" href="{{request.build_absolute_uri}}">
+<!-- META DATA ENDS --->
+ 
+<!-- OPEN GRAPH CONFIGURATIONS STARTS -->
+	<!--  FACEBOOK CONFIGURATION STARTS  -->
+	<meta content="https://www.facebook.com/OnlineCalculator-Guru-131572098650589/" property="og:url" />
+	<meta property="og:title" content="Population Variance Calculator | How to Find Population Variance?"/>
+	<meta property="og:description" content="Online Population Variance Calculator finds the variance of population quickly. Check the steps to calculate population variance, population variance formula."/>
+	<meta content="" property="og:site_name" />
+	<meta  content="https://chemistrycalc.com/static/images/Chemistry/pH-Calculator.jpeg" property="og:image" />
+	<meta property="og:image:type" content="image/png" />
+	<meta property="og:image:height" content="435" />
+	<meta property="og:image:width" content="354" />
+	<!--  FACEBOOK CONFIGURATION ENDS  -->
+	<!-- TWITTER CARD CONFIGURATION STARTS  -->
+	<meta name="twitter:card" content="summary"/>
+	<meta name="twitter:site" content="https://twitter.com/onlinecalculator"/>
+	<meta name="twitter:title" content="Population Variance Calculator | How to Find Population Variance?"/>
+	<meta name="twitter:description" content="Online Population Variance Calculator finds the variance of population quickly. Check the steps to calculate population variance, population variance formula."/>
+	<meta name="twitter:image:src" content="https://chemistrycalc.com/static/images/Chemistry/pH-Calculator.jpeg"/>
+	<meta property="twitter:image:height" content="435"/>
+	<meta property="twitter:image:width" content="354"/>
+	<!-- TWITTER CARD CONFIGURATION ENDS  -->
+	<!--  LINKEDIN CONFIGURATION STARTS-->
+	<meta property='og:title' content="Population Variance Calculator | How to Find Population Variance?"/>
+	<meta property='og:image' content="https://chemistrycalc.com/static/images/Chemistry/pH-Calculator.jpeg"/>
+	<meta property='og:description' content="Online Population Variance Calculator finds the variance of population quickly. Check the steps to calculate population variance, population variance formula."/>
+	<meta property='og:url' content="https://www.linkedin.com/in/onlinecalculator/" />
+	<!-- end of linkedin CONFIGURATIONS ENDS -->
+<!-- OPEN GRAPH CONFIGURATION ENDS -->
+<!-- FAQ SCHEMA STARTS -->
+<script type="application/ld+json">{"@context": "https://schema.org","@type": "FAQPage","mainEntity": [{"@type": "Question","name":"1.
+    How to find population variance in a calculator?
+    ","acceptedAnswer": {"@type": "Answer","text":" You have to give the data set values in the input section of the calculator and click on the calculate button to avail the exact population variance value with a detailed step by step explanation in the output section."}	}, {"@type": "Question","name":"2.
+    What are the differences between sample variance and population variance?
+    ","acceptedAnswer": {"@type": "Answer","text":" The population variance is the value of variance that is calculated from the population data. Whereas sample variance is the variance value calculated from the sample data. The population variance formula is σ2 = ∑(xi - μ)2 / N. The sample variance is the replacement of N by N-1 in population variance. So, the formula of sample variance is s2 = ∑(xi - x̄)2 / (N - 1)."}	}, {"@type": "Question","name":"3.
+    What is the population variance formula?
+    ","acceptedAnswer": {"@type": "Answer","text":" The formula to determine population variance is σ2 = ∑ (x − x̅)² / N. Where N is the total number of observations and x̅ is the mean."}	}, {"@type": "Question","name":"4.
+    Why do we calculate population variance?
+    ","acceptedAnswer": {"@type": "Answer","text":" Population variance is an important measure of dispersion that is used in statistics. We calculate population variance to determine how individuals in the data set relate to each other."}	}]}</script>
+{%endblock%}
+{%block content%}
+<script>
+       $(document).ready(function(){
+           {% if e %}
+           $("#hassle").click();
+           {% endif %}
+        $(".btn-danger").on("click",function(){
+          $(".form-control").attr("value","");
+          $("#solve-population-variance").empty();
+         });
+        });
+    </script>
+<div class="container">
+    <button type="button" hidden id="hassle"  onclick="location.href='#solve-population-variance'">ans</button>
+	<div class="card c1">
+  	<div class="card-header">
+  <h1 class="h1">Population Variance Calculator</h1>
+  </div>
+  <div class="card-body">
+<p>Population Variance Calculator is a free tool that determines the variance of a population in a fraction of seconds. It just takes the population data as input and produces the Population Variance value as output quickly and easily.</p>
+      {% autoescape off %}
+            {% if messages %}
+                {% for message in messages %}
+                        <div class="row">
+                            <div class="col-md-6">
+                                <p class="alert alert-danger">{{message}}</p>
+                            </div>
+                        </div>
+                {% endfor %}
+                {% endif %}
+        {%endautoescape%}
+      <form action="{% url 'population-variance' %}" id="myForm" class="center"onsubmit="return validate()" method="post">
+            {% csrf_token %}
+            <div class="input-group mb-2 mt-3">
+                  <div class="input-group-prepend">
+                <div class="input-group-text"><strong>Data</strong></div>
+                     <input type="text" id="inlineFormInputGroup" style="margin-top: 5px;width:95%" name="a" value="{{ a }}" oninput="validateNumber1(this);" size="250" placeholder="Enter the Data Values comma separated" class="form-control" required></div>
+            </div>
+                <div class=" center col mt-2 ">
+                <center><button type="submit" class="btn btn-primary"  class="form-control" >Calculate</button>
+                <button type="button" onclick="this.form.reset()" style="margin-top:5px;" class="btn btn-danger" class="form-control">Reset</button>
+                </center>
+            </div>
+          <div class="input-group mb-2 mt-3">
+                  <div class="input-group-prepend">
+                      <div class="input-group-text"><strong>Population Variance</strong></div>
+                     <input type="text" disabled id="inlineFormInputGroup" value="{{ variance }}" oninput="validateNumber(this);" class="form-control" required></div>
+                 </div>
+
+        </form>
+<p><strong>Population Variance Calculator: </strong>Do you need assistance while calculating population variance? If yes, then stay tuned to this page. Here provided handy Population Variance Calculator helps to find the value of population variance of the data effortlessly. Find the simple steps, population variance definition, formula with solved examples. </p>
+    </div></div>
+    {% if answer %}
+    <div class="card c1" id="solve-population-variance">
+        <div class="card-header"><center class="h1">Detailed Answer</center></div>
+        <div class="card-body container">
+        {% for i,z in answer.items %}
+        {% if 'bold' in i %}
+        <p><b>{{ z }}</b></p>
+        {% else %}
+        <p>{{ z }}</p>
+        {% endif %}
+        {% endfor %}
+        </div>
+    </div>
+    {% endif %}
+
+
+
+<script>
+    var validNumber = new RegExp(/^\d*\.?\d*$/);
+    var fist_input = document.getElementById("inlineFormInputGroup").value;
+    function validateNumber(elem) {
+      if (validNumber.test(elem.value)) {
+        fist_input = elem.value;
+      } else {
+        elem.value = fist_input;
+      }
+    }
+</script>
+<div class="card">
+    <div class="card-header">
+        <h2 class="h2">What is Population Variance?</h2>
+    </div>
+    <div class="card-body">
+<p>In statistics, population variance is the set of comparable events which is of interest for some experiment or investigation. A statistical population can be a group of existing objects perceived as a generalization from experience. 
+</p> <p>Variance is the measure of the variability of values in the data set. It is defined as the average squared difference from the mean of all data points. Low variance means the data is more tightly clustered and high variance means the dataset is more spread out.
+</p><p>  The symbol used to represent population variance is σ². Its formula is given here:</p>
+<img src="https://drive.google.com/file/d/1bRRKF3zHKcmT7EiyNabHMOzZAvAXNGtr/view?usp=sharing">
+<p>Where,</p>
+<p>μ is the mean</p>
+<p> σ² is the variance</p>
+<p>  N is the total number of data points</p>
+<p>  X is data point</p>
+</div>
+</div>
+<div class="card">
+    <div class="card-header">
+        <h3 class="h3">Step by Step Process to Calculate Population Variance</h3>
+    </div>
+    <div class="card-body">
+        <p>The following are the detailed steps are helpful to calculate the population variance of data set. Follow them to obtain instant results.
+
+        </p>
+        <ul>
+            <li>Take any data set.</li>
+            <li> Find the difference from the mean of each point.</li>
+            <li> Square the difference from mean for each point.</li>
+            <li> Add the all points squared values.</li>
+            <li> Divide the sum by total number of data points to find population variance.</li>
+        </ul>
+        <p><strong>Example:</strong></p>
+        <p>Question: Find the Population Variance of data set {5, 6, 8, 3, 10, 7, 13}?</p>
+        <p>Solution:</p>
+        <p>Given data set values are {5, 6, 8, 3, 10, 7, 13} </p>
+        <p>Population variance formula is σ² = ∑(xi - μ)² / N</p>
+        <p>Mean μ = [5+6+8+3+10+7+13]/7</p>
+        <p>= 52/7 = 7.428</p>
+        <p>Substitute the values in the formula of population variance</p>
+        <p>σ² = [(5-7.428)²+(6-7.428)²+(8-7.428)²+(3-7.428)²+(10-7.428)²+(7-7.428)²+(13-7.428)²]/7</p>
+        <p>= [5.895+2.039+0.327+19.607+6.615+0.183+31.047]/7</p>
+        <p>= 65.713/7</p>
+        <p>= 9.387</p>
+        <p>Therefore, the population variance of the data is 9.387.</p>
+        <p><a href="/">statisticscalculators.net</a> has a huge collection of online calculators for plenty of concepts in statistics. Explore it and make your calculations quite easy.</p>
+        </div>
+        </div>
+<div class="card">
+  <div class="card-header">
+      <h3 class="h3">FAQs on Population Variance Calculator</h3>
+  </div>
+  <div class="card-body">
+      <!-- Question & Answer Starts --->
+      <p class="question"><strong> 1. How to find population variance in a calculator?</strong></p>
+      <p class="answer">You have to give the data set values in the input section of the calculator and click on the calculate button to avail the exact population variance value with a detailed step by step explanation in the output section.</p><hr>
+<p class="question"><strong>2. What are the differences between sample variance and population variance?</strong></p>
+<p class="answer">The population variance is the value of variance that is calculated from the population data. Whereas sample variance is the variance value calculated from the sample data. The population variance formula is σ2 = ∑(xi - μ)2 / N. The sample variance is the replacement of N by N-1 in population variance. So, the formula of sample variance is s2 = ∑(xi - x̄)2 / (N - 1).</p><hr>
+<p class="question"><strong>3. What is the population variance formula?</strong></p>
+<p class="answer">The formula to determine population variance is σ2 = ∑ (x − x̅)² / N. Where N is the total number of observations and x̅ is the mean.</p><hr>
+<p class="question"><strong>4. Why do we calculate population variance?</strong></p>
+<p class="answer">Population variance is an important measure of dispersion that is used in statistics. We calculate population variance to determine how individuals in the data set relate to each other.</p>
+</div>
+</div>
+</div>
+
+
+{%endblock%}

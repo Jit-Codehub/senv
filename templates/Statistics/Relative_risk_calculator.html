@@ -1,0 +1,252 @@
+{%extends 'base/statistics_base2.html'%}
+{%load static%}
+{%block meta%}
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+  <link rel="shortcut icon" href="{% static 'images/logo/Chemistry-Calc.png' %}" type="icon">
+  {%block css%}
+  <link rel="stylesheet" href="{% static 'style.css' %}">
+  {%endblock%}
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+	<!-- META DATA STARTS --->
+    <title>Online Relative Risk Calculator | How to Calculate the Relative Risk?</title>
+	<meta name="description" content="Relative Risk Calculator helps to calculate ratio of probability of disease in exposed and probability of disease in unexposed. And this calculator gives you complete information about relative risk. ">
+	<link rel="canonical" href="{{request.build_absolute_uri}}">
+<!-- META DATA ENDS --->
+ 
+<!-- OPEN GRAPH CONFIGURATIONS STARTS -->
+	<!--  FACEBOOK CONFIGURATION STARTS  -->
+	<meta content="https://www.facebook.com/OnlineCalculator-Guru-131572098650589/" property="og:url" />
+	<meta property="og:title" content="Online Relative Risk Calculator | How to Calculate the Relative Risk?"/>
+	<meta property="og:description" content="Relative Risk Calculator helps to calculate ratio of probability of disease in exposed and probability of disease in unexposed. And this calculator gives you complete information about relative risk."/>
+	<meta content="" property="og:site_name" />
+	<meta  content="https://Onlinecalculator.guru/static/images/Statistics/Relative-Risk-Calculator.jpeg" property="og:image" />
+	<meta property="og:image:type" content="image/png" />
+	<meta property="og:image:height" content="435" />
+	<meta property="og:image:width" content="354" />
+	<!--  FACEBOOK CONFIGURATION ENDS  -->
+	<!-- TWITTER CARD CONFIGURATION STARTS  -->
+	<meta name="twitter:card" content="summary"/>
+	<meta name="twitter:site" content="https://twitter.com/onlinecalculator"/>
+	<meta name="twitter:title" content="Online Relative Risk Calculator | How to Calculate the Relative Risk?"/>
+	<meta name="twitter:description" content="Relative Risk Calculator helps to calculate ratio of probability of disease in exposed and probability of disease in unexposed. And this calculator gives you complete information about relative risk."/>
+	<meta name="twitter:image:src" content="https://Onlinecalculator.guru/static/images/Statistics/Relative-Risk-Calculator.jpeg"/>
+	<meta property="twitter:image:height" content="435"/>
+	<meta property="twitter:image:width" content="354"/>
+	<!-- TWITTER CARD CONFIGURATION ENDS  -->
+	<!--  LINKEDIN CONFIGURATION STARTS-->
+	<meta property='og:title' content="Online Relative Risk Calculator | How to Calculate the Relative Risk?"/>
+	<meta property='og:image' content="https://Onlinecalculator.guru/static/images/Statistics/Relative-Risk-Calculator.jpeg"/>
+	<meta property='og:description' content="Relative Risk Calculator helps to calculate ratio of probability of disease in exposed and probability of disease in unexposed. And this calculator gives you complete information about relative risk."/>
+	<meta property='og:url' content="https://www.linkedin.com/in/onlinecalculator/" />
+	<!-- end of linkedin CONFIGURATIONS ENDS -->
+<!-- OPEN GRAPH CONFIGURATION ENDS -->
+<!-- FAQ SCHEMA STARTS -->
+<script type="application/ld+json">{"@context": "https://schema.org","@type": "FAQPage","mainEntity": [{"@type": "Question","name":"1
+    What do you mean by Relative Risk?
+    ","acceptedAnswer": {"@type": "Answer","text":" 
+    Relative risk defines that the ratio of the disease exposed by the disease unexposed. Relative Risk is also kown as Risk ratio."}	}, {"@type": "Question","name":"2
+    How to use the Relative Risk Calculator?
+    ","acceptedAnswer": {"@type": "Answer","text":" 
+    Simply, enter the a,b,c,d values in the given input boxes and click on the calculate button. You will see the answer in seconds.
+    Finally, click the calculate button to see the answer in no time."}	}, {"@type": "Question","name":"3
+    What is the formula to calculate the Relative Risk?
+    ","acceptedAnswer": {"@type": "Answer","text":"
+    Formula for Relative Risk is (RR)= [A/(A+B)] / [C/(C+D)]"}	}]}</script>
+{%endblock%}
+{%block content%}
+<script>
+  $(document).ready(function(){
+      {% if e %}
+      $("#hassle").click();
+      {% endif %}
+   $(".btn-danger").on("click",function(){
+     $(".form-control").attr("value","");
+     $("#solve-relative-risk").empty();
+    });
+   });
+</script>
+<div class="container">
+	<div class="card c1">
+    <button type="button" hidden id="hassle"  onclick="location.href='#solve-relative-risk'">ans</button>
+  	<div class="card-header">
+  <h1 class="h1">Relative Risk Calculator</h1>
+  </div>
+  <div class="card-body">
+    <p>Make use of this Relative Risk Calculator tool to determine the risk ratio and its confidence interval for two different exposure groups. Enter the data in the below fields and then click the calculate button and the result will be displayed in split seconds.</p>
+    {% autoescape off %}
+            {% if messages %}
+                {% for message in messages %}
+                        <div class="row">
+                            <div class="col-md-6">
+                                <p class="alert alert-danger">{{message}}</p>
+                            </div>
+                        </div>
+                {% endfor %}
+                {% endif %}
+        {%endautoescape%}
+      <form action="{% url 'relative-risk' %}" id="myForm" class="center"onsubmit="return validate()" method="post">
+            {% csrf_token %}
+            <div class="input-group mb-2 mt-3">
+                  <div class="input-group-prepend">
+                <div class="input-group-text"><strong>Exposed Group</strong></div>
+                </div>
+                </div>
+            <div class="input-group mb-2 mt-3">
+                  <div class="input-group-prepend">
+                <div class="input-group-text"><strong>Disease</strong></div>
+                     <input type="text" pattern="-?\d*\.?\d*" id="inlineFormInputGroup" name="a" value="{{ a }}" oninput="validateNumber1(this);" placeholder="Enter the Number" class="form-control" required></div>
+
+            </div>
+                <div class="input-group mb-2 mt-3">
+                  <div class="input-group-prepend">
+                <div class="input-group-text in"><strong>No Disease</strong></div>
+                     <input type="text" id="inlineFormInputGroup" placeholder="Enter the Number" value="{{ b }}" name="b" oninput="validateNumber(this);" class="form-control" required></div>
+
+                 </div>
+            <div class="input-group mb-2 mt-3">
+                  <div class="input-group-prepend">
+                <div class="input-group-text"><strong>Control Group</strong></div>
+                </div>
+                </div>
+            <div class="input-group mb-2 mt-3">
+                  <div class="input-group-prepend">
+                <div class="input-group-text"><strong>Disease</strong></div>
+                     <input type="text" pattern="-?\d*\.?\d*" id="inlineFormInputGroup" name="c" value="{{ c }}" oninput="validateNumber1(this);" placeholder="Enter the Number" class="form-control" required></div>
+
+            </div>
+                <div class="input-group mb-2 mt-3">
+                  <div class="input-group-prepend">
+                <div class="input-group-text in"><strong>No Disease</strong></div>
+                     <input type="text" id="inlineFormInputGroup" placeholder="Enter the Number" value="{{ d }}" name="d" oninput="validateNumber(this);" class="form-control" required></div>
+
+                 </div>
+                <div class=" center col mt-2 ">
+                <center><button type="submit" class="btn btn-primary"  class="form-control" >Calculate</button>
+                <button type="button" onclick="this.form.reset()" style="margin-top:5px;" class="btn btn-danger" class="form-control">Reset</button>
+                </center>
+            </div>
+          <div class="input-group mb-2 mt-3">
+                  <div class="input-group-prepend">
+                      <div class="input-group-text"><strong>Relative Risk</strong></div>
+                     <input type="text" disabled id="inlineFormInputGroup" value="{{ e }}" oninput="validateNumber(this);" class="form-control" required></div>
+                 </div>
+
+        </form>            
+                
+    <p><b>Relative Risk Calculator:</b> Looking for some assistance to calculate the relative risk? You came to the right place as we are explaining how to calculate the relative risk. By using this calculator you can save your time and it helps you understand the concept behind it in detail. Relative risk calculator finds the risk ratio. And we have explained step by step process to solve the problem without any errors.</p>
+    </div></div>
+    {% if answer %}
+    <div class="card c1" id="solve-relative-risk">
+        <div class="card-header"><center class="h1">Detailed Answer</center></div>
+        <div class="card-body container">
+        {% for i,z in answer.items %}
+        {% if 'bold' in i %}
+        <p><b>{{ z }}</b></p>
+        {% else %}
+        <p>{{ z }}</p>
+        {% endif %}
+        {% endfor %}
+        {% endif %}
+<div class="card">
+        <div class="card-header">
+            <h2 class="h2">What is Relative Risk?</h2>
+        </div>
+            <div class="card-body">
+                <p>Relative risk is defined as the ratio of the probability of the disease exposed and the probability of the disease unexposed. Relative risk is also called as the risk ratio. And we calculate the risk ratio by using the formula. Let us see the formula below.</p>
+                <p><b>Relative Risk (RR) = (probability of disease exposed) / (probability of disease unexposed) = [A/(A+B)] / [C/(C+D)]</b></p>
+                <p>Here, there is an interpretation.</p>
+                <p>If the risk ratio = 1, then there is no association</p>
+                <p>If the risk ratio < 1, then the association is negative</p>
+                <p>If the risk ratio > 1,  then the association is positive</p>
+            </div>
+</div>
+<div class="card">
+    <div class="card-header">
+        <h3 class="h3">How do you Calculate the Relative Risk?</h3>
+    </div>
+        <div class="card-body">
+            <p>Here is the step by step procedure to calculate the relative risk in easy process.</p>
+            <ul>
+                <li>Write down the values which is given in the problem.</li>
+                <li>Then, apply the formula of relative risk and substitute the values.</li>
+                <li>Finally, you will get the answer of risk ratio.</li>
+            </ul>
+        </div>
+</div>
+<div class="card">
+    <div class="card-header">
+        <h3 class="h3">Relative Risk Examples</h3>
+    </div>
+        <div class="card-body">
+            <p><b>Question:</b> Calculate the relative risk using the data.</p>
+                <table border ="2">
+                <thead>
+                  <tr>
+                    <th class="tg-0pky"></th>
+                    <th class="tg-0pky">Disease </th>
+                    <th class="tg-0pky">No Disease</th>
+                  </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                      <td class="tg-0pky">Exposed </td>
+                      <td class="tg-0pky">3 </td>
+                      <td class="tg-0pky">100</td>
+
+                    </tr>
+                    <tr>
+                      <td class="tg-0pky">NotExposed </td>
+                      <td class="tg-0pky">127 </td>
+                      <td class="tg-0pky">280</td>
+                    </tr>
+                    </tbody>
+                    </table>
+                    <p><b>Solution</b></p>
+                    <p>Given, a = 3, b = 100, c = 127, d = 280 </p>
+                    <p>Formula for relative risk</p>
+                    <p>RR = [A/(A+B)] / [C/(C+D)]</p>
+                    <p>Here, standard error of confidence level is 95%</p>
+                    <p>Substitute the values</p>
+                    <p>= [3/(3+100)] / [127/(127+280)]</p>
+                    <p>= 0.0291 / 0.312</p>
+                    <p>= 0.0933</p>
+                    <p>Thus the relative risk is less than 1, the association is negative.</p>
+                    <p>Go through the calculators in the <a href="https:/statisticscalculators.net/">Statisticscalculators.net</a> website and clear all your queries and save time.</p>
+        </div>
+</div>
+<div class="card">
+<div class="card-header">
+    <h3 class="h3">FAQs on Relative Risk Calculator</h3>
+</div>
+    <div class="card-body"> 
+           <!-- Question & Answer Starts --->
+           <p class="question"><strong>1. What do you mean by Relative Risk?</strong></p>
+           <p class="answer">Relative risk defines that the ratio of the disease exposed by the disease unexposed. Relative Risk is also kown as Risk ratio.</p><hr>
+           <p class="question"><strong>2. How to use the Relative Risk Calculator?</strong></p>
+           <p class="answer">Simply, enter the a,b,c,d values in the given input boxes and click on the calculate button. You will see the answer in seconds.</p><hr>
+           <p class="question"><strong>3. What is the formula to calculate the Relative Risk?</strong></p>
+           <p class="answer">Formula for Relative Risk is (RR)= [A/(A+B)] / [C/(C+D)]</p><hr>
+    </div>
+</div>              
+
+<script>
+    var validNumber = new RegExp(/^\d*\.?\d*$/);
+    var fist_input = document.getElementById("inlineFormInputGroup").value;
+    function validateNumber(elem) {
+      if (validNumber.test(elem.value)) {
+        fist_input = elem.value;
+      } else {
+        elem.value = fist_input;
+      }
+    }
+</script>
+
+
+
+{%endblock%}

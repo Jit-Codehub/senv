@@ -1,0 +1,182 @@
+{%extends 'base/statistics_base1.html'%}
+{%load static%}
+  {%block meta%}
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+  <link rel="shortcut icon" href="{% static 'images/logo/Online-Calculator-Guru-Fevicon.png' %}" type="icon">
+  {%block css%}
+  <link rel="stylesheet" href="{% static 'style2.css' %}">
+  {%endblock%}
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+	<!-- META DATA STARTS --->
+    <title>Relative Standard Deviation Calculator | Steps to Find RSD</title>
+	<meta name="description" content="Relative Standard Deviation Calculator is used to determine the RSD of a sample quickly. Give sample as input to obtain relative standard deviation as result.">
+	<link rel="canonical" href="{{request.build_absolute_uri}}">
+<!-- META DATA ENDS --->
+ 
+<!-- OPEN GRAPH CONFIGURATIONS STARTS -->
+	<!--  FACEBOOK CONFIGURATION STARTS  -->
+	<meta content="https://www.facebook.com/OnlineCalculator-Guru-131572098650589/" property="og:url" />
+	<meta property="og:title" content="Relative Standard Deviation Calculator | Steps to Find RSD"/>
+	<meta property="og:description" content="Relative Standard Deviation Calculator is used to determine the RSD of a sample quickly. Give sample as input to obtain relative standard deviation as result."/>
+	<meta content="" property="og:site_name" />
+	<meta  content="https://onlinecalculator.guru/static/images/Statistics/Relative-Standard-Deviation-Calculator.jpeg" property="og:image" />
+	<meta property="og:image:type" content="image/png" />
+	<meta property="og:image:height" content="435" />
+	<meta property="og:image:width" content="354" />
+	<!--  FACEBOOK CONFIGURATION ENDS  -->
+	<!-- TWITTER CARD CONFIGURATION STARTS  -->
+	<meta name="twitter:card" content="summary"/>
+	<meta name="twitter:site" content="https://twitter.com/onlinecalculator"/>
+	<meta name="twitter:title" content="Relative Standard Deviation Calculator | Steps to Find RSD"/>
+	<meta name="twitter:description" content="Relative Standard Deviation Calculator is used to determine the RSD of a sample quickly. Give sample as input to obtain relative standard deviation as result."/>
+	<meta name="twitter:image:src" content="https://onlinecalculator.guru/static/images/Statistics/Relative-Standard-Deviation-Calculator.jpeg"/>
+	<meta property="twitter:image:height" content="435"/>
+	<meta property="twitter:image:width" content="354"/>
+	<!-- TWITTER CARD CONFIGURATION ENDS  -->
+	<!--  LINKEDIN CONFIGURATION STARTS-->
+	<meta property='og:title' content="Relative Standard Deviation Calculator | Steps to Find RSD"/>
+	<meta property='og:image' content="https://onlinecalculator.guru/static/images/Statistics/Relative-Standard-Deviation-Calculator.jpeg"/>
+	<meta property='og:description' content="Relative Standard Deviation Calculator is used to determine the RSD of a sample quickly. Give sample as input to obtain relative standard deviation as result."/>
+	<meta property='og:url' content="https://www.linkedin.com/in/onlinecalculator/" />
+	<!-- end of linkedin CONFIGURATIONS ENDS -->
+<!-- OPEN GRAPH CONFIGURATION ENDS -->
+<!-- FAQ SCHEMA STARTS -->
+<script type="application/ld+json">{"@context": "https://schema.org","@type": "FAQPage","mainEntity": [{"@type": "Question","name":"1.
+    How do you calculate relative standard deviation?
+    ","acceptedAnswer": {"@type": "Answer","text":" At first, you need to find the mean and standard deviation of the sample. Multiply the standard deviation with 100 and divide it by mean to get the relative standard deviation value."}	}, {"@type": "Question","name":"2.
+    What is Meant by Relative Standard Deviation?
+    ","acceptedAnswer": {"@type": "Answer","text":" The relative standard deviation RSD is a special form of standard deviation, where it is presented as a percentage of the mean. It is always positive. The common way to write RSD after mean is with a plus or minus sign."}	}, {"@type": "Question","name":"3.
+    What is the relation between standard deviation and relative standard deviation?
+    ","acceptedAnswer": {"@type": "Answer","text":" A relative standard deviation is a form of standard deviation that is calculated by multiplying SD with 100 and dividing by the mean value."}	}, {"@type": "Question","name":"4.
+    What is the RSD formula?
+    ","acceptedAnswer": {"@type": "Answer","text":" The formula to calculate relative standard deviation is RSD = (Standard deviation x 100)/Mean."}	}]}</script>
+{%endblock%}
+{%block content%}
+<div class="container">
+	<div class="card c1">
+  	<div class="card-header">
+  <h1 class="h1">Relative Standard Deviation Calculator</h1>
+  </div>
+  <div class="card-body">
+      <p>By taking the advantage of Relative Standard Deviation Calculator, you can get the accurate RSD answer for the given sample in a fraction of seconds. You have to enter data set at the specified input box and hit on the calculate button to check the relative standard deviation within no time.</p>
+	{%if go_tag%}
+	<a href="{{go_tag}}" id="ddd"></a>
+	{%endif%}
+<div style="text-align: center;"><h5><strong>Relative Standard Deviation Calculator</strong></h5></div>
+<div class="box" id="relative_standard_deviation">
+	<form method="POST">{% csrf_token %}
+		<div class="row mx-auto my-auto">
+			<div class="cell">
+				<label for="input1">Enter the sample data: </label>
+			</div>
+		  </div>
+		<div class="row mx-auto my-auto">
+			<div class="cell">
+				{%if input1%}
+					<input name="input1" type="text" required width="48"  value="{{input1}}">
+				{%else%}
+					<input name="input1" type="text" required width="48"  value="18,23,56,34,23">
+				{%endif%}
+			</div>
+		</div>
+	<div class="col-auto mt-2 ml-3">
+	  <button type="submit" class="btn btn-primary mb-2">Calculate</button>
+	</div>
+	</form>
+	{%if detailStep%}
+	  <hr>
+	  <p><strong>Answer:</strong></p>
+	  <div style="text-align: center;">
+		  <p>Relative Standard Deviation :</p> 
+	  {% autoescape off %}
+	  {{detailStep}} %
+	  {%endautoescape%}
+	
+	  </div>
+	  <hr>
+  {%endif%}
+	  </div>
+  {% autoescape off %}
+	  {% if messages %}
+		  {% for message in messages %}
+			  <div class="row">
+				  <div class="col-md-6">
+					  <p class="alert alert-danger">{{message}}</p>
+				  </div>
+			  </div>
+		  {% endfor %}
+	  {% endif %}
+  {%endautoescape%}
+    <p><strong>Relative Standard Deviation Calculator: </strong>Learn the process to solve RSD of the sample. Our online handy Relative Standard Deviation Calculator tool is designed to help the students who wants to escape from the difficult mathematical calculations. Know the detailed explanation to calculate relative standard deviation of data set with best examples in the following sections. </p>
+</div></div>
+  <div class="card">
+	<div class="card-header"><h2 class="h2">What is Relative Standard Deviation?</h2></div>
+	<div class="card-body">
+        <p>The relative standard deviation is also called percentage standard deviation, is a special form of standard deviation. The deviation measure gives information about how the different numbers in the specified data set are scattered around the mean. 
+        </p><p>   The formula to find the relative standard deviation is given as:</p>
+        <p><strong>    Relative Standard DEviation, RSD = (Standard Deviation x 100)/Mean</strong></p>
+</div></div>
+<div class="card">
+  <div class="card-header"><h3 class="h3">How to Calculate Relative Standard Deviation?</h3></div>
+  <div class="card-body">
+      <p>Below given are the simple steps to find the relative standard deviation of the data sample easily.</p>
+<ul>
+    <li>Firstly, find the sum of numbers in the sample.</li>
+    <li>  Divide the square of sum of numbers by the total number of items in the sample.</li>
+    <li>  Calculate sum of squares of data items in the sample.</li>
+    <li>  Divide it by the number of items minus 1 to get the variance.</li>
+    <li>  Find the square root of variance to know the standard deviation value.</li>
+    <li>  Also, compute the mean of the sample.</li>
+    <li>  Multiply the SD with 100 and divide product by mean to find relative standard deviation. </li>
+ </ul>
+<p><strong>Example:</strong></p>
+<p><strong>Question: What is the Relative Standard Deviation of sample {15, 12, 10, 8, 5, 6, 2}?</strong></p>
+<p>Solution</p>
+<p>Given sample is {15, 12, 10, 8, 5, 6, 2}</p>
+<p>Sum of data items in sample=15+12+10+8+5+6+2=58</p>
+<p>(square of sum of numbers)/number of data items=58x58/7=480.57</p>
+<p>Sum of squares of data items=15<sup>2</sup>+12<sup>2</sup>+10<sup>2</sup>+8<sup>2</sup>+5<sup>2</sup>+6<sup>2</sup>+2<sup>2</sup>=225+144+100+64+25+36+4=568</p>
+<p>568-480.57=87.43</p>
+<p>Variance=87.43/(7-1)=14.571</p>
+<p>Standard Deviation=sqrt(variance)=sqrt(14.571)=3.817</p>
+<p>Relative Standard Deviation=SD*100/mean</p>
+<p>Mean=Sum of data items/ number of data item</p>
+<p>=58/7=8.285</p>
+<p>RSD=sqrt(14.571)*100/8.285=46.07</p>
+<p>Relative Standard Deviation is 46.07%</p>
+<p>Avail <a href="https://statisticscalculators.net/">StatisticsCalculators</a> and calculate all your lengthy math calculations in the easiest way by taking the help of free handy online math concept calculators. You can also get the free calculators for statistics, and others.</p>
+<img src="{% static 'images/Statistics/relative-standard-deviation-calculator.jpeg' %}" alt='Relative Standard Deviation Calculator'>
+	</div>
+  </div>
+  <div class="card">
+  	<div class="card-header">
+      	<h3 class="h3">FAQs on Relative Standard Deviation Calculator</h3>
+  	</div>
+  	<div class="card-body">
+      	<!-- Question & Answer Starts --->
+		  <p class="question"><strong>	  1. How do you calculate relative standard deviation?</strong></p>
+		  <p class="answer">At first, you need to find the mean and standard deviation of the sample. Multiply the standard deviation with 100 and divide it by mean to get the relative standard deviation value.</p><hr>
+<p class="question"><strong>2. What is Meant by Relative Standard Deviation?</strong></p>
+<p class="answer">The relative standard deviation RSD is a special form of standard deviation, where it is presented as a percentage of the mean. It is always positive. The common way to write RSD after mean is with a plus or minus sign.</p><hr>
+<p class="question"><strong>3. What is the relation between standard deviation and relative standard deviation?</strong></p>
+<p class="answer">A relative standard deviation is a form of standard deviation that is calculated by multiplying SD with 100 and dividing by the mean value.</p><hr>
+<p class="question"><strong>4. What is the RSD formula?</strong></p>
+<p class="answer">The formula to calculate relative standard deviation is RSD = (Standard deviation x 100)/Mean.</p>
+
+</p><hr>
+
+  	</div>
+   </div>
+</div>
+<script>
+	document.addEventListener('DOMContentLoaded', function () {
+		document.getElementById('ddd').click();
+	  });
+</script>
+{%endblock%}

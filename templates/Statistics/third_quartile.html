@@ -1,0 +1,302 @@
+{%extends 'base/statistics_base2.html'%}
+{%load static%}
+  {%block meta%}
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+  <link rel="shortcut icon" href="{% static 'images/logo/Online-Calculator-Guru-Fevicon.png' %}" type="icon">
+  {%block css%}
+  <link rel="stylesheet" href="{% static 'style.css' %}">
+  {%endblock%}
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <!-- META DATA STARTS --->
+    <title>Upper or Third Quartile Calculator | How do you Interpret the Third Quartile?</title>
+    <meta name="description" content="Third Quartile Calculator is a free online tool that determines the third quartile or upper quartile of a given data set and shows the step by step process.">
+    <link rel="canonical" href="{{request.build_absolute_uri}}" >
+<!-- META DATA ENDS --->
+
+<!-- OPEN GRAPH CONFIGURATIONS STARTS -->
+    <!--  FACEBOOK CONFIGURATION STARTS  -->
+    <meta content="https://www.facebook.com/OnlineCalculator-Guru-131572098650589/" property="og:url" />
+    <meta property="og:title" content="Upper or Third Quartile Calculator | How do you Interpret the Third Quartile?"/>
+    <meta property="og:description" content="Third Quartile Calculator is a free online tool that determines the third quartile or upper quartile of a given data set and shows the step by step process."/>
+    <meta content="" property="og:site_name" />
+    <meta  content="https://onlinecalculator.guru/static/images/Statistics/Third-Quartile-Calculator.jpeg" property="og:image" />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:height" content="435" />
+    <meta property="og:image:width" content="354" />
+    <!--  FACEBOOK CONFIGURATION ENDS  -->
+    <!-- TWITTER CARD CONFIGURATION STARTS  -->
+    <meta name="twitter:card" content="summary"/>
+    <meta name="twitter:site" content="https://twitter.com/onlinecalculator"/>
+    <meta name="twitter:title" content="Upper or Third Quartile Calculator | How do you Interpret the Third Quartile?"/>
+    <meta name="twitter:description" content="Third Quartile Calculator is a free online tool that determines the third quartile or upper quartile of a given data set and shows the step by step process."/>
+    <meta name="twitter:image:src" content="https://onlinecalculator.guru/static/images/Statistics/Third-Quartile-Calculator.jpeg"/>
+    <meta property="twitter:image:height" content="435"/>
+    <meta property="twitter:image:width" content="354"/>
+    <!-- TWITTER CARD CONFIGURATION ENDS  -->
+    <!--  LINKEDIN CONFIGURATION STARTS-->
+    <meta property='og:title' content="Upper or Third Quartile Calculator | How do you Interpret the Third Quartile?"/>
+    <meta property='og:image' content="https://onlinecalculator.guru/static/images/Statistics/Third-Quartile-Calculator.jpeg"/>
+    <meta property='og:description' content="Third Quartile Calculator is a free online tool that determines the third quartile or upper quartile of a given data set and shows the step by step process."/>
+    <meta property='og:url' content="https://www.linkedin.com/in/onlinecalculator/" />
+    <!-- end of linkedin CONFIGURATIONS ENDS -->
+<!-- OPEN GRAPH CONFIGURATION ENDS -->
+<!-- FAQ SCHEMA STARTS -->
+<script type="application/ld+json">{"@context": "https://schema.org","@type": "FAQPage","mainEntity": [{"@type": "Question","name":"1. 
+  What is the Significance of Quartile Formula?
+  ","acceptedAnswer": {"@type": "Answer","text":" Quartile Formula is used to divide a set of observations into 4 equal parts."}	}, {"@type": "Question","name":"2. 
+  What is meant by Third Quartile?
+  ","acceptedAnswer": {"@type": "Answer","text":" The middle value that lies between the median and the last term is called Third Quartile."}	}, {"@type": "Question","name":"3. 
+  Write the formula for finding Third Quartile?
+  ","acceptedAnswer": {"@type": "Answer","text":" The formula for finding the Third Quartile is Q3 = 3/4(n+1)th Term"}	}, {"@type": "Question","name":"4. 
+  Is there any website that offers the third quartile calculator for free?
+  ","acceptedAnswer": {"@type": "Answer","text":"statisticscalculators.net is a user friendly website that offers the third quartile calculator for free and makes your calculations simple. is a user friendly website that offers the third quartile calculator for free and makes your calculations simple."}	}]}</script>
+{%endblock%}
+{%block content%}
+<div class="container">
+    <div class="card c1">
+      <div class="card-header">
+  <h1 class="h1">Third Quartile Calculator</h1>
+  </div>
+  <div class="card-body">
+    <p>Third or Upper Quartile Calculator is a free tool that displays the third quartile of given set of data in a matter of seconds. All you have to do is provide necessary data set, simply tap on the calculate button to get output in no time.</p>
+    <br>
+    <p><b>Ex:</b> 32,45,12,17,43,68,75,8,11,29</p>
+    <form action="{% url 'third-quartile' %}" method="POST" id="my_form" name="reg_to_scientific" onsubmit="go();">
+    {% csrf_token %}
+    <div class="form-row align-items-center">
+      <div class="col-auto">
+        <label class="sr-only" for="inlineFormInputGroup">Third Quartile</label>
+        <div class="input-group mb-2">
+          <div class="input-group-prepend">
+            <div class="input-group-text"><strong>Third Quartile of: </strong></div>
+          </div>
+          <input type="text" class="form-control" name="input1" id="inlineFormInputGroup" placeholder="Enter number" value="{{inputEnter}}">
+        </div>
+      </div>
+      <div class="col-auto">
+        <button type="submit" class="btn btn-primary mb-2">Calculate</button>
+      </div>
+    </div>
+    </form>
+    {% autoescape off %}
+    {{error}}
+    {%endautoescape%}
+    <br>
+    <p><strong>Here are some samples of Third Quartile calculations.</strong></p>
+    <div class="row">
+      <div class="col-sm-6">
+        <ul>
+          
+          <li><a href="https://statisticscalculators.net/statistics/third-quartile-of-7-9-3-4/">Third Quartile of 7,9,3,4</a></li>
+          
+          <li><a href="https://statisticscalculators.net/statistics/third-quartile-of-5-9-3-7/">Third Quartile of 5,9,3,7</a></li>
+          
+          <li><a href="https://statisticscalculators.net/statistics/third-quartile-of-8-4-3-5/">Third Quartile of 8,4,3,5</a></li>
+          
+          <li><a href="https://statisticscalculators.net/statistics/third-quartile-of-9-2-4-7-8/">Third Quartile of 9,2,4,7,8</a></li>
+          
+          <li><a href="https://statisticscalculators.net/statistics/third-quartile-of-9-2-7-6-5/">Third Quartile of 9,2,7,6,5</a></li>
+          
+          <li><a href="https://statisticscalculators.net/statistics/third-quartile-of-4-5-8-3-6/">Third Quartile of 4,5,8,3,6</a></li>
+          
+          <li><a href="https://statisticscalculators.net/statistics/third-quartile-of-7-2-5-9-6-4/">Third Quartile of 7,2,5,9,6,4</a></li>
+          
+          <li><a href="https://statisticscalculators.net/statistics/third-quartile-of-3-7-5-2-8-9/">Third Quartile of 3,7,5,2,8,9</a></li>
+          
+          <li><a href="https://statisticscalculators.net/statistics/third-quartile-of-4-9-8-2-5-7/">Third Quartile of 4,9,8,2,5,7</a></li>
+          
+   
+        </ul>                    
+      </div>
+      <div class="col-sm-6">
+        <ul>
+          
+          <li><a href="https://statisticscalculators.net/statistics/third-quartile-of-11-88-62-41/">Third Quartile of 11,88,62,41</a></li>
+          
+          <li><a href="https://statisticscalculators.net/statistics/third-quartile-of-88-62-26-44/">Third Quartile of 88,62,26,44</a></li>
+          
+          <li><a href="https://statisticscalculators.net/statistics/third-quartile-of-84-93-23-80/">Third Quartile of 84,93,23,80</a></li>
+          
+          <li><a href="https://statisticscalculators.net/statistics/third-quartile-of-27-17-54-23-16/">Third Quartile of 27,17,54,23,16</a></li>
+          
+          <li><a href="https://statisticscalculators.net/statistics/third-quartile-of-53-10-43-42-44/">Third Quartile of 53,10,43,42,44</a></li>
+          
+          <li><a href="https://statisticscalculators.net/statistics/third-quartile-of-35-92-52-90-34/">Third Quartile of 35,92,52,90,34</a></li>
+          
+          <li><a href="https://statisticscalculators.net/statistics/third-quartile-of-46-42-34-90-65-51/">Third Quartile of 46,42,34,90,65,51</a></li>
+          
+          <li><a href="https://statisticscalculators.net/statistics/third-quartile-of-32-17-45-31-48-85/">Third Quartile of 32,17,45,31,48,85</a></li>
+          
+          <li><a href="https://statisticscalculators.net/statistics/third-quartile-of-36-19-37-89-86-62/">Third Quartile of 36,19,37,89,86,62</a></li>
+          
+        </ul>                 
+      </div>
+      <div class="col-sm-6">
+      <ul>
+          
+          <li><a href="https://statisticscalculators.net/statistics/third-quartile-of-50-44-53-40/">Third Quartile of 50,44,53,40</a></li>
+          
+          <li><a href="https://statisticscalculators.net/statistics/third-quartile-of-91-25-58-34/">Third Quartile of 91,25,58,34</a></li>
+          
+          <li><a href="https://statisticscalculators.net/statistics/third-quartile-of-84-78-50-54/">Third Quartile of 84,78,50,54</a></li>
+          
+          <li><a href="https://statisticscalculators.net/statistics/third-quartile-of-71-21-74-53-69/">Third Quartile of 71,21,74,53,69</a></li>
+          
+          <li><a href="https://statisticscalculators.net/statistics/third-quartile-of-50-79-20-99-70/">Third Quartile of 50,79,20,99,70</a></li>
+          
+          <li><a href="https://statisticscalculators.net/statistics/third-quartile-of-82-98-36-48-57/">Third Quartile of 82,98,36,48,57</a></li>
+          
+          <li><a href="https://statisticscalculators.net/statistics/third-quartile-of-78-37-76-75-74-54/">Third Quartile of 78,37,76,75,74,54</a></li>
+          
+          <li><a href="https://statisticscalculators.net/statistics/third-quartile-of-89-94-18-40-98-98/">Third Quartile of 89,94,18,40,98,98</a></li>
+          
+          <li><a href="https://statisticscalculators.net/statistics/third-quartile-of-40-76-57-36-47-78/">Third Quartile of 40,76,57,36,47,78</a></li>
+             
+      </ul>			
+      </div>
+    </div>
+    <p>Related Calculators:</p>
+                    <div class="row">
+                      <div class="col-sm-5">
+                  <ul>
+                    <li><a href="/statistics/first-quartile-calculator/">First Quartile Calculator</a></li>
+                    <li><a href="/statistics/mean-calculator/">Mean Calculator</a></li>
+                    <li><a href="/statistics/median-calculator/">Median Calculator</a></li>
+                    <li><a href="/statistics/mode-calculator/">Mode Calculator</a></li>
+                    <li><a href="/statistics/third-quartile-calculator/">Third Quartile Calculator</a></li>
+                    <li><a href="/statistics/third-quartile-calculator/">Third Quartile Calculator</a></li>
+                  </ul>
+                </div>
+                </div>
+    <p><strong>Third Quartile Calculator: </strong>Do you want to determine the upper or third quartile of given set of a data? If so, you can tak help of the free online Third Quartile Calculator to determine the upper quartile Q3 of a given data set. In this article of ours, we will describe everything you need to know like Upper Quartile Definition, Third Quartile Formula, Procedure on How do you find the Third Quartile for given set of numbers, etc. In addition, you will also find solved examples on finding Q3 or median of upper half of data. </p>
+</div></div>
+<div class="card">
+  <div class="card-header"><h2 class="h2">What does Upper or Third Quartile(Q3) Mean?</h2></div>
+    <div class="card-body">
+      <p>The middle term that lies between the median and the last term is called third quartile. It is denoted using the symbol Q3. On arranging set of observations in ascending order we have the third quartile  formula as Third Quartile(Q3) = (3(n + 1)/4)th Term</p>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-header"><h3 class="h3">How do you Interpret the Upper or Third Quartile Q3?</h3></div>
+      <div class="card-body">
+        <p>Go through the simple steps listed below to determine the Upper Half Quartile easily. They are as follows</p>
+        <ol>
+          <li>First and foremost step is to sort the given set of data in ascending order and split them into 4 equal quarters.</li>
+          <li>Q1, Q2, and Q3 are the 3 quartiles and the third quartile is the upper half of the data.</li>
+          <li>Sort the upper half in order and find out the median of the numbers.</li>
+          <li>If at all the data is even, the third quartile of numbers becomes the middle value.</li>
+          <li>In case if the data is odd, the upper quartile or Q3 of numbers is mean of two middle values.</li>
+        </ol>
+        <img src="{% static 'images/Statistics/third-quartile-calculator.jpeg' %}" alt='Third Quartile Calculator'>
+      </div>
+  </div>
+  <div class="card">
+    <div class="card-header">
+          <h2 class="h2">Examples on How to find Third Quartile</h2>
+      </div>
+    <div class="card-body">
+      <p><strong>Example 1:</strong> Find the upper quartile for the following set of numbers: 24, 16, 4, 6, 3, 5, 10, 2, 1</p>
+      <p><strong>Solution:</strong></p>
+      <p>Given Set of Numbers is 24, 16, 29, 4, 6, 3, 5, 10, 2, 1, 42</p>
+      <p>Sort the numbers in ascending order i.e. 1, 2, 3, 4, 5, 6, 10, 16, 24, 29, 42 </p>
+      <p>We know the formula to find the upper quartile position is Q3 = 3/4(n+1)th Term</p>
+      <p>Here in this case n = 11</p>
+      <p>Q3 = 3/4(11+1)th Term</p>
+      <p>Q3=9th Term</p>
+      <p>Therefore, in the given set of numbers 9th term is 2</p>
+      <div class="row">
+        <div class="col-sm-7">
+          <ul>
+              
+              <li><a href="https://statisticscalculators.net/statistics/third-quartile-of-180-191-314-243/">Third Quartile of 180,191,314,243</a></li>
+              
+              <li><a href="https://statisticscalculators.net/statistics/third-quartile-of-454-552-554-124/">Third Quartile of 454,552,554,124</a></li>
+              
+              <li><a href="https://statisticscalculators.net/statistics/third-quartile-of-884-877-202-431-316/">Third Quartile of 884,877,202,431,316</a></li>
+              
+              <li><a href="https://statisticscalculators.net/statistics/third-quartile-of-978-437-340-587-338/">Third Quartile of 978,437,340,587,338</a></li>
+              
+              <li><a href="https://statisticscalculators.net/statistics/third-quartile-of-419-212-103-545-652-974/">Third Quartile of 419,212,103,545,652,974</a></li>
+              
+              <li><a href="https://statisticscalculators.net/statistics/third-quartile-of-118-343-963-262-432-665/">Third Quartile of 118,343,963,262,432,665</a></li>
+                 
+          </ul>			
+          </div>
+          <div class="col-sm-7">
+              <ul>
+                  
+                  <li><a href="https://statisticscalculators.net/statistics/third-quartile-of-6392-4301-7759-4071/">Third Quartile of 6392,4301,7759,4071</a></li>
+                  
+                  <li><a href="https://statisticscalculators.net/statistics/third-quartile-of-4930-9810-6691-3795/">Third Quartile of 4930,9810,6691,3795</a></li>
+                  
+                  <li><a href="https://statisticscalculators.net/statistics/third-quartile-of-8008-3237-8603-1547-7549/">Third Quartile of 8008,3237,8603,1547,7549</a></li>
+                  
+                  <li><a href="https://statisticscalculators.net/statistics/third-quartile-of-5402-7692-6810-9637-1431/">Third Quartile of 5402,7692,6810,9637,1431</a></li>
+                  
+                  <li><a href="https://statisticscalculators.net/statistics/third-quartile-of-1593-1848-8759-8843-2871-3000/">Third Quartile of 1593,1848,8759,8843,2871,3000</a></li>
+                  
+                  <li><a href="https://statisticscalculators.net/statistics/third-quartile-of-5347-4659-9839-9690-9701-7202/">Third Quartile of 5347,4659,9839,9690,9701,7202</a></li>
+                  
+              </ul>
+          </div>
+          <div class="col-sm-7">
+              <ul>
+                  
+                  <li><a href="https://statisticscalculators.net/statistics/third-quartile-of-43198-26983-46277-90377/">Third Quartile of 43198,26983,46277,90377</a></li>
+                  
+                  <li><a href="https://statisticscalculators.net/statistics/third-quartile-of-36202-92162-90268-12639/">Third Quartile of 36202,92162,90268,12639</a></li>
+                  
+                  <li><a href="https://statisticscalculators.net/statistics/third-quartile-of-66812-58795-46497-83753-70908/">Third Quartile of 66812,58795,46497,83753,70908</a></li>
+                  
+                  <li><a href="https://statisticscalculators.net/statistics/third-quartile-of-76752-32764-72238-96374-39330/">Third Quartile of 76752,32764,72238,96374,39330</a></li>
+                  
+                  <li><a href="https://statisticscalculators.net/statistics/third-quartile-of-68935-81373-31015-63619-85981-51941/">Third Quartile of 68935,81373,31015,63619,85981,51941</a></li>
+                  
+                  <li><a href="https://statisticscalculators.net/statistics/third-quartile-of-49228-20332-67592-78418-64182-88285/">Third Quartile of 49228,20332,67592,78418,64182,88285</a></li>
+                  
+              </ul>
+          </div>
+          <div class="col-sm-7"> 
+              <ul>
+                  
+                  <li><a href="https://statisticscalculators.net/statistics/third-quartile-of-359960-370974-645333/">Third Quartile of 359960,370974,645333</a></li>
+                  
+                  <li><a href="https://statisticscalculators.net/statistics/third-quartile-of-191020-250459-400739/">Third Quartile of 191020,250459,400739</a></li>
+                  
+                  <li><a href="https://statisticscalculators.net/statistics/third-quartile-of-803246-622825-632160-191916/">Third Quartile of 803246,622825,632160,191916</a></li>
+                  
+                  <li><a href="https://statisticscalculators.net/statistics/third-quartile-of-170953-568234-604374-729396/">Third Quartile of 170953,568234,604374,729396</a></li>
+                  
+                  <li><a href="https://statisticscalculators.net/statistics/third-quartile-of-778731-723536-527309-954177-544396/">Third Quartile of 778731,723536,527309,954177,544396</a></li>
+                  
+                  <li><a href="https://statisticscalculators.net/statistics/third-quartile-of-721303-912810-300954-131164-563321/">Third Quartile of 721303,912810,300954,131164,563321</a></li>
+                  
+              </ul>
+          </div>
+      </div>
+      </div>
+  </div>
+  <div class="card">
+      <div class="card-header">
+          <h3 class="h3">FAQs on Upper or Third Quartile Calculator</h3>
+      </div>
+      <div class="card-body">
+          <!-- Question & Answer Starts --->
+          <p class="question"><strong>1. What is the Significance of Quartile Formula?</strong></p>
+          <p class="answer">Quartile Formula is used to divide a set of observations into 4 equal parts.</p><hr>
+          <p class="question"><strong>2. What is meant by Third Quartile?</strong></p>
+          <p class="answer">The middle value that lies between the median and the last term is called Third Quartile.</p><hr>
+          <p class="question"><strong>3. Write the formula for finding Third Quartile?</strong></p>
+          <p class="answer">The formula for finding the Third Quartile is Q3 = 3/4(n+1)th Term</p><hr>
+          <p class="question"><strong>4. Is there any website that offers the third quartile calculator for free?</strong></p>
+          <p class="answer"><a href="statisticscalculators.net">Statisticscalculators.net</a> is a user friendly website that offers the third quartile calculator for free and makes your calculations simple.</p>
+      </div>
+    </div>
+</div>
+{%endblock%}

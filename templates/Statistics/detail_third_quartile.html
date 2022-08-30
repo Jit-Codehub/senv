@@ -1,0 +1,171 @@
+{%extends 'base/statistics_base2.html'%}
+{%load static%}
+  {%block meta%}
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+  <link rel="shortcut icon" href="{% static 'images/logo/Online-Calculator-Guru-Fevicon.png' %}" type="icon">
+  {%block css%}
+  <link rel="stylesheet" href="{% static 'style.css' %}">
+  {%endblock%}
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <!-- META DATA STARTS --->
+    <title>Upper or Third Quartile Calculator finds Q3 of {{inputEnter}}</title>
+    <meta name="description" content="Upper or Third Quartile Calculator is a free handy tool that calculates the upper half of the given data ie., {{inputEnter}} & results Q3 as {{finalAnswer}}">
+    <link rel="canonical" href="{{request.build_absolute_uri}}" >
+<!-- META DATA ENDS --->
+
+<!-- OPEN GRAPH CONFIGURATIONS STARTS -->
+    <!--  FACEBOOK CONFIGURATION STARTS  -->
+    <meta content="https://www.facebook.com/OnlineCalculator-Guru-131572098650589/" property="og:url" />
+    <meta property="og:title" content="Upper or Third Quartile Calculator finds Q3 of {{inputEnter}}"/>
+    <meta property="og:description" content="Upper or Third Quartile Calculator is a free handy tool that calculates the upper half of the given data ie., {{inputEnter}} & results Q3 as {{finalAnswer}}"/>
+    <meta content="" property="og:site_name" />
+    <meta  content="https://onlinecalculator.guru/static/images/Statistics/Third-Quartile-Calculator.jpeg" property="og:image" />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:height" content="435" />
+    <meta property="og:image:width" content="354" />
+    <!--  FACEBOOK CONFIGURATION ENDS  -->
+    <!-- TWITTER CARD CONFIGURATION STARTS  -->
+    <meta name="twitter:card" content="summary"/>
+    <meta name="twitter:site" content="https://twitter.com/onlinecalculator"/>
+    <meta name="twitter:title" content="Upper or Third Quartile Calculator finds Q3 of {{inputEnter}}"/>
+    <meta name="twitter:description" content="Upper or Third Quartile Calculator is a free handy tool that calculates the upper half of the given data ie., {{inputEnter}} & results Q3 as {{finalAnswer}}"/>
+    <meta name="twitter:image:src" content="https://onlinecalculator.guru/static/images/Statistics/Third-Quartile-Calculator.jpeg"/>
+    <meta property="twitter:image:height" content="435"/>
+    <meta property="twitter:image:width" content="354"/>
+    <!-- TWITTER CARD CONFIGURATION ENDS  -->
+    <!--  LINKEDIN CONFIGURATION STARTS-->
+    <meta property='og:title' content="Upper or Third Quartile Calculator finds Q3 of {{inputEnter}}"/>
+    <meta property='og:image' content="https://onlinecalculator.guru/static/images/Statistics/Third-Quartile-Calculator.jpeg"/>
+    <meta property='og:description' content="Upper or Third Quartile Calculator is a free handy tool that calculates the upper half of the given data ie., {{inputEnter}} & results Q3 as {{finalAnswer}}"/>
+    <meta property='og:url' content="https://www.linkedin.com/in/onlinecalculator/" />
+    <!-- end of linkedin CONFIGURATIONS ENDS -->
+<!-- OPEN GRAPH CONFIGURATION ENDS -->
+<!-- FAQ SCHEMA STARTS -->
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is the third quartile of {{inputEnter}}?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The third quartile of numbers {{inputEnter}} is {{finalAnswer}}."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How do I calculate upper half of the numbers {{inputEnter}} on the calculator?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Just enter the input set in the given input box of the Upper or Third Quartile Calculator and press the enter button to avail the result in less time."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How Can I Get detailed solution steps for upper quartile of data set {{inputEnter}}?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "You can easily get the detailed steps for the upper quartile of data set {{inputEnter}} solution on our page."
+        }
+      }]
+  }
+</script>
+{%endblock%}
+{%block content%}
+<div class="container">
+    <div class="card c1">
+      <div class="card-header">
+  <h1 class="h1">Finding Upper or Third Quartile of Numbers {{inputEnter}}</h1>
+  </div>
+  <div class="card-body">
+    <p>Make use of the <a href="{% url 'third-quartile' %}">Upper or Third Quartile Calculator</a> to determine the upper half of the data set ie., {{inputEnter}} and provide the output as Q3 ie., {{finalAnswer}} in a fraction of seconds along with a neat explanation.</p>
+    <p><b>Ex:</b> 32,45,12,17,43,68,75,8,11,29</p>
+    <form action="{% url 'third-quartile' %}" method="POST" id="my_form" name="reg_to_scientific" onsubmit="go();">
+        {% csrf_token %}
+        <div class="form-row align-items-center">
+          <div class="col-auto">
+            <label class="sr-only" for="inlineFormInputGroup">Third Quartile</label>
+            <div class="input-group mb-2">
+              <div class="input-group-prepend">
+                <div class="input-group-text"><strong>Third Quartile of: </strong></div>
+              </div>
+              <input type="text" class="form-control" name="input1" id="inlineFormInputGroup" placeholder="Enter number" value="{{inputEnter}}">
+            </div>
+          </div>
+          <div class="col-auto">
+            <button type="submit" class="btn btn-primary mb-2">Calculate</button>
+          </div>
+        </div>
+    </form>
+</div></div>
+<div class="card">
+    <div class="card-header">
+<h2 class="h2">Stepwise Elaborate Solution for the Third Quartile of Numbers  {{inputEnter}}</h2>
+</div>
+<div class="card-body">
+{% autoescape off %}
+{{ detailStep }}
+{% endautoescape %}
+</div>
+</div>
+<div class="row">
+  <div class="col-sm-6">
+    <div class="card">
+      <div class="card-header"><h3 class="h3">Third Quartile Calculation Examples</h3></div>
+      <div class="card-body">
+        <ul>
+          {% for i,j in example1 %}
+          <li><a  href="{{i}}" title="{{j}}">{{j}}</a></li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-6">
+    <div class="card">
+      <div class="card-header"><h3 class="h3">First Quartile Calculation Examples</h3></div>
+      <div class="card-body">
+        <ul>
+          {% for i,j in example2 %}
+          <li><a  href="{{i}}" title="{{j}}">{{j}}</a></li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="card">
+  <div class="card-header">
+    <h3 class="h3">Frequently Asked Questions on Third Quartile of {{inputEnter}}</h3>
+  </div>
+  <div class="card-body">
+      <p class="question"><strong>1. What is the third quartile of {{inputEnter}}?</strong></p>
+      <p class="answer">The third quartile of numbers {{inputEnter}} is {{finalAnswer}}.</p><hr>
+
+
+        <p class="question"><strong>2. How do I calculate upper half of the numbers {{inputEnter}} on the calculator?</strong></p>
+        <p class="answer">Just enter the input set in the given input box of the Upper or Third Quartile Calculator and press the enter button to avail the result in less time.</p><hr>
+
+
+        <p class="question"><strong>3. How Can I Get detailed solution steps for upper quartile of data set {{inputEnter}}?</strong></p>
+        <p class="answer">You can easily get the detailed steps for the upper quartile of data set {{inputEnter}} solution on our page.</p><hr>
+  </div>
+</div>
+</div>
+<!-- <div class="card">
+  <div class="card-header"><h2>More Examples</h2></div>
+  <div class="card-body">
+    {%for post1 in post%}
+      <li><a href="{% url 'third-quartile-detail' post1.slug %}">{{post1.solutionTitle}}</a></li>
+      {%endfor%}
+  </div>
+</div> -->
+{%endblock%}

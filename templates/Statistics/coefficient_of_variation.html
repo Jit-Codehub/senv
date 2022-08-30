@@ -1,0 +1,238 @@
+{%extends 'base/statistics_base2.html'%}
+{%load static%}
+{%block meta%}
+<!-- HTML Defaults Broweser -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Bootstrap Stylesheet and Jquery, Google APIS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+<!-- Online Calculator Guru Site Fevicon -->
+<link rel="shortcut icon" href="https://onlinecalculator.guru/static/images/logo/Online-Calculator-Guru-Fevicon.png"
+    type="icon">
+<!-- Online Calculator Guru Project Style Sheet -->
+{%block css%}
+<link rel="stylesheet" href="https://onlinecalculator.guru/static/style.css">
+{%endblock css%}
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+<!-- Meta Title, Description and Canonical URL Starts --->
+<title>Coefficient of Variation Calculator Tool| How to Calculate Coefficient of Variation?</title>
+<meta name="description" content="Coefficient of variation is the tool that gives the coefficient of variation instantaneously along with some useful information. " />
+<link rel="canonical" href="{{request.build_absolute_uri}}">
+<!-- Meta Title, Description and Canonical URL ENDS --->
+
+<!-- OPEN GRAPH CONFIGURATIONS STARTS -->
+<!--  FACEBOOK CONFIGURATION STARTS  -->
+<meta content="https://www.facebook.com/OnlineCalculator-Guru-131572098650589/" property="og:url" />
+<meta property="og:title" content="Coefficient of Variation Calculator Tool| How to Calculate Coefficient of Variation?" />
+<meta property="og:description" content="Coefficient of variation is the tool that gives the coefficient of variation instantaneously along with some useful information." />
+<meta content="" property="og:site_name" />
+<meta content="https://onlinecalculator.guru/static/images/Statistics/Coefficient-Of-Variation-Calculator.jpeg"
+    property="og:image" />
+<meta property="og:image:type" content="image/png" />
+<meta property="og:image:height" content="435" />
+<meta property="og:image:width" content="354" />
+<!--  FACEBOOK CONFIGURATION ENDS  -->
+<!-- TWITTER CARD CONFIGURATION STARTS  -->
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:site" content="https://twitter.com/onlinecalculator" />
+<meta name="twitter:title" content="Coefficient of Variation Calculator Tool| How to Calculate Coefficient of Variation?" />
+<meta name="twitter:description"
+    content="Coefficient of variation is the tool that gives the coefficient of variation instantaneously along with some useful information." />
+<meta name="twitter:image:src"
+    content="https://onlinecalculator.guru/static/images/Statistics/Coefficient-Of-Variation-Calculator.jpeg" />
+<meta property="twitter:image:height" content="435" />
+<meta property="twitter:image:width" content="354" />
+<!-- TWITTER CARD CONFIGURATION ENDS  -->
+<!--  LINKEDIN CONFIGURATION STARTS-->
+<meta property='og:title' content="Coefficient of Variation Calculator Tool| How to Calculate Coefficient of Variation?" />
+<meta property='og:image'
+    content="https://onlinecalculator.guru/static/images/Statistics/Coefficient-Of-Variation-Calculator.jpeg" />
+<meta property='og:description' content="Coefficient of variation is the tool that gives the coefficient of variation instantaneously along with some useful information." />
+<meta property='og:url' content="https://www.linkedin.com/in/onlinecalculator/" />
+<!-- end of linkedin CONFIGURATIONS ENDS -->
+<!-- OPEN GRAPH CONFIGURATION ENDS -->
+<!-- FAQ SCHEMA STARTS -->
+<script type="application/ld+json">{"@context": "https://schema.org","@type": "FAQPage","mainEntity": [{"@type": "Question","name":"1
+    What is Coefficient Variation?
+    ","acceptedAnswer": {"@type": "Answer","text":" 
+    Coefficient variation is the ratio of mean and standard deviation for the given sample data or population data."}	}, {"@type": "Question","name":"2
+    How to use coefficient of variation calculator?
+    ","acceptedAnswer": {"@type": "Answer","text":" 
+    Simply, give the data and select the sample or population and click on the calculate button then you will get the answer instantaneously."}	}, {"@type": "Question","name":"3
+    What is the best tool to calculate the coefficient variation?
+    ","acceptedAnswer": {"@type": "Answer","text":"
+    Coefficient of variation calculator is the best tool to calculate the coefficient variation of the given data set available in <a href="https:/statisticscalculators.net/">Statisticscalculators.net</a>"}	}]}</script>
+{%endblock%}
+{% block content %}
+{% if ot and x %}
+<script>
+    $(document).ready(function () {
+
+        $("#hassle").click();
+        });
+</script>
+
+<button type="button" hidden id="hassle" onclick="location.href='#coefficient_of_variation'">ans1</button>
+{% endif %}
+<div class="container">
+    <div class="card c1">
+        <div class="card-header">
+            <h1 class="h1">Coefficient of Variation Calculator</h1>
+        </div>
+        <div class="card-body">
+            <p>Make use of this handy coefficient of variation calculator tool to calculate the ratio of mean and standard deviation for sample or population data. To get the instant answer all you need to do is simply enter the data in the given text box and select the data that represents the sample or population and press the calculate button.</p>
+            {% if messages %}
+            <ul class="messages">
+            {% for message in messages %}
+                <p {% if message.tags %} id="message_container" class="alert alert-danger text-center" {% endif %}
+                    style="color:red">{{ message }}</p>
+                {% endfor %}
+            </ul>
+            {% endif %}
+            <form action="{% url 'coefficient_of_variation' %}" method="POST" id="my_form">
+                {% csrf_token %}
+                 </div>
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1">x Values (separated by comma)</span>
+            </div>
+
+           <input style="margin-top: 5px;width:100%" id="x" name="x" value="{{x}}"   required="" o class="form-control" type="text" required width="48"> 
+       </div>
+
+        <div class=" center col mt-2 ">
+            <center><button type="submit" class="btn btn-primary">Calculate</button>
+              <a href="{% url 'coefficient_of_variation' %}" class="btn btn-warning" role="button" style="margin-top:5px;">Reset</a>      
+            </center>
+          </div>
+    
+</form>
+            <p><strong>Coefficient of Variation Calculator:</strong> Trying to calculate the coefficient of variation in easy manner? we are here to introduce an instant tool i.e. Coefficient of Variation Calculator. It helps you to determine the ratio of mean and standard deviation. We have also given the basic information about this calculator in further sections.</p>
+</div>
+{% if x and ot %}
+<div class="card" id="coefficient_of_variation">
+    <div class="card-header">
+        <h2 class="h2">Steps to Find Coefficient of Variation:</h2>
+    </div>
+    <div class="card-body">
+
+        <strong>Coefficient of Variation:-</strong>
+        <br>
+        <p class="btn btn-outline-secondary active text-justify">Coefficient of Variation = s / xmean</p>
+        <br>
+        <strong>where:</strong>
+                <ul>
+                    <li>N is the number of elements,</li>
+                    <li>s is a Standard Deviation,</li>
+                    <li>xi is a each element.</li>
+                    <li>xmean is a mean of x.</li>
+                </ul>
+
+
+        <strong>Input values are:-</strong>
+        <p>x = {{x}} </p>
+
+        <p><b>Put values into formula</b></p>
+
+        <p>Coefficient of Variation =  s / xmean</p>
+        <p>Coefficient of Variation =  {{sd}} / {{mean}} </p>
+
+        {% if output %}
+            <b>Coefficient of Variation = {{start}} x 10<sup>{{end}}</sup></b>
+        {% else %}
+            <b>Coefficient of Variation = {{result}}</b>       
+        {% endif %}
+
+</div>
+</div>
+{% endif %}
+    <div class="card">
+        <div class="card-header">
+            <h3 class="h3">What is Coefficient of Variation?</h3>
+        </div>
+        <div class="card-body">
+            <p>In statistics, coefficient of variation is used to measure the dispersion of the sample or population data of a probability. The method of measuring the ratio of mean and standard deviation is called coefficient of variation. Coefficient of variation is also called as relative standard deviation(RSD).</p>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-header">
+            <h3 class="h3">Coefficient of Variation Formula</h3>
+        </div>
+        <div class="card-body">
+            <p>Here, we have given the formula for finding the coefficient of variation.</p>
+            <p>Coefficient of variation: <img src="https://drive.google.com/file/d/1itOTq5Cxqk3AzRC9_slwaxaU_tufjDkI/view?usp=sharing" alt='cofficient of variation calculator'></p>
+            <p>where,</p>
+            <p>cv is the coefficient of variation</p>
+            <p>σ  is the standard deviation</p>
+            <p>μ  is the mean</p>
+            <p>Formula for mean</p>
+            <p><img src="https://drive.google.com/file/d/1QYfjInOkKR_yrPJ3GJlyOZngkpf3Bv_J/view?usp=sharing" alt='Mean'></p>
+            <p>Formula for standard deviation</p>
+            <p><img src="https://drive.google.com/file/d/1URKLCWdMvqpiJ5qU7jBaKIQSuWOQtJQX/view?usp=sharing" alt='Standard deviation'></p>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-header">
+            <h3 class="h3">How to Calculate the Coefficient of Variation?</h3>
+        </div>
+        <div class="card-body">
+            <p>If you are looking to find the coefficient of variation easily. Here, we have given you the step by step process to calculate it easily. Take a look at those steps.</p>
+            <ul>
+                <li>Firstly, write the given set.</li>
+                <li>Then, as we need to find the coefficient of variation, first we need to find the values of mean and standard deviation.</li>
+                <li>After that, apply the formula.</li>
+                <li>That's simple, you will get the answer.</li>
+            </ul>
+        </div>
+</div>
+    <div class="card">
+        <div class="card-header">
+            <h3 class="h3">Coefficient of Variation Examples</h3>
+        </div>
+        <div class="card-body">
+            <p><b>Question 1:</b> Find the coefficient of Variation for the sample 4, 3, 2, 5 of population?</p>
+            <p><b>Solution</b></p>
+            <p>Given set of values is 4, 3, 2, 5</p>
+            <p>Formula for Coefficient of variation</p>
+            <p><img src="https://drive.google.com/file/d/1itOTq5Cxqk3AzRC9_slwaxaU_tufjDkI/view?usp=sharing" alt='coefficient of variation calculator'></p>
+            <p>First, we need to find the mean and standard deviation</p>
+            <p>Mean</p>
+            <p><img src="https://drive.google.com/file/d/1QYfjInOkKR_yrPJ3GJlyOZngkpf3Bv_J/view?usp=sharing" alt='Mean'></p>
+            <p>= (4+3+2+5)/4</p>
+            <p> = 14/4 = 3.5</p>
+            <p>Standard Deviation</p>
+            <p><img src="https://drive.google.com/file/d/1URKLCWdMvqpiJ5qU7jBaKIQSuWOQtJQX/view?usp=sharing" alt='Standard deviation'></p>
+            <p> = √((4- 3.5)<sup>2</sup> + (3- 3.5)<sup>2</sup> + (2- 3.5)<sup>2</sup> + (5- 3.5)<sup>2</sup>)/(4-1)</p>
+            <p> = √((0.5)<sup>2</sup> + (-0.5)<sup>2</sup> + (-1.5)<sup>2</sup> + (1.5)<sup>2</sup>)/3</p>
+            <p> = √((0.25)+(0.25)+(2.25)+(2.25))/3</p>
+            <p> = √(5/3)</p>
+            <p> = 1.29</p>
+            <p> Coefficient of Variation = 1.29/3.5 = 0.36</p>
+            <p>Thus, Coefficient of Variation is 0.36</p>
+            <p>For more calculators in statistics click on to <a href="https:/statisticscalculators.net/">Statisticscalculators.net</a> website to make your assignments and homework effortlessly in less time.</p>
+        </div>
+</div>
+    <div class="card">
+      <div class="card-header">
+        <h3 class="h3">FAQs on Coefficient of Variation</h3>
+      </div>
+    <div class="card-body">
+    <!-- Question & Answer Starts --->
+  <p class="question"><strong>1. What is Coefficient Variation?</strong></p>
+  <p class="answer">Coefficient variation is the ratio of mean and standard deviation for the given sample data or population data.</p><hr>
+  <p class="question"><strong>2. How to use coefficient of variation calculator?</strong></p>
+  <p class="answer">Simply, give the data and select the sample or population and click on the calculate button then you will get the answer instantaneously.</p><hr>
+  <p class="question"><strong>3. What is the best tool to calculate the coefficient variation?</strong></p>
+  <p class="answer">Coefficient of variation calculator is the best tool to calculate the coefficient variation of the given data set available in <a href="https:/statisticscalculators.net/">Statisticscalculators.net</a></p><hr>
+  <img src="{% static 'images/Statistics/coefficient-of-variation-calculator.jpeg' %}" alt='coefficient-of-variation-calculator'>
+  </div>
+</div>
+</div>
+
+                   
+{% endblock content %}

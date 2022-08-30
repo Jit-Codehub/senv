@@ -1,0 +1,194 @@
+{%extends 'base/statistics_base2.html'%}
+{%load static%}
+{%block meta%}
+<!-- HTML Defaults Broweser -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Bootstrap Stylesheet and Jquery, Google APIS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+<!-- Online Calculator Guru Site Fevicon -->
+<link rel="shortcut icon" href="https://onlinecalculator.guru/static/images/logo/Online-Calculator-Guru-Fevicon.png"
+    type="icon">
+<!-- Online Calculator Guru Project Style Sheet -->
+{%block css%}
+<link rel="stylesheet" href="https://onlinecalculator.guru/static/style.css">
+{%endblock css%}
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+<!-- Meta Title, Description and Canonical URL Starts --->
+<title>Range Calculator | Free Tool to Find Range of Data Set</title>
+<meta name="description" content="Online Range Calculator helps to determine the range of a data set instantly. Find the detailed steps on how to calculate data set range and solved questions." />
+<link rel="canonical" href="{{request.build_absolute_uri}}">
+<!-- Meta Title, Description and Canonical URL ENDS --->
+
+<!-- OPEN GRAPH CONFIGURATIONS STARTS -->
+<!--  FACEBOOK CONFIGURATION STARTS  -->
+<meta content="https://www.facebook.com/OnlineCalculator-Guru-131572098650589/" property="og:url" />
+<meta property="og:title" content="Range Calculator | Free Tool to Find Range of Data Set" />
+<meta property="og:description" content="Online Range Calculator helps to determine the range of a data set instantly. Find the detailed steps on how to calculate data set range and solved questions." />
+<meta content="" property="og:site_name" />
+<meta content="https://onlinecalculator.guru/static/images/Chemistry/Theoratical-Yield-Calculator.jpeg"
+    property="og:image" />
+<meta property="og:image:type" content="image/png" />
+<meta property="og:image:height" content="435" />
+<meta property="og:image:width" content="354" />
+<!--  FACEBOOK CONFIGURATION ENDS  -->
+<!-- TWITTER CARD CONFIGURATION STARTS  -->
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:site" content="https://twitter.com/onlinecalculator" />
+<meta name="twitter:title" content="Range Calculator | Free Tool to Find Range of Data Set" />
+<meta name="twitter:description" content="Online Range Calculator helps to determine the range of a data set instantly. Find the detailed steps on how to calculate data set range and solved questions." />
+<meta name="twitter:image:src"
+    content="https://onlinecalculator.guru/static/images/Chemistry/Theoratical-Yield-Calculator.jpeg" />
+<meta property="twitter:image:height" content="435" />
+<meta property="twitter:image:width" content="354" />
+<!-- TWITTER CARD CONFIGURATION ENDS  -->
+<!--  LINKEDIN CONFIGURATION STARTS-->
+<meta property='og:title' content="Range Calculator | Free Tool to Find Range of Data Set" />
+<meta property='og:image'
+    content="https://onlinecalculator.guru/static/images/Chemistry/Theoratical-Yield-Calculator.jpeg" />
+<meta property='og:description' content="Online Range Calculator helps to determine the range of a data set instantly. Find the detailed steps on how to calculate data set range and solved questions." />
+<meta property='og:url' content="https://www.linkedin.com/in/onlinecalculator/" />
+<!-- end of linkedin CONFIGURATIONS ENDS -->
+<!-- OPEN GRAPH CONFIGURATION ENDS -->
+<!-- FAQ SCHEMA STARTS -->
+<script type="application/ld+json">{"@context": "https://schema.org","@type": "FAQPage","mainEntity": [{"@type": "Question","name":"1.
+    How do you calculate the range?
+    ","acceptedAnswer": {"@type": "Answer","text":" To calculate the value of range within a data set, subtract the lowest number from the highest number."}	}, {"@type": "Question","name":"2.
+    Why do we calculate range?
+    ","acceptedAnswer": {"@type": "Answer","text":" The range is calculated to estimate how different and varied the numbers are in the data set."}	}, {"@type": "Question","name":"3. 
+    What is range explain?
+    ","acceptedAnswer": {"@type": "Answer","text":" In statistics, the range is defined as the difference between the maximum and minimum values within a set of numbers."}	}, {"@type": "Question","name":"4. 
+    Find the range of the data set 15, 2, 3, 4, 13, 17, 14, 22?
+    ","acceptedAnswer": {"@type": "Answer","text":" Given set of data is 15, 2, 3, 4, 13, 17, 14, 22
+    The smallest value is 2 and the largest value is 22
+    The range is the difference between the largest and smallest value.
+    So, range = 22 - 2 = 20."}	}]}</script>
+{%endblock meta %}
+
+{% block content %}
+{% if ot and x %}
+<script>
+    $(document).ready(function () {
+
+        $("#hassle").click();
+        });
+</script>
+
+<button type="button" hidden id="hassle" onclick="location.href='#range'">ans1</button>
+{% endif %}
+
+
+<div class="container" style="height: auto !important;">
+    <div class="card c1">
+        <div class="card-header">
+            <h1 class="h1">Range Calculator</h1>
+        </div>
+        <div class="card-body">
+            <p>Make use of the free Range Calculator to find the range value for a given set of data easily, It just takes the data set as input and gives the exact value of the range as output within a matter of seconds.</p>
+            {% if messages %}
+            <ul class="messages">
+            {% for message in messages %}
+                <p {% if message.tags %} id="message_container" class="alert alert-danger text-center" {% endif %}
+                    style="color:red">{{ message }}</p>
+                {% endfor %}
+            </ul>
+            {% endif %}
+            <form action="{% url 'range' %}" method="POST" id="my_form">
+                {% csrf_token %}
+                 </div>
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1">x Values (separated by comma)</span>
+            </div>
+            
+           <input style="margin-top: 5px;width:100%" id="x" name="x" value="{{x}}" required="" class="form-control" type="text" required width="48">
+       </div>
+
+        <div class=" center col mt-2 ">
+            <center><button type="submit" class="btn btn-primary">Calculate</button>
+              <a href="{% url 'range' %}" class="btn btn-warning" role="button" style="margin-top:5px;">Reset</a>      
+            </center>
+            <p><strong>Range Calculator: </strong>It is very easy to find the data set range with the help of our calculator tool. In addition to this handy tool, we are giving the detailed steps to calculate the statistical range and example question on this page. Check the definition and formula of range in the following sections.</p>
+
+          </div>
+    
+
+</form>
+</div>
+{% if x and ot %}
+<div class="container" style="height: auto !important;">
+<div class="card" id="range">
+        <div class="card-header">
+            <h2 class="h2">What is the Range?</h2>
+        </div>
+        <div class="card-body">
+<p>The range of data in statistics is the difference between the maximum and minimum values. It is significantly affected by the large or small values in the data set. The simple formula to compute range is as follows:
+ </p> <p><strong>  Range = Largest value - Smallest value in the data set</strong></p>
+
+            <strong>Range:-</strong>
+            <br>
+            <p class="btn btn-outline-secondary active text-justify">Range = Max(x) - Min(x)</p>
+            <br>
+
+            <strong>Input values are:-</strong>
+            <p>x = {{x}} </p>
+            
+            <p><b>Put value in formula</b></p>
+            <p>Range = {{max}} - {{min}}</p>
+            <p>Range = {{result}}</p>
+</div>
+</div>
+<div class="card">
+                <div class="card-header">
+                    <h3 class="h3">Steps to Find Range of Data Set</h3>
+                </div>
+                <div class="card-body">
+<p>Following are the steps to calculate the range of data set easily. Go through those guidelines to obtain the answer.</p>
+<ul>
+    <li>Get the set of data.</li>
+    <li>Find the minimum and maximum values in the data set.</li>
+    <li>Subtract minimum value from the maximum value to know the range.</li>
+</ul>
+<p><strong>Example:</strong></p>
+<p>Question: Calculate the range of the data set {2, 4, 6, 8, 10, 14, 15, 18, 25, 29, 1, 35, 42, 58}?</p>
+<p>Solution:</p>
+<p>Given data is {2, 4, 6, 8, 10, 14, 15, 18, 25, 29, 1, 35, 42, 58}</p>
+<p>Largest value is 58
+</p>
+<p>samllest value is 1</p>
+<p>Range = Largest value - Smallest value in the data set</p>
+<p>Range = 58 - 1</p>
+<p>= 57</p>
+<p>Therefore, the data set range is 57.</p>    
+<img src="{% static 'images/Statistics/range-calculator.jpeg' %}" alt='range-calculator'> 
+Not only Range Calculator you can also find other statistics calculators on our site <a href="/">statisticscalculators.net</a> to finish your math problems at a faster pace while doing homework or assignments.
+   </div>
+    </div>
+    {% endif %} 
+
+<div class="card">
+    <div class="card-header">
+        <h3 class="h3">Frequently Asked Question's on Range Calculator</h3>
+    </div>
+    <div class="card-body">
+        <!-- Question & Answer Starts --->
+        <p class="question"><strong>   1. How do you calculate the range?</strong></p>
+        <p class="answer">To calculate the value of range within a data set, subtract the lowest number from the highest number.</p><hr>
+<p class="question"><strong>2. Why do we calculate range?</strong></p>
+<p class="answer">The range is calculated to estimate how different and varied the numbers are in the data set.</p><hr>
+<p class="question"><strong>3. What is range explain?</strong></p>
+<p class="answer">In statistics, the range is defined as the difference between the maximum and minimum values within a set of numbers.</p><hr>
+<p class="question"><strong>4. Find the range of the data set 15, 2, 3, 4, 13, 17, 14, 22?</strong></p>
+<p class="answer">Given set of data is 15, 2, 3, 4, 13, 17, 14, 22</p>
+<p>The smallest value is 2 and the largest value is 22</p>
+    <p>The range is the difference between the largest and smallest value.</p>
+<p>So, range = 22 - 2 = 20.</p>
+  </div>
+  </div>
+  </div>                  
+{% endblock content %}

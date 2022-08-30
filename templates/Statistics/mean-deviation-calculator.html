@@ -1,0 +1,199 @@
+{%extends 'base/statistics_base3.html'%}
+{%load static%}
+  {%block meta%}
+    <!-- HTML Defaults Broweser -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Bootstrap Stylesheet and Jquery, Google APIS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <!-- Online Calculator Guru Site Fevicon -->
+    <link rel="shortcut icon" href="https://onlinecalculator.guru/static/images/logo/Online-Calculator-Guru-Fevicon.png" type="icon">
+    <!-- Online Calculator Guru Project Style Sheet -->
+    {%block css%}
+    <link rel="stylesheet" href="https://onlinecalculator.guru/static/style2.css">
+    {%endblock%}
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <!-- Meta Title, Description and Canonical URL Starts --->
+    <title>Mean Deviation Calculator | How do you Calculate Mean Deviation for Grouped Data?</title>
+    <meta name="description" content="Mean Deviation Calculator is a free online tool that displays the mean deviation for the given set of data in the blink of an eye."/>
+    <link rel="canonical" href="{{request.build_absolute_uri}}">
+    <!-- Meta Title, Description and Canonical URL ENDS --->
+ 
+    <!-- OPEN GRAPH CONFIGURATIONS STARTS -->
+	<!--  FACEBOOK CONFIGURATION STARTS  -->
+        <meta content="https://www.facebook.com/OnlineCalculator-Guru-131572098650589/" property="og:url" />
+        <meta property="og:title" content="Mean Deviation Calculator | How do you Calculate Mean Deviation for Grouped Data?"/>
+        <meta property="og:description" content="Mean Deviation Calculator is a free online tool that displays the mean deviation for the given set of data in the blink of an eye."/>
+        <meta content="" property="og:site_name" />
+        <meta  content="https://onlinecalculator.guru/static/images/Statistics/Mean-Deviation-Calculator.jpeg" property="og:image" />
+        <meta property="og:image:type" content="image/png" />
+        <meta property="og:image:height" content="435" />
+        <meta property="og:image:width" content="354" />
+        <!--  FACEBOOK CONFIGURATION ENDS  -->
+        <!-- TWITTER CARD CONFIGURATION STARTS  -->
+        <meta name="twitter:card" content="summary"/>
+        <meta name="twitter:site" content="https://twitter.com/onlinecalculator"/>
+        <meta name="twitter:title" content="Mean Deviation Calculator | How do you Calculate Mean Deviation for Grouped Data?"/>
+        <meta name="twitter:description" content="Mean Deviation Calculator is a free online tool that displays the mean deviation for the given set of data in the blink of an eye."/>
+        <meta name="twitter:image:src" content="https://onlinecalculator.guru/static/images/Statistics/Mean-Deviation-Calculator.jpeg"/>
+        <meta property="twitter:image:height" content="435"/>
+        <meta property="twitter:image:width" content="354"/>
+        <!-- TWITTER CARD CONFIGURATION ENDS  -->
+        <!--  LINKEDIN CONFIGURATION STARTS-->
+        <meta property='og:title' content="Mean Deviation Calculator | How do you Calculate Mean Deviation for Grouped Data?"/>
+        <meta property='og:image' content="https://onlinecalculator.guru/static/images/Statistics/Mean-Deviation-Calculator.jpeg"/>
+        <meta property='og:description' content="Mean Deviation Calculator is a free online tool that displays the mean deviation for the given set of data in the blink of an eye."/>
+        <meta property='og:url' content="https://www.linkedin.com/in/onlinecalculator/" />
+        <!-- end of linkedin CONFIGURATIONS ENDS -->
+    <!-- OPEN GRAPH CONFIGURATION ENDS -->
+    <!-- FAQ SCHEMA STARTS -->
+    <script type="application/ld+json">{"@context": "https://schema.org","@type": "FAQPage","mainEntity": [{"@type": "Question","name":"1. 
+        What is the significance of mean deviation?
+        ","acceptedAnswer": {"@type": "Answer","text":" Mean deviation tells us how far the data values are spread out from the mean value."}	}, {"@type": "Question","name":"2. 
+        What are the benefits of mean deviation?
+        ","acceptedAnswer": {"@type": "Answer","text":" Benefits of Mean Deviation is that since it is based on the data values, gives a measure of dispersion in a better way. One more benefit is that it is easier to calculate."}	}, {"@type": "Question","name":"3. 
+        What is the formula for calculating Mean Deviation?
+        ","acceptedAnswer": {"@type": "Answer","text":" The formula to calculate Mean Deviation is given by ∑i = 0n |xi − μ| / N."}	}, {"@type": "Question","name":"4. 
+        Where can I find the best math mean deviation calculator?
+        ","acceptedAnswer": {"@type": "Answer","text":" statisticscalculators.net is the best place that provides the mean deviation calculator absolutely free of cost."}	}]}</script>
+    {%endblock%}
+    {%block content%}
+    <div class="container">
+        <div class="card c1">
+            <div class="card-header">
+                <h1 class="h1">Mean Deviation Calculator</h1>
+            </div>
+            <div class="card-body">
+                <p>Mean Deviation Calculator existing here takes set of data as inputs and gives the mean deviation for the set of data immediately. Just type in the input values and click on the calculate button to avail the result in no time.</p>
+                {%if go_tag%}
+                <a href="{{go_tag}}" id="ddd"></a>
+                {%endif%}
+                <p>Make use of this free Mean Deviation Calculator tool to get the mean deviation of numbers quickly. All you have to do is provide data set numbers in the input section and click on the calculate button. Our handy calculator does all the required calculations and produces the exact output in a short span of time.</p>
+
+                <div class="box" id="mean_deviation">
+                    <div style="text-align: center;"><h5><strong>Mean Deviation Calculator</strong></h5></div>
+                    <form method="POST">{% csrf_token %}
+                        <span class="input-group-text" id="basic-addon1">Enter Sample Data</span>
+                        <div class="input-group mb-3">
+                            {%if input1%}
+                            <input style="margin-top: 5px;" id="input1" name="input1" class="form-control" type="text" required width="48"  value="{{input1}}">
+                            {%else%}
+                            <input style="margin-top: 5px;" id="input1" name="input1" class="form-control" type="text" required width="48"  value="3, 6, 6, 7, 8, 11, 15, 16">
+                            {%endif%}
+                            </div>
+                            <div class="col mt-2 ">
+                                <td>&nbsp;&nbsp;&nbsp;&nbsp;	<input class="btn btn-secondary btn-mr-3" type="button" onclick="myFunction()" value="Clear"></td>
+                                <td></td>	
+                                <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                                <td><button type="submit" class="btn btn-primary mb-2">Calculate</button>  </td>
+                                </div>
+                    </form>
+                    <div id="answer1">
+                    {%if detailStep%}
+                      <hr>
+                      <p><strong>Answer:</strong></p>
+                      <div style="text-align: center;"> 
+                      {% autoescape off %}
+                      {{detailStep}}
+                      {%endautoescape%}
+
+                      </div>
+                      <hr>
+                    {%endif%}
+                    </div>
+                    <script>
+                        function myFunction() {
+                          document.getElementById("input1").value="";
+                          $("#answer1").html("");
+                        }
+                        </script>
+                      </div>
+                  {% autoescape off %}
+                      {% if messages %}
+                          {% for message in messages %}
+                              <div class="row">
+                                  <div class="col-md-6">
+                                      <p class="alert alert-danger">{{message}}</p>
+                                  </div>
+                              </div>
+                          {% endfor %}
+                      {% endif %}
+                  {%endautoescape%}
+                <p><strong>Mean Deviation Calculator: </strong> If you are wondering how to calculate Mean Deviation of a given set of data then you have come the right way. Make your calculations faster with our Mean Deviation Calculator and do your calculations in a short span of time. Here we will give you insight on what is meant by Mean Deviation, Mean Deviation Formula, How to find Mean Deviation for a Set of Data, etc. all explained clearly. Refer to the solved examples on calculating mean deviation present in the below modules and learn the approach used. </p>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header">
+                <h2 class="h2">Mean Deviation - Definition</h2>
+            </div>
+            <div class="card-body">
+                <p>Mean Deviation is nothing but the statistical measure used for determining the average deviation from the mean value of the given data set. </p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="h3">Mean Deviation Formula</h3>
+                </div>
+                <div class="card-body">
+                    <p>The formula for calculating the Mean Deviation of a given set of data is given by the expression ∑i = 0<sup>n</sup> |x<sub>i</sub> − μ| / N</p>
+                <ul><li>Where, Σ represents the addition of values </li>
+                    <li>X represents each value in the data set</li>
+                    <li>μ is the mean of data set</li>
+                <li>N is the Number of Values</li>
+            <li>| | represents the absolute value, which ignores the “-” symbol</li></ul>
+                </div>
+                </div>
+    <div class="card">
+	    <div class="card-header">
+            <h2 class="h3">How to Find Mean Deviation?</h3>
+        </div>
+	    <div class="card-body">
+            <p>Follow the below listed procedure to quickly find the mean deviation of the given set of numbers manually. They are along the lines </p>
+            <ul>
+            <li>Firstly, identify the given set of numbers.</li>
+            <li>Then, find out the mean of the given data set i.e. sum of numbers/total numbers in the set.</li>
+            <li>Compute the difference between each terms in the data set and mean to obtain the new values.</li>
+            <li>At last, find the mean of new numbers to obtain the mean deviation value.</li>
+            </ul>
+            <p><strong>Question 1: Find the Mean Deviation of 4, 8, 8, 10, 12, 11, 15, 16?</strong></p>
+            <p><strong>Solution:</strong></p>
+            <p>Given numbers are 4, 8, 8, 10, 12, 11, 15, 16</p>
+            <p>Mean = Sum of items/ Number of items</p>
+            <p>= 4 + 8 + 8 + 10 + 12 + 11 + 15 + 16 / 8 = 84 / 8 </p>
+                <p>μ = 10.5</p>
+                <p>Mean Deviation = ∑<sub>i = 0</sub><sup>n</sup> |x<sub>i</sub> − μ| / N</p>
+                <p>= |(10.5 - 4) + (10.5 - 8) + (10.5 - 8) + (10.5 - 10) + (10.5 - 12) + (10.5 - 11) + (10.5 - 15) + (10.5 - 16)| / 8</p>
+                <p>= (6.5) + (2.5) + (2.5) + (0.5) + (1.5) + (0.5) + (4.5) + (5.5) / 8</p>
+                <p>= 24 / 8</p>
+                <p>= 3</p>
+                <p>So, Mean is 10.5 and Mean Deviation is 3</p>
+                <img src="{% static 'images/Statistics/mean-deviation-calculator.jpeg' %}" alt='Mean Deviation Calculator'>
+        </div>
+    </div>
+    <div class="card">
+  	    <div class="card-header">
+      	<h3 class="h3">FAQs on Mean Deviation Calculator</h3>
+  	    </div>
+  	    <div class="card-body">
+      	<!-- Question & Answer Starts --->
+        <p class="question"><strong>1. What is the significance of mean deviation?</strong></p>
+     	<p class="answer">Mean deviation tells us how far the data values are spread out from the mean value. </p><hr>
+     	<p class="question"><strong>2. What are the benefits of mean deviation?</strong></p>
+     	<p class="answer">Benefits of Mean Deviation is that since it is based on the data values, gives a measure of dispersion in a better way. One more benefit is that it is easier to calculate.</p><hr>  
+        <p class="question"><strong>3. What is the formula for calculating Mean Deviation?</strong></p>
+        <p class="answer">The formula to calculate Mean Deviation is given by ∑i = 0<sup>n</sup> |x<sub>i</sub> − μ| / N </p><hr>
+        <p class="question"><strong>4. Where can I find the best math mean deviation calculator?</strong></p>
+     	<p class="answer"><a href="https://statisticscalculators.net/">statisticscalculators.net</a> is the best place that provides the mean deviation calculator absolutely free of cost.</p><hr>
+    	</div>
+    </div>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            document.getElementById('ddd').click();
+          });
+    </script>
+{%endblock%}

@@ -1,0 +1,236 @@
+{%extends 'base/statistics_base1.html'%}
+{%load static%}
+  {%block meta%}
+    <!-- HTML Defaults Broweser -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Bootstrap Stylesheet and Jquery, Google APIS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <!-- Online Calculator Guru Site Fevicon -->
+    <link rel="shortcut icon" href="https://onlinecalculator.guru/static/images/logo/Online-Calculator-Guru-Fevicon.png" type="icon">
+    <!-- Online Calculator Guru Project Style Sheet -->
+    {%block css%}
+    <link rel="stylesheet" href="/static/style.css">
+    {%endblock%}
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <!-- Meta Title, Description and Canonical URL Starts --->
+    <title>Online Final Grade Calculator | How to Calculate Final Grade?</title>
+    <meta name="description" content="Final Grade Calculator is a userfriendly tool that help you compute the final grade of your exams easily and quickly. "/>
+    <link rel="canonical" href="{{request.build_absolute_uri}}">
+    <!-- Meta Title, Description and Canonical URL ENDS --->
+ 
+    <!-- OPEN GRAPH CONFIGURATIONS STARTS -->
+	<!--  FACEBOOK CONFIGURATION STARTS  -->
+        <meta content="https://www.facebook.com/OnlineCalculator-Guru-131572098650589/" property="og:url" />
+        <meta property="og:title" content="Online Final Grade Calculator | How to Calculate Final Grade?"/>
+        <meta property="og:description" content="Final Grade Calculator is a userfriendly tool that help you compute the final grade of your exams easily and quickly."/>
+        <meta content="" property="og:site_name" />
+        <meta  content="https://onlinecalculator.guru/static/images/Statistics/final-grade-calculator.jpeg" property="og:image" />
+        <meta property="og:image:type" content="image/png" />
+        <meta property="og:image:height" content="435" />
+        <meta property="og:image:width" content="354" />
+        <!--  FACEBOOK CONFIGURATION ENDS  -->
+        <!-- TWITTER CARD CONFIGURATION STARTS  -->
+        <meta name="twitter:card" content="summary"/>
+        <meta name="twitter:site" content="https://twitter.com/onlinecalculator"/>
+        <meta name="twitter:title" content="Online Final Grade Calculator | How to Calculate Final Grade?"/>
+        <meta name="twitter:description" content="Final Grade Calculator is a userfriendly tool that help you compute the final grade of your exams easily and quickly."/>
+        <meta name="twitter:image:src" content="https://onlinecalculator.guru/static/images/Statistics/final-grade-calculator.jpeg"/>
+        <meta property="twitter:image:height" content="435"/>
+        <meta property="twitter:image:width" content="354"/>
+        <!-- TWITTER CARD CONFIGURATION ENDS  -->
+        <!--  LINKEDIN CONFIGURATION STARTS-->
+        <meta property='og:title' content="Online Final Grade Calculator | How to Calculate Final Grade?"/>
+        <meta property='og:image' content="https://onlinecalculator.guru/static/images/Statistics/final-grade-calculator.jpeg"/>
+        <meta property='og:description' content="Final Grade Calculator is a userfriendly tool that help you compute the final grade of your exams easily and quickly."/>
+        <meta property='og:url' content="https://www.linkedin.com/in/onlinecalculator/" />
+        <!-- end of linkedin CONFIGURATIONS ENDS -->
+    <!-- OPEN GRAPH CONFIGURATION ENDS -->
+    <!-- FAQ SCHEMA STARTS -->
+    <script type="application/ld+json">{"@context": "https://schema.org","@type": "FAQPage","mainEntity": [{"@type": "Question","name":"1
+      What are the steps to calculate final grade?
+      ","acceptedAnswer": {"@type": "Answer","text":" 
+      Calculate all the points that you have received in each grade.
+      Then, subtract total from the number of points required to obtain the grade for an average.
+      Finally, divide the result, by the number of points on the final exam."}	}, {"@type": "Question","name":"2
+      What is the formula for final grade?
+      ","acceptedAnswer": {"@type": "Answer","text":" 
+      Below is the formula for final grade:
+      F = (G - ((1 - w) x C)) / w
+      Where, F is the final grade, C is your current grade value, w is the weight of the final exam divided by 100 and G is the grade you want for the class"}	}, {"@type": "Question","name":"3
+      How to use Final Grade Calculator?
+      ","acceptedAnswer": {"@type": "Answer","text":"
+      Simply, enter the current grade, final exam weight and the grade you want for the class in input sections and press the calculate button which is available in blue color and get the final result instantly."}	}]}</script>
+    {%endblock%}
+    {%block content%}
+    <div class="container">
+        <div class="card c1">
+            <div class="card-header">
+                <h1 class="h1">Final Grade Calculator</h1>
+            </div>
+            <div class="card-body">
+                <p>Take a look at our easy to use Final Grade Calculator tool to find the final grade value. Simply you need to give the inputs of current grade, grade you want, and final exam weight in the input sections and press on the calculate button and  get the accurate output instantaneously.</p>
+                {%if go_tag%}
+                <a href="{{go_tag}}" id="ddd"></a>
+                {%endif%}
+                <p>Check our easy to operate Final Grade Calculator to get the final grade value easily and quickly. You just need to provide current grade, grade you want, and final exam weight in the given input sections of the calculator and press on the calculate button to get the accurate output immediately.</p>
+                <div class="box" id="final_grade">
+                    <div style="text-align: center;"><h5><strong>Final Grade Calculator</strong></h5></div>
+                    <form method="POST">{% csrf_token %}
+
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="basic-addon1">Grade Needed(G)</span>
+                        </div>
+                      {%if input1%}
+                        <input style="margin-top: 5px;" id="input1" name="input1" class="form-control" type="text" required width="48"  value="{{input1}}">
+                      {%else%}
+                        <input style="margin-top: 5px;" id="input1" name="input1" class="form-control" type="text" required width="48"  value="80">
+                      {%endif%}
+                      </div>
+
+                      <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="basic-addon1">Current Grade(C)</span>
+                        </div>
+                        {%if input2%}
+                          <input style="margin-top: 5px;" id="input2" name="input2" class="form-control" type="text" required width="48"  value="{{input2}}">
+                        {%else%}
+                          <input style="margin-top: 5px;" id="input2" name="input2" class="form-control" type="text" required width="48"  value="65">
+                        {%endif%}
+                      </div>
+
+                      <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="basic-addon1">Final Exam Weight(w)</span>
+                        </div>
+                        {%if input3%}
+                          <input style="margin-top: 5px;" id="input3" name="input3" class="form-control" type="text" required width="48"  value="{{input3}}">
+                        {%else%}
+                          <input style="margin-top: 5px;" id="input3" name="input3" class="form-control" type="text" required width="48"  value="50">
+                        {%endif%}
+                      </div>
+                      <div class="col mt-2 ">
+                        <td>&nbsp;&nbsp;&nbsp;&nbsp;	<input class="btn btn-secondary btn-mr-3" type="button" onclick="myFunction()" value="Clear"></td>
+                        <td></td>	
+                        <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                        <td><button type="submit" class="btn btn-primary mb-2">Calculate</button>  </td>
+                        </div>
+                    </form>
+                    <div id="answer1">
+                    {%if detailStep%}
+                      <hr>
+                      <p><strong>Answer:</strong></p>
+                      <div style="text-align: center;">
+
+                      {% autoescape off %}
+                      {{detailStep}}
+                      {%endautoescape%}
+
+                      </div>
+                      <hr>
+                    {%endif%}
+                    </div>
+                    <script>
+                        function myFunction() {
+                          document.getElementById("input1").value="";
+                          document.getElementById("input2").value="";
+                          document.getElementById("input3").value="";
+                          $("#answer1").html("");
+                        }
+                        </script>
+                      </div>
+                  {% autoescape off %}
+                      {% if messages %}
+                          {% for message in messages %}
+                              <div class="row">
+                                  <div class="col-md-6">
+                                      <p class="alert alert-danger">{{message}}</p>
+                                  </div>
+                              </div>
+                          {% endfor %}
+                      {% endif %}
+                  {%endautoescape%}
+                <p><strong>Final Grade Calculator: </strong>Getting stucked to calculate your grades in the final exam? We are providing you a best tool to calculate the grades easily and quickly. Calculate the final exam grade by giving the inputs of current grade, grade you want and final exam weight. We are not only providing calculator but also we have given all the required information of final grade.</p>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header">
+                <h2 class="h2">Final Grade Formula</h2>
+            </div>
+            <div class="card-body">
+            <p>Final grade is described as the grade allocated by the advisor at the end of an academic term. Below is the formula to calculate the final grade:</p>
+            <p><b>F = (G - ((1 - w) x C)) / w</b></p>
+            <p>Where,</p>
+                <p> F is the final exam grade</p>
+                <p> G is grade you want for the class</p>
+                <p> w is the weight of the final exam i.e. divided by 100. (Note: put the weight in the decimal form vs percentage form)</p>
+                <p> C is your present grade value</p>
+          </div>
+    </div>
+      <div class="card">
+        <div class="card-header">
+           <h3 class="h3">How to Find the Final Grade?</h3>
+      </div>
+            <div class="card-body">
+                <p>Below we have explained the basic steps to calculate final exam grade for students. So that you can do it easily without any mistakes. </p>
+                <ul>
+                <li>Primarily, take the current grade, grade you want and the final exam weight from the given problem.</li>
+                <li>Then, divide the final exam weight value by 100.</li>
+                <li>Now, you need to subtract 1 from the obtained value.</li>
+                <li>You need to multiply the result with present grade value.</li>
+                <li>Subtract the grade you want from the above step value.</li>
+                <li>Divide the acquired result by value we got from step 2 to get the final grade.</li>
+                </ul>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header">
+            <h3 class="h3">Final Grade Calculation Examples</h3>
+            </div>
+            <div class="card-body">
+                <p><strong>Question 1:</strong> Suraj grade in statistics is 85%. He wants to get at least an A or 75% in the class for the term. What is the score he need to get in the final exam if it is worth 50% of his grade?</p>
+                <p><strong>Solution:</strong></p>
+                <p>Given that</p>
+                <p> Grade Suraj want for the class = G = 75%</p>
+                <p> Current grade in statistics C = 80%</p>
+                    <p> weight of final exam, w = 50/100 = 0.5</p>
+                    <p> Final grade formula is</p>
+                    <p> F = (G - ((1 - w) x C)) / w</p>
+                    <p>Substitute all the values in the formula</p>
+                    <p> F = (75 - (1 - 0.5) x 85)) / 0.5</p>
+                    <p> = (75 - (0.5 x 85) / 0.5</p>
+                    <p> = (75 - 42.5) / 0.5</p>
+                    <p>  = 32.5 / 0.5</p>
+                    <p>  = 65</p>
+                    <p>  ∴ Suraj need to score 65 on the final exam if it is worth 50% of his grade.</p>
+                <p>For more calculators just click on <a href="https:/statisticscalculator.net/">statisticscalculator.net</a> that provides best trusted and reliable online calculators to solve all your complex calculations easy.</p>
+            </div>
+        </div>
+        <div class="card">
+              <div class="card-header">
+              <h3 class="h3">FAQs on Final Grade Calculator</h3>
+              </div>
+              <div class="card-body">
+              <!-- Question & Answer Starts --->
+            <p class="question"><strong>1. What are the steps to calculate final grade?</strong></p>
+             <p class="answer"><ul>
+                 <li>Calculate all the points that you have received in each grade.</li>
+                 <li>Then, subtract total from the number of points required to obtain the grade for an average.</li>
+                 <li>Finally, divide the result, by the number of points on the final exam.</li>
+             </ul></p><hr>
+             <p class="question"><strong>2. What is the formula for final grade?</strong></p>
+             <p class="answer">Below is the formula for final grade:</p>
+                <p> F = (G - ((1 - w) x C)) / w</p>
+                <p>Where, F is the final grade, C is your current grade value, w is the weight of the final exam divided by 100 and G is the grade you want for the class</p>
+            </p><hr>  
+            <p class="question"><strong>3. How to use Final Grade Calculator?</strong></p>
+            <p class="answer">Simply, enter the current grade, final exam weight and the grade you want for the class in input sections and press the calculate button which is available in blue color and get the final result instantly.</p>
+            </div>
+        </div>
+    </div>
+{%endblock%}

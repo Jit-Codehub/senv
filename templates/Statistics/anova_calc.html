@@ -1,0 +1,211 @@
+{%extends 'base/statistics_base1.html'%}
+{%load static%}
+  {%block meta%}
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+  <link rel="shortcut icon" href="{% static 'images/logo/Online-Calculator-Guru-Fevicon.png' %}" type="icon">
+  {%block css%}
+  <link rel="stylesheet" href="{% static 'style2.css' %}">
+  {%endblock%}
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+	<!-- META DATA STARTS --->
+    <title>Anova Calculator | Find One Way of  Analysis of Variance</title>
+	<meta name="description" content="Free Anova Calculator gives the one way of analysis of variance easily. Get the steps to calculate anova, its definition, formula. Give inputs to check Anova."/>
+	<link rel="canonical" href="{{request.build_absolute_uri}}">
+<!-- META DATA ENDS --->
+ 
+<!-- OPEN GRAPH CONFIGURATIONS STARTS -->
+	<!--  FACEBOOK CONFIGURATION STARTS  -->
+	<meta content="https://www.facebook.com/OnlineCalculator-Guru-131572098650589/" property="og:url" />
+	<meta property="og:title" content="Anova Calculator | Find One Way of  Analysis of Variance"/>
+	<meta property="og:description" content="Free Anova Calculator gives the one way of analysis of variance easily. Get the steps to calculate anova, its definition, formula. Give inputs to check Anova."/>
+	<meta content=""property="og:site_name" />
+	<meta  content="https://onlinecalculator.guru/static/images/Statistics/Anova-Calculator.jpeg" property="og:image" />
+	<meta property="og:image:type" content="image/png" />
+	<meta property="og:image:height" content="435" />
+	<meta property="og:image:width" content="354" />
+	<!--  FACEBOOK CONFIGURATION ENDS  -->
+	<!-- TWITTER CARD CONFIGURATION STARTS  -->
+	<meta name="twitter:card" content="summary"/>
+	<meta name="twitter:site" content="https://twitter.com/onlinecalculator"/>
+	<meta name="twitter:title" content="Anova Calculator | Find One Way of  Analysis of Variance"/>
+	<meta name="twitter:description" content="Free Anova Calculator gives the one way of analysis of variance easily. Get the steps to calculate anova, its definition, formula. Give inputs to check Anova."/>
+	<meta name="twitter:image:src" content="https://onlinecalculator.guru/static/images/Statistics/Anova-Calculator.jpeg"/>
+	<meta property="twitter:image:height" content="435"/>
+	<meta property="twitter:image:width" content="354"/>
+	<!-- TWITTER CARD CONFIGURATION ENDS  -->
+	<!--  LINKEDIN CONFIGURATION STARTS-->
+	<meta property='og:title' content="Anova Calculator | Find One Way of  Analysis of Variance"/>
+	<meta property='og:image' content="https://onlinecalculator.guru/static/images/Statistics/Anova-Calculator.jpeg"/>
+	<meta property='og:description' content="Free Anova Calculator gives the one way of analysis of variance easily. Get the steps to calculate anova, its definition, formula. Give inputs to check Anova."/>
+	<meta property='og:url' content="https://www.linkedin.com/in/onlinecalculator/" />
+	<!-- end of linkedin CONFIGURATIONS ENDS -->
+<!-- OPEN GRAPH CONFIGURATION ENDS -->
+<!-- FAQ SCHEMA STARTS -->
+<script type="application/ld+json">{"@context": "https://schema.org","@type": "FAQPage","mainEntity": [{"@type": "Question","name":"1.
+	How do I calculate ANOVA?
+	","acceptedAnswer": {"@type": "Answer","text":" Enter the data in the input boxes of the calculator and click the calculate button to get the ANOVA as result in a fraction of seconds."}	}, {"@type": "Question","name":"2.
+	What is ANOVA in simple terms?
+	","acceptedAnswer": {"@type": "Answer","text":" ANOVA is a one way of analysis of variance test. It is used to find the significant difference between the means of three or more groups."}	}, {"@type": "Question","name":"3.
+	What are the disadvantages of ANOVA?
+	","acceptedAnswer": {"@type": "Answer","text":" The disadvantage of ANOVA is it is difficult to analyze ANOVA under strict assumptions regarding the nature of data. It is not helpful to compare with the t-test that there is no special interpretation of the significance of two means."}	}, {"@type": "Question","name":"4.
+	What are the types of tests in Anova?
+	","acceptedAnswer": {"@type": "Answer","text":" The two types of tests in Anova are One way anova and two way anova with replication or without replication."}	}]}</script>
+{%endblock%}
+{%block content%}
+<div class="container">
+	<div class="card c1">
+  	<div class="card-header">
+  <h1 class="h1">Anova Calculator</h1>
+  </div>
+  <div class="card-body">
+    <p>Utilize this online Anova Calculator and check out the result for the given list of data set within no time by just providing the set of numbers as an input in the below input box and tap on the calculate button provided right next to the box.</p>
+	{%if go_tag%}
+	<a href="{{go_tag}}" id="ddd"></a>
+	{%endif%}
+
+<div class="box" id="anova">
+	<div style="text-align: center;"><h5><strong>Anova Calculator</strong></h5></div>
+	<form method="POST">{% csrf_token %}
+		<span class="input-group-text" id="basic-addon1">Enter Group 1 Data</span>
+		<div class="input-group mb-3">
+			{%if input1%}
+				<input style="margin-top: 5px;" id="input1" name="input1" class="form-control" type="text" required width="48"  value="{{input1}}">
+			{%else%}
+				<input style="margin-top: 5px;" id="input1" name="input1" class="form-control" type="text" required width="48"  value="4,2,14,3,9">
+			{%endif%}
+			</div>
+			<span class="input-group-text" id="basic-addon1">Enter Group 2 Data</span>
+			<div class="input-group mb-3">
+				{%if input2%}
+					<input style="margin-top: 5px;" id="input2" name="input2" class="form-control" type="text" required width="48"  value="{{input2}}">
+				{%else%}
+					<input style="margin-top: 5px;" id="input2" name="input2" class="form-control" type="text" required width="48"  value="11,7,5,13,20">
+				{%endif%}
+			</div>
+			<span class="input-group-text" id="basic-addon1">Enter Group 3 Data</span>
+			<div class="input-group mb-3">
+				{%if input3%}
+					<input style="margin-top: 5px;" id="input3" name="input3" class="form-control" type="text" required width="48"  value="{{input3}}">
+				{%else%}
+					<input style="margin-top: 5px;" id="input3" name="input3" class="form-control" type="text" required width="48"  value="27,14,8,17,2">
+				{%endif%}
+			</div>
+			<div class="col mt-2 ">
+				<td>&nbsp;&nbsp;&nbsp;&nbsp;	<input class="btn btn-secondary btn-mr-3" type="button" onclick="myFunction()" value="Clear"></td>
+				<td></td>	
+				<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+				<td><button type="submit" class="btn btn-primary mb-2">Calculate</button>  </td>
+				</div>
+	</form>
+	<div id="answer1">
+	{%if detailStep%}
+	  <hr>
+	  <p><strong>Answer:</strong></p>
+	  <div style="text-align: center;">
+	  {% autoescape off %}
+	  {{detailStep}}
+	  {%endautoescape%}
+	
+	  </div>
+	  <hr>
+  		{%endif%}
+	</div>
+	<script>
+		function myFunction() {
+			document.getElementById("input1").value="";
+			document.getElementById("input2").value="";
+			document.getElementById("input3").value="";
+			$("#answer1").html("");
+		}
+		</script>
+	  </div>
+  {% autoescape off %}
+	  {% if messages %}
+		  {% for message in messages %}
+			  <div class="row">
+				  <div class="col-md-6">
+					  <p class="alert alert-danger">{{message}}</p>
+				  </div>
+			  </div>
+		  {% endfor %}
+	  {% endif %}
+  {%endautoescape%}
+    <p><strong>Analysis of Variance Calculator: </strong>Are you looking for the best ways to find the one way of Anova of a given set of data? Then, you have come to the correct place because we have come up with the coolest way to calculate the one way of analysis of variance for the set of numbers. You need not search for any more as the instant and easy to use tool will give you a detailed explanation on how to get the anova of a given set of numbers. You can even get what is anova, its formula and steps to find it.</p>
+</div></div>
+  <div class="card">
+	<div class="card-header"><h2 class="h2">What is Meant by ANOVA (Analysis of Variance)?</h2></div>
+	<div class="card-body">
+        <p>In statistics, ANOVA test is a one way analysis of variance test. It is used to determine the significant difference between the means of groups. This method is similar to two sample t-test. It checks the impact of many factors by comparing the means of various samples.</p>
+        <p>The formulas to calculate ANOVA are given here:</p>
+     <ul>  <strong> <li>SSb=∑i=1 to k ni(xi-x)2, where ni is the number of subjects in the ith group</li>
+        <li> SSw=∑i=1 to k (ni-1)Si2, where Si is the standard deviation of the ith group</li>
+            <li>Total sum of squares SSt=SSb+SSw</li>
+            <li> Mean square between groups MSb=SSb/(K-1)</li>
+            <li> Mean square within groups MSw=SSw/(N-k)</li>
+            <li> F-Statistic or F-ratio F=MSb/MSw</li></strong></ul>
+        </div></div>
+        <div class="card">
+          <div class="card-header"><h3 class="h3">Steps to Calculate ANOVA </h3></div>
+          <div class="card-body">
+  <p>The below provided step by step procedure is useful for you while solving the One way anova. Use these steps and get the result easily.</p>
+<ul>
+<li>Take any number of groups with data values.</li>
+<li>Find the mean and standard deviation for the groups.</li>
+<li>Calculate sum of squares between groups and sum of squares within groups.</li>
+<li>Substitute your values in the formulae and do mathematical calculations.</li>
+ </ul>
+<p><strong>Example</strong></p>
+<p><strong>Question: Solve the one way anova of the following groups Group 1={1,2,3,4,5}, Group 2={5,1,7,8,6}, Group 3={0,1,4,6,3}?</strong></p>
+<p>Solution:</p>
+<p>Given data is Group 1={1,2,3,4,5}, Group 2={5,1,7,8,6}, Group 3={0,1,4,6,3}</p>
+<p>Mean of Group 1=1+2+3+4+5/5=3</p>
+<p>Mean of Group 2=5+1+7+8+6/5=27/5=5.4</p>
+<p>Mean of Group 3=0+1+4+6+3/5=14/5=2.8</p>
+<p>SD of Group 1=1.5811</p>
+<p>SD of Group 2=2.7019</p>
+<p>Standard Deviation of Group 3=2.3875</p>
+<p>Total Number of subjects in each group (N)=5</p>
+<p>SSb=∑i=1 to k ni(xi-x)<sup>2</sup></p>
+<p>SSb=12</p>
+<p>SSw==∑i=1 to k (ni-1)Si<sup>2</sup></p>
+<p>=62.0012</p>
+<p>SSt=SSb+SSw = 12+62.0012=74.0012</p>
+<p>MSb=SSb/(K-1)=12/(3-1)</p>
+<p>=6</p>
+<p>MSw=SSw/(N-k)</p>
+<p>=62.0012/(15-3)= 5.1668</p>
+<p>F ratio=MSb/MSw</p>
+<p>=1.1613</p>
+<p><a href="https://statisticscalculators.net/">StatisticsCalculators</a> is an ultimate website with all free mathematical concepts calculators for assisting the students and every single person out there in maths basic and advanced concepts.</p>
+<img src="{% static 'images/Statistics/anova-calculator.jpeg' %}" alt='Anova Calculator'>
+	</div>
+  </div>
+  <div class="card">
+  	<div class="card-header">
+      	<h3 class="h3">FAQ's on One Way Analysis of Variance Calculator</h3>
+  	</div>
+  	<div class="card-body">
+      	<!-- Question & Answer Starts --->
+		  <p class="question"><strong>  1. How do I calculate ANOVA?</strong></p>
+		  <p class="answer">Enter the data in the input boxes of the calculator and click the calculate button to get the ANOVA as result in a fraction of seconds.</p><hr>
+<p class="question"><strong>2. What is ANOVA in simple terms?</strong></p>
+<p class="answer">ANOVA is a one way of analysis of variance test. It is used to find the significant difference between the means of three or more groups.</p><hr>
+<p class="question"><strong>3. What are the disadvantages of ANOVA?</strong></p>
+<p class="answer">The disadvantage of ANOVA is it is difficult to analyze ANOVA under strict assumptions regarding the nature of data. It is not helpful to compare with the t-test that there is no special interpretation of the significance of two means.</p><hr>
+<p class="question"><strong>4. What are the types of tests in Anova?</strong></p>
+<p class="answer">The two types of tests in Anova are One way anova and two way anova with replication or without replication.</p>
+  	</div>
+   </div>
+</div>
+<script>
+	document.addEventListener('DOMContentLoaded', function () {
+		document.getElementById('ddd').click();
+	  });
+</script>
+{%endblock%}

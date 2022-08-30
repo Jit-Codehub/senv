@@ -1,0 +1,171 @@
+{%extends 'base/statistics_base3.html'%}
+{%load static%}
+  {%block meta%}
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+  <link rel="shortcut icon" href="{% static 'images/logo/Online-Calculator-Guru-Fevicon.png' %}" type="icon">
+  {%block css%}
+  <link rel="stylesheet" href="{% static 'style.css' %}">
+  {%endblock%}
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <!-- META DATA STARTS --->
+    <title>Minimum Calculator that finds the minimum value of the set {{inputEnter}}</title>
+    <meta name="description" content="Free Online Minimum Calculator determines the minimum value of the given data set ie., {{inputEnter}}, gives result ie., {{finalAnswer}} in no time with an explanation.">
+    <link rel="canonical" href="{{request.build_absolute_uri}}" >
+<!-- META DATA ENDS --->
+
+<!-- OPEN GRAPH CONFIGURATIONS STARTS -->
+    <!--  FACEBOOK CONFIGURATION STARTS  -->
+    <meta content="https://www.facebook.com/OnlineCalculator-Guru-131572098650589/" property="og:url" />
+    <meta property="og:title" content="Minimum Calculator that finds the minimum value of the set {{inputEnter}}"/>
+    <meta property="og:description" content="Free Online Minimum Calculator determines the minimum value of the given data set ie., {{inputEnter}}, gives result ie., {{finalAnswer}} in no time with an explanation."/>
+    <meta content="" property="og:site_name" />
+    <meta  content="https://onlinecalculator.guru/static/images/Statistics/Minimum-Number-Calculator.jpeg" property="og:image" />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:height" content="435" />
+    <meta property="og:image:width" content="354" />
+    <!--  FACEBOOK CONFIGURATION ENDS  -->
+    <!-- TWITTER CARD CONFIGURATION STARTS  -->
+    <meta name="twitter:card" content="summary"/>
+    <meta name="twitter:site" content="https://twitter.com/onlinecalculator"/>
+    <meta name="twitter:title" content="Minimum Calculator that finds the minimum value of the set {{inputEnter}}"/>
+    <meta name="twitter:description" content="Free Online Minimum Calculator determines the minimum value of the given data set ie., {{inputEnter}}, gives result ie., {{finalAnswer}} in no time with an explanation."/>
+    <meta name="twitter:image:src" content="https://onlinecalculator.guru/static/images/Statistics/Minimum-Number-Calculator.jpeg"/>
+    <meta property="twitter:image:height" content="435"/>
+    <meta property="twitter:image:width" content="354"/>
+    <!-- TWITTER CARD CONFIGURATION ENDS  -->
+    <!--  LINKEDIN CONFIGURATION STARTS-->
+    <meta property='og:title' content="Minimum Calculator that finds the minimum value of the set {{inputEnter}}"/>
+    <meta property='og:image' content="https://onlinecalculator.guru/static/images/Statistics/Minimum-Number-Calculator.jpeg"/>
+    <meta property='og:description' content="Free Online Minimum Calculator determines the minimum value of the given data set ie., {{inputEnter}}, gives result ie., {{finalAnswer}} in no time with an explanation."/>
+    <meta property='og:url' content="https://www.linkedin.com/in/onlinecalculator/" />
+    <!-- end of linkedin CONFIGURATIONS ENDS -->
+<!-- OPEN GRAPH CONFIGURATION ENDS -->
+<!-- FAQ SCHEMA STARTS -->
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is the minimum value for the given data {{inputEnter}}?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The minimum number in the given data set ie., {{inputEnter}} is {{finalAnswer}}."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Where can I find a detailed solution for a minimum number of {{inputEnter}}?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "You can find a detailed solution for a minimum number of {{inputEnter}} on our page."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Find the ascending order for given data set {{inputEnter}}?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The ascending order for the given data set {{inputEnter}} is {{finalAnswer}}."
+        }
+      }]
+  }
+</script>
+{%endblock%}
+{%block content%}
+<div class="container">
+    <div class="card c1">
+      <div class="card-header">
+  <h1 class="h1">Finding the Minimum of Numbers {{inputEnter}}</h1>
+  </div>
+  <div class="card-body">
+    <p>By using this <a href="{% url 'minimum-number' %}">Minimum Calculator</a> you can easily find the minimum values in the given data set ie., {{inputEnter}} & obtain the output ie., {{finalAnswer}} within a fraction of seconds along with the detailed solution.</p>
+    <p><b>Ex:</b> 32,45,12,17,43,68,75,8,11,29</p>
+    <form action="{% url 'minimum-number' %}" method="POST" id="my_form" name="reg_to_scientific" onsubmit="go();">
+        {% csrf_token %}
+        <div class="form-row align-items-center">
+          <div class="col-auto">
+            <label class="sr-only" for="inlineFormInputGroup">Minimum Number</label>
+            <div class="input-group mb-2">
+              <div class="input-group-prepend">
+                <div class="input-group-text"><strong>Minimum Number of: </strong></div>
+              </div>
+              <input type="text" class="form-control" name="input1" id="inlineFormInputGroup" placeholder="Enter number" value="{{inputEnter}}">
+            </div>
+          </div>
+          <div class="col-auto">
+            <button type="submit" class="btn btn-primary mb-2">Calculate</button>
+          </div>
+        </div>
+    </form>
+</div></div>
+<div class="card">
+    <div class="card-header">
+<h2 class="h2">Detailed Solution to Determine Minimum of {{inputEnter}}</h2>
+</div>
+<div class="card-body">
+{% autoescape off %}
+{{ detailStep }}
+{% endautoescape %}
+</div>
+</div>
+<div class="row">
+  <div class="col-sm-6">
+    <div class="card">
+      <div class="card-header"><h3 class="h3">Minimum of Numbers Examples</h3></div>
+      <div class="card-body">
+        <ul>
+          {% for i,j in example1 %}
+          <li><a  href="{{i}}" title="{{j}}">{{j}}</a></li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-6">
+    <div class="card">
+      <div class="card-header"><h3 class="h3">Maximum of Numbers Examples</h3></div>
+      <div class="card-body">
+        <ul>
+          {% for i,j in example2 %}
+          <li><a  href="{{i}}" title="{{j}}">{{j}}</a></li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="card">
+  <div class="card-header">
+    <h3 class="h3">Frequently Asked Questions on Minimum of {{inputEnter}}</h3>
+  </div>
+  <div class="card-body">
+      <p class="question"><strong>1. What is the minimum value for the given data {{inputEnter}}?</strong></p>
+      <p class="answer">The minimum number in the given data set ie., {{inputEnter}} is {{finalAnswer}}. </p><hr>
+
+
+        <p class="question"><strong>2. Where can I find a detailed solution for a minimum number of {{inputEnter}}?</strong></p>
+        <p class="answer">You can find a detailed solution for a minimum number of {{inputEnter}} on our page.</p><hr>
+
+
+        <p class="question"><strong>3. Find the ascending order for given data set {{inputEnter}}?</strong></p>
+        <p class="answer">The ascending order for the given data set {{inputEnter}} is {{finalAnswer}}.</p><hr>
+  </div>
+</div>
+</div>
+<!-- <div class="card">
+  <div class="card-header"><h2>More Examples</h2></div>
+  <div class="card-body">
+    {%for post1 in post%}
+      <li><a href="{% url 'minimum-number-detail' post1.slug %}">{{post1.solutionTitle}}</a></li>
+      {%endfor%}
+  </div>
+</div> -->
+{%endblock%}

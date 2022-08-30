@@ -1,0 +1,191 @@
+{%extends 'base/statistics_base2.html'%}
+{%load static%}
+{%block meta%}
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+  <link rel="shortcut icon" href="{% static 'images/logo/Chemistry-Calc.png' %}" type="icon">
+  {%block css%}
+  <link rel="stylesheet" href="{% static 'style.css' %}">
+  {%endblock%}
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+	<!-- META DATA STARTS --->
+    <title>Chebyshevs Theorem Calculator | How to Find K in Chebyshevs Theorem?</title>
+	<meta name="description" content="Chebyshevs Theorem Calculator is an online tool that uses the Chebyshevs Inequality to compute the probability in a matter of seconds. ">
+	<link rel="canonical" href="{{request.build_absolute_uri}}">
+<!-- META DATA ENDS --->
+ 
+<!-- OPEN GRAPH CONFIGURATIONS STARTS -->
+	<!--  FACEBOOK CONFIGURATION STARTS  -->
+	<meta content="https://www.facebook.com/OnlineCalculator-Guru-131572098650589/" property="og:url" />
+	<meta property="og:title" content="Chebyshevs Theorem Calculator | How to Find K in Chebyshevs Theorem?"/>
+	<meta property="og:description" content="Chebyshevs Theorem Calculator is an online tool that uses the Chebyshevs Inequality to compute the probability in a matter of seconds. "/>
+	<meta content="" property="og:site_name" />
+	<meta  content="https://chemistrycalc.com/static/images/Chemistry/chebyshevs-theorem-calculator.jpeg" property="og:image" />
+	<meta property="og:image:type" content="image/png" />
+	<meta property="og:image:height" content="435" />
+	<meta property="og:image:width" content="354" />
+	<!--  FACEBOOK CONFIGURATION ENDS  -->
+	<!-- TWITTER CARD CONFIGURATION STARTS  -->
+	<meta name="twitter:card" content="summary"/>
+	<meta name="twitter:site" content="https://twitter.com/onlinecalculator"/>
+	<meta name="twitter:title" content="Chebyshevs Theorem Calculator | How to Find K in Chebyshevs Theorem?"/>
+	<meta name="twitter:description" content="Chebyshevs Theorem Calculator is an online tool that uses the Chebyshevs Inequality to compute the probability in a matter of seconds. "/>
+	<meta name="twitter:image:src" content="https://chemistrycalc.com/static/images/Chemistry/chebyshevs-theorem-calculator.jpeg"/>
+	<meta property="twitter:image:height" content="435"/>
+	<meta property="twitter:image:width" content="354"/>
+	<!-- TWITTER CARD CONFIGURATION ENDS  -->
+	<!--  LINKEDIN CONFIGURATION STARTS-->
+	<meta property='og:title' content="Chebyshevs Theorem Calculator | How to Find K in Chebyshevs Theorem?"/>
+	<meta property='og:image' content="https://chemistrycalc.com/static/images/Chemistry/chebyshevs-theorem-calculator.jpeg"/>
+	<meta property='og:description' content="Chebyshevs Theorem Calculator is an online tool that uses the Chebyshevs Inequality to compute the probability in a matter of seconds. "/>
+	<meta property='og:url' content="https://www.linkedin.com/in/onlinecalculator/" />
+	<!-- end of linkedin CONFIGURATIONS ENDS -->
+<!-- OPEN GRAPH CONFIGURATION ENDS -->
+<!-- FAQ SCHEMA STARTS -->
+<script type="application/ld+json">{"@context": "https://schema.org","@type": "FAQPage","mainEntity": [{"@type": "Question","name":"1.
+  What is Chebyshev's Theorem?
+  ","acceptedAnswer": {"@type": "Answer","text":" Chebyshev's Theorem also known as Chebyshev Inequality is a theorem in probability which describes the dispersion of data from its mean."}	}, {"@type": "Question","name":"2.
+  What is the importance of Chebyshev Inequalities?
+  ","acceptedAnswer": {"@type": "Answer","text":" Importance of Chebyshev's Inequalities is that they enable us to derive bounds on probabilities of mean, mean and variance of probability distribution are known."}	}, {"@type": "Question","name":"3.
+  What does Chebyshev's Theorem say?
+  ","acceptedAnswer": {"@type": "Answer","text":" Chebyshev's Theorem states that for any k>1, there exists atleast 1-1/k² of data lying within k standard deviations of the mean."}	}]}</script>
+{%endblock%}
+{%block content%}
+<div class="container">
+	<div class="card c1">
+  	<div class="card-header">
+  <h1 class="h1">Chebyshev's Theorem Calculator</h1>
+        <h2>1) P(|X-E(X)|>=k)<=(σ²/k<sup>2</sup>)</h2>
+        <h2>2) P(|X-E(X)|>=kσ)<=(1/k<sup>2</sup>)</h2>
+  </div>
+  <div class="card-body">
+    <p>Chebyshev's Theorem Calculator existing here will let you know how to use chebyshev's inequality inorder to obtain the probability of arbitrary distribution. This online tool can be used for estimating the probability of a random variable say X given the other parameters like mean μ, standard deviation σ, lower limit, upper limit of event(a,b) in no time. </p>
+    {% autoescape off %}
+            {% if messages %}
+                {% for message in messages %}
+                        <div class="row">
+                            <div class="col-md-6">
+                                <p class="alert alert-danger">{{message}}</p>
+                            </div>
+                        </div>
+                {% endfor %}
+                {% endif %}
+        {%endautoescape%}
+      <form action="{% url 'cheb-theorem' %}" id="myForm" onsubmit="return validate()" method="post">
+            {% csrf_token %}
+            <div class="input-group mb-2 mt-3">
+
+                <div class="input-group-text"><strong>Formula Variant</strong></div>
+                    <select name="f_type" id="inlineFormInputGroup" class="form-control">
+                         <option value="one" id="one">Formula 1</option>
+                         <option value="two" id="two">Formula 2</option>
+                     </select>
+            </div>
+            <div class="input-group mb-2 mt-3">
+                  <div class="input-group-prepend">
+                <div class="input-group-text"><strong>Bound(k)</strong></div>
+                     <input type="text" pattern="-?\d*\.?\d*" id="inlineFormInputGroup" name="a" value="{{ a }}" oninput="validateNumber1(this);" placeholder="Enter the Number" class="form-control" required></div>
+
+            </div>
+                <div class="input-group mb-2 mt-3">
+                  <div class="input-group-prepend">
+                <div class="input-group-text in"><strong>Variance(σ²)</strong></div>
+                     <input type="text" id="inlineFormInputGroup" placeholder="Enter the Number" value="{{ b }}" name="b" oninput="validateNumber(this);" class="form-control" required></div>
+
+                 </div>
+                <div class=" center col mt-2 ">
+                <center><button type="submit" class="btn btn-primary"  class="form-control" >Calculate</button>
+                <button type="button" onclick="this.form.reset()" style="margin-top:5px;" class="btn btn-danger" class="form-control">Reset</button>
+                </center>
+            </div>
+          <div class="input-group mb-2 mt-3">
+                  <div class="input-group-prepend">
+                      <div class="input-group-text"><strong>Chance at most</strong></div>
+                     <input type="text" disabled id="inlineFormInputGroup" value="{{ d }}" oninput="validateNumber(this);" class="form-control" required></div>
+                <b id="inlineFormInputGroup" class="form-control">%</b>
+                 </div>
+
+        </form>
+    <p><b>Chebyshev's Theorem Calculator:</b> If you are wondering what is Chebyshev's Theorem in Statistics and what exactly it is used for then you have landed on the right page. We have got you covered every question of yours in this article. Our Chebyshev's Theorem Calculator makes it easy for you to understand the Probability of X within the k standard deviations of the mean. Learn what does chebyshev's inequality theorem states, its mathematical formula, step by step procedure on how to compute the chebyshev's inequality.</p>
+    </div></div>
+    <div class="card">
+        <div class="card-header">
+            <h2 class="h2">Chebyshev's Theorem Formula</h2>
+            
+        </div>
+        <div class="card-body">
+           <p>Chebyshev's Theorem has two formulas similar to each other. We will explain both of them here and break down the notation of it here. They are as under</p>
+           <img src="https://drive.google.com/file/d/1mHcrKSQtQmYnCMLRKwhB_66elwM9mb4A/view?usp=sharing" alt="Chebyshev Theorem Formula">
+          <ul><li>P denotes the probability of an event.</li>
+            <li>X is a random variable that denotes the random experiment.</li>
+            <li>E(X) is the expected value of our event</li>
+            <li>σ² denotes the variance of our event</li>
+            <li>k is the boundary of the result, i.e., how far we want our result to be diverged from the expected.</li></ul>
+          </div>
+    </div>       
+    <div class="card">
+        <div class="card-header">
+            <h3 class="h3">Chebyshev's Theorem Proof</h3>
+        </div>
+        <div class="card-body">
+            <p>As per the Chebyshev's Theorem the probability that an observation will be more than k standard deviations from the mean is almost 1/k². For the Chebyshev's Theorem to be true you need to follow only 2 conditions i.e. underlying distribution has a mean and the other is average size of deviations away from the mean isn't infinite. To prove this inequality let us consider there exists a population of n values contain n<sub>1</sub> values of x<sub>1</sub> and n<sub>2</sub> values of x<sub>2</sub>.</p>
+           <p>Let us assume the standard deviation of population to be σ, μ is the mean and k>1 is some positive real number. </p>
+           <p> σ<sup>2</sup>=(∑(x<sub>i</sub>−μ)<sup>2</sup>⋅n<sub>i</sub>)/n</p>
+           <p>Here the sum ranges over all distinct x<sub>i</sub>. Thus we get</p>
+           <p>σ<sup>2</sup> <u>></u> ∑(x<sub>i</sub>−μ)<sup>2</sup>⋅n<sub>i</sub>/n</p>
+           <p>Since the sum ranges only over those x<sub>i</sub> when (|x<sub>i</sub>−μ|≥kσ), we can express</p>
+           <p>σ<sup>2</sup><u>></u> ∑k<sup>2</sup>σ<sup>2</sup>⋅n<sub>i</sub>}{n} = k<sup>2</sup>σ<sup>2</sup>⋅∑n<sub>i</sub>/n = k<sup>2</sup>σ<sup>2</sup>⋅P<sub>out</sub>,</p>
+           <p>where P<sub>out</sub> is the proportion of the population outside k standard deviations of μ. Since we have</p>
+           <p>P<sub>out</sub><u><</u> 1/k².</p>
+           <p>We can apply the inequality to any probability distribution in which both the mean and variance are defined. Thus we have</p>
+           <p>P<sub>r</sub>(|X-μ| <u>></u> kσ) <u><</u> 1/k².</p>
+          </div>
+    </div>
+    <div class="card">
+        <div class="card-header">
+            <h3 class="h3">FAQs on Chebyshev's Theorem Calculator</h3>
+        </div>
+        <div class="card-body">
+             <!-- Question & Answer Starts --->
+           <p class="question"><strong>1. What is Chebyshev's Theorem?</strong></p>
+           <p class="answer">Chebyshev's Theorem also known as Chebyshev Inequality is a theorem in probability which describes the dispersion of data from its mean.</p><hr>
+           <p class="question"><strong>2. What is the importance of Chebyshev Inequalities?</strong></p>
+           <p class="answer">Importance of Chebyshev's Inequalities is that they enable us to derive bounds on probabilities of mean, mean and variance of probability distribution are known.</p><hr>
+           <p class="question"><strong>3. What does Chebyshev's Theorem say?</strong></p>
+           <p class="answer">Chebyshev's Theorem states that for any k>1, there exists atleast 1-1/k² of data lying within k standard deviations of the mean. </p>
+          </div>
+    </div>
+</div>
+<script>
+  $(document).ready(function(){
+      {% if d %}
+      $("#hassle").click();
+      str1="#"+"{{ f_unit }}";
+      $(str1).attr("selected","selected");
+      {% endif %}
+   $(".btn-danger").on("click",function(){
+     $(".form-control").attr("value","");
+      $("#one").attr("selected","selected");
+    });
+   });
+</script>
+<script>
+    var validNumber = new RegExp(/^\d*\.?\d*$/);
+    var fist_input = document.getElementById("inlineFormInputGroup").value;
+    function validateNumber(elem) {
+      if (validNumber.test(elem.value)) {
+        fist_input = elem.value;
+      } else {
+        elem.value = fist_input;
+      }
+    }
+</script>
+
+
+
+{%endblock%}

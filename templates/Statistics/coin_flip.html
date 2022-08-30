@@ -1,0 +1,145 @@
+{%extends 'base/statistics_base3.html'%}
+{%load static%}
+  {%block meta%}
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+  <link rel="shortcut icon" href="{% static 'images/logo/Online-Calculator-Guru-Fevicon.png' %}" type="icon">
+  {%block css%}
+  <link rel="stylesheet" href="{% static 'style.css' %}">
+  {%endblock%}
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <!-- META DATA STARTS --->
+    <title>Coin Flip Calculator | Finds the Probability</title>
+    <meta name="description" content="Coin flip Calculator is a free online tool that calculates the Coin Flip Probability value .">
+    <link rel="canonical" href="{{request.build_absolute_uri}}" >
+<!-- META DATA ENDS --->
+
+<!-- OPEN GRAPH CONFIGURATIONS STARTS -->
+    <!--  FACEBOOK CONFIGURATION STARTS  -->
+    <meta content="https://www.facebook.com/OnlineCalculator-Guru-131572098650589/" property="og:url" />
+    <meta property="og:title" content="Coin Flip Probability | Finds coin flip probability "/>
+    <meta property="og:description" content="Coin Flip Probability is a free online tool that calculates the Coin Flip Probability value ."/>
+    <meta content="" property="og:site_name" />
+    <meta  content="https://onlinecalculator.guru/static/images/Statistics/Median-Calculator.jpeg" property="og:image" />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:height" content="435" />
+    <meta property="og:image:width" content="354" />
+    <!--  FACEBOOK CONFIGURATION ENDS  -->
+    <!-- TWITTER CARD CONFIGURATION STARTS  -->
+    <meta name="twitter:card" content="summary"/>
+    <meta name="twitter:site" content="https://twitter.com/onlinecalculator"/>
+    <meta name="twitter:title" content="Median Calculator | Finds the median value of a set of data: {{inputEnter}}"/>
+    <meta name="twitter:description" content="Median Calculator is a free online tool that calculates the median value for the set of numbers {{inputEnter}} instantly and gives result ie., {{finalAnswer}} in no time."/>
+    <meta name="twitter:image:src" content="https://onlinecalculator.guru/static/images/Statistics/Median-Calculator.jpeg"/>
+    <meta property="twitter:image:height" content="435"/>
+    <meta property="twitter:image:width" content="354"/>
+    <!-- TWITTER CARD CONFIGURATION ENDS  -->
+    <!--  LINKEDIN CONFIGURATION STARTS-->
+    <meta property='og:title' content="Median Calculator | Finds the median value of a set of data: {{inputEnter}}"/>
+    <meta property='og:image' content="https://onlinecalculator.guru/static/images/Statistics/Median-Calculator.jpeg"/>
+    <meta property='og:description' content="Median Calculator is a free online tool that calculates the median value for the set of numbers {{inputEnter}} instantly and gives result ie., {{finalAnswer}} in no time."/>
+    <meta property='og:url' content="https://www.linkedin.com/in/onlinecalculator/" />
+    <!-- end of linkedin CONFIGURATIONS ENDS -->
+<!-- OPEN GRAPH CONFIGURATION ENDS -->
+<!-- FAQ SCHEMA STARTS -->
+{%endblock%}
+{%block content%}
+<div class="container" style="height: auto !important;">
+    <div class="card c1">
+      <div class="card-header">
+        <h1 class="h1">Coin Flip Probability </h1>
+      </div>
+        <div class="card-body">
+            <ul class="messages">
+                {% for message in messages %}
+                <p {% if message.tags %} id="message_container" class="alert alert-danger text-center" {% endif %}
+                    style="color:red">{{ message }}</p>
+                {% endfor %}
+            </ul>
+            <form action="" method="POST" id="my_form" ">
+                {% csrf_token %}
+                <div class="form-row align-items-center">
+                <div class="col-auto">
+                    <div class="input-group mb-2">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text"><strong>Flips</strong></div>
+                        </div>
+                        <input type="number"  oninput="validateNumber(this);" id="inlineFormInputGroup" required=""
+                            placeholder="Enter number of flips" min="0.00001" step="any" class="form-control" name="flips"  value="{{min}}" >
+                    </div>
+                    <div class="input-group mb-2">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text"><strong>Heads</strong></div>
+                        </div>
+                        <input type="number"  oninput="validateNumber(this);" id="inlineFormInputGroup" required=""
+                            placeholder="Enter number of heads" min="0.00001" step="any" class="form-control" name="heads"   value="{{max}}"  >
+                    </div>
+                    <!-- <div class="input-group mb-2">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text"><strong>Number of classes</strong></div>
+                        </div>
+                        <input type="number"  oninput="validateNumber(this);" id="inlineFormInputGroup" required=""
+                            placeholder="Enter no of classes" min="1"  class="form-control" name="classes"    value="{{classes}}" >
+                    </div> -->
+                    <div class=" center col mt-2 ">
+                        <center><button type="submit" class="btn btn-primary" name="f1">Calculate</button>
+                            <button type="button" onclick="myFunction()" style="margin-top:5px;"
+                            class="btn btn-danger">Reset</button>
+                        </center>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% if id == 1 %}
+<div id="clear">
+    <div class="card" id="magnetic-force">
+        <div class="card-header">
+            <h2 class="h2">Steps to calcualate coin flip probability</h2>
+        </div>
+        <div class="card-body">
+            <strong>Coin Flip Probability Formula-</strong>
+            <br>
+            <p class="btn btn-outline-secondary active"> probability of r heads in n flips = [1/2^n * (n!/r!*(n-r)!)] </p>
+            <br>
+            <strong>where:</strong>
+                    <ul>
+                        <li>Heads - Number of heads</li>
+                        <li>Flips - Number of times coin is flipped</li>
+                        <!-- <li>n - Number of classes within the distribution</li> -->
+                    </ul>
+            <strong>Input values are:-</strong>
+            <p>Number of Heads = {{heads}}</p>
+            <p>Number of Flips = {{flips}}</p> 
+            <br>
+            
+            <strong>Put values into formula</strong>
+            <p> probability = [1/2^n * (n!/r!*(n-r)!)] </p>
+            <!-- <p>  class width = ({{max}} - {{min}}) / {{probability}}  </p> -->
+            <p><b> probability = {{probability}} </b></p>
+        </div>
+    </div>
+</div>
+{% endif %}
+<script>
+    
+    
+
+    function myFunction() {
+        document.getElementsByName("flips")[0].value = "";
+        document.getElementsByName("heads")[0].value = "";
+       
+        
+
+        document.getElementById("clear").innerHTML = "";
+
+    }
+
+</script>   
+{%endblock%}

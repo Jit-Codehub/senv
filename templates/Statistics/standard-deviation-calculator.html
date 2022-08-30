@@ -1,0 +1,268 @@
+{%extends 'base/statistics_base2.html'%}
+{%load static%}
+  {%block meta%}
+    <!-- HTML Defaults Broweser -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Bootstrap Stylesheet and Jquery, Google APIS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <!-- Online Calculator Guru Site Fevicon -->
+    <link rel="shortcut icon" href="https://onlinecalculator.guru/static/images/logo/Online-Calculator-Guru-Fevicon.png" type="icon">
+    <!-- Online Calculator Guru Project Style Sheet -->
+    {%block css%}
+    <link rel="stylesheet" href="https://onlinecalculator.guru/static/style2.css">
+    {%endblock%}
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <!-- Meta Title, Description and Canonical URL Starts --->
+    <title>Standard Deviation calculator using mean | Steps to calculate Variance, SD</title>
+    <meta name="description" content="This free online standard deviation calculator will provide a step-by-step solution for the given sample or population data set in less time."/>
+    <link rel="canonical" href="{{request.build_absolute_uri}}">
+    <!-- Meta Title, Description and Canonical URL ENDS --->
+ 
+    <!-- OPEN GRAPH CONFIGURATIONS STARTS -->
+	<!--  FACEBOOK CONFIGURATION STARTS  -->
+        <meta content="https://www.facebook.com/OnlineCalculator-Guru-131572098650589/" property="og:url" />
+        <meta property="og:title" content="Standard Deviation calculator using mean | Steps to calculate Variance, SD"/>
+        <meta property="og:description" content="This free online standard deviation calculator will provide a step-by-step solution for the given sample or population data set in less time. "/>
+        <meta content="" property="og:site_name" />
+        <meta  content="https://onlinecalculator.guru/static/images/Statistics/Standard-Deviation-Calculator.jpeg" property="og:image" />
+        <meta property="og:image:type" content="image/png" />
+        <meta property="og:image:height" content="435" />
+        <meta property="og:image:width" content="354" />
+        <!--  FACEBOOK CONFIGURATION ENDS  -->
+        <!-- TWITTER CARD CONFIGURATION STARTS  -->
+        <meta name="twitter:card" content="summary"/>
+        <meta name="twitter:site" content="https://twitter.com/onlinecalculator"/>
+        <meta name="twitter:title" content="Standard Deviation calculator using mean | Steps to calculate Variance, SD"/>
+        <meta name="twitter:description" content="This free online standard deviation calculator will provide a step-by-step solution for the given sample or population data set in less time. "/>
+        <meta name="twitter:image:src" content="https://onlinecalculator.guru/static/images/Statistics/Standard-Deviation-Calculator.jpeg"/>
+        <meta property="twitter:image:height" content="435"/>
+        <meta property="twitter:image:width" content="354"/>
+        <!-- TWITTER CARD CONFIGURATION ENDS  -->
+        <!--  LINKEDIN CONFIGURATION STARTS-->
+        <meta property='og:title' content="Standard Deviation calculator using mean | Steps to calculate Variance, SD"/>
+        <meta property='og:image' content="https://onlinecalculator.guru/static/images/Statistics/Standard-Deviation-Calculator.jpeg"/>
+        <meta property='og:description' content="This free online standard deviation calculator will provide a step-by-step solution for the given sample or population data set in less time. "/>
+        <meta property='og:url' content="https://www.linkedin.com/in/onlinecalculator/" />
+        <!-- end of linkedin CONFIGURATIONS ENDS -->
+    <!-- OPEN GRAPH CONFIGURATION ENDS -->
+    <!-- FAQ SCHEMA STARTS -->
+    <script type="application/ld+json">{"@context": "https://schema.org","@type": "FAQPage","mainEntity": [{"@type": "Question","name":"1.
+        How do I calculate standard deviation?
+        ","acceptedAnswer": {"@type": "Answer","text":"You can caluclate the standard deviation by following the easy steps explained on our page. Else, use our handy standard deviation online calculator for quick results."}	}, {"@type": "Question","name":"2.
+        How do you find standard deviation using a calculator?
+        ","acceptedAnswer": {"@type": "Answer","text":"Give the input data set in the allotted field of the respected standard deviation calculator and press the calculate button to get the result with steps in a blink of an eye."}	}, {"@type": "Question","name":"3.
+        What is the standard deviation of 250?
+        ","acceptedAnswer": {"@type": "Answer","text":"Especially, SD is the square root of the average squared deviation of scores about their arithmetic mean. Thus, the standard deviation of 250 is 35."}	}]}</script>
+    {%endblock%}
+    {%block content%}
+    <div class="container">
+        <div class="card c1">
+            <div class="card-header">
+                <h1 class="h1">Standard Deviation Calculator</h1>
+            </div>
+            <div class="card-body">
+                {%if go_tag%}
+                <a href="{{go_tag}}" id="ddd"></a>
+                {%endif%}
+                <p>Standard Deviation Calculator is a free online tool that determines sum, count, mean, sum of squares, variance, Standard deviation of the given population or sample data set. You just need to enter the input data set then select the population or data in the tool and click on the calculate button to obtain the results in a fraction of seconds.</p>                <div style="text-align: center;"><h5><strong>Standard Deviation Calculator</strong></h5></div>
+                <div class="box" id="standard_deviation">
+                    <form method="POST">{% csrf_token %}
+                        <div class="row mx-auto my-auto">
+                            <div class="cell">
+                                <label for="input1">Enter the sample data: </label>
+                            </div>
+                          </div>
+                        <div class="row mx-auto my-auto">
+                            <div class="cell">
+                                {%if input1%}
+                                    <input name="input1" type="text" required width="48"  value="{{input1}}">
+                                {%else%}
+                                    <input name="input1" type="text" required width="48"  value="18,23,56,34,23">
+                                {%endif%}
+                            </div>
+                        </div>
+                        <div class="row mx-auto my-auto">
+                            <div class="cell">
+                                <label for="input2">Data type: </label>
+                            </div>
+                          </div>
+                        <div class="row mx-auto my-auto">
+                            <div class="cell">
+                                {%if input21%}
+                                <input name="input2" type="radio" value="Population" checked="yes"> Population
+                                <input name="input2" type="radio" value="Data" > Data
+                                {%elif input22%}
+                                    <input name="input2" type="radio" value="Population" > Population
+                                    <input name="input2" type="radio" value="Data" checked="yes"> Data
+                                {%else%}
+                                    <input name="input2" type="radio" value="Population"> Population
+                                    <input name="input2" type="radio" value="Data"> Data
+                                {%endif%}
+                            </div>
+                        </div>
+                    <div class="col-auto mt-2 ml-3">
+                      <button type="submit" class="btn btn-primary mb-2">Calculate</button>
+                    </div>
+                    </form>
+                    {%if detailStep%}
+                      <hr>
+                      <p><strong>Answer:</strong></p>
+                      <div style="text-align: center;">
+                          <p>Standard Deviation :</p> 
+                      {% autoescape off %}
+                      {{detailStep}}
+                      {%endautoescape%}
+                    
+                      </div>
+                      <hr>
+                  {%endif%}
+                      </div>
+                  {% autoescape off %}
+                      {% if messages %}
+                          {% for message in messages %}
+                              <div class="row">
+                                  <div class="col-md-6">
+                                      <p class="alert alert-danger">{{message}}</p>
+                                  </div>
+                              </div>
+                          {% endfor %}
+                      {% endif %}
+                  {%endautoescape%}
+                  <p><strong>Standard Deviation Calculator:</strong> Guys who get confused while standard deviation calculation can now learn properly from this page. Here, we have discussed completely how to calculate a standard deviation manually and what formulas should be memorized to solve the problems of variance and SD in statistics. Also, it includes the best &amp; user-friendly standard deviation calculator online to verify all your answers and find some complex calculations much easier and faster.</p>            </div>
+        </div>
+    <div class="card">
+	    <div class="card-header">
+            <h2 class="h2">What is Standard Deviation in Statistics?</h2>
+        </div>
+	    <div class="card-body">
+            <p>In statistics, the measure of the amount of variation or dispersion of a set of values is known as a standard deviation. Also, the standard deviation is the square root of the variance. You can see two types of standard deviations ie., low standard deviation and high standard deviation. The sign for Standard Deviation is <strong>'&sigma;'</strong> (the Greek letter sigma).</p>
+            <h3>List of Standard Deviation Formulas</h2>
+            <p>The table presented below will make you learn all the formulas related to the concept of standard deviation. By memorizing these formulas, you can easily calculate standard deviation problems.</p>
+            <table border="1">
+            <tbody>
+            <tr>
+            <td><strong>S.No.</strong></td>
+            <td style="text-align: center;" colspan="2"><strong>Formulas</strong></td>
+            </tr>
+            <tr>
+            <td>1.</td>
+            <td>Sum</td>
+            <td>
+            <p>Sum = &sum;<sub>i = 1</sub><sup>n</sup>x<sub>i</sub></p>
+            </td>
+            </tr>
+            <tr>
+            <td>2.</td>
+            <td>Size</td>
+            <td>Count = n = count(x<sub>i</sub>)<sub>i = 1</sub><sup>n</sup></td>
+            </tr>
+            <tr>
+            <td>3.</td>
+            <td>Mean</td>
+            <td>
+            <p>For population data set</p>
+            <p>&mu; = (&sum;<sub>i = 1</sub><sup>n</sup>x<sub>i</sub>) / n = Sum / size</p>
+            <p>For sample data set</p>
+            <p>x<sub>mean</sub> = (&sum;<sub>i = 1</sub><sup>n</sup>x<sub>i</sub>) / n</p>
+            </td>
+            </tr>
+            <tr>
+            <td>4.</td>
+            <td>
+            <p>Sum of Squares</p>
+            </td>
+            <td>
+            <p>For a Population</p>
+            <p>SS = &sum;<sub>i = 1</sub><sup>n&nbsp;</sup>(x<sub>i</sub> - &mu;)&sup2;</p>
+            <p>For a Sample</p>
+            <p>SS = &sum;<sub>i = 1</sub><sup>n&nbsp;</sup>(x<sub>i</sub> -x<sub>mean</sub>)&sup2;</p>
+            </td>
+            </tr>
+            <tr>
+            <td>5.</td>
+            <td>Standard Deviation</td>
+            <td>
+            <p>For a population</p>
+            <p>&sigma; = &radic;[(&sum;<sub>i = 1</sub><sup>n</sup> (x<sub>i</sub> - &mu;)&sup2;) / n]</p>
+            <p>For a sample</p>
+            <p>s = &radic;[(&sum;<sub>i = 1</sub><sup>n</sup> (x<sub>i</sub> - x<sub>mean</sub>)&sup2;) / (n - 1)]</p>
+            </td>
+            </tr>
+            <tr>
+            <td>6.</td>
+            <td>Variance</td>
+            <td>
+            <p>Variance formula for a a population is</p>
+            <p>&sigma;&sup2; = [(&sum;<sub>i = 1</sub><sup>n</sup> (x<sub>i</sub> - &mu;)&sup2;) / n]</p>
+            <p>For a sample is</p>
+            <p>s&sup2; = [(&sum;<sub>i = 1</sub><sup>n</sup> (x<sub>i</sub> - x<sub>mean</sub>)&sup2;) / (n - 1)]</p>
+            </td>
+            </tr>
+            </tbody>
+            </table>
+            <p>Where<br />x<sub>i</sub> is an individual value<br />&mu; is the mean/expected value<br />n is the total number of values</p>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-header">
+        <h3 class="h2">How to Calculate Standard Deviation Easily?</h2>
+        </div>
+        <div class="card-body">
+            <p>Here are the simple steps that you should follow to solve the standard deviation manually. These steps are so convenient and comfortable while standard deviation calculation. So, make use of them without any fail:</p>
+<ul>
+<li>First, you should consider your population or sample data set.</li>
+<li>Next, calculate the mean of the data set by applying the formula.</li>
+<li>Now, find the difference between each data value in the set and the mean.</li>
+<li>At this step, the result will be squared and added all the values.</li>
+<li>Finally, divide the acquired answer by the total number of values to obtain the standard deviation.</li>
+</ul>
+<p><strong>Example:</strong></p>
+<p>Find standard deviation of the population data set: {5, 15, 25, 35, 45}</p>
+<p><strong>Solution:</strong></p>
+<p>Given data set is {5, 15, 25, 35, 45}</p>
+<p>Firstly, we have to find the arithmetic mean of the given data set</p>
+<p>Here, Count = 5, Sum = 5+15+25+35+45 = 125</p>
+<p>Hence, Mean = Sum / Count</p>
+<p>= 125/5</p>
+<p>= 25</p>
+<p>Sum of Squares = SS = &sum;<sub>i = 1</sub><sup>n</sup> (x<sub>i</sub>&nbsp;- &mu;)&sup2;</p>
+<p>= (5-25)&sup2;+(15-25)&sup2;+(25-25)&sup2;+(35-25)&sup2;+(45-25)&sup2;</p>
+<p>= -20&sup2;+-10&sup2;+0&sup2;+10&sup2;+20&sup2;</p>
+<p>= 400+100+0+100+400</p>
+<p>= 1000</p>
+<p>Variance = sum of difference&sup2;(squares) / count</p>
+<p>= 1000/5 = 200</p>
+<p>Standard Deviation = &radic;Variance</p>
+<p>&sigma; = &radic;[(&sum;<sub>i = 1</sub><sup>n</sup> (x<sub>i</sub>&nbsp;- &mu;)&sup2;) / n]</p>
+<p>=&nbsp;&radic;200</p>
+<p>= 14.1421356237</p>
+<p>Visit our web portal i.e <a href="https://statisticscalculators.net/">statisticscalculators.net</a> and seek homework help by solving complex calculations using our best free & trusted online calculator tools.</p>
+<img src="{% static 'images/Statistics/standard-deviation-calculator.jpeg' %}" alt='Standard Deviation Calculator'>
+        </div>
+    </div>
+    <div class="card">
+  	    <div class="card-header">
+      	<h3 class="h3">FAQs on Free Online Standard Deviation and Variance Calculator</h3>
+  	    </div>
+  	    <div class="card-body">
+      	<!-- Question & Answer Starts --->
+        <p class="question"><strong>1. How do I calculate standard deviation?</strong></p>
+     	<p class="answer">You can caluclate the standard deviation by following the easy steps explained on our page. Else, use our handy standard deviation online calculator for quick results.</p><hr>
+     	<p class="question"><strong>2. How do you find standard deviation using a calculator?</strong></p>
+     	<p class="answer">Give the input data set in the allotted field of the respected standard deviation calculator and press the calculate button to get the result with steps in a blink of an eye.</p><hr>  
+        <p class="question"><strong>3. What is the standard deviation of 250?</strong></p>
+        <p class="answer">Especially, SD is the square root of the average squared deviation of scores about their arithmetic mean. Thus, the standard deviation of 250 is <strong>35.</strong></p><hr>
+    	</div>
+    </div>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            document.getElementById('ddd').click();
+          });
+    </script>
+{%endblock%}

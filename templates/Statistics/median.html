@@ -1,0 +1,319 @@
+{%extends 'base/statistics_base1.html'%}
+{%load static%}
+  {%block meta%}
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+  <link rel="shortcut icon" href="{% static 'images/logo/Online-Calculator-Guru-Fevicon.png' %}" type="icon">
+  {%block css%}
+  <link rel="stylesheet" href="{% static 'style.css' %}">
+  {%endblock%}
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <!-- META DATA STARTS --->
+    <title>Median Calculator | How to Find Median? | Formula of Median</title>
+    <meta name="description" content="Free Median Calculator computes the median of a set of data easily. Get the steps to find median using formula & solved questions. Give input to obtain median.">
+    <link rel="canonical" href="{{request.build_absolute_uri}}" >
+<!-- META DATA ENDS --->
+
+<!-- OPEN GRAPH CONFIGURATIONS STARTS -->
+    <!--  FACEBOOK CONFIGURATION STARTS  -->
+    <meta content="https://www.facebook.com/OnlineCalculator-Guru-131572098650589/" property="og:url" />
+    <meta property="og:title" content="Median Calculator | How to Find Median? | Formula of Median"/>
+    <meta property="og:description" content="Free Median Calculator computes the median of a set of data easily. Get the steps to find median using formula & solved questions. Give input to obtain median."/>
+    <meta content="" property="og:site_name" />
+    <meta  content="https://statisticscalculators.net/static/images/Statistics/Median-Calculator.jpeg" property="og:image" />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:height" content="435" />
+    <meta property="og:image:width" content="354" />
+    <!--  FACEBOOK CONFIGURATION ENDS  -->
+    <!-- TWITTER CARD CONFIGURATION STARTS  -->
+    <meta name="twitter:card" content="summary"/>
+    <meta name="twitter:site" content="https://twitter.com/onlinecalculator"/>
+    <meta name="twitter:title" content="Median Calculator | How to Find Median? | Formula of Median"/>
+    <meta name="twitter:description" content="Free Median Calculator computes the median of a set of data easily. Get the steps to find median using formula & solved questions. Give input to obtain median."/>
+    <meta name="twitter:image:src" content="https://statisticscalculators.net/static/images/Statistics/Median-Calculator.jpeg"/>
+    <meta property="twitter:image:height" content="435"/>
+    <meta property="twitter:image:width" content="354"/>
+    <!-- TWITTER CARD CONFIGURATION ENDS  -->
+    <!--  LINKEDIN CONFIGURATION STARTS-->
+    <meta property='og:title' content="Median Calculator | How to Find Median? | Formula of Median"/>
+    <meta property='og:image' content="https://statisticscalculators.net/static/images/Statistics/Median-Calculator.jpeg"/>
+    <meta property='og:description' content="Free Median Calculator computes the median of a set of data easily. Get the steps to find median using formula & solved questions. Give input to obtain median."/>
+    <meta property='og:url' content="https://www.linkedin.com/in/onlinecalculator/" />
+    <!-- end of linkedin CONFIGURATIONS ENDS -->
+<!-- OPEN GRAPH CONFIGURATION ENDS -->
+<!-- FAQ SCHEMA STARTS -->
+<script type="application/ld+json">{"@context": "https://schema.org","@type": "FAQPage","mainEntity": [{"@type": "Question","name":"1.
+    How to find the median on a calculator?
+    ","acceptedAnswer": {"@type": "Answer","text":" To calculate the median of a data set, you have to enter data set in the specified input box and press on the calculate button to avail the exact answer i.e median with detailed explanation."}	}, {"@type": "Question","name":"2.
+    What is meant by median?
+    ","acceptedAnswer": {"@type": "Answer","text":" In statistics, median is defined as the middle value in the set of numbers of data. The middle number is found by ordering the numbers."}	}, {"@type": "Question","name":"3.
+    What is the formula to get median of numbers?
+    ","acceptedAnswer": {"@type": "Answer","text":" The simple formulas to find median of odd number of observations is [(n+1)/2] and even number of observations is n/2."}	}, {"@type": "Question","name":"4.
+    What is the median of 15?
+    ","acceptedAnswer": {"@type": "Answer","text":" The number of items in the data set n = 15
+    The formula to calculate median = (n+1)/2
+    = (15+1)/2 = 16/2
+    Median = 8"}	}]}</script>
+{%endblock%}
+{%block content%}
+<div class="container">
+    <div class="card c1">
+      <div class="card-header">
+  <h1 class="h1">Median Calculator</h1>
+  </div>
+  <div class="card-body">
+      <p>Take the help of free Median Calculator to calculate the median for given list of data set quickly. Just enter data set list in the input box and hit the calculate button to get the result with detailed explanation.</p>
+    <br>
+    <p><b>Ex:</b> 32,45,12,17,43,68,75,8,11,29</p>
+    <form action="{% url 'median' %}" method="POST" id="my_form" name="reg_to_scientific" onsubmit="go();">
+    {% csrf_token %}
+    <div class="form-row align-items-center">
+      <div class="col-auto">
+        <label class="sr-only" for="inlineFormInputGroup">Median</label>
+        <div class="input-group mb-2">
+          <div class="input-group-prepend">
+            <div class="input-group-text"><strong>Median of: </strong></div>
+          </div>
+          <input type="text" class="form-control" name="input1" id="inlineFormInputGroup" placeholder="Enter number" value="{{inputEnter}}">
+        </div>
+      </div>
+      <div class="col-auto">
+        <button type="submit" class="btn btn-primary mb-2">Calculate</button>
+      </div>
+    </div>
+    </form>
+    {% autoescape off %}
+    {{error}}
+    {%endautoescape%}
+    <br>
+    <p><strong>Here are some samples of Median calculations.</strong></p>
+<div class="row">
+  <div class="col-sm-4">
+    <ul>
+      
+      <li><a href="https://statisticscalculators.net/statistics/median-of-9-3-5-8/">Median of 9,3,5,8</a></li>
+      
+      <li><a href="https://statisticscalculators.net/statistics/median-of-3-8-2-5/">Median of 3,8,2,5</a></li>
+      
+      <li><a href="https://statisticscalculators.net/statistics/median-of-3-8-7-4/">Median of 3,8,7,4</a></li>
+      
+      <li><a href="https://statisticscalculators.net/statistics/median-of-5-2-9-7-4/">Median of 5,2,9,7,4</a></li>
+      
+      <li><a href="https://statisticscalculators.net/statistics/median-of-5-3-9-2-7/">Median of 5,3,9,2,7</a></li>
+      
+      <li><a href="https://statisticscalculators.net/statistics/median-of-3-4-6-7-5/">Median of 3,4,6,7,5</a></li>
+      
+      <li><a href="https://statisticscalculators.net/statistics/median-of-2-8-4-7-5-9/">Median of 2,8,4,7,5,9</a></li>
+      
+      <li><a href="https://statisticscalculators.net/statistics/median-of-2-9-7-3-6-8/">Median of 2,9,7,3,6,8</a></li>
+      
+      <li><a href="https://statisticscalculators.net/statistics/median-of-6-8-2-3-5-9/">Median of 6,8,2,3,5,9</a></li>
+      
+
+    </ul>                    
+  </div>
+  <div class="col-sm-4">
+    <ul>
+      
+      <li><a href="https://statisticscalculators.net/statistics/median-of-73-74-47-50/">Median of 73,74,47,50</a></li>
+      
+      <li><a href="https://statisticscalculators.net/statistics/median-of-36-76-34-30/">Median of 36,76,34,30</a></li>
+      
+      <li><a href="https://statisticscalculators.net/statistics/median-of-47-75-92-45/">Median of 47,75,92,45</a></li>
+      
+      <li><a href="https://statisticscalculators.net/statistics/median-of-31-33-42-38-80/">Median of 31,33,42,38,80</a></li>
+      
+      <li><a href="https://statisticscalculators.net/statistics/median-of-84-82-60-87-77/">Median of 84,82,60,87,77</a></li>
+      
+      <li><a href="https://statisticscalculators.net/statistics/median-of-90-60-34-84-75/">Median of 90,60,34,84,75</a></li>
+      
+      <li><a href="https://statisticscalculators.net/statistics/median-of-15-33-84-82-12-89/">Median of 15,33,84,82,12,89</a></li>
+      
+      <li><a href="https://statisticscalculators.net/statistics/median-of-98-56-30-48-84-73/">Median of 98,56,30,48,84,73</a></li>
+      
+      <li><a href="https://statisticscalculators.net/statistics/median-of-84-14-89-10-70-79/">Median of 84,14,89,10,70,79</a></li>
+      
+    </ul>                 
+  </div>
+  <div class="col-sm-4">
+  <ul>
+      
+      <li><a href="https://statisticscalculators.net/statistics/median-of-90-83-24-96/">Median of 90,83,24,96</a></li>
+      
+      <li><a href="https://statisticscalculators.net/statistics/median-of-75-87-13-54/">Median of 75,87,13,54</a></li>
+      
+      <li><a href="https://statisticscalculators.net/statistics/median-of-47-53-24-40/">Median of 47,53,24,40</a></li>
+      
+      <li><a href="https://statisticscalculators.net/statistics/median-of-46-50-63-39-32/">Median of 46,50,63,39,32</a></li>
+      
+      <li><a href="https://statisticscalculators.net/statistics/median-of-97-21-55-27-41/">Median of 97,21,55,27,41</a></li>
+      
+      <li><a href="https://statisticscalculators.net/statistics/median-of-34-77-86-42-10/">Median of 34,77,86,42,10</a></li>
+      
+      <li><a href="https://statisticscalculators.net/statistics/median-of-15-11-37-44-95-37/">Median of 15,11,37,44,95,37</a></li>
+      
+      <li><a href="https://statisticscalculators.net/statistics/median-of-57-48-95-72-76-42/">Median of 57,48,95,72,76,42</a></li>
+      
+      <li><a href="https://statisticscalculators.net/statistics/median-of-49-92-90-36-63-15/">Median of 49,92,90,36,63,15</a></li>
+         
+  </ul>			
+  </div>
+</div>
+    <p>Related Calculators:</p>
+                    <div class="row">
+                      <div class="col-sm-5">
+                  <ul>
+                    <li><a href="/statistics/mean-calculator/">Mean Calculator</a></li>
+                    <li><a href="/statistics/mode-calculator/">Mode Calculator</a></li>
+                    <li><a href="/statistics/first-quartile-calculator/">First Quartile Calculator</a></li>
+                    <li><a href="/statistics/third-quartile-calculator/">Third Quartile Calculator</a></li>
+                  </ul>
+                </div>
+                </div>
+    <p><strong>Median Calculator:</strong>Finding the median of data set list is very easy with our handy calculator tool. Median is nothing but the average of the given set of numbers. Obtain the detailed step by step procedure to determine the median for the given set of numbers in the following sections. Check the definition and formula of median along with the example questions and answers.</p>
+</div></div>
+  <div class="card">
+    <div class="card-header">
+        <h2 class="h2">What is the Median?</h2></div>
+      <div class="card-body">
+          <p>In mathematics, the median is defined as the middle value of the sorted list of numbers. The numbers are arranged in the ascending order. After the arranging numbers in the order the middle value is called the median of the given data set.</p>
+         <p><strong> Median Formula:</strong></p>
+         <p> The formula of median for the odd number of observations is<strong> Median = [(n+1)/2]th term</strong></p>
+           
+            <p> The median formula for the even number of observations is<strong> Median = Average of [n/2]th term and [(n+2)/2]th term</strong></p>
+          <p> Where</p>
+            <p>  n is the set of numbers</p>
+      </div>
+    </div>
+  <div class="card">
+    <div class="card-header">
+        <h3 class="h3">Steps to Find Median for Given Data</h3></div>
+      <div class="card-body">
+          <p>The following are the steps to calculate the median for the given data set of numbers easily. Check out those rules and instructions to get the result.</p>
+          <ul>
+              <li>Consider a set of numbers.</li>
+              <li>Arrange the numbers in the data set from least to greatest i.e ascending order.</li>
+              <li>Count the numbers in the given data set.</li>
+              <li>For a data set with odd number of values, middle value from the sorted set is the median.</li>
+              <li>For a data set with even number of values, the mean of two middle values is the median.</li>
+          </ul>
+          <p><strong>Example:</strong></p>
+          <p>Calculate the medain of 15, 21, 18, 10, 7, 16, 20, 63, 36.
+        </p>
+        <p><strong>Solution:</strong></p>
+        <p>Given set of numbers are 15, 21, 18, 10, 7, 16, 20, 63, 36</p>
+        <p>Arrange the given numbers in the ascending order.</p>
+        <p>7, 10, 15, 16, 18, 20, 21, 36, 63</p>
+        <p>The total numbers in the adat set are 9.</p>
+        <p>Median formula is Median = (n+1)/2</p>
+        <p>= (9+1)/2</p>
+        <p>= 10/2 = 5th term</p>
+        <p>Therefore, median of 15, 21, 18, 10, 7, 16, 20, 63, 36 is 7.</p>
+        <p><a href="https://statisticscalculators.net/">statisticscalculators.net</a> is an ultimate website with all free statistics concepts calculators for assisting the students and every single person out there in maths basic and advanced concepts.</p>
+        <img src="{% static 'images/Statistics/median-calculator.jpeg' %}" alt='Median Calculator'>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-header">
+            <h2 class="h2">Median Example Calculations</h2>
+        </div>
+      <div class="card-body">
+        <div class="row">
+          <div class="col-sm-6">
+            <ul>
+                
+                <li><a href="https://statisticscalculators.net/statistics/median-of-714-236-187-302/">Median of 714,236,187,302</a></li>
+                
+                <li><a href="https://statisticscalculators.net/statistics/median-of-964-761-501-436/">Median of 964,761,501,436</a></li>
+                
+                <li><a href="https://statisticscalculators.net/statistics/median-of-168-114-974-612-415/">Median of 168,114,974,612,415</a></li>
+                
+                <li><a href="https://statisticscalculators.net/statistics/median-of-556-108-882-259-156/">Median of 556,108,882,259,156</a></li>
+                
+                <li><a href="https://statisticscalculators.net/statistics/median-of-464-157-392-614-731-741/">Median of 464,157,392,614,731,741</a></li>
+                
+                <li><a href="https://statisticscalculators.net/statistics/median-of-919-549-452-357-154-505/">Median of 919,549,452,357,154,505</a></li>
+                   
+            </ul>			
+            </div>
+            <div class="col-sm-6">
+                <ul>
+                    
+                    <li><a href="https://statisticscalculators.net/statistics/median-of-3742-7013-8224-9997/">Median of 3742,7013,8224,9997</a></li>
+                    
+                    <li><a href="https://statisticscalculators.net/statistics/median-of-5059-9561-3707-6620/">Median of 5059,9561,3707,6620</a></li>
+                    
+                    <li><a href="https://statisticscalculators.net/statistics/median-of-5453-2888-5847-5006-8835/">Median of 5453,2888,5847,5006,8835</a></li>
+                    
+                    <li><a href="https://statisticscalculators.net/statistics/median-of-2412-4211-4102-4510-7482/">Median of 2412,4211,4102,4510,7482</a></li>
+                    
+                    <li><a href="https://statisticscalculators.net/statistics/median-of-6350-8850-2286-2929-2071-8868/">Median of 6350,8850,2286,2929,2071,8868</a></li>
+                    
+                    <li><a href="https://statisticscalculators.net/statistics/median-of-4239-9050-8637-4652-7903-5332/">Median of 4239,9050,8637,4652,7903,5332</a></li>
+                    
+                </ul>
+            </div>
+            <div class="col-sm-6">
+                <ul>
+                    
+                    <li><a href="https://statisticscalculators.net/statistics/median-of-62770-56622-36643-49792/">Median of 62770,56622,36643,49792</a></li>
+                    
+                    <li><a href="https://statisticscalculators.net/statistics/median-of-45022-24082-57677-77309/">Median of 45022,24082,57677,77309</a></li>
+                    
+                    <li><a href="https://statisticscalculators.net/statistics/median-of-20575-64394-56334-35033-25068/">Median of 20575,64394,56334,35033,25068</a></li>
+                    
+                    <li><a href="https://statisticscalculators.net/statistics/median-of-67403-30478-46434-39950-29143/">Median of 67403,30478,46434,39950,29143</a></li>
+                    
+                    <li><a href="https://statisticscalculators.net/statistics/median-of-79978-87488-67422-82088-12970-12876/">Median of 79978,87488,67422,82088,12970,12876</a></li>
+                    
+                    <li><a href="https://statisticscalculators.net/statistics/median-of-25220-53107-76192-72154-83626-18822/">Median of 25220,53107,76192,72154,83626,18822</a></li>
+                    
+                </ul>
+            </div>
+            <div class="col-sm-6"> 
+                <ul>
+                    
+                    <li><a href="https://statisticscalculators.net/statistics/median-of-391451-463438-589449/">Median of 391451,463438,589449</a></li>
+                    
+                    <li><a href="https://statisticscalculators.net/statistics/median-of-949743-624875-686383/">Median of 949743,624875,686383</a></li>
+                    
+                    <li><a href="https://statisticscalculators.net/statistics/median-of-821377-748354-762273-676793/">Median of 821377,748354,762273,676793</a></li>
+                    
+                    <li><a href="https://statisticscalculators.net/statistics/median-of-153981-404685-223953-837916/">Median of 153981,404685,223953,837916</a></li>
+                    
+                    <li><a href="https://statisticscalculators.net/statistics/median-of-178259-962044-193956-695293-976044/">Median of 178259,962044,193956,695293,976044</a></li>
+                    
+                    <li><a href="https://statisticscalculators.net/statistics/median-of-737208-823292-535864-296023-254601/">Median of 737208,823292,535864,296023,254601</a></li>
+                    
+                </ul>
+            </div>
+        </div>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-header">
+            <h3 class="h3">Frequently Asked Question's on Median Calculator</h3>
+        </div>
+        <div class="card-body">
+            <!-- Question & Answer Starts --->
+            <p class="question"><strong> 1. How to find the median on a calculator?</strong></p>
+            <p class="answer">To calculate the median of a data set, you have to enter data set in the specified input box and press on the calculate button to avail the exact answer i.e median with detailed explanation.</p><hr>
+<p class="question"><strong>2. What is meant by median?</strong></p>
+<p class="answer">In statistics, median is defined as the middle value in the set of numbers of data. The middle number is found by ordering the numbers.</p><hr>
+<p class="question"><strong>3. What is the formula to get median of numbers?</strong></p>
+<p class="answer">The simple formulas to find median of odd number of observations is [(n+1)/2] and even number of observations is n/2.</p><hr>
+<p class="question"><strong>4. What is the median of 15?</strong></p>
+<p class="answer">The number of items in the data set n = 15</p>
+<p>The formula to calculate median = (n+1)/2</p>
+  <p>= (15+1)/2 = 16/2</p>
+    <p>Median = 8</p><hr>
+  
+        </div>
+      </div>
+  </div>
+{%endblock%}

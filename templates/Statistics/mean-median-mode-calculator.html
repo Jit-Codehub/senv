@@ -1,0 +1,238 @@
+{%extends 'base/statistics_base2.html'%}
+{%load static%}
+  {%block meta%}
+    <!-- HTML Defaults Broweser -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Bootstrap Stylesheet and Jquery, Google APIS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <!-- Online Calculator Guru Site Fevicon -->
+    <link rel="shortcut icon" href="https://onlinecalculator.guru/static/images/logo/Online-Calculator-Guru-Fevicon.png" type="icon">
+    <!-- Online Calculator Guru Project Style Sheet -->
+    {%block css%}
+    <link rel="stylesheet" href="/static/style.css">
+    {%endblock%}
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <!-- Meta Title, Description and Canonical URL Starts --->
+    <title>Mean Median Mode Calculator with Solution | Definitions, Formulas & Steps to Find</title>
+    <meta name="description" content="Find mean, median & mode of grouped & ungrouped data set using this free online mean median mode calculator in no time."/>
+    <link rel="canonical" href="{{request.build_absolute_uri}}">
+    <!-- Meta Title, Description and Canonical URL ENDS --->
+ 
+    <!-- OPEN GRAPH CONFIGURATIONS STARTS -->
+	<!--  FACEBOOK CONFIGURATION STARTS  -->
+        <meta content="https://www.facebook.com/OnlineCalculator-Guru-131572098650589/" property="og:url" />
+        <meta property="og:title" content="Mean Median Mode Calculator with Solution | Definitions, Formulas & Steps to Find"/>
+        <meta property="og:description" content="Find mean, median & mode of grouped & ungrouped data set using this free online mean median mode calculator in no time."/>
+        <meta content="" property="og:site_name" />
+        <meta  content="https://onlinecalculator.guru/static/images/Statistics/Mean-Median-Mode-Calculator.jpeg" property="og:image" />
+        <meta property="og:image:type" content="image/png" />
+        <meta property="og:image:height" content="435" />
+        <meta property="og:image:width" content="354" />
+        <!--  FACEBOOK CONFIGURATION ENDS  -->
+        <!-- TWITTER CARD CONFIGURATION STARTS  -->
+        <meta name="twitter:card" content="summary"/>
+        <meta name="twitter:site" content="https://twitter.com/onlinecalculator"/>
+        <meta name="twitter:title" content="Mean Median Mode Calculator with Solution | Definitions, Formulas & Steps to Find"/>
+        <meta name="twitter:description" content="Find mean, median & mode of grouped & ungrouped data set using this free online mean median mode calculator in no time."/>
+        <meta name="twitter:image:src" content="https://onlinecalculator.guru/static/images/Statistics/Mean-Median-Mode-Calculator.jpeg"/>
+        <meta property="twitter:image:height" content="435"/>
+        <meta property="twitter:image:width" content="354"/>
+        <!-- TWITTER CARD CONFIGURATION ENDS  -->
+        <!--  LINKEDIN CONFIGURATION STARTS-->
+        <meta property='og:title' content="Mean Median Mode Calculator with Solution | Definitions, Formulas & Steps to Find"/>
+        <meta property='og:image' content="https://onlinecalculator.guru/static/images/Statistics/Mean-Median-Mode-Calculator.jpeg"/>
+        <meta property='og:description' content="Find mean, median & mode of grouped & ungrouped data set using this free online mean median mode calculator in no time."/>
+        <meta property='og:url' content="https://www.linkedin.com/in/onlinecalculator/" />
+        <!-- end of linkedin CONFIGURATIONS ENDS -->
+    <!-- OPEN GRAPH CONFIGURATION ENDS -->
+    <!-- FAQ SCHEMA STARTS -->
+    <script type="application/ld+json">{"@context": "https://schema.org","@type": "FAQPage","mainEntity": [{"@type": "Question","name":"1.
+        What is the function of mean median mode?
+        ","acceptedAnswer": {"@type": "Answer","text":"The mean, median, and mode are measures of a central tendency within a distribution of numerical values. "}	}, {"@type": "Question","name":"2.
+        What is formula of mean median mode?
+        ","acceptedAnswer": {"@type": "Answer","text":"<img src="{% static 'images/Statistics/mean-median-mode-formula-for-n-observations.jpeg' %}" alt='Mean Median Mode Formula For n Observations'>"}	}, {"@type": "Question","name":"3.
+        How do you calculate the mean median and mode at a time? 
+        ","acceptedAnswer": {"@type": "Answer","text":" By using our best online mean median mode calculator you can easily calculate the mean median and mode at a time within a fraction of seconds."}	}]}</script>
+    {%endblock%}
+    {%block content%}
+    <div class="container">
+        <div class="card c1">
+            <div class="card-header">
+                <h1 class="h1">Mean Median Mode Calculator</h1>
+            </div>
+            <div class="card-body">
+                <p>One of the best online tools that determine all three Mean Median Mode calculations immediately is Mean Median Mode Calculator. Just enter the data set values separated by a comma in the input section and tap on the calculate button to get the accurate results with the detailed solution steps.</p>
+                <p><strong>Mean Median Mode Calculator: </strong><p>Students who are searching for the mean median mode Calculator with Solution can refer to this page. As we have offered a handy and user-friendly online calculator tool that solves the mean, median, mode of the data set instantly. Make use of this best &amp; effective tool and find three major measures of central tendency in no time with step by step procedure. Also, you will find definitions, formulas, and solved examples of a mean median mode of a data set with an online calculator.</p></p>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header">
+                <h2 class="h2">What is Meant by Mean Median Mode?</h2>
+            </div>
+            <div class="card-body">
+                Mean Median Mode is three measures of central tendency. The definitions of these measures are provided here: 
+<p><strong>Mean:</strong></p>
+<p>Mean is the arithmetic average of a data set. Mean is also known as Average. The definition of the mean is the sum of given data by a total number of data. For example, lets take the data set as 2, 5, 7, 8, 9, 10, 11. The mean of this data set is 7.4.</p>
+<p><strong>Median:</strong></p>
+<p>The definition of median is the middle number in a data set when the numbers are listed in either ascending or descending order. When the data set is of two numbers then the middle number or median is the average of those 2 numbers. For instance, consider the above example and the median is 8 (a middle number of a data set).</p>
+<p><strong>Mode:</strong></p>
+<p>A number in a data set that appear most often is called mode. However, the difference between the highest and lowest values in a data set is called range. For example, let's consider the data set 1,4,5,3,2,1,4,6. The mode of the data set is 1 and also 5.</p>
+            </div>
+        </div>
+    <div class="card">
+	    <div class="card-header">
+            <h2 class="h2">Detailed Steps on How to Find Mean Median Mode?</h2>
+        </div>
+	    <div class="card-body">
+            <p>The step-by-step process to find the mean, median, mode values are explained here accordingly. Take a look at the simple &amp; manual process and find the solutions easily &amp; quickly.</p>
+<h4>Mean Calculation Process:</h4>
+<ul>
+<li>Firstly, find the sum of values in a data set.</li>
+<li>Count the values in the data set and find the total</li>
+<li>Now, divide the sum of values by the total values count to calculate the mean of a data set.</li>
+</ul>
+<h4>Median Calculation Process:</h4>
+<ul>
+<li>Initially, the given data set should be arranged in ascending order from the lowest value to the highest value.</li>
+<li>Look for the middle number in the arranged data as it is called the median.</li>
+<li>In case, the data set is having two middle places then the median is calculated by finding the average of those two values.</li>
+</ul>
+<h4>Mode Calculation Process:</h4>
+<ul>
+<li>At first, arrange the number in asc order.</li>
+<li>Now, the values that are repeated in the list will be arranged side by side.</li>
+<li>Count how many times each value appears.</li>
+<li>If any of the values appear most often, then that number is the mode of the data set.</li>
+</ul>
+</div>
+    </div>
+    <div class="card">
+        <div class="card-header">
+        <h3 class="h3">Mean, Median Mode Formula List</h3>
+        </div>
+        <div class="card-body">
+            <p>Check out the section and images available to know the formulas of mean, median, and mode.</p>
+            <img src="{% static 'images/Statistics/formulas-of-mean-median-mode.jpeg' %}" alt='Formulas of Mean Median Mode'>
+            <p><strong>Mean:</strong></p>
+<p>The formula to calculate the mean of a data set is as follows:</p>
+<p>Mean = Sum of the Given Data / Total Number of Values</p>
+<p><em>Mean = x<sub>mean</sub>= (&sum;<sub>i = 1</sub><sup>n</sup>x<sub>i</sub>) / n</em></p>
+<img src="{% static 'images/Statistics/mean-formula.jpeg' %}" alt='Mean Formula'>
+<p><strong>Median:</strong></p>
+<p>Median formulas to find the odd and even data sets are given below in shareable image format;</p>
+<img src="{% static 'images/Statistics/median-formula.jpeg' %}" alt='Median Formula'>
+<p>If the data is continuous and presented in the frequency distribution form then the median formula is as follows:</p>
+<p><em>Median = 1 +[(n/2-c)/f] x h</em></p>
+<p>Here,<br />l = lesser limit belonging to the median class<br />c = cumulative frequency value of the class before the median class<br />f = frequency possessed by the median class<br />h = size of the class</p>
+<p><strong>Mode:</strong></p>
+<p>Choosing the most often occurred numbers or items in a data set is the best way to find the mode for ungrouped data.</p>
+<p><em>Count(x<sub>j</sub>)=Maxi(Count(x<sub>i</sub>))</em></p>
+<p>Take bin <strong>x</strong> with the highest frequency.</p>
+<p>f<sub>x</sub> - the frequency of bin x.<br />L - the lower limit of bin x.<br />f<sub>1</sub>- the frequency of the bin to the left (lower bin).<br />f<sub>2</sub>- the frequency.</p>
+<p>For Example:</p>
+<table border="1">
+    <tbody>
+    <tr style="height: 18px;">
+    <th style="height: 18px;">Name</th>
+    <th style="height: 18px;">Bin</th>
+    <th style="height: 18px;">Frequency</th>
+    </tr>
+    <tr style="height: 18px;">
+    <td style="height: 18px;">&nbsp;</td>
+    <td style="height: 18px;">0 - 10</td>
+    <td style="height: 18px;">5</td>
+    </tr>
+    <tr style="height: 21.3281px;">
+    <td style="height: 21.3281px;">1</td>
+    <td style="height: 21.3281px;">10 - 20</td>
+    <td style="height: 21.3281px;">18</td>
+    </tr>
+    <tr style="height: 18px;">
+    <td style="height: 18px;"><strong>x</strong></td>
+    <td style="height: 18px;">20- 30</td>
+    <td style="height: 18px;">23</td>
+    </tr>
+    <tr style="height: 18px;">
+    <td style="height: 18px;">2</td>
+    <td style="height: 18px;">30 - 40</td>
+    <td style="height: 18px;">15</td>
+    </tr>
+    <tr style="height: 18px;">
+    <td style="height: 18px;">&nbsp;</td>
+    <td style="height: 18px;">40 - 50</td>
+    <td style="height: 18px;">13</td>
+    </tr>
+    </tbody>
+    </table>
+    <p></p>
+<p>Mode= 20 + 10* (23 - 18)/2*23 - 18 - 15 = 23.846</p>
+<p><strong>Range:</strong></p>
+<p>It is the difference between the maximum and minimum values.</p>
+<p>Range = x<sub>max</sub> - x<sub>min</sub></p>
+<p><strong>Minimum:</strong></p>
+<p>Which is the lowest value in the data set. Arrange the data set in ascending order.</p>
+<p>x<sub>min</sub> = min(x<sub>i</sub>)<sub>i=1</sub><sup>n</sup></p>
+<p><strong>Maximum:</strong></p>
+<p>It is the highest value available in the data set. Arrange the data set from the lowest to highest values.</p>
+<p>x<sub>max</sub> = max(x<sub>i</sub>)<sub>i=1</sub><sup>n</sup></p>
+<p><strong>Quartiles:</strong></p>
+<p>Q1 is the lower half of the median, Q2 is the median, Q3 is the higher half of the median.</p>
+<p><strong>Interquartile Range IQR:</strong></p>
+<p>Range from Q1 to Q3 is the IQR.</p>
+<p>IQR = Q3 - Q1</p>
+<p><strong>Count:</strong></p>
+<p>It defines the size of the data set.</p>
+<p>Count = count(x<sub>i</sub>)<sub>i = 1</sub><sup>n</sup></p>
+<p><strong>Sum:</strong></p>
+<p>It gives the sum of values in the data set.</p>
+<p>sum = &sum;<sub>i = 1</sub><sup>n</sup>x<sub>i</sub></p>
+</div>
+</div>
+<div class="card">
+    <div class="card-header">
+    <h3 class="h3">Solved Example of Mean Median Mode Calculator Grouped Data or Ungrouped Data</h3>
+    </div>
+    <div class="card-body">
+            <p><strong>Question:</strong>
+            <p>Calculate mean, median, mode of the data set {3, 5, 9, 2, 10, 8, 2, 13}</p>
+            <p><strong>Solution:</strong></p>
+            <p>Given Data set is {3, 5, 9, 2, 10, 8, 2, 13}</p>
+<p>Mean = x<sub>mean</sub>= (&sum;<sub>i = 1</sub><sup>n</sup>x<sub>i</sub>) / n</p>
+<p>= (3 + 5 + 9 + 2 + 10 + 8 + 2 + 13) / 8</p>
+<p>= 52/8</p>
+<p>= 6.5</p>
+<p>Median = x<sub>median</sub>= (x<sub>p</sub>+ x<sub>p+1</sub>) / 2</p>
+<p>Sort the given data set in ascending order.</p>
+<p>= {2, 2, 3, 5, 8, 9, 10, 13}</p>
+<p>p = n/2 = 8/2 = 4</p>
+<p>x<sub>median</sub>= (5 + 8) / 2</p>
+<p>= 13/2</p>
+<p>= 6.5</p>
+<p>Mode = {2}</p>
+            <p> Hence, Mean = 6.5, median = 6.5, mode = {2} of the data set.</p>
+                </p>
+                <p>Get extra knowledge on the process of calculating mean, median, mode, and range from our main calculator tool i.e., <a href="https://statisticscalculators.net/">statisticscalculators.net</a></p>
+                <img src="{% static 'images/Statistics/mean-median-mode-calculator.jpeg' %}" alt='Mean Median Mode Calculator'>
+        </div>
+    </div>
+    <div class="card">
+  	    <div class="card-header">
+      	<h3 class="h3">FAQs on Mean Median Mode Calculator</h3>
+  	    </div>
+  	    <div class="card-body">
+      	<!-- Question & Answer Starts --->
+        <p class="question"><strong>1. What is the function of mean median mode?        </strong></p>
+     	<p class="answer">The mean, median, and mode are measures of a central tendency within a distribution of numerical values.</p><hr>
+     	<p class="question"><strong>2. What is formula of mean median mode?      </strong></p>
+     	<p class="answer"><img src="{% static 'images/Statistics/mean-median-mode-formula-for-n-observations.jpeg' %}" alt='Mean Median Mode Formula For n Observations'></p><hr>  
+        <p class="question"><strong>How do you calculate the mean median and mode at a time? </strong></p>
+        <p class="answer">By using our best online mean median mode calculator you can easily calculate the mean median and mode at a time within a fraction of seconds.</p><hr>
+    	</div>
+    </div>
+    </div>
+{%endblock%}

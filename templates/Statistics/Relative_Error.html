@@ -1,0 +1,225 @@
+{%extends 'base/statistics_base2.html'%}
+{%load static%}
+{%block meta%}
+<!-- HTML Defaults Broweser -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Bootstrap Stylesheet and Jquery, Google APIS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+<!-- Online Calculator Guru Site Fevicon -->
+<link rel="shortcut icon" href="https://onlinecalculator.guru/static/images/logo/Online-Calculator-Guru-Fevicon.png"
+    type="icon">
+<!-- Online Calculator Guru Project Style Sheet -->
+{%block css%}
+<link rel="stylesheet" href="/static/style.css">
+{%endblock css%}
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+<!-- Meta Title, Description and Canonical URL Starts --->
+<title>Relative Error Calculator | How to Find Absolute & Relative Error?</title>
+<meta name="description"
+    content="Take the help of the Relative Error Calculator to find the relative error easily. Get relative error formula, definition and steps on how to calculate relative error." />
+<link rel="canonical" href="{{request.build_absolute_uri}}">
+<!-- Meta Title, Description and Canonical URL ENDS --->
+
+<!-- OPEN GRAPH CONFIGURATIONS STARTS -->
+<!--  FACEBOOK CONFIGURATION STARTS  -->
+<meta content="https://www.facebook.com/OnlineCalculator-Guru-131572098650589/" property="og:url" />
+<meta property="og:title" content="Relative Error Calculator | How to Find Absolute & Relative Error?" />
+<meta property="og:description" content="Take the help of the Relative Error Calculator to find the relative error easily. Get relative error formula, definition and steps on how to calculate relative error." />
+<meta content="" property="og:site_name" />
+<meta content="https://onlinecalculator.guru/static/images/Chemistry/Relative-Error-Calculator.jpeg"
+    property="og:image" />
+<meta property="og:image:type" content="image/png" />
+<meta property="og:image:height" content="435" />
+<meta property="og:image:width" content="354" />
+<!--  FACEBOOK CONFIGURATION ENDS  -->
+<!-- TWITTER CARD CONFIGURATION STARTS  -->
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:site" content="https://twitter.com/onlinecalculator" />
+<meta name="twitter:title" content="Relative Error Calculator | How to Find Absolute & Relative Error?" />
+<meta name="twitter:description"
+    content="Take the help of the Relative Error Calculator to find the relative error easily. Get relative error formula, definition and steps on how to calculate relative error." />
+<meta name="twitter:image:src"
+    content="https://onlinecalculator.guru/static/images/Chemistry/Relative-Error-Calculator.jpeg" />
+<meta property="twitter:image:height" content="435" />
+<meta property="twitter:image:width" content="354" />
+<!-- TWITTER CARD CONFIGURATION ENDS  -->
+<!--  LINKEDIN CONFIGURATION STARTS-->
+<meta property='og:title' content="Relative Error Calculator | How to Find Absolute & Relative Error?" />
+<meta property='og:image'
+    content="https://onlinecalculator.guru/static/images/Chemistry/Relative-Error-Calculator.jpeg" />
+<meta property='og:description' content="Take the help of the Relative Error Calculator to find the relative error easily. Get relative error formula, definition and steps on how to calculate relative error." />
+<meta property='og:url' content="https://www.linkedin.com/in/onlinecalculator/" />
+<!-- end of linkedin CONFIGURATIONS ENDS -->
+<!-- OPEN GRAPH CONFIGURATION ENDS -->
+<!-- FAQ SCHEMA STARTS -->
+<script type="application/ld+json">{"@context": "https://schema.org","@type": "FAQPage","mainEntity": [{"@type": "Question","name":"1.
+    What is a relative error example?
+    ","acceptedAnswer": {"@type": "Answer","text":" An example of a relative error is an error of 1 cm would be a lot if the total length is 20 cm, but insignificant if the length was 10 km."}	}, {"@type": "Question","name":"2.
+    How do you calculate relative random error?
+    ","acceptedAnswer": {"@type": "Answer","text":" The simple step to obtain relative error or fractional error is to divide absolute error in the quantity by the quantity itself."}	}, {"@type": "Question","name":"3.
+    Is high relative error Good?
+    ","acceptedAnswer": {"@type": "Answer","text":" The relative error is useful when you want to compare things that are measured in different units. The high relative error is not good."}	}, {"@type": "Question","name":"4.
+    What is a relative error and absolute error?
+    ","acceptedAnswer": {"@type": "Answer","text":" Absolute error is the difference between measured and the actual value of a quantity. The absolute error is inadequate due to the fact that it does not give regarding the importance of the error. The relative error is defined as the ratio of the absolute error of the measurement to the actual measurement."}	}]}</script>
+{%endblock meta %}
+
+{% block content %}
+{% if av and mv and ot %}
+<script>
+    $(document).ready(function () {
+
+        $("#hassle").click();
+        });
+</script>
+
+<button type="button" hidden id="hassle" onclick="location.href='#relative_error'">ans1</button>
+{% endif %}
+
+
+<div class="container" style="height: auto !important;">
+    <div class="card c1">
+        <div class="card-header">
+            <h1 class="h1">Relative Error Calculator</h1>
+        </div>
+        <div class="card-body">
+            <p>Avail free Relative Error Calculator to get the relative error easily. You have to enter the actual value, measured value of the quantity and hit on the calculate button to check the relative error value at the output section within seconds.</p>
+            <p><strong>Relative Error Calculator: </strong>Handy Absolute Relative Error Calculator displays the relative error by just taking the required input values. The step by step guide is useful for you to learn the relative error concept easily. To help you we have even included details like the definition of relative error, its formula, solved examples and instructions to solve the relative error.</p>
+            {% if messages %}
+            <ul class="messages">
+            {% for message in messages %}
+                <p {% if message.tags %} id="message_container" class="alert alert-danger text-center" {% endif %}
+                    style="color:red">{{ message }}</p>
+                {% endfor %}
+            </ul>
+            {% endif %}
+            <form action="{% url 'Relative_Error' %}" method="POST" id="my_form">
+                {% csrf_token %}
+                 <div class="input-group mb-3">
+                      
+          </div>
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1">Actual Value</span>
+            </div>
+            
+           <input style="margin-top: 5px;width:100%" id="av" name="av" value="{{av}}"   required="" oninput="validateNumber(this);" class="form-control" type="number" step="any" required width="48"> 
+       </div>
+       <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1">Measured value</span>
+            </div>
+            
+           <input style="margin-top: 5px;width:100%" id="mv" name="mv" value="{{mv}}"   required="" oninput="validateNumber(this);" class="form-control" type="number" step="any" required width="48"> 
+       </div>
+        <div class=" center col mt-2 ">
+            <center><button type="submit" class="btn btn-primary">Calculate</button>
+              <a href="{% url 'Relative_Error' %}" class="btn btn-warning" role="button" style="margin-top:5px;">Reset</a>      
+            </center>
+          </div>
+    
+</div>
+
+</form>
+</div>
+</div>
+{% if av and mv and ot %}
+<div class="container" style="height: auto !important;">
+<div class="card" id="relative_error">
+        <div class="card-header">
+            <h2 class="h2">Steps to Find Relative Error:</h2>
+        </div>
+
+        <div class="card-body">
+
+            <strong>Relative Error:-</strong>
+            <br>
+            <p class="btn btn-outline-secondary active text-justify">Relative Error = Acutal value - Measured value/ Actual value</p>
+            <br>
+            
+            <strong>Input values are:-</strong>
+            <p>Actual Value = {{av}} </p>
+            <p>Measured Value = {{mv}} </p>
+    
+            <p><b>Put values into formula</b></p>
+
+            <p>Relative Error = ({{av}} - {{mv}}) / {{av}}</p>
+
+            {% if output %}
+                <b>Best Point Estimate = {{start}} x 10<sup>{{end}}</sup></b>
+            {% else %}
+                <b>Best Point Estimate = {{result}}</b>
+            {% endif %}
+                         
+   </div>
+    </div>
+    <div class="card">
+        <div class="card-header">
+            <h2 class="h2">What is the Relative Error?</h2>
+        </div>
+        <div class="card-body">
+            <p>The relative error is defined as the ratio of the absolute error of the measurement to the actual measure. This method is used to determine the magnitude of the absolute error in terms of the actual quantity. It is alo called as  relative uncertainty or approximation error.
+            </p> <p>  Absolute error is the difference between the true quantity and measured quantity. The formula to calculate absolute error and relative error are along the lines:
+        </p>  <p><strong>Absolute Error = Actual Value - Measured Value</p>
+    </p> <p> Relative Error = (Actual Value - Measured Value)/Actual Value = Absolute Error/Actual Value</strong></p>
+    </div>
+    </div>
+    <div class="card">
+        <div class="card-header">
+            <h3 class="h3">Steps to Calculate Relative Error</h3>
+        </div>
+        <div class="card-body">
+            <p>Go through the detailed step by step process to find the relative error of the quantity quickly.</p>
+            <ul>
+                <li>Get the actual value, measured value from the question.</li>
+                <li>Subtract measured value from the actual value.</li>
+                <li>Divide the difference by the actual value to get the relative error.</i>
+            </ul>
+            </div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="h3">Solved Questions on Relative Error</h3>
+                </div>
+                <div class="card-body">
+                    <p><strong>Question 1.</strong>Find the absolute and relative errors of the approximation 168.5 to the value 120.1</p>
+                    <p>Solution:</p>
+                    <p>Absolute Error = Actual Value - Measured Value</p>
+                    <p>Absolute error = 168.5 - 120.1 = 48.4</p>
+<p>Relative Error = (Actual Value - Measured Value)/Actual Value</p>
+                        Relative error = 168.5 - 120.1/120.1</p>
+                        <p>= 48.4/120.1 = 0.402</p>
+                        <p>Therefore, relative error is 0.402.</p>
+                        <p><strong>Question 1.</strong>Find the absolute and relative errors of the approximation 705 to the value 550.</p>
+                    <p>Solution:</p>
+                    <p>Absolute Error = Actual Value - Measured Value</p>
+                    <p>= 705 - 550 = 155</p>
+                    <p>Relative Error = (Actual Value - Measured Value)/Actual Value</p>
+                    <p>= 155/705</p>
+                    <p> = 0.219</p>
+                    <p>Make use of the handy tools available for physics concepts all at one place <a href="https://statisticscalculators.net/">statisticscalculators.net</a> and clear all your doubts in solving the problems.                    </p>
+    <div class="card">
+        <div class="card-header">
+            <h3 class="h3">FAQ's on Relative Error Calculator</h3>
+        </div>
+        <div class="card-body">
+            <!-- Question & Answer Starts --->
+            <p class="question"><strong>      1. What is a relative error example?</strong></p>
+            <p class="answer">An example of a relative error is an error of 1 cm would be a lot if the total length is 20 cm, but insignificant if the length was 10 km.</p><hr>
+<p class="question"><strong>2. How do you calculate relative random error?</strong></p>
+<p class="answer">The simple step to obtain relative error or fractional error is to divide absolute error in the quantity by the quantity itself.</p><hr>
+<p class="question"><strong>3. Is high relative error Good?</strong></p>
+<p class="answer">The relative error is useful when you want to compare things that are measured in different units. The high relative error is not good.</p><hr>
+<p class="question"><strong>4. What is a relative error and absolute error?</strong></p>
+<p class="answer">Absolute error is the difference between measured and the actual value of a quantity. The absolute error is inadequate due to the fact that it does not give regarding the importance of the error. The relative error is defined as the ratio of the absolute error of the measurement to the actual measurement.</p>
+            </div>
+            </div>
+</div>
+    {% endif %}             
+<img src="{% static 'images/Statistics/relative-error-calculator.jpeg' %}" alt='relative-error-calculator'>       
+{% endblock content %}

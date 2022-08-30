@@ -1,0 +1,291 @@
+{%extends 'base/statistics_base1.html'%}
+{%load static%}
+  {%block meta%}
+    <!-- HTML Defaults Broweser -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Bootstrap Stylesheet and Jquery, Google APIS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <!-- Online Calculator Guru Site Fevicon -->
+    <link rel="shortcut icon" href="https://onlinecalculator.guru/static/images/logo/Online-Calculator-Guru-Fevicon.png" type="icon">
+    <!-- Online Calculator Guru Project Style Sheet -->
+    {%block css%}
+    <link rel="stylesheet" href="/static/style.css">
+    {%endblock%}
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <!-- Meta Title, Description and Canonical URL Starts --->
+    <title>SMp(x) Distribution Calculator | How SMp(x) Distribution Works?</title>
+    <meta name="description" content="SMp(x) Distribution Calculator is a free online tool allows you to simulate the probability distribution with detailed information."/>
+    <link rel="canonical" href="{{request.build_absolute_uri}}">
+    <!-- Meta Title, Description and Canonical URL ENDS --->
+   <!-- OPEN GRAPH CONFIGURATIONS STARTS -->
+	<!--  FACEBOOK CONFIGURATION STARTS  -->
+        <meta content="https://www.facebook.com/OnlineCalculator-Guru-131572098650589/" property="og:url" />
+        <meta property="og:title" content="SMp(x) Distribution Calculator | How SMp(x) Distribution Works?"/>
+        <meta property="og:description" content="SMp(x) Distribution Calculator is a free online tool allows you to simulate the probability distribution with detailed information."/>
+        <meta content="" property="og:site_name" />
+        <meta  content="https://onlinecalculator.guru/static/images/Statistics/SMp(x)-Distribution-Calculator.jpeg" property="og:image" />
+        <meta property="og:image:type" content="image/png" />
+        <meta property="og:image:height" content="435" />
+        <meta property="og:image:width" content="354" />
+        <!--  FACEBOOK CONFIGURATION ENDS  -->
+        <!-- TWITTER CARD CONFIGURATION STARTS  -->
+        <meta name="twitter:card" content="summary"/>
+        <meta name="twitter:site" content="https://twitter.com/onlinecalculator"/>
+        <meta name="twitter:title" content="SMp(x) Distribution Calculator | How SMp(x) Distribution Works?"/>
+        <meta name="twitter:description" content="SMp(x) Distribution Calculator is a free online tool allows you to simulate the probability distribution with detailed information."/>
+        <meta name="twitter:image:src" content="https://onlinecalculator.guru/static/images/Statistics/SMp(x)-Distribution-Calculator.jpeg"/>
+        <meta property="twitter:image:height" content="435"/>
+        <meta property="twitter:image:width" content="354"/>
+        <!-- TWITTER CARD CONFIGURATION ENDS  -->
+        <!--  LINKEDIN CONFIGURATION STARTS-->
+        <meta property='og:title' content="SMp(x) Distribution Calculator | How SMp(x) Distribution Works?"/>
+        <meta property='og:image' content="https://onlinecalculator.guru/static/images/Statistics/SMp(x)-Distribution-Calculator.jpeg"/>
+        <meta property='og:description' content="SMp(x) Distribution Calculator is a free online tool allows you to simulate the probability distribution with detailed information."/>
+        <meta property='og:url' content="https://www.linkedin.com/in/onlinecalculator/" />
+        <!-- end of linkedin CONFIGURATIONS ENDS -->
+    <!-- OPEN GRAPH CONFIGURATION ENDS -->
+    <!-- FAQ SCHEMA STARTS -->
+    <script type="application/ld+json">{"@context": "https://schema.org","@type": "FAQPage","mainEntity": [{"@type": "Question","name":"1
+      What is SMp(x) Distribution?
+      ","acceptedAnswer": {"@type": "Answer","text":" 
+      SMp(x) Distribution is the probability function that chooses all possible outcomes."}	}, {"@type": "Question","name":"2
+      How to make use of this SMp(x) Distribution Calculator?
+      ","acceptedAnswer": {"@type": "Answer","text":" 
+      Enter all the six parameters in the given boxes and then hit the calculate button to get the output in no time."}	}, {"@type": "Question","name":"3
+      What is the best tool to calculate SMp(x) Distribution?
+      ","acceptedAnswer": {"@type": "Answer","text":"
+      SMp(x) Distribution Calculator is the best tool to calcuate the SMp(x) function easily without any hardwork. And it is available on  statisticscalculators.net."}	}]}</script>
+    {%endblock%}
+    {%block content%}
+    <div class="container">
+        <div class="card c1">
+            <div class="card-header">
+                <h1 class="h1">SMp(x) Distribution Calculator</h1>
+            </div>
+            <div class="card-body">
+                <p>SMp(x) Distribution Calculator is a free easy to use tool to calculate the probability distribution using six parameters. All you need to do is just enter all six parameters and press the calculate button to get the answers instantly.</p>
+                <br>
+                <ul class="messages">
+                  {% for message in messages %}
+                  <p {% if message.tags %} id="message_container" class="alert alert-danger text-center" {% endif %}
+                      style="color:red">{{ message }}</p>
+                  {% endfor %}
+              </ul>
+              <form action="" method="POST" id="my_form" ">
+                  {% csrf_token %}
+                  <div class="form-row align-items-center">
+                  <div class="col-auto">
+                      <div class="input-group mb-2">
+                          <div class="input-group-prepend">
+                              <div class="input-group-text"><strong>Lower limit value of x (PXmin)</strong></div>
+                          </div>
+                          <input type="number"  oninput="validateNumber(this);" id="inlineFormInputGroup" required=""
+                              placeholder="Enter PXmin" step="any" class="form-control" name="Lower limit value of x (PXmin)"   >
+                      </div>
+                      <div class="input-group mb-2">
+                          <div class="input-group-prepend">
+                              <div class="input-group-text"><strong>Upper limit value of x (Xmax)</strong></div>
+                          </div>
+                          <input type="number"  oninput="validateNumber(this);" id="inlineFormInputGroup" required=""
+                              placeholder="Enter Xmax" step="any" class="form-control" name="Upper limit value of x (Xmax)"     >
+                      </div>
+  
+                      <div class="input-group mb-2">
+                          <div class="input-group-prepend">
+                              <div class="input-group-text"><strong>x where SMp(x) = Max (ML)</strong></div>
+                          </div>
+                          <input type="number"  oninput="validateNumber(this);" id="inlineFormInputGroup" required=""
+                              placeholder="Enter Max (ML) " step="any" class="form-control" name="x where SMp(x) = Max (ML)"    >
+                      </div>
+                      <div class="input-group mb-2">
+                          <div class="input-group-prepend">
+                              <div class="input-group-text"><strong>Power (p₁)</strong></div>
+                          </div>
+                          <input type="number"  oninput="validateNumber(this);" id="inlineFormInputGroup" required=""
+                              placeholder="Enter Power (p₁)"  class="form-control" name="Power (p₁)"   >
+                      </div>
+  
+                      <div class="input-group mb-2">
+                          <div class="input-group-prepend">
+                              <div class="input-group-text"><strong>Power (p₂)</strong></div>
+                          </div>
+                          <input type="number"  oninput="validateNumber(this);" id="inlineFormInputGroup" required=""
+                              placeholder="Enter Power (p₂)"  class="form-control" name="Power (p₂)"   >
+                      </div>
+  
+                      <div class="input-group mb-2">
+                          <div class="input-group-prepend">
+                              <div class="input-group-text"><strong>Maximum of the model (Max)</strong></div>
+                          </div>
+                          <input type="number"  oninput="validateNumber(this);" id="inlineFormInputGroup" required=""
+                              placeholder="Enter Maximum of the model (Max)"  class="form-control" name="Maximum of the model (Max)"   >
+                      </div>
+  
+                      <div class="input-group mb-2">
+                          <div class="input-group-prepend">
+                              <div class="input-group-text"><strong>For an independent variable x</strong></div>
+                            </div>
+                            <input type="number"  oninput="validateNumber(this);" id="inlineFormInputGroup" required=""
+                                placeholder="Enter For an independent variable x"  class="form-control" name="For an independent variable x"   >
+                        </div>
+    
+    
+    
+    
+    
+                        <div class=" center col mt-2 ">
+                            <center><button type="submit" class="btn btn-primary" name="f1">Calculate</button>
+                                <button type="button" onclick="myFunction()" style="margin-top:5px;"
+                                class="btn btn-danger">Reset</button>
+                            </center>
+                          </div>
+                        </div>
+                        </form>
+                <p><strong>SMp(x) Distribution Calculator: </strong>Feeling exhausted to work on SMp(x) Distribution? Then this tool is for you. As probability distribution is a mathematical function that tells you the probabilities of all possible outcomes. In this tool we have discussed about definition, how it works and many. Lets start!!</p>
+            </div>
+        </div>
+      </div>
+      {% if id == 1 %}
+      <div id="clear">
+          <div class="card" id="magnetic-force">
+            <div class="card-header">
+              <h2 class="h2">SMp(x) Distribution Calculator</h2>
+            </div>
+            <div class="card-body">
+              <!-- <strong> Z-test for population mean μ Formula-</strong> -->
+            <br>
+            <!-- <p class="btn btn-outline-secondary active"> Z score = (Sample mean x̄ - Tested mean μ₀) / (Population standard deviation σ / √Sample size n)</p> -->
+
+            <br>
+            <br>
+            <!-- <p class="btn btn-outline-secondary active"> p-value = 2Φ(−|z|) = 2(1 - Φ(|z|))</p> -->
+            <br>
+            <strong>Here:</strong>
+                    <ul>
+                        <li>PXmin is the lower limit value of the variable x.</li>
+                        <p> </p>
+                        <li>Xmax is the upper limit value of x </li>
+                        <p> </p>
+                        <li>ML is the value of variable x where the probability distribution function achieves its maximum value.
+                             In other words, it is the most probable outcome. In many distributions, it is assumed that ML is the mean
+                              of PXmin and Xmax, but it's not always the case.</li>
+                        <p> </p>
+                        <li>p₁ and p₂ are the powers of the model. They both have to be greater than zero. 
+                            The shape of the distribution function hugely depends on these two parameters - for example, 
+                            p₁ = p₂ in a normal distribution.
+
+                        </li>
+                        <p> </p>
+                        <li> Max is the maximum of the SMp(x) function. </li>
+
+                        <!-- <li> p-value </li> -->
+
+                        <!-- <li>n - Number of classes within the distribution</li> -->
+                    </ul>
+            <strong>Input values are:-</strong>
+            <p>Lower limit value of x (PXmin) = {{pxmin}}</p>
+            <p>Upper limit value of x (Xmax) = {{xmax}}</p>
+            <p>x where SMp(x) = Max (ML)= {{ml}}</p>
+            <p>Power (p₁)= {{p1}}</p> 
+            <p>Power (p₂)= {{p2}}</p> 
+            <p>Maximum of the model (Max)= {{max}}</p> 
+            <p>For an independent variable x ={{x}}</p>
+            <br>
+
+            <!-- <strong>Put values into formula</strong>
+            <p>Z score = (Sample mean x̄ - Tested mean μ₀) / (Population standard deviation σ / √Sample size n)</p> -->
+            <!-- <p>  class width = ({{max}} - {{min}}) / {{probability}}  </p> -->
+            <p><b>  SMp(x) distribution  = {{smpx_result}} </b></p>
+            <p><b>  {{resultant_text}} </b></p>
+            <p> </p>
+            <p> </p>
+            <p><b>  When using a standard normal distribution, take into account the following: </b></p>
+            <p>The powers of the model have to satisfy the condition p₁ = p₂ > 1 </p>
+            <p>The minimum must fulfill the condition PXmin ≥ 0</p>
+            <p>The function must be symmetric, i.e. the condition ML = (PXmin + Xmax)/2 has to be fulfilled.</p>
+            <p>The area under the curve is equal to 1. This condition is satisfied only if Max = (p₁ + 1) / [2(ML - PXmin)]</p>
+            <p>If all these conditions are satisfied, you can use the SMp(x) distribution as a normal distribution with a mean value of - </p>
+            <p><b>μ = ML</b></p>
+        </div>
+    </div>
+</div>
+{% endif %}
+    <div class="card">
+	    <div class="card-header">
+            <h2 class="h2">What do you Mean by SMp(x) Distribution?</h2>
+        </div>
+	    <div class="card-body">
+            <p>Probability distribution is a mathematical function that chooses you the probabilities of all possible outcomes.</p>
+            <p>In this function we have two properties:</p>
+            <ol>
+            <li>The value of a probability function should not be lower than zero.</li>
+            <li>And, if you combine the function from minimum to maximum, the value of the probability density function will be equal to 1. It means that one of the outcomes must happen - there's zero chance that none of them should takes place.</li></ol>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-header">
+        <h3 class="h3">How SMp(x) Distribution Works?</h3>
+        </div>
+        <div class="card-body">
+          <p>SMp(x) is a function which is very flexible and describes various probability distributions, irrespective of weather they are continuous or discrete. Here, we will see about the six parameters.</p>
+          <ul>
+            <li>P(Xmin) is the lower limit value of x. </li>
+            <li>Xmax is the upper limit of value x.</li>
+            <li>ML is the value of x, when the probability distribution function reaches its maximum value.</li>
+            <li>Next, p₁ and p₂ are the powers of the model. Both of them should be greater than zero. </li>
+            <li>Max is the maximum of the SMp(x) function.</li>
+          </ul>
+          </div>
+          </div>
+          <div class="card">
+            <div class="card-header">
+            <h3 class="h3">Conditions for SMp(x) Distribution</h3>
+            </div>
+            <div class="card-body">
+              <p>Once if we know the values of all the six parameters, you can calculate the problem based on below conditions or formulas.</p>
+              <p><b>If x < P(Xmin), then	SMp(x) = 0</b></p>
+              <p><b>If, P(XMin) ≤ x ≤ ML then	SMp(x) = [(x - P(Xmin))/(ML - P(Xmin))]^ p₁ * Max</b></p>
+              <p><b>If ML ≤ x ≤ XMax, then SMp(x) = [(Xmax - x) / (Xmax - ML)]^ p₂ * Max</b></p>
+              <p><b>If x > Xmax, SMp(x) = 0.</b></p>
+              <p><a href="https://statisticscalculators.net/">statisticscalculators.net</a> is a best website for any statistics and probability calculators. Use them and clear all your queries as we have given the calculators with detailed explanation of the concepts.</p>
+              </div>
+              </div>
+    
+    <div class="card">
+  	    <div class="card-header">
+      	<h3 class="h3">FAQs on SMp(x) Distribution Calculator</h3>
+  	    </div>
+  	    <div class="card-body">
+      	<!-- Question & Answer Starts --->
+        <p class="question"><strong>1. What is SMp(x) Distribution?</strong></p>
+     	<p class="answer">SMp(x) Distribution is the probability function that chooses all possible outcomes.</p><hr>
+     	<p class="question"><strong>2. How to make use of this SMp(x) Distribution Calculator?</strong></p>
+     	<p class="answer">Enter all the six parameters in the given boxes and then hit the calculate button to get the output in no time.</p><hr>  
+      <p class="question"><strong>3. What is the best tool to calculate SMp(x) Distribution?</strong></p>
+      <p class="answer">SMp(x) Distribution Calculator is the best tool to calculate the SMp(x) function easily without any hardwork. And it is available on  <a href="https://statisticscalculators.net/">statisticscalculators.net</a>.</p><hr>
+    	</div>
+    </div>
+    </div>
+    <script>
+      function myFunction() {
+        document.getElementsByName("Lower limit value of x (PXmin)")[0].value = "";
+        document.getElementsByName("Upper limit value of x (Xmax)")[0].value = "";
+        document.getElementsByName("x where SMp(x) = Max (ML)")[0].value = "";
+        document.getElementsByName("Power (p₁)")[0].value = "";
+        document.getElementsByName("Power (p₂)")[0].value = "";
+        document.getElementsByName("Maximum of the model (Max)")[0].value = "";
+        document.getElementsByName("For an independent variable x =")[0].value = "";
+
+
+
+        document.getElementById("clear").innerHTML = "";
+
+    }
+
+</script>   
+{%endblock%}

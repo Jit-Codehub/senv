@@ -1,0 +1,253 @@
+{%extends 'base/statistics_base2.html'%}
+{%load static%}
+{%block meta%}
+<!-- HTML Defaults Broweser -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Bootstrap Stylesheet and Jquery, Google APIS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+<!-- Online Calculator Guru Site Fevicon -->
+<link rel="shortcut icon" href="https://onlinecalculator.guru/static/images/logo/Online-Calculator-Guru-Fevicon.png"
+    type="icon">
+<!-- Online Calculator Guru Project Style Sheet -->
+{%block css%}
+<link rel="stylesheet" href="https://onlinecalculator.guru/static/style.css">
+{%endblock css%}
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+<!-- Meta Title, Description and Canonical URL Starts --->
+<title>Empirical Rule Calculator with Range Online | Steps to find 68-95-99.7 rule</title>
+<meta name="description"
+    content="A Free Online Empirical Rule Calculator with Steps helps in finding the ranges that are 1, 2, 3 standard deviations from the mean within seconds." />
+<link rel="canonical" href="{{request.build_absolute_uri}}">
+<!-- Meta Title, Description and Canonical URL ENDS --->
+
+<!-- OPEN GRAPH CONFIGURATIONS STARTS -->
+<!--  FACEBOOK CONFIGURATION STARTS  -->
+<meta content="https://www.facebook.com/OnlineCalculator-Guru-131572098650589/" property="og:url" />
+<meta property="og:title" content="Empirical Rule Calculator with Range Online | Steps to find 68-95-99.7 rule" />
+<meta property="og:description" content="A Free Online Empirical Rule Calculator with Steps helps in finding the ranges that are 1, 2, 3 standard deviations from the mean within seconds." />
+<meta content="" property="og:site_name" />
+<meta content="https://onlinecalculator.guru/static/images/Statistics/empirical-rule-calculatorr.jpeg"
+    property="og:image" />
+<meta property="og:image:type" content="image/png" />
+<meta property="og:image:height" content="435" />
+<meta property="og:image:width" content="354" />
+<!--  FACEBOOK CONFIGURATION ENDS  -->
+<!-- TWITTER CARD CONFIGURATION STARTS  -->
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:site" content="https://twitter.com/onlinecalculator" />
+<meta name="twitter:title" content="Empirical Rule Calculator with Range Online | Steps to find 68-95-99.7 rule" />
+<meta name="twitter:description"
+    content="A Free Online Empirical Rule Calculator with Steps helps in finding the ranges that are 1, 2, 3 standard deviations from the mean within seconds." />
+<meta name="twitter:image:src"
+    content="https://onlinecalculator.guru/static/images/Statistics/empirical-rule-calculatorr.jpeg" />
+<meta property="twitter:image:height" content="435" />
+<meta property="twitter:image:width" content="354" />
+<!-- TWITTER CARD CONFIGURATION ENDS  -->
+<!--  LINKEDIN CONFIGURATION STARTS-->
+<meta property='og:title' content="Empirical Rule Calculator with Range Online | Steps to find 68-95-99.7 rule" />
+<meta property='og:image'
+    content="https://onlinecalculator.guru/static/images/Statistics/empirical-rule-calculatorr.jpeg" />
+<meta property='og:description' content="A Free Online Empirical Rule Calculator with Steps helps in finding the ranges that are 1, 2, 3 standard deviations from the mean within seconds." />
+<meta property='og:url' content="https://www.linkedin.com/in/onlinecalculator/" />
+<!-- end of linkedin CONFIGURATIONS ENDS -->
+<!-- OPEN GRAPH CONFIGURATION ENDS -->
+<!-- FAQ SCHEMA STARTS -->
+<script type="application/ld+json">{"@context": "https://schema.org","@type": "FAQPage","mainEntity": [{"@type": "Question","name":"1.
+    What is the empirical rule for z score?
+    ","acceptedAnswer": {"@type": "Answer","text":"Actually, the “empirical rule” provides that for almost bell-shaped distributions: nearly 68% of the data values will have z-scores between ±1, nearly 95% between ±2, and nearly 99.7% (i.e., almost all) between ±3."} }, {"@type": "Question","name":"2.
+    How do you find the empirical rule using percentages?
+    ","acceptedAnswer": {"@type": "Answer","text":"https://www.youtube.com/watch?v=McAo1VwF9b4"} }, {"@type": "Question","name":"3.
+    How do you calculate the empirical rule using a calculator?
+    ","acceptedAnswer": {"@type": "Answer","text":"By using the empirical rule calculator, you can easily find the correct ranges. Just enter the mean and standard deviation inputs in the given field and hit on the calculate button to get the output with steps in just a few seconds"}  }]}
+</script>
+{%endblock meta %}
+
+{% block content %}
+{% if ot and m and sd %}
+<script>
+    $(document).ready(function () {
+
+        $("#hassle").click();
+        });
+</script>
+
+<button type="button" hidden id="hassle" onclick="location.href='#empirical_rule'">ans1</button>
+{% endif %}
+
+<div class="container" style="height: auto !important;">
+    <div class="card c1">
+        <div class="card-header">
+            <h1 class="h1">Empirical Rule Calculator</h1>
+        </div>
+        <div class="card-body">
+            <p>The Empirical Rule Calculator determines the correct ranges within seconds by just taking the mean and standard deviation values as an input. After entering the input values, hit the calculate button to avail the accurate results with detailed steps.</p>
+            {% if messages %}
+            <ul class="messages">
+            {% for message in messages %}
+                <p {% if message.tags %} id="message_container" class="alert alert-danger text-center" {% endif %}
+                    style="color:red">{{ message }}</p>
+                {% endfor %}
+            </ul>
+            {% endif %}
+            <form action="{% url 'empirical_rule' %}" method="POST" id="my_form">
+                {% csrf_token %}
+                 </div>
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1">Mean</span>
+            </div>
+            
+           <input style="margin-top: 5px;width:100%" id="m" name="m" value="{{m}}"   required="" class="form-control" type="number" step="any" required width="48"> 
+       </div>
+       <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1">Standard Deviation</span>
+            </div>
+            
+           <input style="margin-top: 5px;width:100%" id="sd" name="sd" value="{{sd}}"   required="" class="form-control" type="number" step="any" required width="48"> 
+       </div>
+
+       
+        <div class=" center col mt-2 ">
+            <center><button type="submit" class="btn btn-primary">Calculate</button>
+              <a href="{% url 'empirical_rule' %}" class="btn btn-warning" role="button" style="margin-top:5px;">Reset</a>      
+            </center>
+          </div>
+          <p><strong>Empirical Rule Calculator:</strong> Want to calculate the ranges that are 1 standard deviation, 2 standard deviations, and 3 standard deviations from the mean, in which you'll also discover 68, 95, and 99.7% of the normally distributed data respectively? Then, make use of this free online empirical rule calculator and get the results in no time.</p>
+          <p>Also, you will learn the definition, formulas for the empirical rule along with detailed steps to find the empirical rule and solved example. Dive into the below sections of  <a href="https://statisticscalculators.net/">statisticscalculators.net</a> empiricial rule online calculator and gain more knowledge on the 68-95-99.7 Rule, or Empirical rule, or Three sigma rule.</p>
+</div>
+
+</form>
+</div>
+</div>
+<div class="container" style="height: auto !important;">
+    <div class="card-header">
+        <h2 class="h2">What is the Empirical Rule?</h2>
+    </div>
+    <div class="card-body">
+        <p>The Empirical Rule is a statistical rule which expresses that, for normally distributed data, nearly all of the data will fall within three standard deviations likewise of the mean. Also, it is called the three-sigma rule or the 68-95-99.7 rule.</p>
+<p>In a normally distributed data set, the distance from the mean in SD is the z-score. For example, a z-score of 2.0 is 2&sigma; distance from the mean.</p>
+<h3>The Percentage Rules</h3>
+<p>The empirical rule is shattered into three percentages i.e., 68, 95, and 99.7. Therefore, the empirical rule is also known as 68 95 and 99.7 rule.</p>
+<p>1. The initial part of the rule says:</p>
+<p><strong>68% of the data values in a normal, bell-shaped, distribution will lie within 1 standard deviation (within 1 sigma) of the mean.</strong></p>
+<p>2. The second part of the rule says:</p>
+<p><strong>95% of the data values in a normal, bell-shaped, distribution will lie within 2 standard deviations (within 2 sigmas) of the mean.</strong></p>
+<p>3. At last, the third part of the rules says:</p>
+<p><strong>99.7% of the data values in a normal, bell-shaped, distribution will lie within 3 standard deviations (within 3 sigmas) of the mean.</strong></p>
+<img src="https://drive.google.com/file/d/1BIzl27JUhIZjkBoXIO4DIKTgWkeZ7cBr/view?usp=sharing" alt='empirical-rule-graph'>
+<h3>Empirical Rule Formula in Statistics</h3>
+<p>In statistics, the formula for the empirical rule is used to figure out the first, second, and third standard deviation, and also it anticipates the percentage chances of data falls under that deviation. The empirical rule formula can be mathematically expressed as,</p>
+<ul>
+<li>First Standard deviation = &micro; - &sigma; to &micro; + &sigma; (68% data)</li>
+<li>Second Standard deviation = &micro; - 2&sigma; to &micro; + 2&sigma; (95% data)</li>
+<li>Third Standard deviation = &micro; - 3&sigma; to &micro; + 3&sigma; (99% data)</li>
+</ul>
+<p>Where, &micro; = mean and &sigma; = standard deviation</p>
+<img src="https://drive.google.com/file/d/1kmiMqgEEhAiTf_tzRwamgSW5TEN8bD9q/view?usp=sharing" alt='empirical-rule-formulas'>
+    </div> 
+    </div>
+    <div class="container" style="height: auto !important;">
+        <div class="card">
+            <div class="card-header">
+                <h2 class="h3">Step by Step Solution on How to Calculate the Empirical Rule with Example</h3>
+            </div>
+            <div class="card-body">
+                <p>For calculating the empirical rule, you just have to be provided with a mean and standard deviation for a normal distribution, bell-shaped. If not, you can also try using z-scores with the empirical rule. In this instance, the mean z-score is 0 and the SD is 1.</p>
+                <p>Nevertheless, mostly the statistics problems including the empirical rule will give a mean and standard deviation.</p>
+                <p>Let's consider that the bell-shaped, normal distribution has a mean &mu; of 50, and a standard deviation, &sigma; of 5. Now apply the three-sigma rule (which is the empirical rule) and find the exact ranges.</p>
+                <ul>
+                <li>Applying the empirical rule is adding and subtracting up to three SD's from the mean.</li>
+                <li>FIRST PART: First, subtract and add 1 standard deviation from/to the mean:</li>
+                </ul>
+                <p style="text-align: center;">50 &ndash; 5 = 45</p>
+                <p style="text-align: center;">50 + 5 = 55</p>
+                <ul>
+                <li>Hence, 68% of the values fall between scores of 45 to 55.</li>
+                <li>SECOND PART: Then, subtract and add 2 standard deviations from/to the mean:</li>
+                </ul>
+                <p style="text-align: center;">50 &ndash; (2)(5)</p>
+                <p style="text-align: center;">50 &ndash; 10 = 40</p>
+                <p style="text-align: center;">50 + (2)(5)</p>
+                <p style="text-align: center;">50 + 10 = 60</p>
+                <ul>
+                <li>Hence, 95% of the values fall between scores of 40 to 60.</li>
+                <li>THIRD PART: Lastly, subtract and add 3 standard deviations from/to the mean:</li>
+                </ul>
+                <p style="text-align: center;">50 &ndash; (3)(5)</p>
+                <p style="text-align: center;">50 &ndash; 15 = 35</p>
+                <p style="text-align: center;">50 + (3)(5)</p>
+                <p style="text-align: center;">50 + 15 = 65</p>
+                <ul>
+                <li>Hence, 99.7% of the values fall between scores of 35 to 65.</li>
+                <li>Thus, you will get the correct ranges.</li>
+                </ul>
+                <img src="{% static 'images/Statistics/empirical-rule-calculator.jpeg' %}" alt='empirical-rule-calculator'>    
+        </div>
+        </div> 
+        </div> 
+{% if ot and m and sd %}
+<div class="container" style="height: auto !important;">
+<div class="card" id="empirical_rule">
+        <div class="card-header">
+            <h2 class="h2">Steps to Find Empirical Rule:</h2>
+        </div>
+
+        <div class="card-body">
+
+            <strong>Empirical Rule:-</strong>
+            <br>
+            <p class="btn btn-outline-secondary active text-justify">Empirical Rule<br>
+                <ul><li>68% of data falls within 1 standard deviation from the mean - that means between u - sd and u + sd.</li>
+                <li>95% of data falls within 2 standard deviations from the mean - between u – 2sd and u + 2sd</li>
+                <li>99.7% of data falls within 3 standard deviations from the mean - between u - 3sd and u + 3sd</li>
+                </ul></p>
+            <br>
+            <strong>where:</strong>
+                    <ul>
+                        <li>u is the Mean,</li>
+                        <li>sd is the Standard deviation,</li>
+                    </ul>
+
+
+            <strong>Input values are:-</strong>
+            <p>u = {{m}} </p>
+            <p>sd = {{sd}} </p>
+            
+            
+            <p><b>Put values into formula</b></p>
+            
+            <p>Empirical Rule:</p>
+            
+            <b>68% of data falls between {{re68}} and {{re682}}.</b><br>
+            <b>95% of data falls between {{re95}} and {{re952}}.</b><br>
+            <b>99% of data falls between {{re99}} and {{re992}}.</b>
+                         
+   </div>
+    </div>
+</div>
+<div class="container" style="height: auto !important;">
+    <div class="card">
+        <div class="card-header">
+        <h3 class="h3">FAQs on Free Online Empirical Formula Calculator</h3>
+        </div>
+        <div class="card-body">
+        <!-- Question & Answer Starts --->
+      <p class="question"><strong>1. What is the empirical rule for z score?</strong></p>
+       <p class="answer">Actually, the &ldquo;empirical rule&rdquo; provides that for almost bell-shaped distributions: nearly 68% of the data values will have z-scores between &plusmn;1, nearly 95% between &plusmn;2, and nearly 99.7% (i.e., almost all) between &plusmn;3.</p><hr>
+       <p class="question"><strong>2. How do you find the empirical rule using percentages?</strong></p>
+       <p class="answer"><a href="https://www.youtube.com/watch?v=McAo1VwF9b4">https://www.youtube.com/watch?v=McAo1VwF9b4</a></p><hr>  
+      <p class="question"><strong>3. How do you calculate the empirical rule using a calculator?</strong></p>
+      <p class="answer">By using the empirical rule calculator, you can easily find the correct ranges. Just enter the mean and standard deviation inputs in the given field and hit on the calculate button to get the output with steps in just a few seconds.</p><hr>
+    </div>
+    </div>
+    </div> 
+    </div>
+    {% endif %}         
+{% endblock content %}

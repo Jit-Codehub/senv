@@ -1,0 +1,236 @@
+{%extends 'base/statistics_base2.html'%}
+{%load static%}
+{%block meta%}
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+  <link rel="shortcut icon" href="{% static 'images/logo/Chemistry-Calc.png' %}" type="icon">
+  {%block css%}
+  <link rel="stylesheet" href="{% static 'style.css' %}">
+  {%endblock%}
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+	<!-- META DATA STARTS --->
+    <title>Combination Calculator | How do you Calculate Possible Combinations?</title>
+	<meta name="description" content="Combination Calculator is a free online tool to calculate the possible combination outcomes using the combination formula.">
+	<link rel="canonical" href="{{request.build_absolute_uri}}">
+<!-- META DATA ENDS --->
+
+<!-- OPEN GRAPH CONFIGURATIONS STARTS -->
+	<!--  FACEBOOK CONFIGURATION STARTS  -->
+	<meta content="https://www.facebook.com/OnlineCalculator-Guru-131572098650589/" property="og:url" />
+	<meta property="og:title" content="Combination Calculator | How do you Calculate Possible Combinations?"/>
+	<meta property="og:description" content="Combination Calculator is a free online tool to calculate the possible combination outcomes using the combination formula."/>
+	<meta content="" property="og:site_name" />
+	<meta  content="https://Onlinecalculator.guru/static/images/Chemistry/pH-Calculator.jpeg" property="og:image" />
+	<meta property="og:image:type" content="image/png" />
+	<meta property="og:image:height" content="435" />
+	<meta property="og:image:width" content="354" />
+	<!--  FACEBOOK CONFIGURATION ENDS  -->
+	<!-- TWITTER CARD CONFIGURATION STARTS  -->
+	<meta name="twitter:card" content="summary"/>
+	<meta name="twitter:site" content="https://twitter.com/onlinecalculator"/>
+	<meta name="twitter:title" content="Combination Calculator | How do you Calculate Possible Combinations?"/>
+	<meta name="twitter:description" content="Combination Calculator is a free online tool to calculate the possible combination outcomes using the combination formula."/>
+	<meta name="twitter:image:src" content="https://Onlinecalculator.guru/static/images/Statistics/Combination-Calculator.jpeg"/>
+	<meta property="twitter:image:height" content="435"/>
+	<meta property="twitter:image:width" content="354"/>
+	<!-- TWITTER CARD CONFIGURATION ENDS  -->
+	<!--  LINKEDIN CONFIGURATION STARTS-->
+	<meta property='og:title' content="Combination Calculator | How do you Calculate Possible Combinations?"/>
+	<meta property='og:image' content="https://Onlinecalculator.guru/static/images/Statistics/Combination-Calculator.jpeg"/>
+	<meta property='og:description' content="Combination Calculator helps to calculate the minimum energy required for a chemical reaction to occur. Check the steps to calculate Combination."/>
+	<meta property='og:url' content="https://www.linkedin.com/in/onlinecalculator/" />
+	<!-- end of linkedin CONFIGURATIONS ENDS -->
+<!-- OPEN GRAPH CONFIGURATION ENDS -->
+<!-- FAQ SCHEMA STARTS -->
+<script type="application/ld+json">{"@context": "https://schema.org","@type": "FAQPage","mainEntity": [{"@type": "Question","name":"1
+    How to calculate the possible combinations?
+    ","acceptedAnswer": {"@type": "Answer","text":" 
+    In combinations we have two types. One is with repetition and another one is without repetition. We calculate the possible combitions by using the formulas. For Combination without repetition C(n,r) = n!/(r!(n-r)!), and for with repetition C(n,r) = (n+r-1)!/r!(n-1)!"}	}, {"@type": "Question","name":"2
+    What is Combinations?
+    ","acceptedAnswer": {"@type": "Answer","text":" 
+    Arrangement of objects in which the order does not matter and gives the possible outcomes with and without repetition is called combination."}	}, {"@type": "Question","name":"3
+    What is value of 2C3 without repetition?
+    ","acceptedAnswer": {"@type": "Answer","text":"
+    C(3,2) = 3!/ 2!(3-2)! = 3!/2!(1!) = 3"}	}, {"@type": "Question","name":"4
+    How to use Combination Calculator?
+    ","acceptedAnswer": {"@type": "Answer","text":" 
+    All you need to do is enter the n and r values and click on the calculate button, so that you will get the answer in seconds."}	}]}</script>
+{%endblock%}
+{%block content%}
+<script>
+  $(document).ready(function(){
+   {% if answer %}
+  $("#hassle").click();
+  {% endif %}
+  $(".btn-danger").on("click",function(){
+    $(".form-control").attr("value","");
+      $("#solve-Combination").empty();
+   });
+  });
+</script>
+<div class="container">
+  <button type="button" hidden id="hassle"  onclick="location.href='#solve-Combination'">ans</button>
+	<div class="card c1">
+  	<div class="card-header">
+  <h1 class="h1">Combination Calculator</h1>
+  </div>
+  <div class="card-body">
+    <p>Combination Calculator is the best tool to easily calculate the number of combinations in a set and also shows you every single possible combination up to 20 elements. Simply enter the values and then press the calculate button and get the instant outcomes.</p>
+    {% autoescape off %}
+    {% if messages %}
+        {% for message in messages %}
+                <div class="row">
+                    <div class="col-md-6">
+                        <p class="alert alert-danger">{{message}}</p>
+                    </div>
+                </div>
+        {% endfor %}
+        {% endif %}
+{%endautoescape%}
+<form action="{% url 'comb' %}" id="myForm" onsubmit="return validate()" method="post">
+    {% csrf_token %}
+    <div class="input-group mb-2 mt-3">
+          <div class="input-group-prepend">
+        <div class="input-group-text"><strong>Total Number of Objects(n) </strong></div>
+             <input type="text" pattern="-?\d*\.?\d*" id="inlineFormInputGroup" name="a" value="{{ a }}" oninput="validateNumber1(this);" placeholder="Enter the Number" class="form-control" required></div>
+
+    </div>
+        <div class="input-group mb-2 mt-3">
+          <div class="input-group-prepend">
+        <div class="input-group-text in"><strong>Sample Size(r)</strong></div>
+             <input type="text" id="inlineFormInputGroup" placeholder="Enter the Number" value="{{ b }}" name="b" oninput="validateNumber(this);" class="form-control" required></div>
+
+         </div>
+        <div class=" center col mt-2 ">
+        <center><button type="submit" class="btn btn-primary"  class="form-control" >Calculate</button>
+        <button type="button" onclick="this.form.reset()" style="margin-top:5px;" class="btn btn-danger" class="form-control">Reset</button>
+        </center>
+    </div>
+  <div class="input-group mb-2 mt-3">
+          <div class="input-group-prepend">
+        <div class="input-group-text in"><strong>Combinations Without Repetitions</strong></div>
+             <input type="text"id="inlineFormInputGroup"  disabled value="{{ c }}" name="c" oninput="validateNumber(this);" class="form-control" required></div>
+
+
+         </div>
+  <div class="input-group mb-2 mt-3">
+          <div class="input-group-prepend">
+              <div class="input-group-text"><strong>Combinations With Repetitions</strong></div>
+             <input type="text" disabled id="inlineFormInputGroup" value="{{ d }}" oninput="validateNumber(this);" class="form-control" required></div>
+
+         </div>
+
+</form>
+    <p><b>Combination Calculator:</b> Getting stucked of calculating combinations? Then this tool will help you a lot. We have introduced a handy calculator tool to calculate the combinations. Combination calculator will give you all possible outcomes. And also we have discussed about definitions, formulas and step by step process to calculate combinations easily and quickly.</p> 
+    </div></div>
+    {% if answer %}
+    <div class="card c1" id="solve-Combination">
+        <div class="card-header"><center class="h1">Detailed Answer</center></div>
+        <div class="card-body container">
+        {% for i,z in answer.items %}
+        {% if 'bold' in i %}
+        <p><b>{{ z }}</b></p>
+        {% else %}
+        <p>{{ z }}</p>
+        {% endif %}
+        {% endfor %}
+        </div>
+        </div>
+        {% endif %}
+	<div class="card">
+  	<div class="card-header">
+  <h2 class="h2">What is meant by the Combination?</h2>
+  </div>
+  <div class="card-body">
+       <p>In mathematics, combination in simple words says that the no.of ways you can choose p elements out of a set containing n possible combinations without repetition and with repetition. And for combinations order is not important. For example, in a bag we have 10 balls, where each one is of different color. you have picked five balls at random. we need to find how many different and same combinations we get. </p>
+  </div>
+</div>
+	<div class="card">
+  	<div class="card-header">
+  <h3 class="h3">Combination Formula</h3>
+  </div>
+  <div class="card-body">
+       <p>The following combination formula that will allow you to define the number of combinations. Let's see below.</p>
+       <p><b>Combination with repetition</b></p>
+       <p>C(n,r) = n!/(r!(n-r)!)</p>
+       <p><b>Combination without repetition</b></p>
+       <p>C(n,r) = (n+r-1)!/r!(n-1)!</p>
+       <p>where,</p>
+       <p>C(n,r) is the number of combinations.</p>
+       <p>n is the total no.of elements in the given set.</p>
+       <p>r is the no.of outcomes.</p>
+ </div>
+</div>
+	<div class="card">
+  	<div class="card-header">
+       <h3 class="h3">How to Compute Number of Possible Combinations?</h3>
+    </div>
+    <div class="card-body">
+      <p>Follow the guidelines carefully to calculate the combinations to get possible outcomes.</p>
+      <ul>
+          <li>Primary thing you need to do is note down the values given in the problem.</li>
+          <li>Then, apply the formula of combinations (with or without repetition).</li>
+          <li>And, substitute the given values in the formula.</li>
+          <li>Finally, you will get the possible outcomes.</li>
+      </ul>
+    </div>
+</div>
+	<div class="card">
+  	<div class="card-header">
+       <h3 class="h3">Finding Combinations Examples</h3>
+    </div>
+    <div class="card-body">
+        <p><b>Question 1:</b> A bag filled with fifteen pebbles, where each one is of different color. You pick 4 pebbles at random.  How many different combinations you can get?</p>
+        <p><b>Solution:</b></p>
+        <p>Given, C(15,4)</p>
+        <p><b>Apply the formula of combination without repetition</b></p>
+        <p><b>C(n,r) = n!/(r!(n-r)!)</b></p>
+        <p>C(15,4)= 15!/(4!(15-4)!)</p>
+        <p> = 15!/(4!x 11!)</p>
+        <p> = 1365</p>
+        <p><b>Apply the formula of combination with repetition</b></p>
+        <p><b>C(n,r) = (n+r-1)!/r!(n-1)!</b></p>
+        <p>C(15,4)= (15+4-1)!/4!(4-1)!</p>
+        <p>  = 18!/(4! x 3!)</p>
+        <p> = 3060</p>
+        <p>Thus, possible outcomes of combination with repetition is 3060 and without repetition is 1365</p>
+        <p>Get instant outcomes easily by using statistics calculators online using free tool by clicking on the link <a href="https://statisticscalculators.net/">statisticscalculators.net</a></p>
+        </div>
+        </div>
+            <div class="card">
+            <div class="card-header">
+            <h3 class="h3">FAQs on Combinations</h3>
+            </div>
+            <div class="card-body">
+            <!-- Question & Answer Starts --->
+          <p class="question"><strong>1. How to calculate the possible combinations?</strong></p>
+           <p class="answer">In combinations we have two types. One is with repetition and another one is without repetition. We calculate the possible combinations by using the formulas. For Combination without repetition C(n,r) = n!/(r!(n-r)!), and for with repetition C(n,r) = (n+r-1)!/r!(n-1)!</p><hr>
+           <p class="question"><strong>2. What is Combinations?</strong></p>
+           <p class="answer">Arrangement of objects in which the order does not matter and gives the possible outcomes with and without repetition is called combination.</p><hr>  
+          <p class="question"><strong>3. What is value of 2C3 without repetition?</strong></p>
+          <p class="answer">C(3,2) = 3!/ 2!(3-2)! = 3!/2!(1!) = 3</p><hr>
+          <p class="question"><strong>4. How to use Combination Calculator?</strong></p>
+           <p class="answer">All you need to do is enter the n and r values and click on the calculate button, so that you will get the answer in seconds.</p>
+        </div>
+        </div>
+    </div>
+<script>
+    var validNumber = new RegExp(/^\d*\.?\d*$/);
+    var fist_input = document.getElementById("inlineFormInputGroup").value;
+    function validateNumber(elem) {
+      if (validNumber.test(elem.value)) {
+        fist_input = elem.value;
+      } else {
+        elem.value = fist_input;
+      }
+    }
+</script>
+
+
+
+{%endblock%}

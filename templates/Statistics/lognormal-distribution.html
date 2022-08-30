@@ -1,0 +1,297 @@
+{%extends 'base/statistics_base2.html'%}
+{%load static%}
+{%block meta%}
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+  <link rel="shortcut icon" href="{% static 'images/logo/Chemistry-Calc.png' %}" type="icon">
+  {%block css%}
+  <link rel="stylesheet" href="{% static 'style.css' %}">
+  {%endblock%}
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+	<!-- META DATA STARTS --->
+    <title>Lognormal Distribution Calculator | How to Find Activation Energy?</title>
+	<meta name="description" content="Lognormal Distribution Calculator helps to calculate the minimum energy required for a chemical reaction to occur. Check the steps to calculate activation energy.">
+	<link rel="canonical" href="{{request.build_absolute_uri}}">
+<!-- META DATA ENDS --->
+ 
+<!-- OPEN GRAPH CONFIGURATIONS STARTS -->
+	<!--  FACEBOOK CONFIGURATION STARTS  -->
+	<meta content="https://www.facebook.com/OnlineCalculator-Guru-131572098650589/" property="og:url" />
+	<meta property="og:title" content="Lognormal Distribution Calculator | How to Find Activation Energy?"/>
+	<meta property="og:description" content="Lognormal Distribution Calculator helps to calculate the minimum energy required for a chemical reaction to occur. Check the steps to calculate activation energy."/>
+	<meta content="" property="og:site_name" />
+	<meta  content="https://chemistrycalc.com/static/images/Chemistry/pH-Calculator.jpeg" property="og:image" />
+	<meta property="og:image:type" content="image/png" />
+	<meta property="og:image:height" content="435" />
+	<meta property="og:image:width" content="354" />
+	<!--  FACEBOOK CONFIGURATION ENDS  -->
+	<!-- TWITTER CARD CONFIGURATION STARTS  -->
+	<meta name="twitter:card" content="summary"/>
+	<meta name="twitter:site" content="https://twitter.com/onlinecalculator"/>
+	<meta name="twitter:title" content="Lognormal Distribution Calculator | How to Find Activation Energy?"/>
+	<meta name="twitter:description" content="Lognormal Distribution Calculator helps to calculate the minimum energy required for a chemical reaction to occur. Check the steps to calculate activation energy."/>
+	<meta name="twitter:image:src" content="https://chemistrycalc.com/static/images/Chemistry/pH-Calculator.jpeg"/>
+	<meta property="twitter:image:height" content="435"/>
+	<meta property="twitter:image:width" content="354"/>
+	<!-- TWITTER CARD CONFIGURATION ENDS  -->
+	<!--  LINKEDIN CONFIGURATION STARTS-->
+	<meta property='og:title' content="Lognormal Distribution Calculator | How to Find Activation Energy?"/>
+	<meta property='og:image' content="https://chemistrycalc.com/static/images/Chemistry/pH-Calculator.jpeg"/>
+	<meta property='og:description' content="Lognormal Distribution Calculator helps to calculate the minimum energy required for a chemical reaction to occur. Check the steps to calculate activation energy."/>
+	<meta property='og:url' content="https://www.linkedin.com/in/onlinecalculator/" />
+	<!-- end of linkedin CONFIGURATIONS ENDS -->
+<!-- OPEN GRAPH CONFIGURATION ENDS -->
+<!-- FAQ SCHEMA STARTS -->
+{%endblock%}
+{%block content%}
+<script>
+       $(document).ready(function(){
+        
+        var d3={"p":"P(X ≤ x):","s":"Here's your Sample :","c":"F(x):","pd":"f(x):","q":"Q(p):"}
+        var d4={"p":"Argument x","s":"Sample Length","q":"Quantile p","c":"Argument x","pd":"Argument x"}
+        {% if answer %}
+        var k1="{{ mode }}"
+        $("#hassle").click();
+        var str="#"+k1
+            $(str).attr("selected","selected");
+          if(k1=='p'){
+            var st="<strong>"+d3[k1]+"</strong>"
+          $(".par").html(st)
+            $(".pars").css({"display":"block"})
+            $(".p_type").css({"display":"block"})
+            $(".common").css({"display":"none"})
+            $(".parst").css({"display":"block"})
+            var st="<strong>"+d4[k1]+"</strong>"
+            $(".parsa").html(st)
+          }
+          else if(k1=='cm'){
+            $(".p_type").css({"display":"none"})
+            $(".common").css({"display":"block"})
+            $(".pars").css({"display":"none"})
+            $(".parst").css({"display":"none"})
+            
+          }
+          else{
+            var st="<strong>"+d3[k1]+"</strong>"
+          $(".par").html(st)
+          
+            var st="<strong>"+d4[k1]+"</strong>"
+            $(".parsa").html(st)
+          
+            $(".pars").css({"display":"block"})
+            $(".p_type").css({"display":"none"})
+            $(".common").css({"display":"none"})
+            $(".parst").css({"display":"block"})
+          }
+           {% if prob %}
+           
+           var k2="{{ prob }}"
+           var str="#"+k2
+            $(str).attr("selected","selected");
+          var d2={"le":"P(X ≤ x)","gt":"P(X > x)","ge":"P(X ≥ x)","lt":"P(X < x)"}
+          var st="<strong>"+d2[k2]+"</strong>"
+          $(".par").html(st)
+           {% endif %} 
+      
+        
+        {% endif %}  
+        $(".mode").on("change",function(){
+          var k1=$(".mode").val()
+          if(k1=='p'){
+            var st="<strong>"+d3[k1]+"</strong>"
+          $(".par").html(st)
+            $(".pars").css({"display":"block"})
+            $(".p_type").css({"display":"block"})
+            $(".common").css({"display":"none"})
+            $(".parst").css({"display":"block"})
+            var st="<strong>"+d4[k1]+"</strong>"
+            $(".parsa").html(st)
+          }
+          else if(k1=='cm'){
+            $(".p_type").css({"display":"none"})
+            $(".common").css({"display":"block"})
+            $(".pars").css({"display":"none"})
+            $(".parst").css({"display":"none"})
+            
+          }
+          else{
+            var st="<strong>"+d3[k1]+"</strong>"
+          $(".par").html(st)
+          
+            var st="<strong>"+d4[k1]+"</strong>"
+            $(".parsa").html(st)
+          
+            $(".pars").css({"display":"block"})
+            $(".p_type").css({"display":"none"})
+            $(".common").css({"display":"none"})
+            $(".parst").css({"display":"block"})
+          }
+
+        })
+        $(".p_unit").on("change",function(){
+          var k1=$(".p_unit").val()
+          var d2={"le":"P(X ≤ x)","gt":"P(X > x)","ge":"P(X ≥ x)","lt":"P(X < x)"}
+          var st="<strong>"+d2[k1]+"</strong>"
+          $(".par").html(st)
+
+        })
+        $(".btn-danger").on("click",function(){
+          $("#p").attr("selected","selected");
+          $(".common").css({"display":"none"})
+          $(".p_type").css({"display":"block"})
+            
+            $(".pars").css({"display":"block"})
+            $(".parst").css({"display":"block"})
+          $("#le").attr("selected","selected");
+          $(".form-control").attr("value","");
+          $("#solve-lognormal-distribution-calculator").empty();
+          
+         });
+        });
+    </script>
+<div class="container">
+    <div class="card c1">
+        <button type="button" hidden id="hassle"  onclick="location.href='#solve-lognormal-distribution-calculator'">ans</button>
+	
+	
+  	<div class="card-header">
+  <h2 class="h1">Lognormal Distribution Calculator</h2>
+  </div>
+  <div class="card-body col-lg-4 offset-lg-3">
+      {% autoescape off %}
+            {% if messages %}
+                {% for message in messages %}
+                        <div class="row">
+                            <div class="col-md-6">
+                                <p class="alert alert-danger">{{message}}</p>
+                            </div>
+                        </div>
+                {% endfor %}
+                {% endif %}
+        {%endautoescape%}
+      <form action="{% url 'lognormal' %}" id="myForm" class="center"  method="post">
+            {% csrf_token %}
+            <div class="input-group mb-2 mt-3">
+                <div class="input-group-prepend">
+              <div class="input-group-text"><strong>Mode:</strong></div>
+                    <select name="m_unit" id="inlineFormInputGroup" class="form-control mode">
+                       <option value="p" id="p">Probability Calculator</option>
+                       {% comment %} <option value="s" id="s">Sample Generator</option> {% endcomment %}
+                       <option value="c" id="c">Cumulative distribution function</option>
+                       <option value="pd" id="pd">Probability Density function</option>
+                       <option value="q" id="q">Quantile function</option>
+                       <option value="cm" id="cm">Common measures</option>
+                  
+                   </select>
+                   </div>
+          </div>
+          <div class="input-group mb-2 mt-3 p_type">
+            <div class="input-group-prepend">
+          <div class="input-group-text"><strong>Probability Type:</strong></div>
+                <select name="p_unit" id="inlineFormInputGroup" class="form-control p_unit">
+                   <option value="le" id="le">P(X ≤ x)</option>
+                   <option value="lt" id="lt">P(X < x)</option>
+                   <option value="ge" id="ge">P(X ≥ x)</option>
+                   <option value="gt" id="gt">P(X > x)</option>
+               </select>
+               </div>
+      </div>
+            <div class="input-group mb-2 mt-3">
+                  <div class="input-group-prepend">
+                <div class="input-group-text"><strong>Parameter μ:</strong></div>
+                     <input type="text" id="inlineFormInputGroup"  name="a" value="{{ a }}" oninput="validateNumber1(this);" size="250" placeholder="Enter the Number " class="form-control" required></div>
+            </div>
+             <div class="input-group mb-2 mt-3">
+                  <div class="input-group-prepend">
+                <div class="input-group-text"><strong>Parameter σ:</strong></div>
+                     <input type="text" id="inlineFormInputGroup"  name="b" value="{{ b }}" oninput="validateNumber1(this);" size="250" placeholder="Enter the Number" class="form-control" required></div>
+            </div>
+            <div class="input-group mb-2 mt-3 parst">
+                <div class="input-group-prepend">
+              <div class="input-group-text parsa"><strong>Argument x:</strong></div>
+                   <input type="text" id="inlineFormInputGroup"  name="c" value="{{ c }}" oninput="validateNumber1(this);" size="250" placeholder="Enter the Number" class="form-control"></div>
+          </div>
+                <div class=" center col mt-2 ">
+                <center><button type="submit" class="btn btn-primary"  class="form-control" >Calculate</button>
+                <button type="button" onclick="this.form.reset()" style="margin-top:5px;" class="btn btn-danger" class="form-control">Reset</button>
+                </center>
+            </div>
+            <div class="common" style="display:none;">
+             <div class="input-group mb-2 mt-3">
+                  <div class="input-group-prepend">
+                <div class="input-group-text"><strong>Mean (x̅):</strong></div>
+                     <input type="text" id="inlineFormInputGroup"  disabled value="{{ d }}" oninput="validateNumber1(this);" size="250"  class="form-control" required></div>
+            </div>
+          <div class="input-group mb-2 mt-3">
+                  <div class="input-group-prepend">
+                      <div class="input-group-text"><strong>Median :</strong></div>
+                     <input type="text" disabled id="inlineFormInputGroup" value="{{ e }}" oninput="validateNumber(this);" class="form-control" required></div>
+                 </div>
+                 <div class="input-group mb-2 mt-3">
+                  <div class="input-group-prepend">
+                      <div class="input-group-text"><strong>Mode :</strong></div>
+                     <input type="text" disabled id="inlineFormInputGroup" value="{{ f }}" oninput="validateNumber(this);" class="form-control" required></div>
+                 </div>
+                 <div class="input-group mb-2 mt-3">
+                  <div class="input-group-prepend">
+                      <div class="input-group-text"><strong>Variance :</strong></div>
+                     <input type="text" disabled id="inlineFormInputGroup" value="{{ g }}" oninput="validateNumber(this);" class="form-control" required></div>
+                 </div>
+                 <div class="input-group mb-2 mt-3">
+                  <div class="input-group-prepend">
+                      <div class="input-group-text"><strong>Stanadard Deviation :</strong></div>
+                     <input type="text" disabled id="inlineFormInputGroup" value="{{ h }}" oninput="validateNumber(this);" class="form-control" required></div>
+                 </div>
+                 <div class="input-group mb-2 mt-3">
+                  <div class="input-group-prepend">
+                      <div class="input-group-text"><strong>Skewness :</strong></div>
+                     <input type="text" disabled id="inlineFormInputGroup" value="{{ i }}" oninput="validateNumber(this);" class="form-control" required></div>
+                 </div>
+                </div>
+                 <div class="input-group mb-2 mt-3 pars">
+                  <div class="input-group-prepend">
+                      <div class="input-group-text par"><strong>P(X ≤ x):</strong></div>
+                     <input type="text" disabled id="inlineFormInputGroup" value="{{ j }}" oninput="validateNumber(this);" class="form-control" required></div>
+                 </div>
+        </form>
+
+    </div></div>
+    {% if answer %}
+    <div class="card c1" id="solve-lognormal-distribution-calculator">
+        <div class="card-header"><center class="h1">Detailed Answer</center></div>
+        <div class="card-body container">
+        {% autoescape off %}
+        {% for i,z in answer.items %}
+        {% if 'bold' in i %}
+        <p><b>{{ z }}</b></p>
+        {% else %}
+        <p>{{ z }}</p>
+        {% endif %}
+        {% endfor %}
+        {% endautoescape %}
+        </div>
+    </div>
+    {% endif %}
+</div>
+
+
+<script>
+    var validNumber = new RegExp(/^\d*\.?\d*$/);
+    var fist_input = document.getElementById("inlineFormInputGroup").value;
+    function validateNumber(elem) {
+      if (validNumber.test(elem.value)) {
+        fist_input = elem.value;
+      } else {
+        elem.value = fist_input;
+      }
+    }
+</script>
+
+
+
+{%endblock%}

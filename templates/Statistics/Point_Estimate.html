@@ -1,0 +1,331 @@
+{%extends 'base/statistics_base2.html'%}
+{%load static%}
+{%block meta%}
+<!-- HTML Defaults Broweser -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Bootstrap Stylesheet and Jquery, Google APIS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+<!-- Online Calculator Guru Site Fevicon -->
+<link rel="shortcut icon" href="https://onlinecalculator.guru/static/images/logo/Online-Calculator-Guru-Fevicon.png"
+    type="icon">
+<!-- Online Calculator Guru Project Style Sheet -->
+{%block css%}
+<link rel="stylesheet" href="/static/style.css">
+{%endblock css%}
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+<!-- Meta Title, Description and Canonical URL Starts --->
+<title>Point Estimate Calculator | Online Free Calculator to Find Point Estimate</title>
+<meta name="description"
+    content="Point Estimate calculator helps you determine the most satisfactory point estimate very easily and quickly." />
+<link rel="canonical" href="{{request.build_absolute_uri}}">
+<!-- Meta Title, Description and Canonical URL ENDS --->
+
+<!-- OPEN GRAPH CONFIGURATIONS STARTS -->
+<!--  FACEBOOK CONFIGURATION STARTS  -->
+<meta content="https://www.facebook.com/OnlineCalculator-Guru-131572098650589/" property="og:url" />
+<meta property="og:title" content="Point Estimate Calculator | Online Free Calculator to Find Point Estimate" />
+<meta property="og:description" content="Point Estimate calculator helps you determine the most satisfactory point estimate very easily and quickly." />
+<meta content="" property="og:site_name" />
+<meta content="https://onlinecalculator.guru/static/images/Statistics/Point-Estimate-Calculator.jpeg"
+    property="og:image" />
+<meta property="og:image:type" content="image/png" />
+<meta property="og:image:height" content="435" />
+<meta property="og:image:width" content="354" />
+<!--  FACEBOOK CONFIGURATION ENDS  -->
+<!-- TWITTER CARD CONFIGURATION STARTS  -->
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:site" content="https://twitter.com/onlinecalculator" />
+<meta name="twitter:title" content="Point Estimate Calculator | Online Free Calculator to Find Point Estimate" />
+<meta name="twitter:description"
+    content="Point Estimate calculator helps you determine the most satisfactory point estimate very easily and quickly." />
+<meta name="twitter:image:src"
+    content="https://onlinecalculator.guru/static/images/Statistics/Point-Estimate-Calculator.jpeg" />
+<meta property="twitter:image:height" content="435" />
+<meta property="twitter:image:width" content="354" />
+<!-- TWITTER CARD CONFIGURATION ENDS  -->
+<!--  LINKEDIN CONFIGURATION STARTS-->
+<meta property='og:title' content="Point Estimate Calculator | Online Free Calculator to Find Point Estimate" />
+<meta property='og:image'
+    content="https://onlinecalculator.guru/static/images/Statistics/Point-Estimate-Calculator.jpeg" />
+<meta property='og:description' content="Point Estimate calculator helps you determine the most satisfactory point estimate very easily and quickly." />
+<meta property='og:url' content="https://www.linkedin.com/in/onlinecalculator/" />
+<!-- end of linkedin CONFIGURATIONS ENDS -->
+<!-- OPEN GRAPH CONFIGURATION ENDS -->
+<!-- FAQ SCHEMA STARTS -->
+<script type="application/ld+json">{"@context": "https://schema.org","@type": "FAQPage","mainEntity": [{"@type": "Question","name":"1
+    What is Point Estimate?
+    ","acceptedAnswer": {"@type": "Answer","text":" 
+    Point estimate requires the use of sample data for calculating a best value of an unknown population."}	}, {"@type": "Question","name":"2
+    How to use Point Estimate calculator?
+    ","acceptedAnswer": {"@type": "Answer","text":" 
+    Enter the input values in the given input box and hit the calculate button and within fraction of seconds you will get the output."}	}, {"@type": "Question","name":"3
+    What is the best website for using Point Estimate Calculator?
+    ","acceptedAnswer": {"@type": "Answer","text":"
+    Statisticscalculators.net is the best website to use point estimate calculator, and we have given with some useful information."}	}]}</script>
+{%endblock meta %}
+
+{% block content %}
+{% if n and x and ot %}
+<script>
+    $(document).ready(function () {
+
+        $("#hassle").click();
+        });
+</script>
+
+<button type="button" hidden id="hassle" onclick="location.href='#point_estimate'">ans1</button>
+{% endif %}
+
+
+<div class="container" style="height: auto !important;">
+    <div class="card c1">
+        <div class="card-header">
+            <h1 class="h1">Point Estimate Calculator</h1>
+        </div>
+        <div class="card-body">
+            <p>Utilize this point estimate calculator tool to calculate the most suitable point estimate that depends on the sample size, no.of success and confidence level. For that you need to do is, give the input values and hit the calculate button and get instant outcomes.</p>
+            {% if messages %}
+            <ul class="messages">
+            {% for message in messages %}
+                <p {% if message.tags %} id="message_container" class="alert alert-danger text-center" {% endif %}
+                    style="color:red">{{ message }}</p>
+                {% endfor %}
+            </ul>
+            {% endif %}
+            <form action="{% url 'Point_Estimate' %}" method="POST" id="my_form">
+                {% csrf_token %}
+                 <div class="input-group mb-3">
+                      
+          </div>
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1">Number of Successes (x)</span>
+            </div>
+            
+           <input style="margin-top: 5px;width:100%" id="x" name="x" value="{{x}}"   required="" oninput="validateNumber(this);" class="form-control" type="number" step="any" required width="48"> 
+       </div>
+       <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1">Sample size (n)</span>
+            </div>
+            
+           <input style="margin-top: 5px;width:100%" id="n" name="n" value="{{n}}"   required="" oninput="validateNumber(this);" class="form-control" type="number" step="any"  required width="48"> 
+       </div>
+       <div class="input-group mb-3">
+       <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon1">Confidence Level</span>
+        </div>
+    
+  
+       <select id="Given" name="Given"  style="margin-top: 5px;width:100%;" class="select form-control" id="inlineFormInputGroup" onchange="this.form.submit()">
+          
+          
+            {% if Given == '80%' %}
+            <option value='80%' selected="selected">80%</option>  
+            {% else %}
+            <option value='80%' >80%</option>  
+            {% endif %}
+
+            {% if Given == '85%' %}
+            <option value='85%' selected="selected">85%</option>  
+            {% else %}
+            <option value='85%' >85%</option>  
+            {% endif %}
+
+            {% if Given == '90%' %}
+            <option value='90%' selected="selected">90%</option>  
+            {% else %}
+            <option value='90%' >90%</option>  
+            {% endif %}
+
+            {% if Given == '95%' %}
+            <option value='95%' selected="selected">95%</option>  
+            {% else %}
+            <option value='95%' >95%</option>  
+            {% endif %} 
+
+            {% if Given == '99%' %}
+            <option value='99%' selected="selected">99%</option>  
+            {% else %}
+            <option value='99%' >99%</option>  
+            {% endif %} 
+         
+          </select>                     
+      </div>
+
+
+        <div class=" center col mt-2 ">
+            <center><button type="submit" class="btn btn-primary">Calculate</button>
+              <a href="{% url 'Point_Estimate' %}" class="btn btn-warning" role="button" style="margin-top:5px;">Reset</a>      
+            </center>
+          </div>
+    
+</div>
+<p><b>Point Estimate Calculator:</b> Finding the best calculator to find point estimate? Then use this point estimate calculator to find the point estimate using four point estimate approaches. We will see that detailed information below along with the calculator. Look for the examples to know how to estimate the point manually without errors.</p>
+</form>
+</div>
+</div>
+{% if n and x and ot %}
+<div class="container" style="height: auto !important;">
+<div class="card" id="point_estimate">
+        <div class="card-header">
+            <h2 class="h2">Steps to Find Point Estimate:</h2>
+        </div>
+
+        <div class="card-body">
+
+            <strong>Point Estimate:-</strong>
+            <br>
+            <p>This point estimate calculator makes use of four point estimate approaches: the maximum likelihood, Wilson, Laplace, and Jeffrey's methods. The accompanying equations are as follows:</p>
+            <p class="btn btn-outline-secondary active text-justify">
+            Maximum Likelihood Estimation (MLE): x / n<br>
+            Wilson: (x + z<sup>2</sup>/2) / (n + z<sup>2</sup>)<br>
+            Laplace: (x + 1) / (n + 2)<br>
+            Jeffrey's: (x + 0.5) / (n + 1)
+            </p>
+            <br>
+            <strong>where:</strong>
+                    <ul>
+                    <li>x is the number of successes in the sample,</li>
+                    <li>n is the sample size or the number of trials</li>
+                    <li>z is the z-score associated with a level of confidence.</li>                       
+                    </ul>
+
+
+            <strong>Input values are:-</strong>
+            <p>n = {{n}} </p>
+            <p>x = {{x}} </p>
+            <p>Confidence = {{Given}} = {{z}}</p>
+
+
+            <p><b>Put values into formula</b></p>
+
+            
+            {% if output %}
+                <b>Best Point Estimate = {{start}} x 10<sup>{{end}}</sup></b>
+            {% else %}
+                <b>Best Point Estimate = {{result}}</b>
+            {% endif %}
+
+            <strong>The calculator uses the following logic to compute the best point estimate:</strong>
+                <ul>
+                <li>If x/n ≤ 0.5, the Wilson method is applied</li>
+                <li>If 0.5 < x/n < 0.9, the MLE method is applied</li>
+                <li>If 0.9 ≤ x/n < 1.0, the Laplace or Jeffreys method is applied (the smallest of these estimates)</li>
+                <li>If x/n = 1.0, the Laplace method is applied.</li>
+            </ul>
+            <details class="border border-primary">
+            <summary>All Method here:</summary>
+            <p><table style="width:100%">
+             <tr>
+                <th>Method Name</th>
+                <th>Answer</th>
+                </tr>
+            {% for u,v in redict.items %}
+                  <tr>
+                    <td>{{u}}</td>
+                    <td>{{v}}</td>
+                  </tr>
+            {% endfor %}
+            </table></p>
+            </details>
+                         
+   </div>
+    </div>
+</div>
+<div class="container" style="height: auto !important;">
+    <div class="card" id="point_estimate">
+            <div class="card-header">
+                <h3 class="h3"> What is Point Estimate?</h3>
+            </div>
+        <div class="card-body">
+            <p>Point estimate requires the use of sample data for calculating a best value of an unknown population. It is the appeal of point estimator to acquire a point estimate.</p>
+        </div>
+    </div>
+</div>
+<div class="container" style="height: auto !important;">
+    <div class="card" id="point_estimate">
+            <div class="card-header">
+                <h3 class="h3">Estimation Methods for Point Estimate</h3>
+            </div>
+        <div class="card-body">
+            <p>Here, in this point estimate we use 4 types of estimation methods. We have Maximum Likelihood, Wilson, Laplace, and Jeffrey's methods. Let us see their equations below:</p>
+            <p><b>Maximum Likelihood Estimation (MLE):</b> x / n</p>
+            <p><b>Wilson Estimation: </b>(x + z<sup>2</sup>/2) / (n + z<sup>2</sup>)</p>
+            <p><b>Laplace Estimation:</b> (x + 1) / (n + 2)</p>
+            <p><b>Jeffrey's Estimation:</b> (x + 0.5) / (n + 1)</p>
+            <p>Where,</p>
+            <p>x is the number of successes in the sample</p>
+            <p>n is the sample size or the number of trials</p>
+            <p>z is the z-score associated with a level of confidence.</p>                       
+            <p>And also this point estimate calculator uses the following logic to compute the best point estimate:</p>
+                <ul>
+                <li>If x/n ≤ 0.5, the Wilson method is applied</li>
+                <li>If 0.5 < x/n < 0.9, the MLE method is applied</li>
+                <li>If 0.9 ≤ x/n < 1.0, the Laplace or Jeffreys method is applied (the smallest of these estimates)</li>
+                <li>If x/n = 1.0, the Laplace method is applied.</li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="container" style="height: auto !important;">
+    <div class="card" id="point_estimate">
+            <div class="card-header">
+                <h3 class="h3">How to Find Point Estimate?</h3>
+            </div>
+        <div class="card-body">
+            <p>By using these guidelines and steps which are showing below to find the point estimate.</p>
+            <ul>
+                <li>Initially, you need to write the given values in the problem.</li>
+                <li>Then, apply the formula and substitute the values in it.</li>
+                <li>Finally, you will get the desired answer.</li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="container" style="height: auto !important;">
+    <div class="card" id="point_estimate">
+            <div class="card-header">
+                <h3 class="h3">Point Estimate Example</h3>
+            </div>
+        <div class="card-body">
+            <p><b>Example</b></p>
+            <p><b>Question: </b>A sample size of population is 20 and with the 5 number of success with the 955 confidence level. Find the best estimate of point?  </p>
+            <p><b>Solution</b></p>
+            <p>Given, n= 20, x=5, a=95%, z =1.96</p>
+            <p>Use the estimation methods,</p>
+            <p>Maximum Likelihood Estimation (MLE):</b> x / n</p>
+            <p> MLE = 5/20 = 0.25</p>
+            <p><b>Wilson Estimation: </b>(x + z<sup>2</sup>/2) / (n + z<sup>2</sup>)</p>
+            <p>WE = (20+1.96<sup>2</sup>/2)/(20+1.96<sup>2</sup>) = 0.29028</p>
+            <p><b>Laplace Estimation:</b> (x + 1) / (n + 2)</p>
+            <p>LE = (5+1)/(20+2) = 6/22 =  0.27273</p>
+            <p><b>Jeffrey's Estimation:</b> (x + 0.5) / (n + 1)</p>
+            <p>JE = (5+0.5)/(20+1) = 5.5/21 = 0.2619</p>
+            <p>Thus the best point estimate is 0.29028</p>
+            <p>Perform and understand other calculations in seconds taking help of our online calculators at <a href="https://statisticscalculators.net/">statisticscalculators.net</a></p>
+            <img src="{% static 'images/Statistics/point-estimate-calculator.jpeg' %}" alt='point-estimate-calculator'>     
+        </div>
+    </div>
+</div>
+<div class="container" style="height: auto !important;">
+    <div class="card" id="point_estimate">
+            <div class="card-header">
+                <h3 class="h3">Point Estimate Example</h3>
+            </div>
+        <div class="card-body">
+            <!-- Question & Answer Starts --->
+        <p class="question"><strong>1. What is Point Estimate?</strong></p>
+        <p class="answer">Point estimate requires the use of sample data for calculating a best value of an unknown population.</p><hr>
+        <p class="question"><strong>2. How to use Point Estimate calculator?</strong></p>
+        <p class="answer">Enter the input values in the given input box and hit the calculate button and within fraction of seconds you will get the output.</p><hr>  
+       <p class="question"><strong>3. What is the best website for using Point Estimate Calculator?</strong></p>
+       <p class="answer"><a href="https://statisticscalculators.net/">statisticscalculators.net</a> is the best website to use point estimate calculator, and we have given with some useful information.</p>
+    {% endif %}            
+    {% endblock content %}

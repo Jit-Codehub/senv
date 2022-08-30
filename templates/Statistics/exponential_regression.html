@@ -1,0 +1,229 @@
+{%extends 'base/statistics_base2.html'%}
+{%load static%}
+{%block meta%}
+<!-- HTML Defaults Broweser -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Bootstrap Stylesheet and Jquery, Google APIS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+<!-- Online Calculator Guru Site Fevicon -->
+<link rel="shortcut icon" href="https://onlinecalculator.guru/static/images/logo/Online-Calculator-Guru-Fevicon.png"
+    type="icon">
+<!-- Online Calculator Guru Project Style Sheet -->
+{%block css%}
+<link rel="stylesheet" href="/static/style.css">
+{%endblock css%}
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+<!-- Meta Title, Description and Canonical URL Starts --->
+<title>Exponential Regression Calculator | Find Exponential Function</title>
+<meta name="description"
+    content="Online Exponential Regression Calculator finds the exponential function that best fits given data. Provide two data sets to get exponential regression equation." />
+<link rel="canonical" href="{{request.build_absolute_uri}}">
+<!-- Meta Title, Description and Canonical URL ENDS --->
+
+<!-- OPEN GRAPH CONFIGURATIONS STARTS -->
+<!--  FACEBOOK CONFIGURATION STARTS  -->
+<meta content="https://www.facebook.com/OnlineCalculator-Guru-131572098650589/" property="og:url" />
+<meta property="og:title" content="Exponential Regression Calculator | Find Exponential Function" />
+<meta property="og:description" content="Online Exponential Regression Calculator finds the exponential function that best fits given data. Provide two data sets to get exponential regression equation." />
+<meta content="" property="og:site_name" />
+<meta content="https://onlinecalculator.guru/static/images/Chemistry/Exponential-Regresion-Calculator.jpeg"
+    property="og:image" />
+<meta property="og:image:type" content="image/png" />
+<meta property="og:image:height" content="435" />
+<meta property="og:image:width" content="354" />
+<!--  FACEBOOK CONFIGURATION ENDS  -->
+<!-- TWITTER CARD CONFIGURATION STARTS  -->
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:site" content="https://twitter.com/onlinecalculator" />
+<meta name="twitter:title" content="Exponential Regression Calculator | Find Exponential Function" />
+<meta name="twitter:description"
+    content="Online Exponential Regression Calculator finds the exponential function that best fits given data. Provide two data sets to get exponential regression equation." />
+<meta name="twitter:image:src"
+    content="https://onlinecalculator.guru/static/images/Chemistry/Exponential-Regresion-Calculator.jpeg" />
+<meta property="twitter:image:height" content="435" />
+<meta property="twitter:image:width" content="354" />
+<!-- TWITTER CARD CONFIGURATION ENDS  -->
+<!--  LINKEDIN CONFIGURATION STARTS-->
+<meta property='og:title' content="Exponential Regression Calculator | Find Exponential Function" />
+<meta property='og:image'
+    content="https://onlinecalculator.guru/static/images/Chemistry/Exponential-Regresion-Calculator.jpeg" />
+<meta property='og:description' content="Online Exponential Regression Calculator finds the exponential function that best fits given data. Provide two data sets to get exponential regression equation." />
+<meta property='og:url' content="https://www.linkedin.com/in/onlinecalculator/" />
+<!-- end of linkedin CONFIGURATIONS ENDS -->
+<!-- OPEN GRAPH CONFIGURATION ENDS -->
+<!-- FAQ SCHEMA STARTS -->
+<script type="application/ld+json">{"@context": "https://schema.org","@type": "FAQPage","mainEntity": [{"@type": "Question","name":"1.
+    How do you calculate exponential regression by hand?
+    ","acceptedAnswer": {"@type": "Answer","text":" To calculate the linear regression equation, we need to transform the data to allow a linear model. Find the linear model and transform data back along with the model to the original form."}	}, {"@type": "Question","name":"2.
+    Is exponential regression linear?
+    ","acceptedAnswer": {"@type": "Answer","text":" Exponential regression finds the equation of the exponential function(y=abx) that best fits the data. In linear regression, we find the equation (y=b+mx) that fits the best data. Therefore, exponential regression is non-linear."}	}, {"@type": "Question","name":"3.
+    What is the exponential regression model?
+    ","acceptedAnswer": {"@type": "Answer","text":" The exponential regression equation is y = a * bx. Where x is the explanatory variable, y is the response variable, and coefficients a ≠ 0, b > 0, b ≠ 1."}	}, {"@type": "Question","name":"4.
+    What is exponential regression used for?
+    ","acceptedAnswer": {"@type": "Answer","text":" Exponential regression is used to model situations where growth starts slowly and then accelerates rapidly without bound or decay begin rapidly and slows down to get closer to zero."}	}]}</script>
+{%endblock meta %}
+
+{% block content %}
+{% if x and y and ot %}
+<script>
+    $(document).ready(function () {
+
+        $("#hassle").click();
+        });
+</script>
+
+<button type="button" hidden id="hassle" onclick="location.href='#exponential_regression'">ans1</button>
+{% endif %}
+
+
+<div class="container" style="height: auto !important;">
+    <div class="card c1">
+        <div class="card-header">
+            <h1 class="h1">Exponential Regression Calculator</h1>
+        </div>
+        <div class="card-body">
+            <p>Using a user-friendly Exponential Regression Calculator helps to know the exponential regression equation that best fit the data set. Simply enter two data set values in the input boxes and tap on the calculate button to get the result in a matter of seconds with a lengthy explanation.</p>
+            <p><strong>Exponential Regression Calculator: </strong>It is one of the best devices that do all manual calculations, graphing and gives the exponential regression model for the given data set. And it also tells steps on how to calculate exponential regression equation that best fits data, exponential regression model definition, formulas and derivation. Also, check how is the process of finding the equation for the data is exponential regression.</p>
+            {% if messages %}
+            <ul class="messages">
+            {% for message in messages %}
+                <p {% if message.tags %} id="message_container" class="alert alert-danger text-center" {% endif %}
+                    style="color:red">{{ message }}</p>
+                {% endfor %}
+            </ul>
+            {% endif %}
+            <form action="{% url 'exponential_regression' %}" method="POST" id="my_form">
+                {% csrf_token %}
+                           
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1">x (sperated by comma)</span>
+            </div>
+            
+           <input style="margin-top: 5px;width:100%" id="x" name="x" value="{{x}}"   required="" oninput="validateNumber(this);" class="form-control" type="text" required width="48"> 
+       </div>
+
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1">y (sperated by comma)</span>
+            </div>
+            
+           <input style="margin-top: 5px;width:100%" id="y" name="y" value="{{y}}"   required="" oninput="validateNumber(this);" class="form-control" type="text" required width="48"> 
+       </div>
+        <div class=" center col mt-2 ">
+            <center><button type="submit" class="btn btn-primary">Calculate</button>
+              <a href="{% url 'exponential_regression' %}" class="btn btn-warning" role="button" style="margin-top:5px;">Reset</a>      
+            </center>
+          </div>
+    
+</form>
+</div>
+</div>
+</div>
+
+{% if x and y and ot %}
+<div class="container" style="height: auto !important;">
+<div class="card" id="exponential_regression">
+        <div class="card-header">
+            <h2 class="h2">Steps to Find Exponential Regression:</h2>
+        </div>
+
+        <div class="card-body">
+
+            <strong>Exponential Regression:-</strong>
+            <br>
+            <p class="btn btn-outline-secondary active text-justify">y = a * b<sup>x</sup></p>
+            <br>
+            <strong>Where:</strong>
+                <ul>
+                    <li>x is a elements of x.</li>
+                    <li>n is a number of elements.</li>
+                </ul>
+
+            <strong>Input values are:-</strong>
+            <p>x = {{x}}</p>
+            <p>y = {{y}}</p>
+            
+            <b>Put values in formula</b>
+            <p>log(y) = f2 + f1 (x)</p>
+            
+            <p>Applying e to both sides</p>
+            
+            <b>Exponential Regression y = {{e2}} x {{e1}}<sup>x</sup></b>           
+
+   </div>
+    </div>
+    <div class="card">
+        <div class="card-header">
+            <h2 class="h2">What is Exponential Regression Model?</h2>
+        </div>
+        <div class="card-body">
+   <p>The exponential regression aims to find an exponential curve that suits the given set of data points. It is similar to linear regression, where a straight line best fits the quadratic equation. There are a number of situations where the data follows neither parabola nor the straight line, but an exponential curve seems to be right. Here, the curve grows slowly in the starting and then accelerate rapidly. Some of the examples are radioactive decay, investment growth.</p>
+   <p>Suppose take x as the explanatory variable, y as the response variable.</p>
+   <p> The exponential regression equation will be<strong> y = a * b<sup>x</sup></strong>.</p>
+   <p> Where,</p>
+   <p> a ≠ 0</p>
+   <p>  b > 0 and b ≠ 1</p>
+   <p>  The coefficients are selected for the equation that corresponds to the exponential curve of best suits the data set (x1, y1), . . (xn, yn)</p>
+   <img src="https://drive.google.com/file/d/1F2nSpZhHpHqNGbLYWW09RSxFoiyFCCnn/view?usp=sharing" alt='exponential regression curve'>   
+</div>
+    </div>
+    <div class="card">
+        <div class="card-header">
+            <h3 class="h3">Steps to Find Exponential Regression</h3>
+        </div>
+        <div class="card-body">
+            <p>The following are the simple steps to calculate the exponential regression equation that suits the given data set.</p>
+            <ul>
+                <li>First of all, transform the data so that it allows a linear model.</li>
+                    <li>  Solve that linear model using the method of least squares.</li>
+                        <li> Again transform the data back to the original form.</li>
+                            <li> Substitute the data point values in formula y = exp(c) * exp(m * x).</li>
+            </ul>
+            </div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="h3">Exponential Regression Equation Formulas</h3>
+                </div>
+                <div class="card-body">
+                    <p>We know that exponential regression model equation should be in the form of <strong>y = a * b<sup>x</sup></strong>. And we have to determine how it is derived.
+                    </p><p>     Take a logarithm for both sides of equation</p>
+                    <p> log(y) = log(a * b<sup>x</sup>)</p>
+                    <p>   Using the logarith property log(y) = log(a) + log(b<sup>x</sup>)</p>
+                    <p>   log(y) = log(a) + x * log(b)</p>
+                    <p>    Here, log(y) is in the form of linear function of x with log(b) as slope and log(A) as intercept.</p>
+                    <p>    Find the best-fit line for (x, log(y))</p>
+                    <p>   log(y) = c + x * m</p>
+                    <p>   So, log(A) = c and log(b) = m</p>
+                    <p>   Therefore,<strong> a = exp(c) and b = exp(m)</strong></p>
+                    <p>So, exponential regression equation is <strong>y = exp(c) * exp(m * x)</strong>. </p>
+                    <p>   Avail free online calculators to learn inferential statistics, descriptive statistics, distributions and many more statistical concepts from our website <a href="https://statisticscalculators.net/">statisticscalculators.net</a>. You will also get instant results by using our handy calculator tools.
+    </p></div>
+    </div>
+    <div class="card">
+        <div class="card-header">
+            <h3 class="h3">FAQs on Exponential Regression Model Calculator</h3>
+        </div>
+        <div class="card-body">
+            <!-- Question & Answer Starts --->
+            <p class="question"><strong> 1. How do you calculate exponential regression by hand?</strong></p>
+            <p class="answer">To calculate the linear regression equation, we need to transform the data to allow a linear model. Find the linear model and transform data back along with the model to the original form.</p><hr>
+<p class="question"><strong>2. Is exponential regression linear?</strong></p>
+<p class="answer">Exponential regression finds the equation of the exponential function(y=abx) that best fits the data. In linear regression, we find the equation (y=b+mx) that fits the best data. Therefore, exponential regression is non-linear. </p><hr>
+<p class="question"><strong>3. What is the exponential regression model?</strong></p>
+<p class="answer">The exponential regression equation is y = a * b<Sup>x</sup>. Where x is the explanatory variable, y is the response variable, and coefficients a ≠ 0, b > 0, b ≠ 1. </p><hr>
+    <p class="question"><strong>4. What is exponential regression used for?</strong></p>
+    <p class="answer">Exponential regression is used to model situations where growth starts slowly and then accelerates rapidly without bound or decay begin rapidly and slows down to get closer to zero.</p>
+            </div>
+            </div>
+</div>
+    {% endif %}         
+<img src="{% static 'images/Statistics/exponential-regression-calculator.jpeg' %}" alt='exponential-regression-calculator'>         
+{% endblock content %}

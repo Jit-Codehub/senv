@@ -1,0 +1,353 @@
+{%extends 'base/statistics_base1.html'%}
+{%load static%}
+{%block meta%}
+<!-- HTML Defaults Broweser -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Bootstrap Stylesheet and Jquery, Google APIS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+<!-- Online Calculator Guru Site Fevicon -->
+<link rel="shortcut icon" href="https://onlinecalculator.guru/static/images/logo/Online-Calculator-Guru-Fevicon.png"
+    type="icon">
+<!-- Online Calculator Guru Project Style Sheet -->
+{%block css%}
+<link rel="stylesheet" href="https://onlinecalculator.guru/static/style.css">
+{%endblock%}
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+<!-- Meta Title, Description and Canonical URL Starts --->
+<title>Mann-Whitney U Test Calculator | How to Calculate Mann-Whitney U test?</title>
+<meta name="description"
+    content="Free Mann-Whitney U Test Calculator helps to perform Wilcoxon-Mann-Whitney test. It displays the data summary, test result with detailed steps. Give inputs to get answer." />
+<link rel="canonical" href="{{request.build_absolute_uri}}">
+<!-- Meta Title, Description and Canonical URL ENDS --->
+
+<!-- OPEN GRAPH CONFIGURATIONS STARTS -->
+<!--  FACEBOOK CONFIGURATION STARTS  -->
+<meta content="https://www.facebook.com/OnlineCalculator-Guru-131572098650589/" property="og:url" />
+<meta property="og:title" content="Mann-Whitney U Test Calculator | How to Calculate Mann-Whitney U test?" />
+<meta property="og:description" content="Free Mann-Whitney U Test Calculator helps to perform Wilcoxon-Mann-Whitney test. It displays the data summary, test result with detailed steps. Give inputs to get answer." />
+<meta content="" property="og:site_name" />
+<meta content="https://onlinecalculator.guru/static/images/Chemistry/Mann-Whitney-U-Test-Calculator.jpeg"
+    property="og:image" />
+<meta property="og:image:type" content="image/png" />
+<meta property="og:image:height" content="435" />
+<meta property="og:image:width" content="354" />
+<!--  FACEBOOK CONFIGURATION ENDS  -->
+<!-- TWITTER CARD CONFIGURATION STARTS  -->
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:site" content="https://twitter.com/onlinecalculator" />
+<meta name="twitter:title" content="Mann-Whitney U Test Calculator | How to Calculate Mann-Whitney U test?" />
+<meta name="twitter:description"
+    content="Free Mann-Whitney U Test Calculator helps to perform Wilcoxon-Mann-Whitney test. It displays the data summary, test result with detailed steps. Give inputs to get answer." />
+<meta name="twitter:image:src"
+    content="https://onlinecalculator.guru/static/images/Chemistry/Mann-Whitney-U-Test-Calculator.jpeg" />
+<meta property="twitter:image:height" content="435" />
+<meta property="twitter:image:width" content="354" />
+<!-- TWITTER CARD CONFIGURATION ENDS  -->
+<!--  LINKEDIN CONFIGURATION STARTS-->
+<meta property='og:title' content="Mann-Whitney U Test Calculator | How to Calculate Mann-Whitney U test?" />
+<meta property='og:image'
+    content="https://onlinecalculator.guru/static/images/Chemistry/Mann-Whitney-U-Test-Calculator.jpeg" />
+<meta property='og:description' content="Free Mann-Whitney U Test Calculator helps to perform Wilcoxon-Mann-Whitney test. It displays the data summary, test result with detailed steps. Give inputs to get answer." />
+<meta property='og:url' content="https://www.linkedin.com/in/onlinecalculator/" />
+<!-- end of linkedin CONFIGURATIONS ENDS -->
+<!-- OPEN GRAPH CONFIGURATION ENDS -->
+<!-- FAQ SCHEMA STARTS -->
+<script type="application/ld+json">{"@context": "https://schema.org","@type": "FAQPage","mainEntity": [{"@type": "Question","name":"1.
+    How do you calculate Mann-Whitney U Test?
+    ","acceptedAnswer": {"@type": "Answer","text":" To find the Mann-Whitney U Test of two populations, enter the population data set, select tail and significance level from the provided input sections and hit the calculate button."}	}, {"@type": "Question","name":"2.
+    What is Mann-Whitney U Test used for?
+    ","acceptedAnswer": {"@type": "Answer","text":" The Mann-Whitney U Test is used for comparing whether there is a difference in the dependent variable for two independent groups. It also compares whether the distribution of the dependent variable is the same for two groups and for the same population."}	}, {"@type": "Question","name":"3.
+    Is Mann-Whitney U Test paired?
+    ","acceptedAnswer": {"@type": "Answer","text":" The Mann-Whitney U Test is a non-parametric test that is used in place of an unpaired t-test. It is used to test the null hypothesis that two samples come from the same population."}	}, {"@type": "Question","name":"4.
+    What is the difference between the Mann-Whitney U and Wilcoxon rank-sum tests?
+    ","acceptedAnswer": {"@type": "Answer","text":" The Mann-Whitney U test and Wilcoxon rank-sum tests are the same. So, the Mann-Whitney U test is also called as Mann-Whitney-Wilcoxon test. Though we can find two different test statistics, it turns out they are closely related. No matter, tests are the same."}	}]}</script>
+{%endblock%}
+{%block content%}
+
+
+<style>
+  input {
+      text-align: right;
+  }
+</style>
+
+{%if go_to %}
+<a href="{{go_to}}" id="ddd"></a>
+{%endif%}
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+  document.getElementById('ddd').click();
+  });
+</script>
+
+    <div class="container" style="height: auto !important;">
+      <div class="card c1">
+          <div class="card-header">
+              <h1 class="h1">Mann Whitney U test Calculator</h1>
+          </div>
+          <div class="card-body">
+              <p>Make use of online and handy Mann-Whitney U Test Calculator tool to compute Mann Whitney U test for the given population data. All you need to do is enter data values in the provided input boxes and select tail and significant level sections and tap on the calculate button to avail Wilcoxon-Mann-Whitney test result along with other details.</p>
+             <p><strong>Mann Whitney U test Calculator: </strong>Do you really need help to perform  Mann-Whitney U Test for the population data set? If yes, then you are at the correct place. We have included the best Mann-Whitney U Test Calculator that is useful to perform either Wilcoxon rank-sum test or the Mann-Whitney U test easily. Check the following sections to learn about the complete details of the Mann-Whitney U test like its definition, interpretation, and steps to calculate the Mann-Whitney U test. Get the worked out questions and Mann-Whitney U test formulas.</p>
+              <ul class="messages">
+                  {% for message in messages %}
+                  <p {% if message.tags %} id="message_container" class="alert alert-danger text-center" {% endif %}
+                      style="color:red">{{ message }}</p>
+                  {% endfor %}
+              </ul>
+  
+              <form action="" method="POST" action="" >
+                  {% csrf_token %}
+                    <div class="col-auto">
+                    <div class="input-group mb-2">
+                      <div class="input-group-prepend">
+                          <div class="input-group-text"><strong>Data 1:</strong></div>
+                      </div>
+                      <input type="text" name="data1"  class="form-control" id="inlineFormInputGroup" placeholder="Enter Data1..." value="{{ data1 }}" autofocus required>
+                   
+                  </div>
+
+                  <div class="input-group mb-2">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text"><strong>Data 2:</strong></div>
+                    </div>
+                    <input type="text" name="data2"  class="form-control" id="inlineFormInputGroup" placeholder="Enter Data2..." value="{{ data2 }}" autofocus required>
+                 
+                </div>
+                <div class="input-group mb-2">
+                <div class="input-group-prepend">
+                  <div class="input-group-text"><strong>Tail:</strong></div>
+              </div>
+              <select name="tail" id="inlineFormInputGroup"  class="form-control"
+                   autofocus=""  value="{{tail}}">
+                  
+                   <option value="two">two tailed test</option>
+                   <option value="less">one tailed test - lower</option>
+                   <option value="more">one tailed test - larger</option>
+
+              </select>
+          </div>
+          <div class="input-group mb-2">
+
+                        <div class="input-group-prepend">
+                          <div class="input-group-text"><strong>Significant Level:</strong></div>
+                      </div>
+                      <select name="significance" id="inlineFormInputGroup"  class="form-control"
+                          autofocus=""  value="{{significance}}">
+                          
+                          <option value="0.05">0.05</option>
+                          <option value="0.1">0.1</option>
+
+                      </select>
+                  </div>
+
+                <div class="center col mt-2">
+                  <center><button type="submit" class="btn btn-primary" name="f1">Calculate</button>
+                      <button type="button" onclick="myFunction()" style="margin-top:5px;"
+                          class="btn btn-danger">Reset</button>
+                  </center>
+                </div>
+              
+              </form>   
+          </div>
+        </div>
+      
+    
+
+  <div id="clear" >
+    
+    {% if errors or results %}
+    <div class="card" id="mann-whiteny-u-test-calculator">
+        <div class="card-header">
+            <h2 class="h2">Step to calculate result</h2>
+        </div>
+        <div class="card-body">
+          {% for error in errors %}
+            <h4>{{ error }}</h4>
+          {% endfor %}
+          <br>
+          <h4>Data Input:</h4>
+          {% for d in Datas %}
+            <h5>{{ d }}</h5>
+          {% endfor %}
+          <div>
+            {% if results %}
+              <h2>Data Summary</h2>
+              <div id="stat">
+                <table class="table table-striped">
+                  <thead>
+                    <tr>
+                      <th> </th>
+                      <th>Data 1</th>
+                      <th>Data 2</th>
+                    </tr>
+                  </thead>
+                  {% for s in Stats%}
+                    <tr>
+                      <td>{{ s.0 }}</td>
+                      <td>{{ s.1 }}</td>
+                      <td>{{ s.2 }}</td>
+                    </tr>
+                  {% endfor %}
+                </table>
+              </div>
+              <br>
+              <h2>Test Result</h2>
+              <h5>{{Tails}} Test at &alpha; = {{Sig_level}}</h5>
+              <br>
+              <div id="results">
+                <table class="table table-striped">
+                  <thead>
+                    <tr>
+                      <th>Item</th>
+                      <th>Value</th>
+                    </tr>
+                  </thead>
+                  {% for result in results%}
+                    <tr>
+                      <td>{{ result.0 }}</td>
+                      <td>{{ result.1 }}</td>
+                    </tr>
+                  {% endfor %}
+                </table>
+              </div>
+            {% endif %}
+          </div>
+          
+        </div>
+    </div>
+        
+    {% endif %}
+</div>
+</div>
+
+
+<script>
+  document.getElementsByName("data1")[0].value = "1 2 3 4 5 6";
+  document.getElementsByName("data2")[0].value = "1 2 3 4 5 6";
+
+  
+  {% if id == 1 %}
+   
+  var scrollDiv = document.getElementById("clear").offsetTop;
+  window.scrollTo({ top: scrollDiv, behavior: 'smooth'});
+  
+  {%endif%} 
+  
+      
+  
+  
+      var validNumber = new RegExp(/^\d*\.?-?\d*$/);
+      var fist_input = document.getElementById("inlineFormInputGroup").value;
+      function validateNumber(elem) {
+          console.log(elem)
+          if (validNumber.test(elem.value)) {
+              fist_input = elem.value;
+          } else {
+              elem.value = fist_input;
+          }
+      }
+  </script>
+  
+  <script>
+      function myFunction() {
+  
+          document.getElementsByName("data1")[0].value = "";
+          document.getElementsByName("data2")[0].value = "";
+          document.getElementsByName("tail")[0].value = "two tailed test";
+          document.getElementsByName("significance")[0].value = "0.05";
+          document.getElementById("clear").innerHTML = "";
+  
+  
+          
+  
+  
+  
+      }
+  </script>
+  <br>
+  <div class="card">
+    <div class="card-header">
+        <h2 class="h2">What is the Mann-Whitney U test?</h2>
+    </div>
+    <div class="card-body">
+<p>The Mann-Whitney U test is a process that can be used when we have two independent samples and want to know if they come from the same distribution or from shifted distributions.</p>
+<p>The Mann-Whitney U test is also called as  Wilcoxon-Mann-Whitney test as this was first proposed by Wilcoxon and later developed by Mann and Whitney. This process makes use of the test statistic U.</p>
+</div></div>
+<div class="card">
+    <div class="card-header">
+        <h3 class="h3">Mann-Whitney U Test nterpretation</h3>
+    </div>
+    <div class="card-body"> 
+<p>   The null hypothesis of the Mann-Whitney U test if two populations have the same distribution, then those two populations have equal medians. In the case of rejectance of the null hypothesis means we have evidence that the population distributions are shifted with respect to each other, so are their medians. Three possible alternatives of the distributions are listed here:
+</p><ul><li>   The first distribution is shifted to the right with respect to the second distribution. So, the median of the first population is greater than the median of the second population.
+  </li><li>  The first distribution is shifted to the right or left with respect to the second distribution. The median of the first population is different from the median of the second population.
+ </li><li>   The first distribution is shifted to the left with respect to the second distribution. The median of the first population is lesser than the median of second population.
+ </li></ul>
+ </div></div>
+ <div class="card">
+    <div class="card-header">
+        <h3 class="h3">How to Calculate the Mann-Whitney U test?</h3>
+    </div>
+    <div class="card-body">
+        <p>Go through the detailed step by step process to perform the Mann-Whitney U test and get the result easily.</p>
+        <ul>
+            <li>Compute the test statistics: Compare each observation from both data sets. Count the number of observations in every data set.</li>
+            <li>Find the mean, standard deviation and median of data sets by using the formulas.</li>
+            <li>  If the size of the sample is too small, then compare U with the critical value, which is obtained in statistical packages or statistical tables.</li>
+            <li>  When the data samples are large, then use the normal approximation of the test distribution.</li>
+        </ul>
+        </div></div>
+        <div class="card">
+            <div class="card-header">
+                <h3 class="h3">Formulas to Perform Mann-Whitney U test</h3>
+            </div>
+            <div class="card-body">
+                <p>Here we are providing the formulas that helps to calculate the Mann-Whitney U test using any of the following ways.</p>
+                <p><strong>Test Statistics</strong></p>
+<p>The test statistic in Mann-Whitney U test formula is<strong> U<sub>1</sub> = ∑ᵢ∑ⱼ S(Aᵢ, Bⱼ)∑ᵢ∑ⱼ S(Aᵢ, Bⱼ)</strong></p>
+<p>   Where,</p>
+<p>   Aᵢ and Bⱼ are the data samples observations</p>
+<p>  S(Aᵢ, Bⱼ) = 1 means Aᵢ > Bⱼ</p>
+<p>  S(Aᵢ, Bⱼ) = 0 means Aᵢ < Bⱼ</p>
+    <p>  S(Aᵢ, Bⱼ) = ½ means Aᵢ = Bⱼ</p>
+    <p> And<strong> U<sub>1</sub> = R₁ - n₁(n₁ + 1)/2</strong></p>
+                <p><strong>Normal Approximation</strong></p>
+                <ul>
+                    <li><strong>Mean μ = n₁n₂ / 2</li>
+                        <li> Standard deviation σ = √(n₁n₂(n₁ + n₂ + 1) / 12)</li>
+                        <li> Normalised test statistic z = (U₁ - μ) / σ</strong></li>
+                </ul>
+                <p><strong>Critical values for the Mann-Whitney U test</strong></p>
+                <p>The critical value depends on the alternative hypothesis.</p>
+                <ul>
+                    <li>If A ≠ B, then U₁ is unusually small or unusually large. So, the critical region is two-sided i.e (-∞, c₁] ∪ [c₂, ∞) and c₁, c₂ are critical values.</li>
+                    <li>     If A > B, then sample A observations are greater than sample B observations. Hence, U₁ is unusually large, and so the critical region is right-sided, i.e., [c, ∞).</li>
+                    <li>   If A < B, then the sample B observations are less than sample A observations. Therefore, U₁ is unusually small, and so the critical region is left-sided, i.e., (∞, c].</li>
+                </ul>
+                <p>Want to explore more statistics concepts and make all your calculations much easier and faster then check our website <a href="/">statisticscalculators.net</a> and access which calculator you need.</p>
+    <div class="card">
+    <div class="card-header">
+        <h3 class="h3">FAQs on Mann-Whitney U test Calculator</h3>
+    </div>
+    <div class="card-body">
+        <!-- Question & Answer Starts --->
+        <p class="question"><strong>  1. How do you calculate Mann-Whitney U Test?</strong></p>
+            <p class="answer">To find the Mann-Whitney U Test of two populations, enter the population data set, select tail and significance level from the provided input sections and hit the calculate button.</p><hr>
+<p class="question"><strong>2. What is Mann-Whitney U Test used for?</strong></p>
+    <p class="answer">The Mann-Whitney U Test is used for comparing whether there is a difference in the dependent variable for two independent groups. It also compares whether the distribution of the dependent variable is the same for two groups and for the same population. </p><hr>
+<p class="question"><strong>3. Is Mann-Whitney U Test paired?</strong></p>
+    <p class="answer">The Mann-Whitney U Test is a non-parametric test that is used in place of an unpaired t-test. It is used to test the null hypothesis that two samples come from the same population.</p><hr>
+<p class="question"><strong>4. What is the difference between the Mann-Whitney U and Wilcoxon rank-sum tests?</strong></p>
+    <p class="answer">The Mann-Whitney U test and Wilcoxon rank-sum tests are the same. So, the Mann-Whitney U test is also called as Mann-Whitney-Wilcoxon test. Though we can find two different test statistics, it turns out they are closely related. No matter, tests are the same.</p>
+  </div>
+  </div>
+</div>
+
+{% endblock %}

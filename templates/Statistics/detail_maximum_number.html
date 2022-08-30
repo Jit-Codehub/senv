@@ -1,0 +1,171 @@
+{%extends 'base/statistics_base3.html'%}
+{%load static%}
+  {%block meta%}
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+  <link rel="shortcut icon" href="{% static 'images/logo/Online-Calculator-Guru-Fevicon.png' %}" type="icon">
+  {%block css%}
+  <link rel="stylesheet" href="{% static 'style.css' %}">
+  {%endblock%}
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <!-- META DATA STARTS --->
+    <title>Maximum Calculator | Free Tool to Calculate Max Value of {{inputEnter}}</title>
+    <meta name="description" content="Maximum Calculator is a handy tool to find out the maximum value of the given data set ie., {{inputEnter}} & provide the output as {{finalAnswer}} within a short span.">
+    <link rel="canonical" href="{{request.build_absolute_uri}}" >
+<!-- META DATA ENDS --->
+
+<!-- OPEN GRAPH CONFIGURATIONS STARTS -->
+    <!--  FACEBOOK CONFIGURATION STARTS  -->
+    <meta content="https://www.facebook.com/OnlineCalculator-Guru-131572098650589/" property="og:url" />
+    <meta property="og:title" content="Maximum Calculator | Free Tool to Calculate Max Value of {{inputEnter}}"/>
+    <meta property="og:description" content="Maximum Calculator is a handy tool to find out the maximum value of the given data set ie., {{inputEnter}} & provide the output as {{finalAnswer}} within a short span."/>
+    <meta content="" property="og:site_name" />
+    <meta  content="https://onlinecalculator.guru/static/images/Statistics/Maximum-Number-Calculator.jpeg" property="og:image" />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:height" content="435" />
+    <meta property="og:image:width" content="354" />
+    <!--  FACEBOOK CONFIGURATION ENDS  -->
+    <!-- TWITTER CARD CONFIGURATION STARTS  -->
+    <meta name="twitter:card" content="summary"/>
+    <meta name="twitter:site" content="https://twitter.com/onlinecalculator"/>
+    <meta name="twitter:title" content="Maximum Calculator | Free Tool to Calculate Max Value of {{inputEnter}}"/>
+    <meta name="twitter:description" content="Maximum Calculator is a handy tool to find out the maximum value of the given data set ie., {{inputEnter}} & provide the output as {{finalAnswer}} within a short span."/>
+    <meta name="twitter:image:src" content="https://onlinecalculator.guru/static/images/Statistics/Maximum-Number-Calculator.jpeg"/>
+    <meta property="twitter:image:height" content="435"/>
+    <meta property="twitter:image:width" content="354"/>
+    <!-- TWITTER CARD CONFIGURATION ENDS  -->
+    <!--  LINKEDIN CONFIGURATION STARTS-->
+    <meta property='og:title' content="Maximum Calculator | Free Tool to Calculate Max Value of {{inputEnter}}"/>
+    <meta property='og:image' content="https://onlinecalculator.guru/static/images/Statistics/Maximum-Number-Calculator.jpeg"/>
+    <meta property='og:description' content="Maximum Calculator is a handy tool to find out the maximum value of the given data set ie., {{inputEnter}} & provide the output as {{finalAnswer}} within a short span."/>
+    <meta property='og:url' content="https://www.linkedin.com/in/onlinecalculator/" />
+    <!-- end of linkedin CONFIGURATIONS ENDS -->
+<!-- OPEN GRAPH CONFIGURATION ENDS -->
+<!-- FAQ SCHEMA STARTS -->
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is Maximum value for the set of numbers {{inputEnter}}?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The maximum value for the given data set ie., {{inputEnter}} is {{finalAnswer}}."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I find the max number easily?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes, it is quite simple to find the max value by making use of our maximum calculator. Just provide the input data set ie., {{inputEnter}} and get the result ie., {{finalAnswer}} in a fraction of seconds."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How can I learn to find the maximum value for the given set of data?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "All you need to do is simply go through with this page and have a glimpse at the detailed solution given over here to learn the process of finding maximum values easily by hand."
+        }
+      }]
+  }
+</script>
+{%endblock%}
+{%block content%}
+<div class="container">
+    <div class="card c1">
+      <div class="card-header">
+  <h1 class="h1">Maximum Number of {{inputEnter}}</h1>
+  </div>
+  <div class="card-body">
+    <p>Take the support of our <a href="{% url 'maximum-number' %}">Maximum Calculator</a> and effortlessly calculate the maximum value for the given set of numbers ie., {{inputEnter}} & finally get the result ie., {{finalAnswer}} in a blink of an eye along with detailed solution steps.</p>
+    <p><b>Ex:</b> 32,45,12,17,43,68,75,8,11,29</p>
+    <form action="{% url 'maximum-number' %}" method="POST" id="my_form" name="reg_to_scientific" onsubmit="go();">
+        {% csrf_token %}
+        <div class="form-row align-items-center">
+          <div class="col-auto">
+            <label class="sr-only" for="inlineFormInputGroup">Maximum Number</label>
+            <div class="input-group mb-2">
+              <div class="input-group-prepend">
+                <div class="input-group-text"><strong>Maximum Number of: </strong></div>
+              </div>
+              <input type="text" class="form-control" name="input1" id="inlineFormInputGroup" placeholder="Enter number" value="{{inputEnter}}">
+            </div>
+          </div>
+          <div class="col-auto">
+            <button type="submit" class="btn btn-primary mb-2">Calculate</button>
+          </div>
+        </div>
+    </form>
+</div></div>
+<div class="card">
+    <div class="card-header">
+<h2 class="h2">Stepwise Solution for Finding the Maximum of {{inputEnter}}</h2>
+</div>
+<div class="card-body">
+{% autoescape off %}
+{{ detailStep }}
+{% endautoescape %}
+</div>
+</div>
+<div class="row">
+  <div class="col-sm-6">
+    <div class="card">
+      <div class="card-header"><h3 class="h3">Maximum of Numbers Examples</h3></div>
+      <div class="card-body">
+        <ul>
+          {% for i,j in example1 %}
+          <li><a  href="{{i}}" title="{{j}}">{{j}}</a></li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-6">
+    <div class="card">
+      <div class="card-header"><h3 class="h3">Minimum of Numbers Examples</h3></div>
+      <div class="card-body">
+        <ul>
+          {% for i,j in example2 %}
+          <li><a  href="{{i}}" title="{{j}}">{{j}}</a></li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="card">
+  <div class="card-header">
+    <h3 class="h3">Frequently Asked Questions on Maximum Number of {{inputEnter}}</h3>
+  </div>
+  <div class="card-body">
+      <p class="question"><strong>1. What is Maximum value for the set of numbers {{inputEnter}}?</strong></p>
+      <p class="answer">The maximum value for the given data set ie., {{inputEnter}} is {{finalAnswer}}.</p><hr>
+
+
+        <p class="question"><strong>2. Can I find the max number easily?</strong></p>
+        <p class="answer">Yes, it is quite simple to find the max value by making use of our maximum calculator. Just provide the input data set ie., {{inputEnter}} and get the result ie., {{finalAnswer}} in a fraction of seconds.</p><hr>
+
+
+        <p class="question"><strong>3. How can I learn to find the maximum value for the given set of data?</strong></p>
+        <p class="answer">All you need to do is simply go through with this page and have a glimpse at the detailed solution given over here to learn the process of finding maximum values easily by hand.</p><hr>
+  </div>
+</div>
+</div>
+<!-- <div class="card">
+  <div class="card-header"><h2>More Examples</h2></div>
+  <div class="card-body">
+    {%for post1 in post%}
+      <li><a href="{% url 'maximum-number-detail' post1.slug %}">{{post1.solutionTitle}}</a></li>
+      {%endfor%}
+  </div>
+</div> -->
+{%endblock%}

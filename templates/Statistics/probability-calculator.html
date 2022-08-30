@@ -1,0 +1,241 @@
+{%extends 'base/statistics_base2.html'%}
+{%load static%}
+{%block meta%}
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+  <link rel="shortcut icon" href="{% static 'images/logo/Chemistry-Calc.png' %}" type="icon">
+  {%block css%}
+  <link rel="stylesheet" href="{% static 'style.css' %}">
+  {%endblock%}
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+	<!-- META DATA STARTS --->
+    <title>Probability Calculator Tool| How to Calculate the Probability?</title>
+	<meta name="description" content="Probability Calculator is the best tool to calculate the multiple events of probability and get the detailed information. Get the answers quickly using probability calculator.">
+	<link rel="canonical" href="{{request.build_absolute_uri}}">
+<!-- META DATA ENDS --->
+ 
+<!-- OPEN GRAPH CONFIGURATIONS STARTS -->
+	<!--  FACEBOOK CONFIGURATION STARTS  -->
+	<meta content="https://www.facebook.com/OnlineCalculator-Guru-131572098650589/" property="og:url" />
+	<meta property="og:title" content="Probability Calculator Tool| How to Calculate the Probability?"/>
+	<meta property="og:description" content="Probability Calculator is the best tool to calculate the multiple events of probability and get the detailed information. Get the answers quickly using probability calculator."/>
+	<meta content="" property="og:site_name" />
+	<meta  content="https://Onlinecalculator.guru/static/images/statistics/Probability-Calculator.jpeg" property="og:image" />
+	<meta property="og:image:type" content="image/png" />
+	<meta property="og:image:height" content="435" />
+	<meta property="og:image:width" content="354" />
+	<!--  FACEBOOK CONFIGURATION ENDS  -->
+	<!-- TWITTER CARD CONFIGURATION STARTS  -->
+	<meta name="twitter:card" content="summary"/>
+	<meta name="twitter:site" content="https://twitter.com/onlinecalculator"/>
+	<meta name="twitter:title" content="Probability Calculator Tool| How to Calculate the Probability?"/>
+	<meta name="twitter:description" content="Probability Calculator is the best tool to calculate the multiple events of probability and get the detailed information. Get the answers quickly using probability calculator."/>
+	<meta name="twitter:image:src" content="https://Onlinecalculator.guru/static/images/statistics/Probability-Calculator.jpeg"/>
+	<meta property="twitter:image:height" content="435"/>
+	<meta property="twitter:image:width" content="354"/>
+	<!-- TWITTER CARD CONFIGURATION ENDS  -->
+	<!--  LINKEDIN CONFIGURATION STARTS-->
+	<meta property='og:title' content="Probability Calculator Tool| How to Calculate the Probability?"/>
+	<meta property='og:image' content="https://Onlinecalculator.guru/static/images/statistics/Probability-Calculator.jpeg"/>
+	<meta property='og:description' content="Probability Calculator is the best tool to calculate the multiple events of probability and get the detailed information. Get the answers quickly using probability calculator."/>
+	<meta property='og:url' content="https://www.linkedin.com/in/onlinecalculator/" />
+	<!-- end of linkedin CONFIGURATIONS ENDS -->
+<!-- OPEN GRAPH CONFIGURATION ENDS -->
+<!-- FAQ SCHEMA STARTS -->
+<script type="application/ld+json">{"@context": "https://schema.org","@type": "FAQPage","mainEntity": [{"@type": "Question","name":"1
+    How to use probability Calculator?
+    ","acceptedAnswer": {"@type": "Answer","text":" 
+    Use the probability calculator by giving the inputs in the input fields and press the calculate button to get the answer in fraction of seconds."}	}, {"@type": "Question","name":"2
+    What is probabiity?
+    ","acceptedAnswer": {"@type": "Answer","text":" 
+    Probability is defined as the likelihood of occurance of an event. In simple words, we can say that probability is the ratio of the number of favourable outcomes to the total number of outcomes of an event."}	}, {"@type": "Question","name":"3
+    What is the best tool to calculate the probability?
+    ","acceptedAnswer": {"@type": "Answer","text":"
+    Probability calculator is the best tool to calculate the possibility of outcomes, and that tool is available in <a href="https:/statisticscalculator.net/">Statisticscalculator.net</a>"}	}, {"@type": "Question","name":"4
+    How to calculate the Probability?
+    ","acceptedAnswer": {"@type": "Answer","text":"
+    Probability can be calculated by using the formula, i.e. P(E) = n(E) / n(S)"}	}]}</script>
+{%endblock%}
+{%block content%}
+<script>
+  $(document).ready(function(){
+   $(".btn-danger").on("click",function(){
+     $(".form-control").attr("value","");
+
+    });
+   });
+</script>
+<div class="container">
+    <div class="card c1">
+  	<div class="card-header">
+  <h1 class="h1">Probability Calculator</h1>
+  </div>
+  <div class="card-body">
+    <p>Get this handy probability calculator tool to compute the ratio of all favorable results to the number of all possible outcomes. Simply you need to give the input values in the mentioned boxes and then click on the calculate button to get the answer instantaneously. </p>
+    {% autoescape off %}
+    {% if messages %}
+        {% for message in messages %}
+                <div class="row">
+                    <div class="col-md-6">
+                        <p class="alert alert-danger">{{message}}</p>
+                    </div>
+                </div>
+        {% endfor %}
+        {% endif %}
+{%endautoescape%}
+<form action="{% url 'probability' %}" id="myForm" class="center"onsubmit="return validate()" method="post">
+    {% csrf_token %}
+      <div class="input-group mb-2 mt-3">
+            <div class="input-group-prepend">
+          <div class="input-group-text"><strong>P(A):</strong></div>
+              <input type="text" id="inlineFormInputGroup"  name="a" value="{{ a }}" oninput="validateNumber1(this);" size="250" placeholder="Enter the Number " class="form-control" required></div>
+      </div>
+      <div class="input-group mb-2 mt-3">
+            <div class="input-group-prepend">
+          <div class="input-group-text"><strong>P(B):</strong></div>
+              <input type="text" id="inlineFormInputGroup"  name="b" value="{{ b }}" oninput="validateNumber1(this);" size="250" placeholder="Enter the Number" class="form-control" required></div>
+      </div>
+          <div class=" center col mt-2 ">
+          <center><button type="submit" class="btn btn-primary"  class="form-control" >Calculate</button>
+          <button type="button" onclick="this.form.reset()" style="margin-top:5px;" class="btn btn-danger" class="form-control">Reset</button>
+          </center>
+      </div>
+      <div class="input-group mb-2 mt-3">
+            <div class="input-group-prepend">
+          <div class="input-group-text"><strong>P(A∩B):</strong></div>
+              <input type="text" id="inlineFormInputGroup"  disabled value="{{ c }}" oninput="validateNumber1(this);" size="250"  class="form-control" required></div>
+      </div>
+    <div class="input-group mb-2 mt-3">
+            <div class="input-group-prepend">
+                <div class="input-group-text"><strong>P(A∪B):</strong></div>
+              <input type="text" disabled id="inlineFormInputGroup" value="{{ d }}" oninput="validateNumber(this);" class="form-control" required></div>
+          </div>
+      <div class="input-group mb-2 mt-3">
+            <div class="input-group-prepend">
+                <div class="input-group-text"><strong>P(A∆B):</strong></div>
+              <input type="text" disabled id="inlineFormInputGroup" value="{{ e }}" oninput="validateNumber(this);" class="form-control" required></div>
+          </div>
+  <div class="input-group mb-2 mt-3">
+            <div class="input-group-prepend">
+                <div class="input-group-text"><strong>P((A∪B)')</strong></div>
+              <input type="text" disabled id="inlineFormInputGroup" value="{{ f }}" oninput="validateNumber(this);" class="form-control" required></div>
+          </div>
+  <div class="input-group mb-2 mt-3">
+            <div class="input-group-prepend">
+                <div class="input-group-text"><strong>P(A')</strong></div>
+              <input type="text" disabled id="inlineFormInputGroup" value="{{ g }}" oninput="validateNumber(this);" class="form-control" required></div>
+          </div>
+  <div class="input-group mb-2 mt-3">
+            <div class="input-group-prepend">
+                <div class="input-group-text"><strong>P(B')</strong></div>
+              <input type="text" disabled id="inlineFormInputGroup" value="{{ h }}" oninput="validateNumber(this);" class="form-control" required></div>
+          </div>
+
+  </form>
+    <p><b>Probability Calculator:</b> Calculating probability is always daunting!! It will not be same anymore, use this probability calculator tool that gives the single and multiple event probability and get the instant outcomes. We have discussed all useful information to get more knowledge about this probability.</p> 
+    </div>
+  </div>
+ <div class="card">
+   <div class="card-header">
+      <h2 class="h2">What is Meant by Probability?</h2>
+    </div>
+    <div class="card-body">
+     <p> In Statistics, probability states that the ratio of no.of favorable outcomes to the total number of outcomes of an event. probability is the number always lies between 0 and 1. And in this 1 is considered to be possibility(true) and 0 is considered to be impossibility (false). we will use the probability to predict the outcomes. </p>
+     <p><b>Formula for Probability</b></p>
+     <p><img src="https://drive.google.com/file/d/1Ov24L7BHDKii6RW1iBv7G5-IWhQq9RzQ/view?usp=sharing" alt='probability formula'></p>
+     <p>P(E) = n(E) / n(S)</p>
+    </div>
+  </div>
+    <div class="card">
+       <div class="card-header">
+          <h3 class="h3">Probability Formulas With Two Events</h3>
+       </div>
+       <div class="card-body">  
+        <p>Let us see the formulas with two events to get the output.</p>
+        <p>1. A∩B consists of set of elements that are common in A and B.</p>
+        <p>Formula: <b>P(A∩B) = P(A) × P(B)</b></p>
+        <p>2. A∪B consists of the set of elements that are present in A and B.</p>
+        <p>Formula:<b>P(A∪B) = P(A) + P(B) - P(A∩B)</b> </p>
+        <p>3. A∆B is the symmetric difference between AUB and A∩B.</p>
+        <p>Formula:<b>P(A∆B) = (A U B) – (A ∩ B) </b></p>
+        <p>4. (A∪B)' is the intersection of complement of A and complement of B.</p>
+        <p>Formula: <b>P(((A∪B)') = A'∩ B'</b></p>
+        <p>5. A' is defined as the set of elements that is available in A and not in B.</p>
+        <p>Formula:<b> A'= 1-P(A)</b></p>
+        <p>6. B' is defined as the set of elements that is available in B and not in A.</p>
+        <p>Formula: <b>B'= 1-P(B)</b></p>
+       </div>
+    </div>
+    <div class="card">
+       <div class="card-header">
+          <h3 class="h3">How to Find Probability?</h3>
+       </div>
+      <div class="card-body"> 
+          <p>By following these steps we can do the probability easily without any hard work.</p>
+          <ul>
+              <li>First and foremost thing you need to do is write down the sets given in the question.</li>
+              <li>Then, Look at the problem for what you need to find.</li>
+              <li>Simply, apply the needed formula and simplify it.</li>
+              <li>That's it, you will get the answer accurately.</li>
+          </ul>
+        </div>
+    </div>
+    <div class="card">
+       <div class="card-header">
+          <h3 class="h3">Probability Examples</h3>
+       </div>
+      <div class="card-body"> 
+          <p><b>Question 1:</b> Find the probability of the events for P(A)=2, P(B) = 5?</p>
+          <p><b>Solution</b></p>
+          <p>Given, P(A)=2, P(B) = 5</p>
+          <p>Formulas of Multiple Events.</p>
+          <p><b>P(A∩B) = P(A) × P(B)</b></p>
+          <p> = 2 x 5 = 10</p>
+          <p><b>P(A∪B) = P(A) + P(B) - P(A∩B)</b></p>
+          <p> = 2 + 5 - 10 = -3</p>
+          <p><b>P(A∆B) = (A U B) – (A ∩ B)</b></p>
+          <p> = -3+10 = 7 </p>
+          <p><b>A'= 1-P(A)</b></p>
+          <p> = 1-2 =-1</p>
+          <p><b>B'= 1-P(B)</b></p>
+          <p> = 1-5 =-4</p>
+          <p><a href="https:/statisticscalculators.net/">Statisticscalculators.net</a> is the best website for all the statistics calculators. Use them and get knowledge about all the information. </p>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-header">
+            <h3 class="h3">Frequently Asked Questions on Probability</h3>
+        </div>
+        <div class="card-body">
+            <!-- Question & Answer Starts --->
+          <p class="question"><strong>1. How to use probability Calculator?</strong></p>
+          <p class="answer">Use the probability calculator by giving the inputs in the input fields and press the calculate button to get the answer in fraction of seconds.</p><hr>
+          <p class="question"><strong>2. What is probability?</strong></p>
+          <p class="answer">Probability is defined as the likelihood of occurence of an event. In simple words, we can say that probability is the ratio of the number of favorable outcomes to the total number of outcomes of an event.</p><hr>
+          <p class="question"><strong>3. What is the best tool to calculate the probability?</strong></p>
+          <p class="answer">Probability calculator is the best tool to calculate the possibility of outcomes, and that tool is available in <a href="https:/statisticscalculators.net/">Statisticscalculators.net</a></p><hr>
+          <p class="question"><strong>4. How to calculate the Probability?</strong></p>
+          <p class="answer">Probability can be calculated by using the formula, i.e. P(E) = n(E) / n(S)</p>
+        </div>
+    </div>
+</div>
+<script>
+    var validNumber = new RegExp(/^\d*\.?\d*$/);
+    var fist_input = document.getElementById("inlineFormInputGroup").value;
+    function validateNumber(elem) {
+      if (validNumber.test(elem.value)) {
+        fist_input = elem.value;
+      } else {
+        elem.value = fist_input;
+      }
+    }
+</script>
+
+
+
+{%endblock%}

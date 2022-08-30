@@ -1,0 +1,205 @@
+{%extends 'base/statistics_base1.html'%}
+{%load static%}
+  {%block meta%}
+    <!-- HTML Defaults Broweser -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Bootstrap Stylesheet and Jquery, Google APIS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <!-- Online Calculator Guru Site Fevicon -->
+    <link rel="shortcut icon" href="https://onlinecalculator.guru/static/images/logo/Online-Calculator-Guru-Fevicon.png" type="icon">
+    <!-- Online Calculator Guru Project Style Sheet -->
+    {%block css%}
+    <link rel="stylesheet" href="https://onlinecalculator.guru/static/style2.css">
+    {%endblock%}
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <!-- Meta Title, Description and Canonical URL Starts --->
+    <title>Free Online Covariance Calculator | How do you find Covariance?</title>
+    <meta name="description" content="Covariance Calculator is the best tool to calculate the statistical relationship between the two random variables and it gives the answers in fraction of seconds."/>
+    <link rel="canonical" href="{{request.build_absolute_uri}}">
+    <!-- Meta Title, Description and Canonical URL ENDS --->
+ 
+    <!-- OPEN GRAPH CONFIGURATIONS STARTS -->
+	<!--  FACEBOOK CONFIGURATION STARTS  -->
+        <meta content="https://www.facebook.com/OnlineCalculator-Guru-131572098650589/" property="og:url" />
+        <meta property="og:title" content="Free Online Covariance Calculator | How do you find Covariance?"/>
+        <meta property="og:description" content="Covariance Calculator is the best tool to calculate the statistical relationship between the two random variables and it gives the answers in fraction of seconds. "/>
+        <meta content="" property="og:site_name" />
+        <meta  content="https://onlinecalculator.guru/static/images/Numbers/Rounding-Decimals-to-the-Nearest-Hundredths.jpeg" property="og:image" />
+        <meta property="og:image:type" content="image/png" />
+        <meta property="og:image:height" content="435" />
+        <meta property="og:image:width" content="354" />
+        <!--  FACEBOOK CONFIGURATION ENDS  -->
+        <!-- TWITTER CARD CONFIGURATION STARTS  -->
+        <meta name="twitter:card" content="summary"/>
+        <meta name="twitter:site" content="https://twitter.com/onlinecalculator"/>
+        <meta name="twitter:title" content="Free Online Covariance Calculator | How do you find Covariance?"/>
+        <meta name="twitter:description" content="Covariance Calculator is the best tool to calculate the statistical relationship between the two random variables and it gives the answers in fraction of seconds."/>
+        <meta name="twitter:image:src" content="https://onlinecalculator.guru/static/images/Numbers/Rounding-Decimals-to-the-Nearest-Hundredths.jpeg"/>
+        <meta property="twitter:image:height" content="435"/>
+        <meta property="twitter:image:width" content="354"/>
+        <!-- TWITTER CARD CONFIGURATION ENDS  -->
+        <!--  LINKEDIN CONFIGURATION STARTS-->
+        <meta property='og:title' content="Free Online Covariance Calculator | How do you find Covariance?"/>
+        <meta property='og:image' content="https://onlinecalculator.guru/static/images/Numbers/Rounding-Decimals-to-the-Nearest-Hundredths.jpeg"/>
+        <meta property='og:description' content="Covariance Calculator is the best tool to calculate the statistical relationship between the two random variables and it gives the answers in fraction of seconds."/>
+        <meta property='og:url' content="https://www.linkedin.com/in/onlinecalculator/" />
+        <!-- end of linkedin CONFIGURATIONS ENDS -->
+    <!-- OPEN GRAPH CONFIGURATION ENDS -->
+    <!-- FAQ SCHEMA STARTS -->
+    <script type="application/ld+json">{"@context": "https://schema.org","@type": "FAQPage","mainEntity": [{"@type": "Question","name":"1
+        What is Covariance Calculator?
+        ","acceptedAnswer": {"@type": "Answer","text":" 
+        Covariance Calculator is the free tool that calculate the satistical relationship between two random Variables."}	}, {"@type": "Question","name":"2
+        How to use Covariance Calcuator?
+        ","acceptedAnswer": {"@type": "Answer","text":" 
+        Simply, Given input data in the mentioned input fields and press the calculate button. so that you will get the answers effortlessly."}	}, {"@type": "Question","name":"3
+        What is the formula for calculating Covariance?
+        ","acceptedAnswer": {"@type": "Answer","text":"
+        Formula for calculating the covariance is Cov (X,Y) = ΣE((X-μ)(Y-ν)) / n"}	}, {"@type": "Question","name":"4
+        What does it mean when covariance is 0?
+        ","acceptedAnswer": {"@type": "Answer","text":"
+        Covariance is 0 means that the two variables dont vary together."}	}]}</script>
+    {%endblock%}
+    {%block content%}
+    <div class="container">
+        <div class="card c1">
+            <div class="card-header">
+                <h1 class="h1">Covariance Calculator</h1>
+            </div>
+            <div class="card-body">
+                <p>Acquire this handy tool to compute the covariance between two discrete variables. For that you required to give the input values in the specific input fields that are shown and press the calculate button to get the results in seconds.</p>
+                {%if go_tag%}
+                <a href="{{go_tag}}" id="ddd"></a>
+                {%endif%}
+                <p>You can use this excellent and easy to operate Covariance Calculator to find the sample and population covariance for the given numbers and get the result in no time. Just provide input numbers in the x and y samples and click on the calculate button to find the covariance as output in fraction of seconds.</p>
+                <div class="box" id="covariance">
+                  <div style="text-align: center;"><h5><strong>Covariance Calculator</strong></h5></div>
+                  <form method="POST">{% csrf_token %}
+                    <span class="input-group-text" id="basic-addon1">Enter Sample Data 1</span>
+                    <div class="input-group mb-3">
+                      {%if input1%}
+                        <input style="margin-top: 5px;" id="input1" name="input1" class="form-control" type="text" required width="48"  value="{{input1}}">
+                      {%else%}
+                        <input style="margin-top: 5px;" id="input1" name="input1" class="form-control" type="text" required width="48"  value="18,23,56,34,23">
+                      {%endif%}
+                    </div>
+                      <span class="input-group-text" id="basic-addon1">Enter Sample Data 2</span>
+                      <div class="input-group mb-3">
+                        {%if input2 %}
+                          <input style="margin-top: 5px;" id="input2" name="input2" class="form-control" type="text" required width="48"  value="{{input2}}">
+                          {%else%}
+                          <input style="margin-top: 5px;" id="input2" name="input2" class="form-control" type="text" required width="48"  value="13,44,23,12,34">
+                          {% endif %}
+                      </div>
+                          <div class="col mt-2 ">
+                            <td>&nbsp;&nbsp;&nbsp;&nbsp;	<input class="btn btn-secondary btn-mr-3" type="button" onclick="myFunction()" value="Clear"></td>
+                            <td></td>	
+                            <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                            <td><button type="submit" class="btn btn-primary mb-2">Calculate</button>  </td>
+                            </div>
+                      </form>
+                      <div id="answer1">
+                      {%if detailStep%}
+                        <hr>
+                        <p><strong>Answer:</strong></p>
+                        <div style="text-align: center;">
+                        {% autoescape off %}
+                        {{detailStep}}
+                        {%endautoescape%}
+                        </div>
+                        <hr>
+                  {%endif%}
+                  </div>
+                </div>
+                  <script>
+                    function myFunction() {
+                      document.getElementById("input1").value="";
+                      document.getElementById("input2").value="";
+                      $("#answer1").html("");
+                    }
+                    </script>
+                      <br>
+                <p><strong>Covariance Calculator: </strong>Are you looking for a tool that determines the two samples vary from each other? Don't fret, covariance calculator is the tool that you need. Covariance calculator is the best tool that determines the statistical relationship between two data sets. And we have also discussed about covariance, formula of covariance and some solved examples with clear steps.</p>
+            </div>
+        </div>
+    <div class="card">
+	    <div class="card-header">
+            <h2 class="h2">What do you mean by Covariance?</h2>
+        </div>
+	    <div class="card-body">
+            <p>Covariance is exactly an interrelation between the two variables and also we check the relation is in which direction. If the two variables in same direction then they are positively related. otherwise, the two variables are in opposite direction that indicates that they are negatively related.</p>
+            </div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="h3">Covariance Formula</h3>
+                </div>
+                <div class="card-body">
+                    <p>We can the Calculate the covaraince with the following formula.</p>
+                    <p>Cov (X,Y) = Σ E((X-μ)E(Y-ν))/n </p>
+                    <p>Where,</p>
+                    <p>X and Y are random variables.</p>
+                    <p>μ is Mean of the random variable X</p>
+                    <p>v is the mean of random variable Y</p>
+                    <p>n is the number of items in the data set.</p>
+            </div>
+            </div>
+            <div class="card">
+              <div class="card-header">
+                    <h3 class="h3">How to Calculate Covariance?</h3>
+                </div>
+              <div class="card-body">
+              <p>If you follow the steps which we are showing below, you can easily calculate the covariance.</p>
+            <ul>
+              <li>Firstly, note down the given values and find the mean values for the given values.</li>
+              <li>Then, write down the formula of covariance and substitute the values in the given formula.</li>
+              <li>Finally, you will get the desired answer.</li>
+            </ul>
+</div>
+</div>     
+    <div class="card">
+    <div class="card-header">
+      <h3 class="h3">Covariance Examples</h3>
+    </div>
+    <div class="card-body">
+        <p><strong>Question 1:</strong> Calculate the Covariance for the following set</p>
+        <p>P= 3,7,6,8,11</p>
+        <p>Q= 3,7,8,22,12</p>
+        <p><b>Solution:</b></p>
+        <p>Given, Values P= 3,7,6,8,11</p>
+        <p>Q= 3,7,8,22,12</p>
+        <p>Find out the mean values for P and Q</p>
+        <p>Mean of P= 7 </p>
+        <p>Mean of Q= 10.4 </p>
+        <p>Formula for Covariance</p>
+        <p>Cov (X,Y) = ΣE((X-μ)(Y-ν)) / n</p>
+        <p> = (3-7)(3-10.4)+(7-7)(8-10.4)+(6-7)+(8-10.4)+(8-7)(22-10.4)+(11-7)(12-10.4)</p>
+        <p> = (-4)(-7.4) + (0)(-2.4) + (-1)(-2.4) + (1)(11.6) + (4)(1.6)</p>
+        <p> = 12.5</p>
+        <p>Thus, Covarience = 12.5</p>
+        <p><a href="https://statisticscalculators.net/">Statisticscalculator.net</a> is the best website that we are having many types of calculators available in this site. Take a look at those calculators and clear all your queries.</p>
+    </div>
+        </div>
+    <div class="card">
+  	    <div class="card-header">
+      	<h3 class="h3">Frequently Asked Questions on Covariance Calculator</h3>
+  	    </div>
+  	    <div class="card-body">
+      	<!-- Question & Answer Starts --->
+        <p class="question"><strong>1. What is Covariance Calculator?</strong></p>
+     	<p class="answer"> Covariance Calculator is the free tool that calculate the satistical relationship between two random Variables.</p><hr>
+     	<p class="question"><strong>2. How to use Covariance Calcuator?</strong></p>
+     	<p class="answer">Simply, Given input data in the mentioned input fields and press the calculate button. so that you will get the answers effortlessly.</p><hr>  
+        <p class="question"><strong>3. What is the formula for calculating Covariance?</strong></p>
+     	<p class="answer">Formula for calculating the covariance is Cov (X,Y) = ΣE((X-μ)(Y-ν)) / n</p><hr>
+        <p class="question"><strong>4. What does it mean when covariance is 0?</strong></p>
+     	<p class="answer">If Covariance is 0 it means that the two variables dont vary together.</p><hr>
+      </div>
+    </div>
+    </div>
+{%endblock%}

@@ -1,0 +1,222 @@
+{%extends 'base/statistics_base2.html'%}
+{%load static%}
+{%block meta%}
+<!-- HTML Defaults Broweser -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Bootstrap Stylesheet and Jquery, Google APIS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+<!-- Online Calculator Guru Site Fevicon -->
+<link rel="shortcut icon" href="https://onlinecalculator.guru/static/images/logo/Online-Calculator-Guru-Fevicon.png"
+    type="icon">
+<!-- Online Calculator Guru Project Style Sheet -->
+{%block css%}
+<link rel="stylesheet" href="https://onlinecalculator.guru/static/style.css">
+{%endblock css%}
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+<!-- Meta Title, Description and Canonical URL Starts --->
+<title>Online Percentile Calculator | How do you Calculate Percentile?</title>
+<meta name="description" content="Percentile calculator is the best tool to calculate the percentile of the given data set and to make your computations quick." />
+<link rel="canonical" href="{{request.build_absolute_uri}}">
+<!-- Meta Title, Description and Canonical URL ENDS --->
+
+<!-- OPEN GRAPH CONFIGURATIONS STARTS -->
+<!--  FACEBOOK CONFIGURATION STARTS  -->
+<meta content="https://www.facebook.com/OnlineCalculator-Guru-131572098650589/" property="og:url" />
+<meta property="og:title" content="Online Percentile Calculator | How do you Calculate Percentile?" />
+<meta property="og:description" content="Percentile calculator is the best tool to calculate the percentile of the given data set and to make your computations quick." />
+<meta content="" property="og:site_name" />
+<meta content="https://onlinecalculator.guru/static/images/Statistics/Percentile-Calculator.jpeg"
+    property="og:image" />
+<meta property="og:image:type" content="image/png" />
+<meta property="og:image:height" content="435" />
+<meta property="og:image:width" content="354" />
+<!--  FACEBOOK CONFIGURATION ENDS  -->
+<!-- TWITTER CARD CONFIGURATION STARTS  -->
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:site" content="https://twitter.com/onlinecalculator" />
+<meta name="twitter:title" content="Online Percentile Calculator | How do you Calculate Percentile?" />
+<meta name="twitter:description" content="Percentile calculator is the best tool to calculate the percentile of the given data set and to make your computations quick." />
+<meta name="twitter:image:src"
+    content="https://onlinecalculator.guru/static/images/Statistics/Percentile-Calculator.jpeg" />
+<meta property="twitter:image:height" content="435" />
+<meta property="twitter:image:width" content="354" />
+<!-- TWITTER CARD CONFIGURATION ENDS  -->
+<!--  LINKEDIN CONFIGURATION STARTS-->
+<meta property='og:title' content="Online Percentile Calculator | How do you Calculate Percentile?" />
+<meta property='og:image' content="https://onlinecalculator.guru/static/images/Statistics/Percentile-Calculator.jpeg" />
+<meta property='og:description' content="Percentile calculator is the best tool to calculate the percentile of the given data set and to make your computations quick." />
+<meta property='og:url' content="https://www.linkedin.com/in/onlinecalculator/" />
+<!-- end of linkedin CONFIGURATIONS ENDS -->
+<!-- OPEN GRAPH CONFIGURATION ENDS -->
+<!-- FAQ SCHEMA STARTS -->
+<script type="application/ld+json">{"@context": "https://schema.org","@type": "FAQPage","mainEntity": [{"@type": "Question","name":"1
+    What is percentile in simple words?
+    ","acceptedAnswer": {"@type": "Answer","text":" 
+    Percentile is the expression of the value that is compared with the other values."}	}, {"@type": "Question","name":"2
+    What are the steps to use percentile calculator?
+    ","acceptedAnswer": {"@type": "Answer","text":" 
+    First, you need to enter the values in the given data set box.
+    Then, you need to give the percentile that you want to find.
+    Finally, click the calculate button to see the answer in no time."}	}, {"@type": "Question","name":"3
+    What is the formula for percentile?
+    ","acceptedAnswer": {"@type": "Answer","text":"
+    Formula for percentile is <b>i = (20/100) * 5</b>. Here, i is the integer, p is the percentile and n is the total values in the data set."}	}, {"@type": "Question","name":"4
+    Calculate the 11th percentile for the set 5, 6, 4, 3, 3?
+    ","acceptedAnswer": {"@type": "Answer","text":" 
+    Ascending order :3, 3, 4, 5, 6.
+    i = (p/100) * n = (11/100)*5 = 0.55.
+    i is not an integer, 11th percentile is the value in 1st position 5."}	}]}</script>
+{%endblock %}
+{% block content %}
+{% if ot and x and n%}
+<script>
+    $(document).ready(function () {
+
+        $("#hassle").click();
+        });
+</script>
+
+<button type="button" hidden id="hassle" onclick="location.href='#percentile'">ans1</button>
+{% endif %}
+
+<div class="container">
+    <div class="card c1">
+        <div class="card-header">
+            <h1 class="h1">Percentile Calculator</h1>
+        </div>
+        <div class="card-body">
+            <p>Percentile Calculator is a statistical tool to determine the k<sup>th</sup> percentile for a data set effectively. Simply, give the data set in the mentioned boxes and hit the calculate button to get the answer effortlessly.</p>
+            {% if messages %}
+            <ul class="messages">
+            {% for message in messages %}
+                <p {% if message.tags %} id="message_container" class="alert alert-danger text-center" {% endif %}
+                    style="color:red">{{ message }}</p>
+                {% endfor %}
+            </ul>
+            {% endif %}
+            <form action="{% url 'percentile' %}" method="POST" id="my_form">
+                {% csrf_token %}
+                 </div>
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1">x Values (separated by comma)</span>
+            </div>
+
+           <input style="margin-top: 5px;width:100%" id="x" name="x" value="{{x}}" required="" class="form-control" type="text" required width="48">
+       </div>
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1">Percentile (1-100)</span>
+            </div>
+
+           <input style="margin-top: 5px;width:100%" id="n" name="n" value="{{n}}" required="" class="form-control" type="number" required width="48">
+       </div>
+
+        <div class=" center col mt-2 ">
+            <center><button type="submit" class="btn btn-primary">Calculate</button>
+              <a href="{% url 'percentile' %}" class="btn btn-warning" role="button" style="margin-top:5px;">Reset</a>      
+            </center>
+          </div>
+        </form>
+            <p><strong>Percentile Calculator:</strong> Feeling bored to find the percentile? Then you are at right platform. It is the one stop destination to calculate the percentile with easy percentile calculator. And we have also discussed about definition, formulas, and we have given some more useful information along with solved examples. Read on to learn!!</p>
+</div>
+</div>
+{% if x and ot and n%}
+<div class="container" style="height: auto !important;">
+<div class="card" id="percentile">
+    <div class="card-header">
+        <h2 class="h2">Steps to Find Percentile :</h2>
+        
+    </div>
+    <div class="card-body">
+        <strong>Input values are:-</strong>
+        <p>x = {{x}} </p>
+        <p>n = {{n}}</p>
+
+        <p>Your sorted data = {{arr}} </p>
+
+        <b>Result</b>
+
+        <p>The {{n}}th percentile of your dataset is {{result}}</p>
+
+</div>
+</div>
+{% endif %}
+<div class="card">
+        <div class="card-header">
+            <h3 class="h3">What is Percentile? </h3>
+        </div>
+        <div class="card-body">
+            <p>Percentile is a value in the data set where it one particular value is compared with other values in the data set. This percentile can be splitted into two parts. Lower part contains the set of data 'p' and the upper part contains remaining data '100-p'.</p>
+            <p><b>Formula for percentile</b></p>
+            <p>i = (p/100) * n</p>
+            <p>Where,</p>
+            <p>p is the percentile.</p>
+            <p>n is the number of values in the given data set.</p>
+            <p>i is the integer or non-integer.</p>
+        </div>
+</div>
+    <div class="card">
+        <div class="card-header">
+            <h3 class="h3">How do you Calculate Percentile?</h3>
+        </div>
+        <div class="card-body">
+            <p>As we want to calculate the k<sup>th</sup> percentile manually we need to follow some basic steps to do it easily without much effort.</p>
+            <ul>
+                <li>Make a note of the given data in the question.</li>
+                <li>Arrange all the data from lowest to highest(Ascending order).</li>
+                <li>Now, apply the formula and substitute the values in it.</li>
+                <li>If i is not an integer, then you need to round up. otherwise you need to find the average of the positions i and i+1.</li>
+            </ul>
+        </div>
+</div>
+    <div class="card">
+        <div class="card-header">
+            <h3 class="h3">How to Find the Percentile?</h3>
+        </div>
+        <div class="card-body">
+            <p><strong>Question 1:</strong> Find the 20<sup>th</sup> percentile for the given set of values 8, 2, 5, 6, 9?</p>
+            <p><strong>Solution</strong></p>
+            <p>Given set of values is 8, 2, 5, 6, 9</p>
+            <p>Arrange the values in ascending order</p>
+            <p>2, 5, 6, 8, 9</p>
+            <p> p= 20, n= 5, i=?</p>
+            <p>Formula: <strong>i = (p/100) * n</strong></p>
+            <p>i = (20/100) * 5</p>
+            <p>  = 1</p>
+            <p>As, i is an integer, the average of 0<sup>th</sup> and 1<sup>st</sup> positions in the ordered data set is 8 and 2. </p>
+            <p>Thus, the 20<sup>th</sup> percentile of the given set is (2+5)/2 =7/2 = 3.5.</p>
+            <p><a href="https:/statisticscalculator.net/">Statisticscalculator.net</a> is the best website for the percentile calculator and many other statistics calculators to make your work easy and quick.</p>
+        </div>
+</div>
+    <div class="card">
+      <div class="card-header">
+        <h3 class="h3">FAQs on Percentile Calculator</h3>
+      </div>
+    <div class="card-body">
+    <!-- Question & Answer Starts --->
+  <p class="question"><strong>1. What is percentile in simple words?</strong></p>
+  <p class="answer">Percentile is the expression of the value that is compared with the other values.</p><hr>
+  <p class="question"><strong>2. What are the steps to use percentile calculator?</strong></p>
+  <p class="answer"><ul>
+       <li>First, you need to enter the values in the given data set box.</li>
+       <li>Then, you need to give the percentile that you want to find.</li>
+       <li>Finally, click the calculate button to see the answer in no time.</li>
+   </ul></p><hr>
+   <p class="question"><strong>3. What is the formula for percentile?</strong></p>
+   <p class="answer">Formula for percentile is <b>i = (20/100) * 5</b>. Here, i is the integer, p is the percentile and n is the total values in the data set.</p><hr>
+   <p class="question"><strong>4. Calculate the 11th percentile for the set 5, 6, 4, 3, 3?</strong></p>
+   <p class="answer">Ascending order :3, 3, 4, 5, 6
+   <p>i = (p/100) * n = (11/100)*5 = 0.55</p>
+   <p>i is not an integer, 11th percentile is the value in 1st position 5.</p></p>
+   <img src="{% static 'images/Statistics/percentile-calculator.jpeg' %}" alt='percentile-calculator'>
+  </div>
+</div>
+</div>          
+{% endblock content %}

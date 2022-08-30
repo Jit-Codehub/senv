@@ -1,0 +1,175 @@
+{%extends 'base/statistics_base2.html'%}
+{%load static%}
+{%block meta%}
+<!-- HTML Defaults Broweser -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Bootstrap Stylesheet and Jquery, Google APIS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+<!-- Online Calculator Guru Site Fevicon -->
+<link rel="shortcut icon" href="https://onlinecalculator.guru/static/images/logo/Online-Calculator-Guru-Fevicon.png"
+    type="icon">
+<!-- Online Calculator Guru Project Style Sheet -->
+{%block css%}
+<link rel="stylesheet" href="https://onlinecalculator.guru/static/style.css">
+{%endblock css%}
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+<!-- Meta Title, Description and Canonical URL Starts --->
+<title>Hypergeometric Distribution Calculator | Free Calculator to find Hypergeometric Distribution</title>
+<meta name="description"
+    content="Capacitance Calculator makes it easy for you to determine the value of capacitance, area, and distance with steps." />
+<link rel="canonical" href="{{request.build_absolute_uri}}">
+<!-- Meta Title, Description and Canonical URL ENDS --->
+
+<!-- OPEN GRAPH CONFIGURATIONS STARTS -->
+<!--  FACEBOOK CONFIGURATION STARTS  -->
+<meta content="https://www.facebook.com/OnlineCalculator-Guru-131572098650589/" property="og:url" />
+<meta property="og:title" content="Angular Resolution Calculator | Free Calculator to find Angular Resolution" />
+<meta property="og:description" content="Angular Resolution Calculator" />
+<meta content="" property="og:site_name" />
+<meta content="https://onlinecalculator.guru/static/images/Chemistry/Theoratical-Yield-Calculator.jpeg"
+    property="og:image" />
+<meta property="og:image:type" content="image/png" />
+<meta property="og:image:height" content="435" />
+<meta property="og:image:width" content="354" />
+<!--  FACEBOOK CONFIGURATION ENDS  -->
+<!-- TWITTER CARD CONFIGURATION STARTS  -->
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:site" content="https://twitter.com/onlinecalculator" />
+<meta name="twitter:title" content="Angular Resolution Calculator | Free Calculator to find Angular Resolution" />
+<meta name="twitter:description"
+    content="Angular Resolution Calculator makes it easy for you to determine the theoretical yield value of the chemical reaction in fraction of seconds with steps." />
+<meta name="twitter:image:src"
+    content="https://onlinecalculator.guru/static/images/Chemistry/Theoratical-Yield-Calculator.jpeg" />
+<meta property="twitter:image:height" content="435" />
+<meta property="twitter:image:width" content="354" />
+<!-- TWITTER CARD CONFIGURATION ENDS  -->
+<!--  LINKEDIN CONFIGURATION STARTS-->
+<meta property='og:title' content="Angular Resolution Calculator | Free Calculator to find Angular Resolution" />
+<meta property='og:image'
+    content="https://onlinecalculator.guru/static/images/Chemistry/Theoratical-Yield-Calculator.jpeg" />
+<meta property='og:description' content="Angular Resolution Calculator." />
+<meta property='og:url' content="https://www.linkedin.com/in/onlinecalculator/" />
+<!-- end of linkedin CONFIGURATIONS ENDS -->
+<!-- OPEN GRAPH CONFIGURATION ENDS -->
+<!-- FAQ SCHEMA STARTS -->
+
+{%endblock meta %}
+
+{% block content %}
+{% if ot and N and n %}
+<script>
+    $(document).ready(function () {
+
+        $("#hassle").click();
+        });
+</script>
+
+<button type="button" hidden id="hassle" onclick="location.href='#hypergeometric_distribution'">ans1</button>
+{% endif %}
+
+
+<div class="container" style="height: auto !important;">
+    <div class="card c1">
+        <div class="card-header">
+            <h1 class="h1">Hypergeometric Distribution Calculator</h1>
+        </div>
+        <div class="card-body">
+            {% if messages %}
+            <ul class="messages">
+            {% for message in messages %}
+                <p {% if message.tags %} id="message_container" class="alert alert-danger text-center" {% endif %}
+                    style="color:red">{{ message }}</p>
+                {% endfor %}
+            </ul>
+            {% endif %}
+            <form action="{% url 'hypergeometric_distribution' %}" method="POST" id="my_form">
+                {% csrf_token %}
+                 </div>
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1">Population size (N)</span>
+            </div>
+            
+           <input style="margin-top: 5px;width:100%" id="N" name="N" value="{{N}}" min="0" required="" class="form-control" type="number" step="any" required width="48"> 
+       </div>
+       <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1">Number of success states in population (K)</span>
+            </div>
+            
+           <input style="margin-top: 5px;width:100%" id="K" name="K" value="{{K}}" min="0" max="{{N}}" required="" class="form-control" type="number" step="any" required width="48"> 
+       </div>
+       <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1">Sample size (n)</span>
+            </div>
+            
+           <input style="margin-top: 5px;width:100%" id="n" name="n" value="{{n}}" min="0" required="" class="form-control" type="number" step="any" required width="48"> 
+       </div>
+       <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1">Number of success states in sample (k)</span>
+            </div>
+            
+           <input style="margin-top: 5px;width:100%" id="k" name="k" value="{{k}}" min="0" max="{{n}}"required="" class="form-control" type="number" step="any" required width="48"> 
+       </div>       
+        <div class=" center col mt-2 ">
+            <center><button type="submit" class="btn btn-primary">Calculate</button>
+              <a href="{% url 'hypergeometric_distribution' %}" class="btn btn-warning" role="button" style="margin-top:5px;">Reset</a>
+            </center>
+          </div>
+</div>
+
+</form>
+</div>
+</div>
+
+{% if ot and N and n %}
+<div class="container" style="height: auto !important;">
+<div class="card" id="hypergeometric_distribution">
+        <div class="card-header">
+            <h2 class="h2">Steps to Find Hypergeometric Distribution:</h2>
+        </div>
+
+        <div class="card-body">
+
+            <strong>Hypergeometric Distribution:-</strong>
+            <br>
+            <p class="btn btn-outline-secondary active text-justify">P(X = K) = K!(N-K)! n!(N-n)! / N! k! (K-k)! (n-k)! (N-K-n+k)!</p>
+            <br>
+            <strong>where:</strong>
+                    <ul>
+                        <li>N the total number of items in the population,</li>
+                        <li>K the number of success items in the population; and,</li>
+                        <li>n the number of drawn items (sample size),</li>
+                        <li>k is the number of drawn success item.</li>
+                    </ul>
+
+
+            <strong>Input values are:-</strong>
+            <p>N = {{N}} </p>
+            <p>n = {{n}} </p>
+            <p>K = {{K}} </p>
+            <p>k = {{k}} </p>
+        
+            <p><b>Put values into formula</b></p>
+            
+            <p>P(X = K) = {{K}}!({{N}}-{{K}})! {{n}}!({{N}}-{{n}})! / {{N}}! {{k}}! ({{K}}-{{k}})! ({{n}}-{{k}})! ({{N}}-{{K}}-{{n}}+{{k}})!</p>
+            <p>P(X = K) = {{K}}!({{N}}-{{K}})! {{n}}!({{N}}-{{n}})! / {{N}}! {{k}}! ({{K}}-{{k}})! ({{n}}-{{k}})! (N-{{K}}-{{n}}+{{k}})!</p>
+
+            <b>P(X = K) = {{result}}</b>
+
+                         
+   </div>
+    </div>
+</div>
+    {% endif %}      
+<img src="{% static 'images/Statistics/hypergeometric-distribution-calculator.jpeg' %}" alt='hypergeometric-distribution-calculator'>
+             
+{% endblock content %}

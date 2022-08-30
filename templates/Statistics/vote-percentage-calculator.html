@@ -1,0 +1,218 @@
+{%extends 'base/statistics_base2.html'%}
+{%load static%}
+  {%block meta%}
+    <!-- HTML Defaults Broweser -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Bootstrap Stylesheet and Jquery, Google APIS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <!-- Online Calculator Guru Site Fevicon -->
+    <link rel="shortcut icon" href="https://onlinecalculator.guru/static/images/logo/Online-Calculator-Guru-Fevicon.png" type="icon">
+    <!-- Online Calculator Guru Project Style Sheet -->
+    {%block css%}
+    <link rel="stylesheet" href="https://onlinecalculator.guru/static/style2.css">
+    {%endblock%}
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <!-- Meta Title, Description and Canonical URL Starts --->
+    <title>Vote Percentage Calculator | How to calculate percentage of polled votes?</title>
+    <meta name="description" content="Enter the input votes in the fields of Vote Percentage Calculator & tap the calculate button to find the percentages of the votes polled. "/>
+    <link rel="canonical" href="{{request.build_absolute_uri}}">
+    <!-- Meta Title, Description and Canonical URL ENDS --->
+ 
+    <!-- OPEN GRAPH CONFIGURATIONS STARTS -->
+	<!--  FACEBOOK CONFIGURATION STARTS  -->
+        <meta content="https://www.facebook.com/OnlineCalculator-Guru-131572098650589/" property="og:url" />
+        <meta property="og:title" content="Vote Percentage Calculator | How to calculate percentage of polled votes?"/>
+        <meta property="og:description" content="Enter the input votes in the fields of Vote Percentage Calculator & tap the calculate button to find the percentages of the votes polled. "/>
+        <meta content="" property="og:site_name" />
+        <meta  content="https://onlinecalculator.guru/static/images/Statistics/Vote-Percentage-Calculator.jpeg" property="og:image" />
+        <meta property="og:image:type" content="image/png" />
+        <meta property="og:image:height" content="435" />
+        <meta property="og:image:width" content="354" />
+        <!--  FACEBOOK CONFIGURATION ENDS  -->
+        <!-- TWITTER CARD CONFIGURATION STARTS  -->
+        <meta name="twitter:card" content="summary"/>
+        <meta name="twitter:site" content="https://twitter.com/onlinecalculator"/>
+        <meta name="twitter:title" content="Vote Percentage Calculator | How to calculate percentage of polled votes?"/>
+        <meta name="twitter:description" content="Enter the input votes in the fields of Vote Percentage Calculator & tap the calculate button to find the percentages of the votes polled. "/>
+        <meta name="twitter:image:src" content="https://onlinecalculator.guru/static/images/Statistics/Vote-Percentage-Calculator.jpeg"/>
+        <meta property="twitter:image:height" content="435"/>
+        <meta property="twitter:image:width" content="354"/>
+        <!-- TWITTER CARD CONFIGURATION ENDS  -->
+        <!--  LINKEDIN CONFIGURATION STARTS-->
+        <meta property='og:title' content="Vote Percentage Calculator | How to calculate percentage of polled votes?"/>
+        <meta property='og:image' content="https://onlinecalculator.guru/static/images/Statistics/Vote-Percentage-Calculator.jpeg"/>
+        <meta property='og:description' content="Enter the input votes in the fields of Vote Percentage Calculator & tap the calculate button to find the percentages of the votes polled. "/>
+        <meta property='og:url' content="https://www.linkedin.com/in/onlinecalculator/" />
+        <!-- end of linkedin CONFIGURATIONS ENDS -->
+    <!-- OPEN GRAPH CONFIGURATION ENDS -->
+    <!-- FAQ SCHEMA STARTS -->
+    <script type="application/ld+json">{"@context": "https://schema.org","@type": "FAQPage","mainEntity": [{"@type": "Question","name":"1. 
+        What is the vote percentage calculator?
+        ","acceptedAnswer": {"@type": "Answer","text":"Vote percentage calculator is the best & reliable online tool that easily calculates the percentages of the polled votes in the election for democratic, republicans, and others in a matter of seconds."}	}, {"@type": "Question","name":"2. 
+        Which is the best website to find an online vote percentage calculator?
+        ","acceptedAnswer": {"@type": "Answer","text":"Statisticscalculators.net is a reliable and trusted website that provides free online calculators for all statistics concepts. So, you can easily find the online vote percentage calculator from here for free of cost."}	}, {"@type": "Question","name":"3. 
+        What is the vote percentage formula?
+        ","acceptedAnswer": {"@type": "Answer","text":"The formula for vote percentage is C = V/T × 100."}	}]}</script>
+    {%endblock%}
+    {%block content%}
+    <div class="container">
+        <div class="card c1">
+            <div class="card-header">
+                <h1 class="h1">Vote Percentage Calculator</h1>
+            </div>
+            <div class="card-body">
+                <p>Want to calculate the percentage weight of recorded votes of all parties at a faster pace? Just give your input votes in the allotted fields of our free online vote percentage calculator and click on calculate button to get the vote percentages immediately with steps.</p>                <div class="box">
+                    <form method="POST">{% csrf_token %}
+                    <table>
+                        <tr>
+                            <th style="text-align: center;">Party</th>
+                            <th style="text-align: center;">Votes</th>
+                            <th style="text-align: center;">Percent</th>
+                        </tr>
+                        <tr>
+                            <td>Democratic</td>
+                            <td>
+                                {%if input1%}
+                                <input name="input1" value="{{input1}}" style="height: 27px;font: bold 25px;" size="6">
+                                {%else%}
+                                <input name="input1" value="34231" style="height: 27px;font: bold 25px;" size="6">
+                                {%endif%}
+                            </td>
+                            <td>
+                                {%if res1%}
+                                {{res1}} %
+                                {%endif%}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Republican</td>
+                            <td>
+                                {%if input2%}
+                                <input name="input2" value="{{input2}}" style="height: 27px;font: bold 25px;" size="6">
+                                {%else%}
+                                <input name="input2" value="19553" style="height: 27px;font: bold 25px;" size="6">
+                                {%endif%}
+                            </td>
+                            <td>
+                                {%if res2%}
+                                {{res2}} %
+                                {%endif%}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Other</td>
+                            <td>
+                                {%if input3%}
+                                <input name="input3" value="{{input3}}" style="height: 27px;font: bold 25px;" size="6">
+                                {%else%}
+                                <input name="input3" value="43423" style="height: 27px;font: bold 25px;" size="6">
+                                {%endif%}
+                            </td>
+                            <td>
+                                {%if res3%}
+                                {{res3}} %
+                                {%endif%}
+                            </td>
+                        </tr>
+                    </table>
+                    
+                    <div class="col-auto mt-2 ml-3">
+                      <button type="submit" class="btn btn-primary mb-2">Calculate</button>
+                    </div>
+                    </form>
+                    {%if detailStep%}
+                      <hr>
+                      <p><strong>Answer:</strong></p>
+                      <div style="text-align: center;">
+                      {% autoescape off %}
+                      {{detailStep}}
+                      {%endautoescape%}
+                      </div>
+                      <hr>
+                  {%endif%}
+                      </div>
+                  {% autoescape off %}
+                      {% if messages %}
+                          {% for message in messages %}
+                              <div class="row">
+                                  <div class="col-md-6">
+                                      <p class="alert alert-danger">{{message}}</p>
+                                  </div>
+                              </div>
+                          {% endfor %}
+                      {% endif %}
+                  {%endautoescape%}
+                  <p><strong>Vote Percentage Calculator:</strong> Excited to learn how to calculate the election percentage of votes? Go for this Vote percentage calculator and easily understand the process of calculating polling percentage in elections. Also, you can study what vote percentage means, formula, steps to calculate the percentage of votes between two or more members from this page. So, make use of our vote percentage online calculator and easily compute the percentages of the polled votes of all parties in an election.</p>            </div>
+        </div>
+    <div class="card">
+      <div class="card-header">
+         <h2 class="h2">What is Meant by Vote Percentage & Formula?</h2>
+      </div>
+      <div class="card-body">
+        <p>Finding the share of the vote for a participant in an election, political party, or election content is nothing but vote percentage. The formula for Vote Percentage Calculation is as follows: </p>
+<p><strong>C = V/T &times; 100</strong></p>
+<p>Where,</p>
+<p>C is the percentage of the vote of a candidate<br />V is the number of votes for a candidate<br />T is the total number of votes</p>       
+      </div>
+    </div>
+        <div class="card">
+	    <div class="card-header">
+            <h2 class="h2">How to Calculate Polling Percentage in Election?</h2>
+        </div>
+	    <div class="card-body">
+            <p>The steps included in calculating the polling votes percentage in an election are explained here clearly. Follow these guidelines and make your calculation much easier and faster manually:</p>
+            <ul>
+            <li>Firstly, you have to calculate the total number of votes of each and every candidate who participated in the elections from all parties and other individuals.</li>
+            <li>Now, find the total number of votes polled by adding up all those values. </li>
+            <li>Once, you find those two numbers divide each candidate's votes by the total number of votes polled in the election.</li>
+            <li>Lastly, multiply the result by 100 to avail the percentages of the votes of all party candidates.</li>
+            </ul>
+            <p>Get proper assistance for your homework help &amp; assignment tasks by visiting our website ie., <a href="https://statisticscalculators.net/">statisticscalculators.net</a>, and learning the concepts of statistics from our free online &amp; handy calculators.</p>
+            <h3>Solved Example on How to Calculate Percentage of a Vote</h3>
+            <p><strong>Example:</strong></p>
+            <p>Find the percentage of the votes of all parties? If the number of votes polled in the election for the Democratic Party is 3,08,596, for Republican Party is 1,09,887 and for other parties is 4,00,968.</p>
+            <p><strong>Solution:</strong></p>
+            <p>Given that,</p>
+            <p>Numbers of votes polled for Democratic Party = 3,08,596</p>
+            <p>No of votes polled for Republican Party = 1,09,887</p>
+            <p>Numbers of votes polled for Other parties = 4,00,968</p>
+            <p>Now, find the total polled votes by summing up all the votes polled by each party</p>
+            <p>ie., 3,08,596 + 1,09,887 + 4,00,968</p>
+            <p>= 819451</p>
+            <p>Votes Percentage for Democratic Party = (Numbers of votes polled for Democratic Party / Total number of votes polled) x 100</p>
+            <p>= (3,08,596 / 819451) x 100</p>
+            <p>= 0.3765 x 100</p>
+            <p>= 37.65%</p>
+            <p>Votes Percentage for Republican Party = (Numbers of votes polled for Republican Party / Total number of votes polled) x 100</p>
+            <p>= (1,09,887 / 819451) x 100</p>
+            <p>= 0.1340 x 100</p>
+            <p>= 13.40%</p>
+            <p>Votes Percentage for Other parties = (Numbers of votes polled for Other parties / Total number of votes polled) x 100</p>
+            <p>= (4,00,968 / 819451) x 100</p>
+            <p>= 0.4893 x 100</p>
+            <p>= 48.93%</p>
+            <p>Hence, the Votes Percentage for Democratic Party is 37.65%, the Votes Percentage for Republican Party is 13.40%, Votes Percentage for the Other parties is 48.93%.</p>
+         <img src="{% static 'images/Statistics/vote-percentage-calculator.jpeg' %}" alt='Vote Percentage Calculator'>
+        </div>
+    </div>
+    <div class="card">
+  	    <div class="card-header">
+      	<h3 class="h3">FAQs on Popular Vote Percentage Calculator</h3>
+  	    </div>
+  	    <div class="card-body">
+      	<!-- Question & Answer Starts --->
+        <p class="question"><strong>1. What is the vote percentage calculator?</strong></p>
+     	<p class="answer">Vote percentage calculator is the best & reliable online tool that easily calculates the percentages of the polled votes in the election for democratic, republicans, and others in a matter of seconds.</p><hr>
+     	<p class="question"><strong>2. Which is the best website to find an online vote percentage calculator?</strong></p>
+     	<p class="answer">Statisticscalculators.net is a reliable and trusted website that provides free online calculators for all statistics concepts. So, you can easily find the online vote percentage calculator from here for free of cost.</p><hr>  
+        <p class="question"><strong>3. What is the vote percentage formula?</strong></p>
+        <p class="answer">The formula for vote percentage is C = V/T × 100.</p><hr>
+    	</div>
+    </div>
+    </div>
+{%endblock%}

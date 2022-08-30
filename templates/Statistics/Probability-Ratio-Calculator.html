@@ -1,0 +1,337 @@
+{%extends 'base/statistics_base3.html'%}
+{%load static%}
+  {%block meta%}
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+  <link rel="shortcut icon" href="{% static 'images/logo/Online-Calculator-Guru-Fevicon.png' %}" type="icon">
+  {%block css%}
+  <link rel="stylesheet" href="{% static 'style.css' %}">
+  {%endblock%}
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <!-- META DATA STARTS --->
+    <title>Class Width Calculator | Finds the class width</title>
+    <meta name="description" content="Class Width Calculator is a free online tool that calculates the Class Width value .">
+    <link rel="canonical" href="{{request.build_absolute_uri}}" >
+<!-- META DATA ENDS --->
+
+<!-- OPEN GRAPH CONFIGURATIONS STARTS -->
+    <!--  FACEBOOK CONFIGURATION STARTS  -->
+    <meta content="https://www.facebook.com/OnlineCalculator-Guru-131572098650589/" property="og:url" />
+    <meta property="og:title" content="Class Width Calculator | Finds the Class Width "/>
+    <meta property="og:description" content="Class Width Calculator is a free online tool that calculates the Class Width value ."/>
+    <meta content="" property="og:site_name" />
+    <meta  content="https://onlinecalculator.guru/static/images/Statistics/Median-Calculator.jpeg" property="og:image" />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:height" content="435" />
+    <meta property="og:image:width" content="354" />
+    <!--  FACEBOOK CONFIGURATION ENDS  -->
+    <!-- TWITTER CARD CONFIGURATION STARTS  -->
+    <meta name="twitter:card" content="summary"/>
+    <meta name="twitter:site" content="https://twitter.com/onlinecalculator"/>
+    <meta name="twitter:title" content="Median Calculator | Finds the median value of a set of data: {{inputEnter}}"/>
+    <meta name="twitter:description" content="Median Calculator is a free online tool that calculates the median value for the set of numbers {{inputEnter}} instantly and gives result ie., {{finalAnswer}} in no time."/>
+    <meta name="twitter:image:src" content="https://onlinecalculator.guru/static/images/Statistics/Median-Calculator.jpeg"/>
+    <meta property="twitter:image:height" content="435"/>
+    <meta property="twitter:image:width" content="354"/>
+    <!-- TWITTER CARD CONFIGURATION ENDS  -->
+    <!--  LINKEDIN CONFIGURATION STARTS-->
+    <meta property='og:title' content="Median Calculator | Finds the median value of a set of data: {{inputEnter}}"/>
+    <meta property='og:image' content="https://onlinecalculator.guru/static/images/Statistics/Median-Calculator.jpeg"/>
+    <meta property='og:description' content="Median Calculator is a free online tool that calculates the median value for the set of numbers {{inputEnter}} instantly and gives result ie., {{finalAnswer}} in no time."/>
+    <meta property='og:url' content="https://www.linkedin.com/in/onlinecalculator/" />
+    <!-- end of linkedin CONFIGURATIONS ENDS -->
+<!-- OPEN GRAPH CONFIGURATION ENDS -->
+<!-- FAQ SCHEMA STARTS -->
+{%endblock%}
+{%block content%}
+<div class="container" style="height: auto !important;">
+    <div class="card c1">
+      <div class="card-header">
+        <h1 class="h1">Probability Ratio Calculator</h1>
+      </div>
+        <div class="card-body">
+            <ul class="messages">
+                {% for message in messages %}
+                <p {% if message.tags %} id="message_container" class="alert alert-danger text-center" {% endif %}
+                    style="color:red">{{ message }}</p>
+                {% endfor %}
+            </ul>
+            <form action="" method="POST" id="my_form" ">
+                {% csrf_token %}
+                <div class="form-row align-items-center">
+                    <div class="col-auto">
+                        <div class="input-group mb-2">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text"><strong>Net Income</strong></div>
+                            </div>
+                            <input type="number"  oninput="validateNumber(this);" id="inlineFormInputGroup" required=""
+                                placeholder="Enter Net Income of A "  step="any" class="form-control" name="a1"   value="{{a1}}" >
+                                <br><input type="number"  oninput="validateNumber(this);" id="inlineFormInputGroup" required=""
+                                placeholder="Enter Net Income of B"  step="any" class="form-control" name="a11"   value="{{a11}}" >
+    
+                            </div>
+                            <div class="form-row align-items-center">
+                                <div class="col-auto">
+                                    <div class="input-group mb-2">
+                                        <div class="input-group-prepend">
+                                            <div class="input-group-text"><strong>Total Assets</strong></div>
+                                        </div>
+                                        <input type="number"  oninput="validateNumber(this);" id="inlineFormInputGroup" required=""
+                                            placeholder="Total Assets of A"  step="any" class="form-control" name="a2"   value="{{a2}}" >
+                                            <br><input type="number"  oninput="validateNumber(this);" id="inlineFormInputGroup" required=""
+                                            placeholder="Total Assets of B"  step="any" class="form-control" name="a22"   value="{{a22}}" >
+                
+                                        </div>
+                                        <div class="form-row align-items-center">
+                                            <div class="col-auto">
+                                                <div class="input-group mb-2">
+                                                    <div class="input-group-prepend">
+                                                        <div class="input-group-text"><strong>Shareholder Equity</strong></div>
+                                                    </div>
+                                                    <input type="number"  oninput="validateNumber(this);" id="inlineFormInputGroup" required=""
+                                                        placeholder="Shareholder Equity of A"  step="any" class="form-control" name="a3"   value="{{a3}}" >
+                                                        <br><input type="number"  oninput="validateNumber(this);" id="inlineFormInputGroup" required=""
+                                                        placeholder="Shareholder Equity of B"  step="any" class="form-control" name="a33"   value="{{a33}}" >
+                            
+                                                    </div>
+                                                    <div class="form-row align-items-center">
+                                                        <div class="col-auto">
+                                                            <div class="input-group mb-2">
+                                                                <div class="input-group-prepend">
+                                                                    <div class="input-group-text"><strong>Gross Profit</strong></div>
+                                                                </div>
+                                                                <input type="number"  oninput="validateNumber(this);" id="inlineFormInputGroup" required=""
+                                                                    placeholder="Gross Profit of A"  step="any" class="form-control" name="a4"   value="{{a4}}" >
+                                                                    <br><input type="number"  oninput="validateNumber(this);" id="inlineFormInputGroup" required=""
+                                                                    placeholder="Gross Profit of B"  step="any" class="form-control" name="a44"   value="{{a44}}" >
+                                        
+                                                                </div>
+                                                                <div class="form-row align-items-center">
+                                                                    <div class="col-auto">
+                                                                        <div class="input-group mb-2">
+                                                                                        <div class="input-group-prepend">
+                                                                                <div class="input-group-text"><strong>Sales</strong></div>
+                                                    </div>
+                                          <input type="number"  oninput="validateNumber(this);" id="inlineFormInputGroup" required=""
+                                          placeholder="Enter Sales of A"  step="any" class="form-control" name="a5"   value="{{a5}}"                                                                             <br><input type="number"  oninput="validateNumber(this);" id="inlineFormInputGroup" required=""
+                                                            placeholder="Enter Sales of B"  step="any" class="form-control" name="a55"   value="{{a55}}" >
+                                    
+                                                                </div>
+                                                      <div class="form-row align-items-center">                                                                    <div class="col-auto">
+                                                                        <div class="input-group mb-2">
+                                                                    <div class="input-group-prepend">
+                                                        <div class="input-group-text"><strong>Operating Profit</strong></div>
+                                                                        </div>
+                                                                        <input type="number"  oninput="validateNumber(this);" id="inlineFormInputGroup" required=""
+                                                                                placeholder="Enter Operating Profit of A"  step="any" class="form-control" name="a6"   value="{{a6}}" >
+                                                                        <br><input type="number"  oninput="validateNumber(this);" id="inlineFormInputGroup" required=""
+                                                                            placeholder="Enter Operating Profit of B"  step="any" class="form-control" name="a66"   value="{{a66}}" >                                            
+                                </div>
+                                                                        <div class="form-row align-items-center">       
+                                                                                                                                         <div class="col-auto">
+                                    <div class="input-group mb-2">
+                                <div class="input-group-prepend">
+                    <div class="input-group-text"><strong> Common Stock</strong> &nbsp  Outstanding</div>
+                                    </div>
+                                    <input type="number"  oninput="validateNumber(this);" id="inlineFormInputGroup" required=""
+                                            placeholder="Common Stock of A"  step="any" class="form-control" name="t1"   value="{{t1}}" >
+                                            <br><input type="number"  oninput="validateNumber(this);" id="inlineFormInputGroup" required=""
+                                            placeholder="Common Stock of B"  step="any" class="form-control" name="t2"   value="{{t2}}" >                                            
+    </div>
+    <div class="form-row align-items-center">
+        <div class="col-auto">
+            <div class="input-group mb-2">
+                <div class="input-group-prepend">
+                    <div class="input-group-text"><strong>Market Price</strong> &nbsp per Share</div>
+                </div>
+                <input type="number"  oninput="validateNumber(this);" id="inlineFormInputGroup" required=""
+                    placeholder="Enter Market Price of A"  step="any" class="form-control" name="a7"   value="{{a7}}" >
+                    <br><input type="number"  oninput="validateNumber(this);" id="inlineFormInputGroup" required=""
+                    placeholder="Enter Market Price of B"  step="any" class="form-control" name="a77"   value="{{a77}}" >
+
+                </div>
+                    <div class=" center col mt-2 ">
+                        <center><button type="submit" class="btn btn-primary" name="f1">Calculate</button>
+                            <button type="button" onclick="myFunction()" style="margin-top:5px;"
+                            class="btn btn-danger">Reset</button>
+                        </center>
+                        
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<br>
+{% if id == 1 %}
+<div id="clear">
+    <div class="card" id="magnetic-force">
+        <div class="card-header">
+            <h2 class="h2">Probability Ratio Calculator</h2>
+        </div>
+        <div class="card-body"><style>
+            table, th, td {
+                border: 1px solid black;
+                border-collapse: collapse;
+              }</style>
+            <strong><table>
+                <tr>
+                  <th>Inputs</th>
+                  <th>A</th>
+                  <th>B</th>
+                  <th>Change</th>
+                </tr>
+                </strong>
+                <tr>
+                    <td>Net Income</td>
+                    <td>{{a1}}</td>
+                    <td>{{a11}}</td>
+                    <td>{{c1}}</td>
+                  </tr>
+                  <tr>
+                    <td>Total Assets</td>
+                    <td>{{a2}}</td>
+                    <td>{{a22}}</td>
+                    <td>{{c2}}</td>
+                  </tr>
+                  <tr>
+                    <td>Shareholders Equity</td>
+                    <td>{{a3}}</td>
+                    <td>{{a33}}</td>
+                    <td>{{c3}}</td>
+                  </tr>
+                  <tr>
+                    <td>Gross Profit</td>
+                    <td>{{a4}}</td>
+                    <td>{{a44}}</td>
+                    <td>{{c4}}</td>
+                  </tr>
+                  <tr>
+                    <td>Sales</td>
+                    <td>{{a5}}</td>
+                    <td>{{a55}}</td>
+                    <td>{{c5}}</td>
+                  </tr>
+                  <tr>
+                    <td>Operating Profit</td>
+                    <td>{{a6}}</td>
+                    <td>{{a66}}</td>
+                    <td>{{c6}}</td>
+                  </tr>
+                  <tr>
+                    <td>Common Stock Outstanding</td>
+                    <td>{{t1}}</td>
+                    <td>{{t2}}</td>
+                    <td>{{c7}}</td>
+                  </tr>
+                  <tr>
+                    <td>Market Price per Share</td>
+                    <td>{{a7}}</td>
+                    <td>{{a77}}</td>
+                    <td>{{c8}}</td>
+                  </tr>
+                </table>
+                <table>
+                    <br>
+            <strong>
+                <tr>
+                  <th>Results</th>
+                  <th>A</th>
+                  <th>B</th>
+                  <th>Change</th>
+                </tr>
+                </strong>
+                <tr>
+                    <td>Return on Assets</td>
+                    <td>{{Ra}}</td>
+                    <td>{{Ra1}}</td>
+                    <td>{{e}}</td>
+                  </tr>
+                  <tr>
+                    <td>Return on Equity</td>
+                    <td>{{re}}</td>
+                    <td>{{re1}}</td>
+                    <td>{{e1}}</td>
+                  </tr>
+                  <tr>
+                    <td>Gross Profit Margin</td>
+                    <td>{{gpm}}</td>
+                    <td>{{gpm2}}</td>
+                    <td>{{e2}}</td>
+                  </tr>
+                  <tr>
+                    <td>Operating Profit Margin</td>
+                    <td>{{opm}}</td>
+                    <td>{{opm1}}</td>
+                    <td>{{e3}}</td>
+                  </tr>
+                  <tr>
+                    <td>Net Profit Margin</td>
+                    <td>{{npm}}</td>
+                    <td>{{npm1}}</td>
+                    <td>{{e4}}</td>
+                  </tr>
+                  <tr>
+                    <td>Earnings per Share</td>
+                    <td>{{eps}}</td>
+                    <td>{{eps1}}</td>
+                    <td>{{e5}}</td>
+                  </tr>
+                  <tr>
+                    <td>Price/Earnings Ratio</td>
+                    <td>{{p}}</td>
+                    <td>{{p1}}</td>
+                    <td>{{e6}}</td>
+                  </tr>
+                </table>
+                <strong> The formulas are: </strong>
+                <p>Return on Assets = net income ÷ total assets</p>
+                <p>Return on Equity = net income ÷ shareholder's equity</p>
+                <p>Gross Profit Margin = gross profit ÷ sales</p>
+                <p>Operating Profit Margin = operating profit ÷ sales</p>
+                <p>Net Profit Margin = net income ÷ sales</p>
+                <p>Earnings per Share = net income ÷ common stock outstanding</p>
+                <p>Price/ Earnings Ratio = market price per share ÷ (net income ÷ common stock outstanding)</p>
+
+            </div>
+    </div>
+</div>
+{% endif %}
+<script>
+    
+    {% if id == 1 %}
+     
+    var scrollDiv = document.getElementById("clear").offsetTop;
+    window.scrollTo({ top: scrollDiv, behavior: 'smooth'});
+    
+    {%endif%}
+
+    function myFunction() {
+        
+        document.getElementsByName("a1")[0].value = "";
+        document.getElementsByName("a11")[0].value = "";
+        document.getElementsByName("a2")[0].value = "";
+        document.getElementsByName("a22")[0].value = "";
+        document.getElementsByName("a3")[0].value = "";
+        document.getElementsByName("a33")[0].value = "";
+        document.getElementsByName("a4")[0].value = "";
+        document.getElementsByName("a44")[0].value = "";
+        document.getElementsByName("a5")[0].value = "";
+        document.getElementsByName("a55")[0].value = "";
+        document.getElementsByName("a6")[0].value = "";
+        document.getElementsByName("a66")[0].value = "";
+        document.getElementsByName("t1")[0].value = "";
+        document.getElementsByName("t2")[0].value = "";
+        document.getElementsByName("a7")[0].value = "";
+        document.getElementsByName("a77")[0].value = "";
+        document.getElementById("clear").innerHTML = "";
+
+    }
+
+</script>   
+{%endblock%}

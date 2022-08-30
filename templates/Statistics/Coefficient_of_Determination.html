@@ -1,0 +1,275 @@
+{%extends 'base/statistics_base2.html'%}
+{%load static%}
+{%block meta%}
+<!-- HTML Defaults Broweser -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Bootstrap Stylesheet and Jquery, Google APIS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+<!-- Online Calculator Guru Site Fevicon -->
+<link rel="shortcut icon" href="https://onlinecalculator.guru/static/images/logo/Online-Calculator-Guru-Fevicon.png"
+    type="icon">
+<!-- Online Calculator Guru Project Style Sheet -->
+{%block css%}
+<link rel="stylesheet" href="/static/style.css">
+{%endblock css%}
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+<!-- Meta Title, Description and Canonical URL Starts --->
+<title>Coefficient of Determination Calculator (R-squared) | How to find Coefficient of Determination?</title>
+<meta name="description"
+    content="Online free Coefficient of Determination Calculator (R-squared) is the best tool to calculate the R-squared of any two variable dataset." />
+<link rel="canonical" href="{{request.build_absolute_uri}}">
+<!-- Meta Title, Description and Canonical URL ENDS --->
+
+<!-- OPEN GRAPH CONFIGURATIONS STARTS -->
+<!--  FACEBOOK CONFIGURATION STARTS  -->
+<meta content="https://www.facebook.com/OnlineCalculator-Guru-131572098650589/" property="og:url" />
+<meta property="og:title" content="Coefficient of Determination Calculator (R-squared) | How to find Coefficient of Determination?" />
+<meta property="og:description" content="Online free Coefficient of Determination Calculator (R-squared) is the best tool to calculate the R-squared of any two variable dataset." />
+<meta content="" property="og:site_name" />
+<meta content="https://onlinecalculator.guru/static/images/Statistics/Coefficient-of-determiantion-calculator-(r-squared).jpeg"
+    property="og:image" />
+<meta property="og:image:type" content="image/png" />
+<meta property="og:image:height" content="435" />
+<meta property="og:image:width" content="354" />
+<!--  FACEBOOK CONFIGURATION ENDS  -->
+<!-- TWITTER CARD CONFIGURATION STARTS  -->
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:site" content="https://twitter.com/onlinecalculator" />
+<meta name="twitter:title" content="Coefficient of Determination Calculator (R-squared) | How to find Coefficient of Determination?" />
+<meta name="twitter:description"
+    content="Online free Coefficient of Determination Calculator (R-squared) is the best tool to calculate the R-squared of any two variable dataset." />
+<meta name="twitter:image:src"
+    content="https://onlinecalculator.guru/static/images/Statistics/Coefficient-of-determiantion-calculator-(r-squared).jpeg" />
+<meta property="twitter:image:height" content="435" />
+<meta property="twitter:image:width" content="354" />
+<!-- TWITTER CARD CONFIGURATION ENDS  -->
+<!--  LINKEDIN CONFIGURATION STARTS-->
+<meta property='og:title' content="Coefficient of Determination Calculator (R-squared) | How to find Coefficient of Determination?" />
+<meta property='og:image'
+    content="https://onlinecalculator.guru/static/images/Statistics/Coefficient-of-determiantion-calculator-(r-squared).jpeg" />
+<meta property='og:description' content="Online free Coefficient of Determination Calculator (R-squared) is the best tool to calculate the R-squared of any two variable dataset." />
+<meta property='og:url' content="https://www.linkedin.com/in/onlinecalculator/" />
+<!-- end of linkedin CONFIGURATIONS ENDS -->
+<!-- OPEN GRAPH CONFIGURATION ENDS -->
+<!-- FAQ SCHEMA STARTS -->
+<script type="application/ld+json">{"@context": "https://schema.org","@type": "FAQPage","mainEntity": [{"@type": "Question","name":"1
+    How to calculate r-squared coefficient?
+    ","acceptedAnswer": {"@type": "Answer","text":" 
+    R-squared(coefficient of determination) can be calculated by using the formula, r<sup>2</sup> = Σ(xi - x̅) (yi - ȳ) / Σ(xi - x̅)<sup>2</sup> (yi - ȳ)<sup>2</sup>"}	}, {"@type": "Question","name":"2
+    What is Coefficient of determination?
+    ","acceptedAnswer": {"@type": "Answer","text":" 
+    Coefficient of determination can be defined as relation between dependent variable and independent variable."}	}, {"@type": "Question","name":"3
+    What are the steps to use Coefficient of determination calculator(R-squared)?
+    ","acceptedAnswer": {"@type": "Answer","text":"
+    1.First, give x and y values as inputs in the input fields.
+    2.Then, click the calculate button to get the R-squared value.
+    3.Finally you will get the r<sup>2</sup> value."}	}]}</script>
+{%endblock meta %}
+
+{% block content %}
+{% if ot and x and y %}
+<script>
+    $(document).ready(function () {
+
+        $("#hassle").click();
+        });
+</script>
+
+<button type="button" hidden id="hassle" onclick="location.href='#coefficient_of_determination'">ans1</button>
+{% endif %}
+
+
+<div class="container" style="height: auto !important;">
+    <div class="card c1">
+        <div class="card-header">
+            <h1 class="h1">Coefficient of Determination Calculator (R-squared)</h1>
+        </div>
+        <div class="card-body">
+            <p>Use this free coefficient of determination calculator tool to calculate the correlation coefficient, and r-squared. All you need to do is give the values of x and y as inputs and click the calculate button then you will get the output in split seconds.</p>
+            {% if messages %}
+            <ul class="messages">
+            {% for message in messages %}
+                <p {% if message.tags %} id="message_container" class="alert alert-danger text-center" {% endif %}
+                    style="color:red">{{ message }}</p>
+                {% endfor %}
+            </ul>
+            {% endif %}
+            <form action="{% url 'Coefficient_of_Determination' %}" method="POST" id="my_form">
+                {% csrf_token %}
+                 <div class="input-group mb-3">
+                      
+          </div>
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1">x (sperated by comma)</span>
+            </div>
+            
+           <input style="margin-top: 5px;width:100%" id="x" name="x" value="{{x}}"   required="" oninput="validateNumber(this);" class="form-control" type="text" required width="48"> 
+       </div>
+       <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1">y (sperated by comma)</span>
+            </div>
+            
+           <input style="margin-top: 5px;width:100%" id="y" name="y" value="{{y}}"   required="" oninput="validateNumber(this);" class="form-control" type="text"  required width="48"> 
+       </div>
+
+        <div class=" center col mt-2 ">
+            <center><button type="submit" class="btn btn-primary">Calculate</button>
+              <a href="{% url 'Coefficient_of_Determination' %}" class="btn btn-warning" role="button" style="margin-top:5px;">Reset</a>      
+            </center>
+          </div>
+    
+</div>
+ <p><b>Coefficient of Determination Calculator (R-squared): </b> Looking for the best calculator to calculate the r-squared and correlation co-efficient. Then you are at the right place. Utilize our free online coefficient of determination calculator tool which will work best for you and give you the answer without any error. Not only calculator we are also giving you the full information about the concept in this calculator tool. Start reading to Know more!!</p>
+</form>
+</div>
+</div>
+{% if x and y and ot %}
+<div class="container" style="height: auto !important;">
+<div class="card" id="coefficient_of_determination">
+        <div class="card-header">
+            <h2 class="h2">Steps to Find Coefficient of Determination Calculator (R-squared):</h2>
+        </div>
+
+        <div class="card-body">
+
+            <strong>Coefficient of Determination Calculator (R-squared):-</strong>
+            <br>
+            <p class="btn btn-outline-secondary active text-justify">Coefficient of Determination (R-squared) r<sup>2</sup>= Σ(xi - x̅) (yi - ȳ) / Σ(xi - x̅)<sup>2</sup> (yi - ȳ)<sup>2</sup></p>
+            <br>
+            <strong>where:</strong>
+                    <ul>
+                        <li>r<sup>2</sup> is the Coefficient of Determination,</li>
+                        <li>r is the Correlation Coefficient.</li>
+                        <li>xi is the element of x,</li>
+                        <li>yi is the element of y,</li>
+                        <li>x̅ is the mean of x.</li>
+                        <li>ȳ is the mean of y.</li>
+                        
+                    </ul>
+
+
+            <strong>Input values are:-</strong>
+            <p>x = {{x}} </p>
+            <p>y = {{y}} </p>
+
+            <p><b>Put values into formula</b></p>
+    
+            <p>Correlation Coefficient = ({{asum}} / √{{sq}})</p>
+            
+            {% if output %}
+                <b>Coefficient of Determination r<sup>2</sup> = {{start}} x 10<sup>{{end}}</sup></b>
+            {% else %}
+                <b>Coefficient of Determination r<sup>2</sup> = {{result}}</b>
+            {% endif %}
+                         
+   </div>
+    </div>
+    </div>
+    <div class="container" style="height: auto !important;">
+        <div class="card" id="coefficient_of_determination">
+            <div class="card-header">
+                <h3 class="h3">What is the Coefficient of Determination?</h3>
+            </div>
+               <div class="card-body">
+                    <p>R-squared is the coefficient of determination which shows the relation between dependent and independent variables. Coeffecient of determination is also known as R-Squared and it is denoted by R<sup>2</sup>.</p>
+                </div>
+        </div>
+     </div>
+     <div class="container" style="height: auto !important;">
+        <div class="card" id="coefficient_of_determination">
+            <div class="card-header">
+                <h3 class="h3">Formula of R-squared (or) Coefficient of Determination</h3>
+            </div>
+               <div class="card-body">
+                   <p>Let us see the formula of R-squared (or) Coefficient of Determination</p>
+                  <p><b>R-squared (r<sup>2</sup>) = Σ(xi - x̅) (yi - ȳ) / Σ(xi - x̅)<sup>2</sup> (yi - ȳ)<sup>2</sup></b></p>
+                  <p>Where,</p>
+                  <p>r<sup>2</sup> = Coefficient of Determination</p>
+                  <p>r = Correlation Coefficient</p>
+                  <p>xi = Element of x </p>
+                  <p>yi = Element of y</p>
+                  <p>x̅ =  Mean of x</p>
+                  <p>ȳ =  Mean of y</p>
+                </div>
+        </div>
+    </div>
+    <div class="container" style="height: auto !important;">
+        <div class="card" id="coefficient_of_determination">
+            <div class="card-header">
+                <h3 class="h3">How to Calculate R-squared?</h3>
+            </div>
+               <div class="card-body">
+                   <p>Follow these below steps to calculate the coefficient of determination manually without any hard work.</p>
+                   <ul>
+                       <li>First, write down the values given in the problem.</li>
+                       <li>Then write down the coefficient of determination formula.</li>
+                       <li>And then, substitute the values in the formula.</li>
+                       <li>That's simple, you will get the desired answer.</li>
+                   </ul>
+                </div>
+        </div>
+    </div>
+    <div class="container" style="height: auto !important;">
+        <div class="card" id="coefficient_of_determination">
+            <div class="card-header">
+                <h3 class="h3">Coefficient of Determination Example</h3>
+            </div>
+               <div class="card-body">
+                   <p><b>Example</b></p>
+                   <p><b>Question: </b> Find the Coefficient of Determination by following data:</p>
+                   <p>X = 5, 10, 12 , 
+                      Y = 3, 6, 9
+                   </p>
+                   <p><b>Solution:</b></p>
+                   <p>Given data is X = 5, 10, 12, Y = 3, 6, 9,  total elements = 3</p>
+                   <p>Using the R- squared formula</p>
+                   <p>r<sup>2</sup> = Σ(xi - x̅) (yi - ȳ) / Σ(xi - x̅)<sup>2</sup> (yi - ȳ)<sup>2</sup></p>
+                   <p>Substitute the values in the formula,</p>
+                   <p>Mean of X= 9</p>
+                   <p>Mean of Y= 6</p>
+                   <p>r<sup>2</sup> = [(5-9)(3-6)+(10-9)(6-6)+(12-9)(9-6)]/[(5-9)<sup>2</sup>(3-6)<sup>2</sup>+(10-9)<sup>2</sup>(6-6)<sup>2</sup>+(12-9)<sup>2</sup>(9-6)<sup>2</sup>]</p>
+                   <p>r<sup>2</sup> = [(-4)(-3)+(1)(0)+(3)(3)]/[(-4)<sup>2</sup>(-3)<sup>2</sup>+(1)<sup>2</sup>(0)<sup>2</sup>+(3)<sup></sup>(3)]</p>
+                   <p>r<sup>2</sup> = [(12)+1+9]/[(16)(9)+(1)+(9)(9)]</p>
+                   <p>r<sup>2</sup> = [22]/[144+1+81]</p>
+                   <p>r<sup>2</sup> = [22]/[226] = 0.0973</p>
+                   <p>Thus, Coefficient of Determination (r<sup>2</sup>) = 0.0973</p>
+                   <p>Get the best statistics calculators using this <a href="https://statisticscalculators.net/">statisticscalculators.net</a> website and learn to do it easily without errors.</p>
+                   <img src="{% static 'images/Statistics/coefficient-of-determination-calculator-(r-squared).jpeg' %}" alt='coefficient-of-determination-calculator-(r-squared)'>
+                </div>
+        </div>
+   </div>
+   <div class="container" style="height: auto !important;">
+    <div class="card" id="coefficient_of_determination">
+        <div class="card-header">
+            <h3 class="h3">FAQs on Coefficient of Determination Calculator</h3>
+        </div>
+           <div class="card-body">
+               <!-- Question & Answer Starts --->
+               <p class="question"><strong>1. How to calculate r-squared coefficient?</strong></p>
+               <p class="answer">R-squared(coefficient of determination) can be calculated by using the formula, r<sup>2</sup> = Σ(xi - x̅) (yi - ȳ) / Σ(xi - x̅)<sup>2</sup> (yi - ȳ)<sup>2</sup></p><hr>
+               <p class="question"><strong>2. What is Coefficient of determination?</strong></p>
+               <p class="answer">Coefficient of determination can be defined as relation between dependent variable and independent variable.</p><hr>  
+               <p class="question"><strong>3. What are the steps to use Coefficient of determination calculator(R-squared)?</strong></p>
+               <p class="answer"><ul>
+                             <li>First, give x and y values as inputs in the input fields.</li>
+                             <li>Then, click the calculate button to get the R-squared value.</li>
+                             <li>Finally you will get the r<sup>2</sup> value.</li>
+                            </ul></p>
+            </div>
+        </div>
+    </div>
+                   
+   
+
+
+
+    {% endif %}                  
+{% endblock content %}

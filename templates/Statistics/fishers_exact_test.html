@@ -1,0 +1,170 @@
+{%extends 'base/statistics_base2.html'%}
+{%load static%}
+{%block meta%}
+<!-- HTML Defaults Broweser -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Bootstrap Stylesheet and Jquery, Google APIS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+<!-- Online Calculator Guru Site Fevicon -->
+<link rel="shortcut icon" href="https://onlinecalculator.guru/static/images/logo/Online-Calculator-Guru-Fevicon.png"
+    type="icon">
+<!-- Online Calculator Guru Project Style Sheet -->
+{%block css%}
+<link rel="stylesheet" href="/static/style.css">
+{%endblock css%}
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+<!-- Meta Title, Description and Canonical URL Starts --->
+<title>Fisher's Exact Test Calculator | Free Calculator to find Fisher's Exact Test</title>
+<meta name="description"
+    content="Capacitance Calculator makes it easy for you to determine the value of capacitance, area, and distance with steps." />
+<link rel="canonical" href="{{request.build_absolute_uri}}">
+<!-- Meta Title, Description and Canonical URL ENDS --->
+
+<!-- OPEN GRAPH CONFIGURATIONS STARTS -->
+<!--  FACEBOOK CONFIGURATION STARTS  -->
+<meta content="https://www.facebook.com/OnlineCalculator-Guru-131572098650589/" property="og:url" />
+<meta property="og:title" content="Angular Resolution Calculator | Free Calculator to find Angular Resolution" />
+<meta property="og:description" content="Angular Resolution Calculator" />
+<meta content="" property="og:site_name" />
+<meta content="https://onlinecalculator.guru/static/images/Chemistry/Theoratical-Yield-Calculator.jpeg"
+    property="og:image" />
+<meta property="og:image:type" content="image/png" />
+<meta property="og:image:height" content="435" />
+<meta property="og:image:width" content="354" />
+<!--  FACEBOOK CONFIGURATION ENDS  -->
+<!-- TWITTER CARD CONFIGURATION STARTS  -->
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:site" content="https://twitter.com/onlinecalculator" />
+<meta name="twitter:title" content="Angular Resolution Calculator | Free Calculator to find Angular Resolution" />
+<meta name="twitter:description"
+    content="Angular Resolution Calculator makes it easy for you to determine the theoretical yield value of the chemical reaction in fraction of seconds with steps." />
+<meta name="twitter:image:src"
+    content="https://onlinecalculator.guru/static/images/Chemistry/Theoratical-Yield-Calculator.jpeg" />
+<meta property="twitter:image:height" content="435" />
+<meta property="twitter:image:width" content="354" />
+<!-- TWITTER CARD CONFIGURATION ENDS  -->
+<!--  LINKEDIN CONFIGURATION STARTS-->
+<meta property='og:title' content="Angular Resolution Calculator | Free Calculator to find Angular Resolution" />
+<meta property='og:image'
+    content="https://onlinecalculator.guru/static/images/Chemistry/Theoratical-Yield-Calculator.jpeg" />
+<meta property='og:description' content="Angular Resolution Calculator." />
+<meta property='og:url' content="https://www.linkedin.com/in/onlinecalculator/" />
+<!-- end of linkedin CONFIGURATIONS ENDS -->
+<!-- OPEN GRAPH CONFIGURATION ENDS -->
+<!-- FAQ SCHEMA STARTS -->
+
+{%endblock meta %}
+
+{% block content %}
+{% if a and b and c and d and ot %}
+<script>
+    $(document).ready(function () {
+
+        $("#hassle").click();
+        });
+</script>
+
+<button type="button" hidden id="hassle" onclick="location.href='#fishers_exact_test'">ans1</button>
+{% endif %}
+
+
+<div class="container" style="height: auto !important;">
+    <div class="card c1">
+        <div class="card-header">
+            <h1 class="h1">Fisher's Exact Test Calculator</h1>
+        </div>
+        <div class="card-body">
+            {% if messages %}
+            <ul class="messages">
+            {% for message in messages %}
+                <p {% if message.tags %} id="message_container" class="alert alert-danger text-center" {% endif %}
+                    style="color:red">{{ message }}</p>
+                {% endfor %}
+            </ul>
+            {% endif %}
+            <form action="{% url 'fishers_exact_test' %}" method="POST" id="my_form">
+                {% csrf_token %}
+
+                           
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1">a</span>
+            </div>
+            
+           <input style="margin-top: 5px;width:100%" id="a" name="a" value="{{a}}"   required="" oninput="validateNumber(this);" class="form-control" type="text" required width="48"> 
+       </div>
+
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1">b</span>
+            </div>
+            
+           <input style="margin-top: 5px;width:100%" id="b" name="b" value="{{b}}"   required="" oninput="validateNumber(this);" class="form-control" type="text" required width="48"> 
+       </div>
+       <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1">c</span>
+            </div>
+            
+           <input style="margin-top: 5px;width:100%" id="c" name="c" value="{{c}}"   required="" oninput="validateNumber(this);" class="form-control" type="text" required width="48"> 
+       </div>
+       <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1">d</span>
+            </div>
+            
+           <input style="margin-top: 5px;width:100%" id="d" name="d" value="{{d}}"   required="" oninput="validateNumber(this);" class="form-control" type="text" required width="48"> 
+       </div>
+        <div class=" center col mt-2 ">
+            <center><button type="submit" class="btn btn-primary">Calculate</button>
+              <a href="{% url 'fishers_exact_test' %}" class="btn btn-warning" role="button" style="margin-top:5px;">Reset</a>      
+            </center>
+          </div>
+    
+</form>
+</div>
+</div>
+</div>
+
+{% if a and b and c and d and ot %}
+<div class="container" style="height: auto !important;">
+<div class="card" id="fishers_exact_test">
+        <div class="card-header">
+            <h2 class="h2">Steps to Find Fisher's Exact Test:</h2>
+        </div>
+
+        <div class="card-body">
+
+            <strong>Fisher's Exact Test:-</strong>
+            <br>
+            <p class="btn btn-outline-secondary active text-justify">Fisher's Exact Test = (a+b)! (c+d)! (a+c)! (b+d)! / a! b! c! d! n!</p>
+            <br>
+            <strong>Input values are:-</strong>
+            <p>a = {{a}}</p>
+            <p>b = {{b}}</p>
+            <p>c = {{c}}</p>
+            <p>d = {{d}}</p>
+            
+            <b>Put values in formula</b>
+            <p>Fisher's Exact Test = ({{a}}+{{b}})! ({{c}}+{{d}})! ({{a}}+{{c}})! ({{b}}+{{d}})! / {{a}}! {{b}}! {{c}}! {{d}}! {{n}}!</p>
+            
+            
+            {% if output %}
+                <b>p-value = {{start}} x 10<sup>{{end}}</sup></b>
+            {% else %}
+                <b>p-value = {{result}}</b>
+            {% endif %}       
+
+   </div>
+    </div>
+</div>
+{% endif %}
+<img src="{% static 'images/Statistics/fisher-exact-test-calculator.jpeg' %}" alt='fisher-exact-test-calculator'>
+      
+{% endblock content %}

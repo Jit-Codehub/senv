@@ -1,0 +1,850 @@
+{%extends 'base/statistics_base2.html'%}
+{%load static%}
+  {%block meta%}
+    <!-- HTML Defaults Broweser -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Bootstrap Stylesheet and Jquery, Google APIS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <!-- Online Calculator Guru Site Fevicon -->
+    <link rel="shortcut icon" href="https://onlinecalculator.guru/static/images/logo/Online-Calculator-Guru-Fevicon.png" type="icon">
+    <!-- Online Calculator Guru Project Style Sheet -->
+    {%block css%}
+    <link rel="stylesheet" href="/static/style.css">
+    {%endblock%}
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <!-- Meta Title, Description and Canonical URL Starts --->
+    <title>Variance Formulas in Statistics | List of Formulas to Calculate the Variance</title>
+    <meta name="description" content="Are you looking for the Variance formulas sheet? Here is the cheat sheet of formula for variance & solved examples to understand the concept."/>
+    <link rel="canonical" href="{{request.build_absolute_uri}}">
+    <!-- Meta Title, Description and Canonical URL ENDS --->
+ 
+    <!-- OPEN GRAPH CONFIGURATIONS STARTS -->
+	<!--  FACEBOOK CONFIGURATION STARTS  -->
+        <meta content="https://www.facebook.com/OnlineCalculator-Guru-131572098650589/" property="og:url" />
+        <meta property="og:title" content="Variance Formulas in Statistics | List of Formulas to Calculate the Variance"/>
+        <meta property="og:description" content="Are you looking for the Variance formulas sheet? Here is the cheat sheet of formula for variance & solved examples to understand the concept."/>
+        <meta content="" property="og:site_name" />
+        <meta  content="https://onlinecalculator.guru/static/images/Statistics/Statistics-Formulas.jpeg" property="og:image" />
+        <meta property="og:image:type" content="image/png" />
+        <meta property="og:image:height" content="435" />
+        <meta property="og:image:width" content="354" />
+        <!--  FACEBOOK CONFIGURATION ENDS  -->
+        <!-- TWITTER CARD CONFIGURATION STARTS  -->
+        <meta name="twitter:card" content="summary"/>
+        <meta name="twitter:site" content="https://twitter.com/onlinecalculator"/>
+        <meta name="twitter:title" content="Variance Formulas in Statistics | List of Formulas to Calculate the Variance"/>
+        <meta name="twitter:description" content="Are you looking for the Variance formulas sheet? Here is the cheat sheet of formula for variance & solved examples to understand the concept."/>
+        <meta name="twitter:image:src" content="https://onlinecalculator.guru/static/images/Statistics/Statistics-Formulas.jpeg"/>
+        <meta property="twitter:image:height" content="435"/>
+        <meta property="twitter:image:width" content="354"/>
+        <!-- TWITTER CARD CONFIGURATION ENDS  -->
+        <!--  LINKEDIN CONFIGURATION STARTS-->
+        <meta property='og:title' content="Variance Formulas in Statistics | List of Formulas to Calculate the Variance"/>
+        <meta property='og:image' content="https://onlinecalculator.guru/static/images/Statistics/Statistics-Formulas.jpeg"/>
+        <meta property='og:description' content="Are you looking for the Variance formulas sheet? Here is the cheat sheet of formula for variance & solved examples to understand the concept."/>
+        <meta property='og:url' content="https://www.linkedin.com/in/onlinecalculator/" />
+        <!-- end of linkedin CONFIGURATIONS ENDS -->
+    <!-- OPEN GRAPH CONFIGURATION ENDS -->
+<!-- FAQ SCHEMA STARTS -->
+<script type="application/ld+json">{"@context": "https://schema.org","@type": "FAQPage","mainEntity": [{"@type": "Question","name":"1.
+    How do you calculate the variance?
+    ","acceptedAnswer": {"@type": "Answer","text":"First, memorize the formulas of variance and then start the process of calculating variance.
+    To find the variance, calculate the mean of the data set. Add all data values and divide by the sample size n.
+    Next, calculate the squared difference from the mean for each data value.
+    Subtract the mean from each data value and square the result and discover the sum of the squared differences.
+    Finally, consider the respective variance formula and substitute the values in it and calculate the variance of the given data set."}	}, {"@type": "Question","name":"2.
+    What is the shortcut formula for Variance?
+    ","acceptedAnswer": {"@type": "Answer","text":"For the random variable X with a population mean μ and population variance σ2, the shortcut formula of variance is V[X] = E [X^2] - μ^2."}	}, {"@type": "Question","name":"3.
+    What are variance formulas for population and sample data sets? 
+    ","acceptedAnswer": {"@type": "Answer","text":"Variance formula for a population data set is
+
+    σ² = [(∑i = 1n (xi - μ)²) / n]
+    
+    Variance formula for sample data set is
+    
+    s² = [(∑i = 1n (xi - xmean)²) / (n - 1)]"}	}]}</script>
+    {%endblock%}
+    {%block content%}
+    {% if ot and val and x1 and x2 %}
+<script>
+    $(document).ready(function () {
+
+        $("#hassle").click();
+        });
+
+</script>
+
+<button type="button" hidden id="hassle" onclick="location.href='#variation_equations'">ans1</button>
+{% endif %}
+    <div class="container">
+        <div class="card c1">
+            <div class="card-header">
+                <h1 class="h1">Variance Formulas</h1>
+            </div>
+            <div class="card-body">
+                <p>Want to excel in variance calculations? Here we have compiled the population &amp; sample variance formulas for grouped and ungrouped data have a look at them and calculate variance problems with ease. You can use this variance formula to show how widely individuals in a group differ. In case, individual observations counter largely from the group mean, the variance is big and vice versa.</p>
+                {% if messages %}
+            <ul class="messages">
+            {% for message in messages %}
+                <p {% if message.tags %} id="message_container" class="alert alert-danger text-center" {% endif %}
+                    style="color:red">{{ message }}</p>
+                {% endfor %}
+                {% endif %}
+                <form action="{% url 'variation_equations' %}" method="POST" id="my_form">
+                    {% csrf_token %}
+    
+                     <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+    
+                <select id="var1" name="var1"  style="margin-top: 5px;width:100%" class="select form-control" id="inlineFormInputGroup" onchange="this.form.submit()">
+    
+                {% if var1 == "a" %}
+                <option value="a" selected="selected">a</option>  
+                {% else %}
+                <option value="a" >a</option>  
+                {% endif %}
+    
+                {% if var1 == "b" %}
+                <option value="b" selected="selected">b</option>  
+                {% else %}
+                <option value="b" >b</option>  
+                {% endif %}
+    
+                {% if var1 == "c" %}
+                <option value="c" selected="selected">c</option>  
+                {% else %}
+                <option value="c" >c</option>  
+                {% endif %}
+    
+                {% if var1 == "d" %}
+                <option value="d" selected="selected">d</option>  
+                {% else %}
+                <option value="d" >d</option>  
+                {% endif %}
+    
+                {% if var1 == "e" %}
+                <option value="e" selected="selected">e</option>  
+                {% else %}
+                <option value="e" >e</option>  
+                {% endif %}
+    
+                {% if var1 == "f" %}
+                <option value="f" selected="selected">f</option>  
+                {% else %}
+                <option value="f" >f</option>  
+                {% endif %}
+    
+                {% if var1 == "g" %}
+                <option value="g" selected="selected">g</option>  
+                {% else %}
+                <option value="g" >g</option>  
+                {% endif %}
+    
+                {% if var1 == "h" %}
+                <option value="h" selected="selected">h</option>  
+                {% else %}
+                <option value="h" >h</option>  
+                {% endif %}
+    
+                {% if var1 == "i" %}
+                <option value="i" selected="selected">i</option>  
+                {% else %}
+                <option value="i" >i</option>  
+                {% endif %}
+    
+                {% if var1 == "j" %}
+                <option value="j" selected="selected">j</option>  
+                {% else %}
+                <option value="j" >j</option>  
+                {% endif %}
+    
+                {% if var1 == "k" %}
+                <option value="k" selected="selected">k</option>  
+                {% else %}
+                <option value="k" >k</option>  
+                {% endif %}
+    
+                {% if var1 == "l" %}
+                <option value="l" selected="selected">l</option>  
+                {% else %}
+                <option value="l" >l</option>  
+                {% endif %}
+    
+                {% if var1 == "m" %}
+                <option value="m" selected="selected">m</option>  
+                {% else %}
+                <option value="m" >m</option>  
+                {% endif %}
+    
+                {% if var1 == "n" %}
+                <option value="n" selected="selected">n</option>  
+                {% else %}
+                <option value="n" >n</option>  
+                {% endif %}
+    
+                {% if var1 == "o" %}
+                <option value="o" selected="selected">o</option>  
+                {% else %}
+                <option value="o" >o</option>  
+                {% endif %}
+    
+                {% if var1 == "p" %}
+                <option value="p" selected="selected">p</option>  
+                {% else %}
+                <option value="p" >p</option>  
+                {% endif %}
+    
+                {% if var1 == "q" %}
+                <option value="q" selected="selected">q</option>  
+                {% else %}
+                <option value="q" >q</option>  
+                {% endif %}
+    
+                {% if var1 == "r" %}
+                <option value="r" selected="selected">r</option>  
+                {% else %}
+                <option value="r" >r</option>  
+                {% endif %}
+    
+    
+                {% if var1 == "s" %}
+                <option value="s" selected="selected">s</option>  
+                {% else %}
+                <option value="s" >s</option>  
+                {% endif %}
+    
+                {% if var1 == "t" %}
+                <option value="t" selected="selected">t</option>  
+                {% else %}
+                <option value="t" >t</option>  
+                {% endif %}
+    
+                {% if var1 == "u" %}
+                <option value="u" selected="selected">u</option>  
+                {% else %}
+                <option value="u" >u</option>  
+                {% endif %}
+    
+                {% if var1 == "v" %}
+                <option value="v" selected="selected">v</option>  
+                {% else %}
+                <option value="v" >v</option>  
+                {% endif %}
+    
+                {% if var1 == "w" %}
+                <option value="w" selected="selected">w</option>  
+                {% else %}
+                <option value="w" >w</option>  
+                {% endif %}
+    
+                {% if var1 == "x" %}
+                <option value="x" selected="selected">x</option>  
+                {% else %}
+                <option value="x" >x</option>  
+                {% endif %}
+    
+                {% if var1 == "y" %}
+                <option value="y" selected="selected">y</option>  
+                {% else %}
+                <option value="y" >y</option>  
+                {% endif %}
+    
+                {% if var1 == "z" %}
+                <option value="z" selected="selected">z</option>  
+                {% else %}
+                <option value="z" >z</option>  
+                {% endif %}
+                </select>
+                <select id="Given" name="Given"  style="margin-top: 5px;width:100%" class="select form-control" id="inlineFormInputGroup" onchange="this.form.submit()">
+
+                    {% if Given == "form1" %}
+                    <option value="form1" selected="selected">varies directly as</option>  
+                    {% else %}
+                    <option value="form1">varies directly as</option>  
+                    {% endif %}
+        
+                    {% if Given == "form2" %}
+                    <option value="form2" selected="selected">varies inversly as</option>  
+                    {% else %}
+                    <option value="form2" >varies inversly as</option>  
+                    {% endif %}
+        
+                    {% if Given == "form3" %}
+                    <option value="form3" selected="selected">varies directly as the square of</option>  
+                    {% else %}
+                    <option value="form3" >varies directly as the square of</option>  
+                    {% endif %}
+        
+                    {% if Given == "form4" %}
+                    <option value="form4" selected="selected">varies directly as the square root of</option>  
+                    {% else %}
+                    <option value="form4" >varies directly as the square root of</option>  
+                    {% endif %}
+        
+                    {% if Given == "form5" %}
+                    <option value="form5" selected="selected">varies inversely as the square of</option>  
+                    {% else %}
+                    <option value="form5" >varies inversely as the square of</option>  
+                    {% endif %}
+        
+                    {% if Given == "form6" %}
+                    <option value="form6" selected="selected">varies directly as the cube of</option>  
+                    {% else %}
+                    <option value="form6" >varies directly as the cube of</option>  
+                    {% endif %}
+        
+                    {% if Given == "form7" %}
+                    <option value="form7" selected="selected">varies inversely as the cube of</option>  
+                    {% else %}
+                    <option value="form7" >varies inversely as the cube of</option>  
+                    {% endif %}
+        
+                    {% if Given == "form8" %}
+                    <option value="form8" selected="selected">varies inversely as the square root of</option>  
+                    {% else %}
+                    <option value="form8" >varies inversely as the square root of</option>  
+                    {% endif %}
+        
+                </select>
+        
+                <select id="var2" name="var2"  style="margin-top: 5px;width:100%" class="select form-control" id="inlineFormInputGroup" onchange="this.form.submit()">
+        
+                    {% if var2 == "a" %}
+                    <option value="a" selected="selected">a</option>  
+                    {% else %}
+                    <option value="a" >a</option>  
+                    {% endif %}
+        
+                    {% if var2 == "b" %}
+                    <option value="b" selected="selected">b</option>  
+                    {% else %}
+                    <option value="b" >b</option>  
+                    {% endif %}
+        
+                    {% if var2 == "c" %}
+                    <option value="c" selected="selected">c</option>  
+                    {% else %}
+                    <option value="c" >c</option>  
+                    {% endif %}
+        
+                    {% if var2 == "d" %}
+                    <option value="d" selected="selected">d</option>  
+                    {% else %}
+                    <option value="d" >d</option>  
+                    {% endif %}
+        
+                    {% if var2 == "e" %}
+                    <option value="e" selected="selected">e</option>  
+                    {% else %}
+                    <option value="e" >e</option>  
+                    {% endif %}
+        
+                    {% if var2 == "f" %}
+                    <option value="f" selected="selected">f</option>  
+                    {% else %}
+                    <option value="f" >f</option>  
+                    {% endif %}
+        
+                    {% if var2 == "g" %}
+                    <option value="g" selected="selected">g</option>  
+                    {% else %}
+                    <option value="g" >g</option>  
+                    {% endif %}
+        
+                    {% if var2 == "h" %}
+                    <option value="h" selected="selected">h</option>  
+                    {% else %}
+                    <option value="h" >h</option>  
+                    {% endif %}
+        
+                    {% if var2 == "i" %}
+                    <option value="i" selected="selected">i</option>  
+                    {% else %}
+                    <option value="i" >i</option>  
+                    {% endif %}
+        
+                    {% if var2 == "j" %}
+                    <option value="j" selected="selected">j</option>  
+                    {% else %}
+                    <option value="j" >j</option>  
+                    {% endif %}
+        
+                    {% if var2 == "k" %}
+                    <option value="k" selected="selected">k</option>  
+                    {% else %}
+                    <option value="k" >k</option>  
+                    {% endif %}
+        
+                    {% if var2 == "l" %}
+                    <option value="l" selected="selected">l</option>  
+                    {% else %}
+                    <option value="l" >l</option>  
+                    {% endif %}
+        
+                    {% if var2 == "m" %}
+                    <option value="m" selected="selected">m</option>  
+                    {% else %}
+                    <option value="m" >m</option>  
+                    {% endif %}
+        
+                    {% if var2 == "n" %}
+                    <option value="n" selected="selected">n</option>  
+                    {% else %}
+                    <option value="n" >n</option>  
+                    {% endif %}
+        
+                    {% if var2 == "o" %}
+                    <option value="o" selected="selected">o</option>  
+                    {% else %}
+                    <option value="o" >o</option>  
+                    {% endif %}
+        
+                    {% if var2 == "p" %}
+                    <option value="p" selected="selected">p</option>  
+                    {% else %}
+                    <option value="p" >p</option>  
+                    {% endif %}
+        
+                    {% if var2 == "q" %}
+                    <option value="q" selected="selected">q</option>  
+                    {% else %}
+                    <option value="q" >q</option>  
+                    {% endif %}
+        
+                    {% if var2 == "r" %}
+                    <option value="r" selected="selected">r</option>  
+                    {% else %}
+                    <option value="r" >r</option>  
+                    {% endif %}
+        
+        
+                    {% if var2 == "s" %}
+                    <option value="s" selected="selected">s</option>  
+                    {% else %}
+                    <option value="s" >s</option>  
+                    {% endif %}
+        
+                    {% if var2 == "t" %}
+                    <option value="t" selected="selected">t</option>  
+                    {% else %}
+                    <option value="t" >t</option>  
+                    {% endif %}
+        
+                    {% if var2 == "u" %}
+                    <option value="u" selected="selected">u</option>  
+                    {% else %}
+                    <option value="u" >u</option>  
+                    {% endif %}
+        
+                    {% if var2 == "v" %}
+                    <option value="v" selected="selected">v</option>  
+                    {% else %}
+                    <option value="v" >v</option>  
+                    {% endif %}
+        
+                    {% if var2 == "w" %}
+                    <option value="w" selected="selected">w</option>  
+                    {% else %}
+                    <option value="w" >w</option>  
+                    {% endif %}
+        
+                    {% if var2 == "x" %}
+                    <option value="x" selected="selected">x</option>  
+                    {% else %}
+                    <option value="x" >x</option>  
+                    {% endif %}
+        
+                    {% if var2 == "y" %}
+                    <option value="y" selected="selected">y</option>  
+                    {% else %}
+                    <option value="y" >y</option>  
+                    {% endif %}
+        
+                    {% if var2 == "z" %}
+                    <option value="z" selected="selected">z</option>  
+                    {% else %}
+                    <option value="z" >z</option>  
+                    {% endif %}
+                    </select>
+        
+                    <span class="input-group-text" id="basic-addon1">and</span>
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1">y=</span>
+                    </div>
+                    <input style="margin-top: 5px;width:100%" id="val" name="val" value="{{val}}"   required="" class="form-control" type="number" step="any" required width="48"> 
+           <span class="input-group-text" id="basic-addon1">When</span>
+        </div>
+        <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon1">x=</span>
+                </div>
+    
+               <input style="margin-top: 5px;width:100%" id="x1" name="x1" value="{{x1}}"   required="" class="form-control" type="number" step="any" required width="48">
+               <span class="input-group-text" id="basic-addon1">What is given x=</span>
+               <input style="margin-top: 5px;width:100%" id="x2" name="x2" value="{{x2}}"   required="" class="form-control" type="number" step="any" required width="48"> 
+           </div>
+    
+            <div class=" center col mt-2">
+                <center><button type="submit" class="btn btn-primary">Calculate</button>
+                  <a href="{% url 'variation_equations' %}" class="btn btn-warning" role="button" style="margin-top:5px;">Reset</a>
+                  </center>
+              </div>
+    
+    </div>
+    
+    </form>
+    
+                <p>Know more about variance in statistics like definition, population variance formulas, sample variance formulas, example questions with answers using variance formulas, etc. from this page &amp; enhance your subject knowledge &amp; problem-solving skills.</p>
+        </div>
+{% if ot and val and x1 and x2  %}
+<div class="container" style="height: auto !important;">
+<div class="card" id="variation_equations">
+    <div class="card-body">
+        {% if Given == 'form1' and x1 and x2 and val %}
+        <strong>{{var1}} varies directly as {{var2}}, and y={{val}} when x={{x1}}, solve for {{var1}} when x={{x2}}</strong>
+
+        <p>The Statement as varies dirctly as denotes a relationship {{var1}} = k {{var2}}, Where k is constant</p>
+
+        <p>Plugging in our initial statement values of y={{val}} when x={{x1}}, we get</p>
+        <p>{{val}} = {{x1}}k</p>
+
+        <p>Divide each side by {{x1}} to solve for k:</p>
+        <p>{{val}}/{{x1}} = {{x1}}k / {{x1}}</p>
+        <p>k = {{k1}}</p>
+
+        <strong>Solve the second part of variation equation:</strong>
+        <p>because we have found our ralationship constant k = {{k1}}, we from our new variation equation</p>
+        <p>{{var1}} = {{k1}}{{var2}}</p>
+        <p>Since, we were given that x = {{x2}}, we have</p>
+        <p>{{var1}} = {{k1}} * ({{x2}})</p>
+        <b>{{var1}} = {{result}}</b>
+
+
+        {% endif %}
+
+        {% if Given == 'form2' and x1 and x2 and val %}
+        <strong>{{var1}} varies inversely as {{var2}}, and y = {{val}} when x = {{x1}}, solve for {{var1}} when x = {{x2}}</strong>
+
+        <p>The Statement as varies inversely as denotes a relationship {{var1}} = k / {{var2}}, Where k is constant</p>
+
+        <p>Plugging in our initial statement values of y={{val}} when x={{x1}}, we get</p>
+        <p>{{val}} = k / {{x1}}</p>
+        <p>k = {{val}} * {{x1}}</p>
+        <p>k = {{k1}}</p>
+
+
+        <strong>Solve the second part of variation equation:</strong>
+        <p>because we have found our ralationship constant k = {{k1}}, we from our new variation equation</p>
+        <p>{{var1}} = {{k1}} / {{var2}}</p>
+        <p>Since, we were given that x = {{x2}}, we have</p>
+        <p>{{var1}} = {{k1}} / {{x2}}</p>
+        <b>{{var1}} = {{result}}</b>
+        {% endif %}
+
+        {% if Given == 'form3' and x1 and x2 and val %}
+
+        <strong>{{var1}} varies directly as the square of {{var2}}, and y = {{val}} when x = {{x1}}, solve for {{var1}} when x = {{x2}}</strong>
+
+        <p>The Statement varies directly as the square of denotes a relationship {{var1}} = k {{var2}}<sup>2</sup>, Where k is constant</p>
+
+        <p>Plugging in our initial statement values of y={{val}} when x={{x1}}, we get</p>
+        <p>{{val}} = k({{x1}})<sup>2</sup></p>
+        <p>{{val}} = {{x1s}}k</p>
+
+        <p>Divide each side by {{x1s}} to solve for k:</p>
+        <p>{{val}}/{{x1s}} = {{x1s}}k / {{x1s}}</p>
+        <p>k = {{k1}}</p>
+
+        <strong>Solve the second part of variation equation:</strong>
+        <p>because we have found our ralationship constant k = {{k1}}, we from our new variation equation</p>
+        <p>{{var1}} = {{k1}}({{var2}})<sup>2</sup></p>
+        <p>Since, we were given that x = {{x2}}, we have</p>
+        <p>{{var1}} = {{k1}}({{x2}})<sup>2</sup></p>
+        <p>{{var1}} = {{k1}} * ({{x2s}})</p>
+        <b>{{var1}} = {{result}}</b>
+
+        {% endif %}
+        {% if Given == 'form4' and x1 and x2 and val %}
+
+        <strong>{{var1}} varies directly as the square root of {{var2}}, and y = {{val}} when x = {{x1}}, solve for {{var1}} when x = {{x2}}</strong>
+
+        <p>The Statement varies directly as the square root of denotes a relationship {{var1}} = k √{{var2}}, Where k is constant</p>
+
+        <p>Plugging in our initial statement values of y={{val}} when x={{x1}}, we get</p>
+        <p>{{val}} = k √{{x1}}</p>
+        <p>{{val}} = {{x1s}}k</p>
+
+        <p>Divide each side by {{x1s}} to solve for k:</p>
+        <p>{{val}} / {{x1s}} = {{x1s}}k / {{x1s}}</p>
+        <p>k = {{k1}}</p>
+
+        <strong>Solve the second part of variation equation:</strong>
+        <p>because we have found our ralationship constant k = {{k1}}, we from our new variation equation</p>
+        <p>{{var1}} = {{k1}} √{{var2}}</p>
+        <p>Since, we were given that x = {{x2}}, we have</p>
+        <p>{{var1}} = {{k1}} √{{x2}}</p>
+        <p>{{var1}} = {{k1}} * {{x2s}}</p>
+        <b>{{var1}} = {{result}}</b>
+
+        {% endif %}
+
+        {% if Given == 'form5' and x1 and x2 and val %}
+
+        <strong>{{var1}} varies inversely as the square of {{var2}}, and y = {{val}} when x = {{x1}}, solve for {{var1}} when x = {{x2}}</strong>
+
+        <p>The Statement varies inversely as the square of denotes a relationship {{var1}} = k / {{var2}}<sup>2</sup>, Where k is constant</p>
+
+        <p>Plugging in our initial statement values of y={{val}} when x={{x1}}, we get</p>
+        <p>{{val}} = k({{x1}})<sup>2</sup></p>
+        <p>{{val}} = {{x1s}}k</p>
+        <p>k = {{k1}}</p>
+
+        <strong>Solve the second part of variation equation:</strong>
+        <p>because we have found our ralationship constant k = {{k1}}, we from our new variation equation</p>
+        <p>{{var1}} = {{k1}} / {{var2}}<sup>2</sup></p>
+        <p>Since, we were given that x = {{x2}}, we have</p>
+        <p>{{var1}} = {{k1}} / {{x2}}<sup>2</sup></p>
+        <p>{{var1}} = {{k1}} * {{x2s}}</p>
+        <b>{{var1}} = {{result}}</b>
+
+        {% endif %}
+
+        {% if Given == 'form6' and x1 and x2 and val %}
+
+        <strong>{{var1}} varies directly as the cube of {{var2}}, and y = {{val}} when x = {{x1}}, solve for {{var1}} when x = {{x2}}</strong>
+
+        <p>The Statement varies directly as the cube of denotes a relationship {{var1}} = k {{var2}}<sup>3</sup>, Where k is constant</p>
+
+        <p>Plugging in our initial statement values of y={{val}} when x={{x1}}, we get</p>
+        <p>{{val}} = k({{x1}})<sup>3</sup></p>
+        <p>{{val}} = {{x1s}}k</p>
+
+        <p>Divide each side by {{x1s}} to solve for k:</p>
+        <p>{{val}}/{{x1s}} = {{x1s}}k / {{x1s}}</p>
+        <p>k = {{k1}}</p>
+
+        <strong>Solve the second part of variation equation:</strong>
+        <p>because we have found our ralationship constant k = {{k1}}, we from our new variation equation</p>
+        <p>{{var1}} = {{k1}}({{var2}})<sup>3</sup></p>
+        <p>Since, we were given that x = {{x2}}, we have</p>
+        <p>{{var1}} = {{k1}} * ({{x2}})<sup>3</sup></p>
+        <p>{{var1}} = {{k1}} * ({{x2s}})</p>
+        <b>{{var1}} = {{result}}</b>
+
+        {% endif %}
+
+        {% if Given == 'form7' and x1 and x2 and val %}
+
+        <strong>{{var1}} varies inversely as the cube of {{var2}}, and y = {{val}} when x = {{x1}}, solve for {{var1}} when x = {{x2}}</strong>
+
+        <p>The Statement varies inversely as the cube of denotes a relationship {{var1}} = k / {{var2}}<sup>3</sup>, Where k is constant</p>
+
+        <p>Plugging in our initial statement values of y={{val}} when x={{x1}}, we get</p>
+        <p>{{val}} = k / {{x1}}<sup>3</sup></p>
+        <p>{{val}} = k / {{x1s}}</p>
+        <p>{{val}} = {{x1s}}k</p>
+        <p>k = {{val}} * {{x1s}}</p>
+        <p>k = {{k1}}</p>
+
+
+        <strong>Solve the second part of variation equation:</strong>
+        <p>because we have found our ralationship constant k = {{k1}}, we from our new variation equation</p>
+        <p>{{var1}} = {{k1}} / {{var2}}<sup>3</sup></p>
+        <p>Since, we were given that x = {{x2}}, we have</p>
+        <p>{{var1}} = {{k1}} / {{x2}}<sup>3</sup></p>
+        <p>{{var1}} = {{k1}} / {{x2s}}</p>
+        <b>{{var1}} = {{result}}</b>
+
+        {% endif %}
+
+        {% if Given == 'form8' and x1 and x2 and val %}
+
+        <strong>{{var1}} varies inversely as the square root of {{var2}}, and y = {{val}} when x = {{x1}}, solve for {{var1}} when x = {{x2}}</strong>
+
+        <p>The Statement varies inversely as the square root of denotes a relationship {{var1}} = k / √{{var2}}, Where k is constant</p>
+
+        <p>Plugging in our initial statement values of y={{val}} when x={{x1}}, we get</p>
+        <p>{{val}} = k / √{{x1}}</p>
+        <p>{{val}} = k / {{x1s}}</p>
+        <p>{{val}} = {{x1s}}k</p>
+        <p>k = {{val}} * {{x1s}}</p>
+        <p>k = {{k1}}</p>
+
+
+        <strong>Solve the second part of variation equation:</strong>
+        <p>because we have found our ralationship constant k = {{k1}}, we from our new variation equation</p>
+        <p>{{var1}} = {{k1}} / √{{var2}}</p>
+        <p>Since, we were given that x = {{x2}}, we have</p>
+        <p>{{var1}} = {{k1}} / √{{x2}}</p>
+        <p>{{var1}} = {{k1}} / {{x2s}}</p>
+        <b>{{var1}} = {{result}}</b>
+
+        {% endif %}
+
+
+
+</div>
+</div>
+    <div class="card">
+	    <div class="card-header">
+            <h2 class="h2">What is Variance Formula in Probability & Statistics?</h2>
+        </div>
+	    <div class="card-body">
+            <p>In statistics and probability theory, measuring how far a set of numbers are scattered can be known by the variance formula. The variance formula (&sigma;^2) is the squared variation of values (Xi) of a random variable (X) from its mean (&mu;). To identify, a variance might be of two types and they are as follows:</p>
+            <ul>
+            <li>Variance of a population (denoted by &sigma;^2)</li>
+            <li>Variance of a sample (denoted by s^2)</li>
+            </ul>
+            <p>Variance can be of either grouped or ungrouped data. Let's dive into the further article and look at the variance formulas with solved examples.</p>
+</div>
+</div>
+    <div class="card">
+	    <div class="card-header">
+            <h2 class="h2">Variance Formulas for Ungrouped Data</h2>
+        </div>
+	    <div class="card-body">
+            <table border="1">
+                <tbody>
+                <tr>
+                <td style="text-align: center;"><strong>Population variance</strong></td>
+                <td style="text-align: center;"><strong>Sample variance</strong></td>
+                </tr>
+                <tr>
+                <td>
+                <ul>
+                <li><strong>&sigma;<sup>2</sup>= &Sigma;(x<sub>i</sub> - &mu;)<sup>2</sup>/N</strong></li>
+                </ul>
+                <p>Here,</p>
+                <p>&sigma;<sup>2</sup> = Variance</p>
+                <p>x<sub>i</sub> = ith observation of given data</p>
+                <p>&mu; = Population mean</p>
+                <p>N = Total number of observations (Population size)</p>
+                </td>
+                <td>
+                <ul>
+                <li><strong>s<sup>2</sup> =&Sigma;(x<sub>i</sub> - x̅)<sup>2</sup>/n-1</strong></li>
+                </ul>
+                <p>Here,</p>
+                <p>s<sup>2</sup> = Sample variance</p>
+                <p>x<sub>i</sub> = ith observation of given data</p>
+                <p>x̄ = Sample mean</p>
+                <p>n = Sample size (or Number of data values in sample)</p>
+                </td>
+                </tr>
+                </tbody>
+                </table>
+            </div>
+        </div>
+	   <div class="card">
+            <div class="card-header">
+                <h2 class="h2">Variance Formulas for Grouped Data</h2>
+            </div>
+            <div class="card-body">
+                <table border="1">
+                    <tbody>
+                    <tr>
+                    <td style="text-align: center;"><strong>Population variance</strong></td>
+                    <td style="text-align: center;"><strong>Sample variance</strong></td>
+                    </tr>
+                    <tr>
+                    <td>
+                    <ul>
+                    <li><strong>&sigma;<sup>2</sup> = &sum; f (m &minus; x̅)<sup>2</sup>/ n</strong></li>
+                    </ul>
+                    <p>Here,</p>
+                    <p>&sigma;<sup>2</sup> = Variance</p>
+                    <p>x<sub>i</sub> = Midvalue of ith class</p>
+                    <p>f<sub>i</sub> = Frequency of ith class</p>
+                    <p>N = Total number of observations (Population size)</p>
+                    </td>
+                    <td>
+                    <ul>
+                    <li><strong>s<sup>2</sup> = &sum; f (m &minus; x̅)<sup>2</sup> / n &minus; 1</strong></li>
+                    </ul>
+                    <p>Here,</p>
+                    <p>s<sup>2</sup> = Sample variance</p>
+                    <p>x<sub>i</sub> = Midvalue of ith class</p>
+                    <p>f<sub>i</sub> = Frequency of ith class</p>
+                    <p>n = Sample size (or Number of data values in sample)</p>
+                    </td>
+                    </tr>
+                    </tbody>
+                    </table>  
+                    <p></p>     
+            <img src="https://drive.google.com/file/d/1DL9BjHTcYPmIhGJZFg-U21w_XLtthVCF/view?usp=sharing" alt='mean formula for grouped and ungrouped data'>
+        </div>
+    </div>
+    <div class="card">
+      <div class="card-header">
+        <h2 class="h2">Solved Variance Formula Examples</h2>
+      </div>
+      <div class="card-body">
+        <p><strong>Example 1: </strong></p>
+<p><strong>Calculate standard deviation and variance of the population data set {4, 8, 10, 48}?</strong></p>
+<p><strong>Solution:</strong></p>
+<p>Given population data set is {4, 8, 10, 48}</p>
+<p>count n = 4</p>
+<p>Mean = &mu; = (&sum;<sub>i = 1</sub><sup>n</sup>x<sub>i</sub>) / n = 70/4 = 17.5</p>
+<p>Variance = &sigma;&sup2; = [(&sum;<sub>i = 1</sub><sup>n</sup>&nbsp;(x<sub>i</sub>&nbsp;- &mu;)&sup2;) / n]</p>
+<p>= [(4 - 17.5)&sup2; + (8 - 17.5 )&sup2; + (10 - 17.5)&sup2; + (48 - 17.5)&sup2;] / 4</p>
+<p>= [(-13.5)&sup2; + (-9.5)&sup2; + (-7.5)&sup2; + (30.5)&sup2;] / 4</p>
+<p>= 1259 / 4</p>
+<p>= 314.75</p>
+<p>Standard Deviation = &sigma; = &radic;[(&sum;<sub>i = 1</sub><sup>n</sup>(x<sub>i</sub> - &mu;)&sup2;) / n] = &radic;variance</p>
+<p>= &radic;[314.75]</p>
+<p>= 17.74</p>
+<p><strong>Example 2:</strong></p>
+<p>Find the variance step by step for the following set of data: 4, 6, 11, 25, 38, 50.</p>
+<p><strong>Solution:</strong></p>
+<p><strong>Step 1:</strong> Add up the numbers in your given data set.</p>
+<p>4 + 6 + 11 + 23 + 38 + 50 = 132</p>
+<p><strong>Step 2: </strong>Square your answer:</p>
+<p>132 x 132 = 17424</p>
+<p>Now, divide by the number of items. ie, 6 items:</p>
+<p>17424/6 = 2904</p>
+<p><strong>Step 3:</strong> Take your set of original numbers from Step 1, and square them individually this time:</p>
+<p>4x4 + 6x6 + 11x11 + 23x23 + 38x38 + 50x50</p>
+<p>Add the squares together and the result is 4646</p>
+<p><strong>Step 4:</strong> Subtract the amount in Step 2 from the amount in Step 3.</p>
+<p>4646 &ndash; 17424 = -12778</p>
+<p><strong>Step 5:</strong> Subtract 1 from the number of items in your data set, here:</p>
+<p>6 &ndash; 1 = 5</p>
+<p><strong>Step 6: </strong>Divide the number in Step 4 by the number in Step 5. This gives you the variance:</p>
+<p>-12778/5 = -2555.6</p>
+<p><strong>Step 7: </strong>Take the square root of your answer from Step 6. This gives you the standard deviation:</p>
+<p>&radic;-2555.6 = 50.55i</p>
+<p>The answer is 50.55i.</p>
+<p>Have a glance at our website <a href="https://statisticscalculators.net/">StatisticsCalculators.net</a> and make use of various statistics concepts online caluclators for free & enhance your skills.</p>
+<img src="{% static 'images/Statistics/variance-formulas.jpeg' %}" alt='Variance Formulas'>
+    </div>
+    </div>
+    <div class="card">
+        <div class="card-header">
+        <h3 class="h3">FAQs on Formulas of Variance</h3>
+        </div>
+        <div class="card-body">
+        <!-- Question & Answer Starts --->
+      <p class="question"><strong>1. How do you calculate the variance?</strong></p>
+       <p class="answer"><ol>
+        <li>First, memorize the formulas of variance and then start the process of calculating variance.</li>
+        <li>To find the variance, calculate the mean of the data set. Add all data values and divide by the sample size n.</li>
+        <li>Next, calculate the squared difference from the mean for each data value.</li>
+        <li>Subtract the mean from each data value and square the result and discover the sum of the squared differences.</li>
+        <li>Finally, consider the respective variance formula and substitute the values in it and calculate the variance of the given data set.</li>
+        </ol></p><hr>
+       <p class="question"><strong>2. What is the shortcut formula for Variance?</strong></p>
+       <p class="answer">For the random variable <strong>X</strong> with a population mean <strong>&mu;</strong> and population variance <strong>&sigma;<sup>2</sup></strong>, the shortcut formula of variance is <strong><em>V[X] = E [X^2] - &mu;^2.</em></strong></p><hr>  
+      <p class="question"><strong>3. What are variance formulas for population and sample data sets? </strong></p>
+      <p class="answer"> Variance formula for a population data set is</p>
+      <p><strong>&sigma;&sup2; = [(&sum;<sub>i = 1</sub><sup>n</sup>&nbsp;(x<sub>i</sub>&nbsp;- &mu;)&sup2;) / n]</strong></p>
+      <p>Variance formula for sample data set is</p>
+      <p><strong>s&sup2; = [(&sum;<sub>i = 1</sub><sup>n</sup>&nbsp;(x<sub>i</sub>&nbsp;- x<sub>mean</sub>)&sup2;) / (n - 1)]</strong></p><hr>
+      </div>
+  </div>
+</div>
+{%endblock%}

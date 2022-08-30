@@ -1,0 +1,330 @@
+{%extends 'base/statistics_base2.html'%}
+{%load static%}
+{%block meta%}
+<!-- HTML Defaults Broweser -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Bootstrap Stylesheet and Jquery, Google APIS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+<!-- Online Calculator Guru Site Fevicon -->
+<link rel="shortcut icon" href="https://onlinecalculator.guru/static/images/logo/Online-Calculator-Guru-Fevicon.png"
+    type="icon">
+<!-- Online Calculator Guru Project Style Sheet -->
+{%block css%}
+<link rel="stylesheet" href="/static/style.css">
+{%endblock css%}
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+<!-- Meta Title, Description and Canonical URL Starts --->
+<title>Confidence Interval Calculator | Free Calculator to Find Confidence Interval</title>
+<meta name="description"
+    content="Use this easy Confidence Interval Calculator tool to calculate the samples of standard deviation, mean and also with detailed information." />
+<link rel="canonical" href="{{request.build_absolute_uri}}">
+<!-- Meta Title, Description and Canonical URL ENDS --->
+
+<!-- OPEN GRAPH CONFIGURATIONS STARTS -->
+<!--  FACEBOOK CONFIGURATION STARTS  -->
+<meta content="https://www.facebook.com/OnlineCalculator-Guru-131572098650589/" property="og:url" />
+<meta property="og:title" content="Confidence Interval Calculator | Free Calculator to find Confidence Interval" />
+<meta property="og:description" content="Use this easy Confidence Interval Calculator tool to calculate the samples of standard deviation, mean and also with detailed information." />
+<meta content="" property="og:site_name" />
+<meta content="https://onlinecalculator.guru/static/images/Statistics/Confidence-Interval-Calculator.jpeg"
+    property="og:image" />
+<meta property="og:image:type" content="image/png" />
+<meta property="og:image:height" content="435" />
+<meta property="og:image:width" content="354" />
+<!--  FACEBOOK CONFIGURATION ENDS  -->
+<!-- TWITTER CARD CONFIGURATION STARTS  -->
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:site" content="https://twitter.com/onlinecalculator" />
+<meta name="twitter:title" content="Confidence Interval Calculator | Free Calculator to Find Confidence Interval" />
+<meta name="twitter:description"
+    content="Use this easy Confidence Interval Calculator tool to calculate the samples of standard deviation, mean and also with detailed information." />
+<meta name="twitter:image:src"
+    content="https://onlinecalculator.guru/static/images/Statistics/Confidence-Interval-Calculator.jpeg" />
+<meta property="twitter:image:height" content="435" />
+<meta property="twitter:image:width" content="354" />
+<!-- TWITTER CARD CONFIGURATION ENDS  -->
+<!--  LINKEDIN CONFIGURATION STARTS-->
+<meta property='og:title' content="Confidence Interval Calculator | Free Calculator to Find Confidence Interval" />
+<meta property='og:image'
+    content="https://onlinecalculator.guru/static/images/Statistics/Confidence-Interval-Calculator.jpeg" />
+<meta property='og:description' content="Use this easy Confidence Interval Calculator tool to calculate the samples of standard deviation, mean and also with detailed information." />
+<meta property='og:url' content="https://www.linkedin.com/in/onlinecalculator/" />
+<!-- end of linkedin CONFIGURATIONS ENDS -->
+<!-- OPEN GRAPH CONFIGURATION ENDS -->
+<!-- FAQ SCHEMA STARTS -->
+<script type="application/ld+json">{"@context": "https://schema.org","@type": "FAQPage","mainEntity": [{"@type": "Question","name":"1
+    What is Confidence interval in simple words?
+    ","acceptedAnswer": {"@type": "Answer","text":" 
+    A confidence interval (CI) is a range of values that's probably include a population value with a certain degree of confidence. It is often expressed as a % where, a population mean lies between an upper and lower interval."}	}, {"@type": "Question","name":"2
+    What does it mean by 95% confidence interval?
+    ","acceptedAnswer": {"@type": "Answer","text":" 
+    The 95% confidence interval is the variation of values that can be the standard mean of the population. As sample size increases, the range of interval values will become limited, meaning that mean with much more accuracy compared with a smaller sample."}	}, {"@type": "Question","name":"3
+    How do you find the confidence interval?
+    ","acceptedAnswer": {"@type": "Answer","text":"
+    Confidence interval can be calculated by multiplying the square root of the sample size and then dividing by the sample standard deviation."}	}, {"@type": "Question","name":"4
+    What is Z value of 95% Confidence level?
+    ","acceptedAnswer": {"@type": "Answer","text":"
+    Z value for 95% confidence interval is 1.960."}	}]}</script>
+{%endblock meta %}
+
+{% block content %}
+{% if  n and m  and ot %}
+<script>
+    $(document).ready(function () {
+
+        $("#hassle").click();
+        });
+</script>
+
+<button type="button" hidden id="hassle" onclick="location.href='#confidence_interval'">ans1</button>
+{% endif %}
+
+
+<div class="container" style="height: auto !important;">
+    <div class="card c1">
+        <div class="card-header">
+            <h1 class="h1">Confidence Interval Calculator</h1>
+        </div>
+        <div class="card-body">
+            <p>Free and handy confidence interval calculator tool to find the confidence interval or margin of error. All you need to do is enter the values in the input fields and hit the calculate button and get the output in split seconds. </p>
+            {% if messages %}
+            <ul class="messages">
+            {% for message in messages %}
+                <p {% if message.tags %} id="message_container" class="alert alert-danger text-center" {% endif %}
+                    style="color:red">{{ message }}</p>
+                {% endfor %}
+            </ul>
+            {% endif %}
+            <form action="{% url 'Confidence_Interval' %}" method="POST" id="my_form">
+                {% csrf_token %}
+                 <div class="input-group mb-3">
+                      
+          </div>
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1">Sample mean (m)</span>
+            </div>
+            
+           <input style="margin-top: 5px;width:100%" id="m" name="m"  value="{{m}}"   required="" oninput="validateNumber(this);" class="form-control" type="number" step="any" required width="48"> 
+       </div>
+       <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1">Sample size (n)</span>
+            </div>
+            
+           <input style="margin-top: 5px;width:100%" id="n" name="n" value="{{n}}"   required="" oninput="validateNumber(this);" class="form-control" type="number" step="any"  required width="48"> 
+       </div>
+       <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1">Standard Deviation (sd)</span>
+            </div>
+            
+           <input style="margin-top: 5px;width:100%" id="sd" name="sd" value="{{sd}}"   required="" oninput="validateNumber(this);" class="form-control" type="number" step="any"  required width="48"> 
+       </div>
+       <div class="input-group mb-3">
+       <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon1">Confidence Level</span>
+        </div>
+    
+  
+       <select id="Given" name="Given"  style="margin-top: 5px;width:100%;" class="select form-control" id="inlineFormInputGroup" onchange="this.form.submit()">
+          
+          
+            {% if Given == '80%' %}
+            <option value='80%' selected="selected">80%</option>  
+            {% else %}
+            <option value='80%' >80%</option>  
+            {% endif %}
+
+            {% if Given == '90%' %}
+            <option value='90%' selected="selected">90%</option>  
+            {% else %}
+            <option value='90%' >90%</option>  
+            {% endif %}
+
+            {% if Given == '95%' %}
+            <option value='95%' selected="selected">95%</option>  
+            {% else %}
+            <option value='95%' >95%</option>  
+            {% endif %} 
+
+            {% if Given == '99%' %}
+            <option value='99%' selected="selected">99%</option>  
+            {% else %}
+            <option value='99%' >99%</option>  
+            {% endif %} 
+         
+          </select>                     
+      </div>
+
+
+        <div class=" center col mt-2 ">
+            <center><button type="submit" class="btn btn-primary">Calculate</button>
+              <a href="{% url 'Confidence_Interval' %}" class="btn btn-warning" role="button" style="margin-top:5px;">Reset</a>      
+            </center>
+          </div>
+    
+</div>
+<p><b>Confidence Interval Calculator: </b> Are you scared of finding confidence interval? Then use this free confidence interval calculator tool to find the confidence interval of mean, standard deviation, samples and get instant outputs. In addition to this, we are also providing detailed explanation like definition, formulas and also step by step process. Read on !!</p>
+</form>
+</div>
+</div>
+{% if n and m and sd and ot %}
+<div class="container" style="height: auto !important;">
+<div class="card" id="confidence_interval">
+        <div class="card-header">
+            <h2 class="h2">Steps to Find Confidence Interval:</h2>
+        </div>
+
+        <div class="card-body">
+
+            <strong>Confidence Interval:-</strong>
+            <br>
+            <p class="btn btn-outline-secondary active text-justify">Confidence Interval = m  ±  z * (sd/√(n))</p>
+            <br>
+            <strong>where:</strong>
+                    <ul>
+                    <li>m is the mean</li>
+                    <li>m is the Z-value from the table below</li>
+                    <li>sd is the standard deviation</li>
+                    <li>n is the number of observations </li>
+                        
+                    </ul>
+
+
+            <strong>Input values are:-</strong>
+            <p>n = {{n}} </p>
+            <p>m = {{m}} </p>
+            <p>Confidence = {{Given}} = {{z}}</p>
+
+
+            <p><b>Put values into formula</b></p>
+    
+            <p>Confidence Interval = {{m}}  ±  {{z}} * ({{sd}} / √({{n}}))</p>
+
+            <b>Confidence Interval = {{m}}, {{Given}} [{{l}} to {{u}}]</b>            
+                         
+   </div>
+    </div>
+    </div>
+    <div class="container" style="height: auto !important;">
+        <div class="card" id="confidence_interval">
+                <div class="card-header">
+                    <h3 class="h3">What is Confidence Interval?</h3>
+                </div>
+              <div class="card-body">
+                  <p>In statistics, confidence interval is the range of values that are obtained from sample statistics, that is suitable to contain the value of unknown parameter. Confidence interval is expressed by  % whereas, population mean lies between an upper and lower interval.</p>
+                  <p><b>Formula for confidence interval</b></p>
+                  <p>CI = <img src ="https://drive.google.com/file/d/1Ki082T8nB76wjelvf2SFXeeOh2RJ86uH/view?usp=sharing" alt="Confidence Interval Formula"></p>
+                  <p>Where,</p>
+                  <p>x̄ = Mean</p>
+                  <p>Z = z-value from the table.</p>
+                  <p>s = standard deviation.</p>
+                  <p>n = no.of observations.</p>
+                </div>
+        </div>
+    </div>
+    <div class="container" style="height: auto !important;">
+        <div class="card" id="confidence_interval">
+                <div class="card-header">
+                    <h3 class="h3">Confidence Interval Step by Step</h3>
+                </div>
+              <div class="card-body">
+                  <p>Go through all the steps that are given below to calculate the confidence interval manually.</p>
+                  <ul>
+                      <li>First, write down all the values which are given in the problem.</li>
+                      <li>Then, use the formula and substitute all the values in it.</li>
+                      <li>Finally, simplify it and know the value of confidence interval.</li>
+                  </ul>
+                </div>
+        </div>
+    </div>
+    <div class="container" style="height: auto !important;">
+        <div class="card" id="confidence_interval">
+                <div class="card-header">
+                    <h3 class="h3">Z-Values of Confidence Intervals</h3>
+                </div>
+              <div class="card-body">
+                <table class="tg">
+                    <thead>
+                      <tr>
+                        <th class="tg-0pky">Confidence Level</th>
+                        <th class="tg-0pky">Z - Value</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td class="tg-0pky">80%</td>
+                        <td class="tg-0pky">1.282</td>
+                      </tr>
+                      <tr>
+                        <td class="tg-0lax">85%</td>
+                        <td class="tg-0lax">1.440</td>
+                      </tr>
+                      <tr>
+                        <td class="tg-0lax">90%</td>
+                        <td class="tg-0lax">1.645</td>
+                      </tr>
+                      <tr>
+                        <td class="tg-0lax">95%</td>
+                        <td class="tg-0lax">1.960</td>
+                      </tr>
+                      <tr>
+                        <td class="tg-0lax">99%</td>
+                        <td class="tg-0lax">2.576</td>
+                      </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="container" style="height: auto !important;">
+        <div class="card" id="confidence_interval">
+                <div class="card-header">
+                    <h3 class="h3">Solved Questions for Confidence Interval</h3>
+                </div>
+              <div class="card-body">
+                  <p><b>Example</b></p>
+                  <p><b>Question: </b> What is the Confidence interval for 20 samples with average weight of 69 at 95% of confidence level along with standard deviation of 29?</p>
+                  <p><b>Solution:</b></p>
+                  <p>Given Values are,</p>
+                  <p>n = 20, X̄ = 69, s = 29, z= 95%</p>
+                  <p>Use the confidence interval formula</p>
+                  <p>CI = <img src ="https://drive.google.com/file/d/1Ki082T8nB76wjelvf2SFXeeOh2RJ86uH/view?usp=sharing" alt="Confidence Interval Formula"></p>
+                  <p>CI = 69 ± 1.960×(29/√20)
+                        = 69 ± 12.710
+                  </p>
+                  <p>Thus, Confidence interval is 69 ± 12.710.</p>
+                  <p>For any statistics calculator, click on <a href="https://statisticscalculators.net/">statisticscalculators.net</a> website and learn more about concepts. Use our calculator to complete your assignments in time.</p>
+                 <img src="{% static 'images/Statistics/confidence-interval-calculator.jpeg' %}" alt='confidence-interval-calculator'>
+            </div>
+        </div>
+    </div>
+    <div class="container" style="height: auto !important;">
+        <div class="card" id="confidence_interval">
+                <div class="card-header">
+                    <h3 class="h3">FAQs on Confidence Interval Calculator</h3>
+                </div>
+            <div class="card-body">
+                <!-- Question & Answer Starts --->
+               <p class="question"><strong>1. What is Confidence interval in simple words?</strong></p>
+               <p class="answer">A confidence interval (CI) is a range of values that's probably include a population value with a certain degree of confidence. It is often expressed as a % where, a population mean lies between an upper and lower interval.</p><hr>
+               <p class="question"><strong>2. What does it mean by 95% confidence interval?</strong></p>
+               <p class="answer">The 95% confidence interval is the variation of values that can be the standard mean of the population. As sample size increases, the range of interval values will become limited, meaning that mean with much more accuracy compared with a smaller sample.</p><hr>  
+               <p class="question"><strong>3. How do you find the confidence interval?</strong></p>
+               <p class="answer">Confidence interval can be calculated by multiplying the square root of the sample size and then dividing by the sample standard deviation. </p><hr>
+               <p class="question"><strong>4. What is Z value of 95% Confidence level?</strong></p>
+               <p class="answer">Z value for 95% confidence interval is 1.960.</p><hr>
+            </div>
+        </div>
+    </div>
+
+
+    {% endif %}                  
+{% endblock content %}

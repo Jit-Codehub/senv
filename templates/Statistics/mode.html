@@ -1,0 +1,303 @@
+{%extends 'base/statistics_base1.html'%}
+{%load static%}
+  {%block meta%}
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+  <link rel="shortcut icon" href="{% static 'images/logo/Online-Calculator-Guru-Fevicon.png' %}" type="icon">
+  {%block css%}
+  <link rel="stylesheet" href="{% static 'style.css' %}">
+  {%endblock%}
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <!-- META DATA STARTS --->
+    <title>Mode Calculator | Formula, Steps to Find Mode of Given Data</title>
+    <meta name="description" content="Modal or Mode Calculator is used to calculate mode value for the given data. It gives exact answer & explanation to solve mode of the data list. Get Mode Formula.">
+    <link rel="canonical" href="{{request.build_absolute_uri}}" >
+<!-- META DATA ENDS --->
+
+<!-- OPEN GRAPH CONFIGURATIONS STARTS -->
+    <!--  FACEBOOK CONFIGURATION STARTS  -->
+    <meta content="https://www.facebook.com/OnlineCalculator-Guru-131572098650589/" property="og:url" />
+    <meta property="og:title" content="Mode Calculator | Formula, Steps to Find Mode of Given Data"/>
+    <meta property="og:description" content="Modal or Mode Calculator is used to calculate mode value for the given data. It gives exact answer & explanation to solve mode of the data list. Get Mode Formula."/>
+    <meta content="" property="og:site_name" />
+    <meta  content="https://onlinecalculator.guru/static/images/Statistics/Mode-Calculator.jpeg" property="og:image" />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:height" content="435" />
+    <meta property="og:image:width" content="354" />
+    <!--  FACEBOOK CONFIGURATION ENDS  -->
+    <!-- TWITTER CARD CONFIGURATION STARTS  -->
+    <meta name="twitter:card" content="summary"/>
+    <meta name="twitter:site" content="https://twitter.com/onlinecalculator"/>
+    <meta name="twitter:title" content="Mode Calculator | Formula, Steps to Find Mode of Given Data"/>
+    <meta name="twitter:description" content="Modal or Mode Calculator is used to calculate mode value for the given data. It gives exact answer & explanation to solve mode of the data list. Get Mode Formula."/>
+    <meta name="twitter:image:src" content="https://onlinecalculator.guru/static/images/Statistics/Mode-Calculator.jpeg"/>
+    <meta property="twitter:image:height" content="435"/>
+    <meta property="twitter:image:width" content="354"/>
+    <!-- TWITTER CARD CONFIGURATION ENDS  -->
+    <!--  LINKEDIN CONFIGURATION STARTS-->
+    <meta property='og:title' content="Mode Calculator | Formula, Steps to Find Mode of Given Data"/>
+    <meta property='og:image' content="https://onlinecalculator.guru/static/images/Statistics/Mode-Calculator.jpeg"/>
+    <meta property='og:description' content="Modal or Mode Calculator is used to calculate mode value for the given data. It gives exact answer & explanation to solve mode of the data list. Get Mode Formula."/>
+    <meta property='og:url' content="https://www.linkedin.com/in/onlinecalculator/" />
+    <!-- end of linkedin CONFIGURATIONS ENDS -->
+<!-- OPEN GRAPH CONFIGURATION ENDS -->
+<!-- FAQ SCHEMA STARTS -->
+<script type="application/ld+json">{"@context": "https://schema.org","@type": "FAQPage","mainEntity": [{"@type": "Question","name":"1. What is the mode in statistics?
+  ","acceptedAnswer": {"@type": "Answer","text":" In statistics, the mode is defined as the value that has more frequency in a set of values."}	}, {"@type": "Question","name":"2. What is the no mode condition?
+  ","acceptedAnswer": {"@type": "Answer","text":" In a given set of observations, no number is repeated or occurred more than once, this condition is no mode."}	}, {"@type": "Question","name":"3. How to calculate mode for a given set of values?
+  ","acceptedAnswer": {"@type": "Answer","text":" To find the mode value for the ungrouped data, make a note of the frequency of each number in the given set of data. The number which has the highest frequency is called mode."}	}, {"@type": "Question","name":"4. What is the mode formula?
+  ","acceptedAnswer": {"@type": "Answer","text":" The simple formula to compute the mode value for grouped data is Mode = L + (fm−f1)h /(fm−f1)+(fm−f2)."}	}]}</script>
+{%endblock%}
+{%block content%}
+<div class="container">
+    <div class="card c1">
+      <div class="card-header">
+  <h1 class="h1">Mode Calculator</h1>
+  </div>
+  <div class="card-body">
+    <p>This easy to use Mode Calculator tool gives the mode or modal value for the given data list easily. You just need to give the data set as input and tap on the calculate button to check the exact output with an explanation immediately.</p>
+    <br>
+    <p><b>Ex:</b> 32,45,12,17,43,68,75,8,11,29</p>
+    <form action="{% url 'mode' %}" method="POST" id="my_form" name="reg_to_scientific" onsubmit="go();">
+    {% csrf_token %}
+    <div class="form-row align-items-center">
+      <div class="col-auto">
+        <label class="sr-only" for="inlineFormInputGroup">Mode</label>
+        <div class="input-group mb-2">
+          <div class="input-group-prepend">
+            <div class="input-group-text"><strong>Mode of: </strong></div>
+          </div>
+          <input type="text" class="form-control" name="input1" id="inlineFormInputGroup" placeholder="Enter number" value="{{inputEnter}}">
+        </div>
+      </div>
+      <div class="col-auto">
+        <button type="submit" class="btn btn-primary mb-2">Calculate</button>
+      </div>
+    </div>
+    </form>
+    {% autoescape off %}
+    {{error}}
+    {%endautoescape%}
+    <br>
+    <p><strong>Here are some samples of Mode calculations.</strong></p>
+<div class="row">
+  <div class="col-sm-4">
+    <ul>
+      
+      <li><a href="https://statisticscalculators.net/statistics/mode-of-7-8-7-5/">Mode of 7,8,7,5</a></li>
+      
+      <li><a href="https://statisticscalculators.net/statistics/mode-of-8-2-3-2/">Mode of 8,2,3,2</a></li>
+      
+      <li><a href="https://statisticscalculators.net/statistics/mode-of-4-9-4-4/">Mode of 4,9,4,4</a></li>
+      
+      <li><a href="https://statisticscalculators.net/statistics/mode-of-4-2-8-2-2/">Mode of 4,2,8,2,2</a></li>
+      
+      <li><a href="https://statisticscalculators.net/statistics/mode-of-7-7-5-4-7/">Mode of 7,7,5,4,7</a></li>
+      
+      <li><a href="https://statisticscalculators.net/statistics/mode-of-8-4-8-3-8/">Mode of 8,4,8,3,8</a></li>
+      
+      <li><a href="https://statisticscalculators.net/statistics/mode-of-6-8-7-3-6-6/">Mode of 6,8,7,3,6,6</a></li>
+      
+      <li><a href="https://statisticscalculators.net/statistics/mode-of-9-5-5-8-7-5/">Mode of 9,5,5,8,7,5</a></li>
+      
+      <li><a href="https://statisticscalculators.net/statistics/mode-of-2-9-2-6-2-4/">Mode of 2,9,2,6,2,4</a></li>
+      
+
+    </ul>                    
+  </div>
+  <div class="col-sm-4">
+    <ul>
+      
+      <li><a href="https://statisticscalculators.net/statistics/mode-of-57-91-88-91/">Mode of 57,91,88,91</a></li>
+      
+      <li><a href="https://statisticscalculators.net/statistics/mode-of-19-25-25-58/">Mode of 19,25,25,58</a></li>
+      
+      <li><a href="https://statisticscalculators.net/statistics/mode-of-46-42-34-46/">Mode of 46,42,34,46</a></li>
+      
+      <li><a href="https://statisticscalculators.net/statistics/mode-of-93-42-93-48-93/">Mode of 93,42,93,48,93</a></li>
+      
+      <li><a href="https://statisticscalculators.net/statistics/mode-of-13-13-66-13-25/">Mode of 13,13,66,13,25</a></li>
+      
+      <li><a href="https://statisticscalculators.net/statistics/mode-of-24-10-24-24-66/">Mode of 24,10,24,24,66</a></li>
+      
+      <li><a href="https://statisticscalculators.net/statistics/mode-of-93-35-74-27-80-27/">Mode of 93,35,74,27,80,27</a></li>
+      
+      <li><a href="https://statisticscalculators.net/statistics/mode-of-58-24-51-24-66-64/">Mode of 58,24,51,24,66,64</a></li>
+      
+      <li><a href="https://statisticscalculators.net/statistics/mode-of-25-32-95-91-25-93/">Mode of 25,32,95,91,25,93</a></li>
+      
+    </ul>                 
+  </div>
+  <div class="col-sm-4">
+  <ul>
+      
+      <li><a href="https://statisticscalculators.net/statistics/mode-of-11-24-75-11/">Mode of 11,24,75,11</a></li>
+      
+      <li><a href="https://statisticscalculators.net/statistics/mode-of-28-54-54-11/">Mode of 28,54,54,11</a></li>
+      
+      <li><a href="https://statisticscalculators.net/statistics/mode-of-39-59-39-93/">Mode of 39,59,39,93</a></li>
+      
+      <li><a href="https://statisticscalculators.net/statistics/mode-of-54-44-66-44-44/">Mode of 54,44,66,44,44</a></li>
+      
+      <li><a href="https://statisticscalculators.net/statistics/mode-of-39-32-32-14-13/">Mode of 39,32,32,14,13</a></li>
+      
+      <li><a href="https://statisticscalculators.net/statistics/mode-of-84-13-84-35-84/">Mode of 84,13,84,35,84</a></li>
+      
+      <li><a href="https://statisticscalculators.net/statistics/mode-of-59-81-59-53-59-40/">Mode of 59,81,59,53,59,40</a></li>
+      
+      <li><a href="https://statisticscalculators.net/statistics/mode-of-12-78-68-82-12-70/">Mode of 12,78,68,82,12,70</a></li>
+      
+      <li><a href="https://statisticscalculators.net/statistics/mode-of-64-80-36-80-41-80/">Mode of 64,80,36,80,41,80</a></li>
+         
+  </ul>			
+  </div>
+</div>
+    <p>Related Calculators:</p>
+                    <div class="row">
+                      <div class="col-sm-5">
+                  <ul>
+                    <li><a href="/statistics/mean-calculator/">Mean Calculator</a></li>
+                    <li><a href="/statistics/median-calculator/">Median Calculator</a></li>
+                    <li><a href="/statistics/first-quartile-calculator/">First Quartile Calculator</a></li>
+                    <li><a href="/statistics/third-quartile-calculator/">Third Quartile Calculator</a></li>
+                  </ul>
+                </div>
+                </div>
+    <p><strong>Mode or Modal Calculator: </strong>Do you want to know what is meant by mode and what are the best ways to calculate the modal value? If yes, then read this complete page. Here we are providing the definition, formula of mode for grouped data as well as ungrouped data and step by step process to solve mode for the given set of data. You can use our free Mode Calculator tool that displays the answer easily & quickly. This article includes solved example questions on mode.</p>
+</div></div>
+<div class="card">
+  <div class="card-header"><h2 class="h2">What is the Mode?</h2></div>
+    <div class="card-body">
+    <p>In statistics, a mode is a number in the data set that occurs most frequently. Mode is also called as modal value and it is one of the measures of central tendency apart from mean, median. A set of data can have one mode or no mode or more than one mode.</p>
+   <ol><li>   If a data set has two modes, then the set is called bimodal.</li>
+    <li>  If a set has three modes, then the set is called trimodal.</li>
+      <li>  When a set has for=ur or more modes, then it is called multimodal.</li></ol>
+    <p><strong>  Mode Formula for Ungrouped Data</strong></p>
+     <p> The value which has the highest frequency in the data set is called a mode. So, count how many times each number occurs in the data set to find a modal value.
+     </p> <p><strong>    Mode Formula for Grouped Data</strong></p>
+      <p>The formula to calculate mode in a grouped data is<strong> Mode = L + (fm−f1)h /(fm−f1)+(fm−f2)</strong></p>
+      <p>Where,</p>
+      <p> l is the lower limit of the modal class</p>
+      <p> h is the size of the class interval</p>
+      <p> f1 is the frequency of the modal class</p>
+      <p> fm is the frequency of the class preceding the modal class</p>
+      <p> f2 is the frequency of the class succeeding the modal class </p>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-header"><h3 class="h3">Steps to Calculate Mode</h3></div>
+      <div class="card-body">
+        <p>The below mentioned simple procedure is useful to find mode or modal value manually. For your comfort and convenience, we have listed the detailed steps here. Use them and make your calculations easier.</p>
+        <ul>
+          <li>Get a set of data.</li>
+          <li>Count the occurence of each number in the data set.</li>
+          <li>The number which has highest frequency is called mode.</li>
+        </ul>
+        <p><strong>Example:</strong></p>
+        <p>Find the mode of the given data set 8, 12, 4, 15, 4, 8, 15, 8, 7, 10, 16.</p>
+        <p><strong>Solution:</strong></p>
+        <p>The given lits of numbers are 8, 12, 4, 15, 4, 8, 15, 8, 7, 10, 16</p>
+        <p>  As 8 occurs 3 times, 8 is the mode.</p>
+        <img src="{% static 'images/Statistics/mode-calculator.jpeg' %}" alt='Mode Calculator'>
+      </div>
+  </div>
+  <div class="card">
+    <div class="card-header">
+          <h2 class="h2">Mode Example Calculations</h2>
+      </div>
+    <div class="card-body">
+      <div class="row">
+        <div class="col-sm-7">
+          <ul>
+              
+              <li><a href="https://statisticscalculators.net/statistics/mode-of-827-456-482-328/">Mode of 827,456,482,328</a></li>
+              
+              <li><a href="https://statisticscalculators.net/statistics/mode-of-683-123-625-909/">Mode of 683,123,625,909</a></li>
+              
+              <li><a href="https://statisticscalculators.net/statistics/mode-of-577-461-889-651-249/">Mode of 577,461,889,651,249</a></li>
+              
+              <li><a href="https://statisticscalculators.net/statistics/mode-of-985-779-342-758-801/">Mode of 985,779,342,758,801</a></li>
+              
+              <li><a href="https://statisticscalculators.net/statistics/mode-of-823-732-181-336-227-154/">Mode of 823,732,181,336,227,154</a></li>
+              
+              <li><a href="https://statisticscalculators.net/statistics/mode-of-263-467-934-161-664-539/">Mode of 263,467,934,161,664,539</a></li>
+                 
+          </ul>			
+          </div>
+          <div class="col-sm-7">
+              <ul>
+                  
+                  <li><a href="https://statisticscalculators.net/statistics/mode-of-7227-8560-6081-6188/">Mode of 7227,8560,6081,6188</a></li>
+                  
+                  <li><a href="https://statisticscalculators.net/statistics/mode-of-1591-8990-6277-3852/">Mode of 1591,8990,6277,3852</a></li>
+                  
+                  <li><a href="https://statisticscalculators.net/statistics/mode-of-9887-3370-1770-8161-2273/">Mode of 9887,3370,1770,8161,2273</a></li>
+                  
+                  <li><a href="https://statisticscalculators.net/statistics/mode-of-7734-3883-6659-5520-2431/">Mode of 7734,3883,6659,5520,2431</a></li>
+                  
+                  <li><a href="https://statisticscalculators.net/statistics/mode-of-2858-1605-6061-5077-5186-5153/">Mode of 2858,1605,6061,5077,5186,5153</a></li>
+                  
+                  <li><a href="https://statisticscalculators.net/statistics/mode-of-9721-6239-5906-6693-7619-3395/">Mode of 9721,6239,5906,6693,7619,3395</a></li>
+                  
+              </ul>
+          </div>
+          <div class="col-sm-7">
+              <ul>
+                  
+                  <li><a href="https://statisticscalculators.net/statistics/mode-of-31007-67126-45440-85196/">Mode of 31007,67126,45440,85196</a></li>
+                  
+                  <li><a href="https://statisticscalculators.net/statistics/mode-of-43064-54257-73474-11411/">Mode of 43064,54257,73474,11411</a></li>
+                  
+                  <li><a href="https://statisticscalculators.net/statistics/mode-of-18903-84022-15437-25577-57971/">Mode of 18903,84022,15437,25577,57971</a></li>
+                  
+                  <li><a href="https://statisticscalculators.net/statistics/mode-of-86177-99479-42439-22938-50527/">Mode of 86177,99479,42439,22938,50527</a></li>
+                  
+                  <li><a href="https://statisticscalculators.net/statistics/mode-of-46515-56548-58716-55202-57847-28646/">Mode of 46515,56548,58716,55202,57847,28646</a></li>
+                  
+                  <li><a href="https://statisticscalculators.net/statistics/mode-of-56658-13148-38146-67676-22535-80949/">Mode of 56658,13148,38146,67676,22535,80949</a></li>
+                  
+              </ul>
+          </div>
+          <div class="col-sm-7"> 
+              <ul>
+                  
+                  <li><a href="https://statisticscalculators.net/statistics/mode-of-937410-245552-837439/">Mode of 937410,245552,837439</a></li>
+                  
+                  <li><a href="https://statisticscalculators.net/statistics/mode-of-443144-272331-183533/">Mode of 443144,272331,183533</a></li>
+                  
+                  <li><a href="https://statisticscalculators.net/statistics/mode-of-435360-532162-178093-554083/">Mode of 435360,532162,178093,554083</a></li>
+                  
+                  <li><a href="https://statisticscalculators.net/statistics/mode-of-488395-919039-979429-236333/">Mode of 488395,919039,979429,236333</a></li>
+                  
+                  <li><a href="https://statisticscalculators.net/statistics/mode-of-710120-460071-485619-997215-550568/">Mode of 710120,460071,485619,997215,550568</a></li>
+                  
+                  <li><a href="https://statisticscalculators.net/statistics/mode-of-363665-227167-286253-944533-439438/">Mode of 363665,227167,286253,944533,439438</a></li>
+                  
+              </ul>
+          </div>
+      </div>
+      </div>
+  </div>
+  <div class="card">
+      <div class="card-header">
+          <h3 class="h3">FAQs on Modal or Mode Calculator</h3>
+      </div>
+      <div class="card-body">
+          <!-- Question & Answer Starts --->
+          <p class="question"><strong>1. What is the mode in statistics?</strong></p>
+            <p class="answer">In statistics, the mode is defined as the value that has more frequency in a set of values. </p><hr>
+<p class="question"><strong>2. What is the no mode condition?</strong></p>
+  <p class="answer">In a given set of observations, no number is repeated or occurred more than once, this condition is no mode.</p><hr>
+<p class="question"><strong>3. How to calculate mode for a given set of values?</strong></p>
+  <p class="answer">To find the mode value for the ungrouped data, make a note of the frequency of the each number in the given set of data. The number which has the highest frequency is called mode.</p><hr>
+<p class="question"><strong>4. What is the mode formula?</strong></p>
+  <p class="answer">The simple formula to compute the mode value for grouped data is Mode = L + (fm−f1)h /(fm−f1)+(fm−f2).</p>
+      </div>
+    </div>
+</div>
+{%endblock%}

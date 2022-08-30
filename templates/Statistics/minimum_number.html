@@ -1,0 +1,299 @@
+{%extends 'base/statistics_base3.html'%}
+{%load static%}
+  {%block meta%}
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+  <link rel="shortcut icon" href="{% static 'images/logo/Online-Calculator-Guru-Fevicon.png' %}" type="icon">
+  {%block css%}
+  <link rel="stylesheet" href="{% static 'style.css' %}">
+  {%endblock%}
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <!-- META DATA STARTS --->
+    <title>Minimum Number Calculator | How do you find the Minimum of a Number?</title>
+    <meta name="description" content="Minimum Number Calculator is a free online tool that takes the data set as input and displays the minimum number as output in no time.">
+    <link rel="canonical" href="{{request.build_absolute_uri}}" >
+<!-- META DATA ENDS --->
+
+<!-- OPEN GRAPH CONFIGURATIONS STARTS -->
+    <!--  FACEBOOK CONFIGURATION STARTS  -->
+    <meta content="https://www.facebook.com/OnlineCalculator-Guru-131572098650589/" property="og:url" />
+    <meta property="og:title" content="Minimum Number Calculator | How do you find the Minimum of a Number?"/>
+    <meta property="og:description" content="Minimum Number Calculator is a free online tool that takes the data set as input and displays the minimum number as output in no time."/>
+    <meta content="" property="og:site_name" />
+    <meta  content="https://onlinecalculator.guru/static/images/Statistics/Minimum-Number-Calculator.jpeg" property="og:image" />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:height" content="435" />
+    <meta property="og:image:width" content="354" />
+    <!--  FACEBOOK CONFIGURATION ENDS  -->
+    <!-- TWITTER CARD CONFIGURATION STARTS  -->
+    <meta name="twitter:card" content="summary"/>
+    <meta name="twitter:site" content="https://twitter.com/onlinecalculator"/>
+    <meta name="twitter:title" content="Minimum Number Calculator | How do you find the Minimum of a Number?"/>
+    <meta name="twitter:description" content="Minimum Number Calculator is a free online tool that takes the data set as input and displays the minimum number as output in no time."/>
+    <meta name="twitter:image:src" content="https://onlinecalculator.guru/static/images/Statistics/Minimum-Number-Calculator.jpeg"/>
+    <meta property="twitter:image:height" content="435"/>
+    <meta property="twitter:image:width" content="354"/>
+    <!-- TWITTER CARD CONFIGURATION ENDS  -->
+    <!--  LINKEDIN CONFIGURATION STARTS-->
+    <meta property='og:title' content="Minimum Number Calculator | How do you find the Minimum of a Number?"/>
+    <meta property='og:image' content="https://onlinecalculator.guru/static/images/Statistics/Minimum-Number-Calculator.jpeg"/>
+    <meta property='og:description' content="Minimum Number Calculator is a free online tool that takes the data set as input and displays the minimum number as output in no time."/>
+    <meta property='og:url' content="https://www.linkedin.com/in/onlinecalculator/" />
+    <!-- end of linkedin CONFIGURATIONS ENDS -->
+<!-- OPEN GRAPH CONFIGURATION ENDS -->
+<!-- FAQ SCHEMA STARTS -->
+<script type="application/ld+json">{"@context": "https://schema.org","@type": "FAQPage","mainEntity": [{"@type": "Question","name":"1.
+  What is meant by a Minimum Number?
+  ","acceptedAnswer": {"@type": "Answer","text":" Minimum Number is the first value or smallest value after arranging in the ascending order."}	}, {"@type": "Question","name":"2.
+  How to find Minimum Value from a given set of numbers?
+  ","acceptedAnswer": {"@type": "Answer","text":" Simply sort the numbers and arrange them in ascending order and the first value is the minimum value of the given data set."}	}, {"@type": "Question","name":"3.
+  How to use the Minimum Number Calculator?
+  ","acceptedAnswer": {"@type": "Answer","text":" Just type in the inputs in the allotted input fields and click on the calculate button to get resultant minimum value in no time."}	}, {"@type": "Question","name":"4.
+  What is Minimum Number in the set: 71,28,36,59,89,7,3,20
+  ","acceptedAnswer": {"@type": "Answer","text":" The Minimum Number in the set 71,28,36,59,89,7,3,20 is 3"}	}]}</script>
+{%endblock%}
+{%block content%}
+<div class="container">
+    <div class="card c1">
+      <div class="card-header">
+  <h1 class="h1">Minimum Number Calculator</h1>
+  </div>
+  <div class="card-body">
+    <p>Minimum Number Calculator is a straightforward and handy tool that displays the minimum number among a given data set in a fraction of seconds. All you have to do is simply enter the inputs in the input field and tap on the calculate button to get output in the blink of an eye. </p>
+    <br>
+    <p><b>Ex:</b> 32,45,12,17,43,68,75,8,11,29</p>
+    <form action="{% url 'minimum-number' %}" method="POST" id="my_form" name="reg_to_scientific" onsubmit="go();">
+    {% csrf_token %}
+    <div class="form-row align-items-center">
+      <div class="col-auto">
+        <label class="sr-only" for="inlineFormInputGroup">Minimum Number</label>
+        <div class="input-group mb-2">
+          <div class="input-group-prepend">
+            <div class="input-group-text"><strong>Minimum Number of: </strong></div>
+          </div>
+          <input type="text" class="form-control" name="input1" id="inlineFormInputGroup" placeholder="Enter number" value="{{inputEnter}}">
+        </div>
+      </div>
+      <div class="col-auto">
+        <button type="submit" class="btn btn-primary mb-2">Calculate</button>
+      </div>
+    </div>
+    </form>
+    {% autoescape off %}
+    {{error}}
+    {%endautoescape%}
+    <br>
+    <p><strong>Here are some samples of Minimum Number calculations.</strong></p>
+    <div class="row">
+      <div class="col-sm-4">
+        <ul>
+          
+          <li><a href="https://statisticscalculators.net/statistics/minimum-of-4-7-2-3/">Minimum of 4,7,2,3</a></li>
+          
+          <li><a href="https://statisticscalculators.net/statistics/minimum-of-4-9-3-7/">Minimum of 4,9,3,7</a></li>
+          
+          <li><a href="https://statisticscalculators.net/statistics/minimum-of-3-7-5-9/">Minimum of 3,7,5,9</a></li>
+          
+          <li><a href="https://statisticscalculators.net/statistics/minimum-of-7-6-8-3-4/">Minimum of 7,6,8,3,4</a></li>
+          
+          <li><a href="https://statisticscalculators.net/statistics/minimum-of-3-4-7-6-8/">Minimum of 3,4,7,6,8</a></li>
+          
+          <li><a href="https://statisticscalculators.net/statistics/minimum-of-5-8-7-3-2/">Minimum of 5,8,7,3,2</a></li>
+          
+          <li><a href="https://statisticscalculators.net/statistics/minimum-of-6-2-7-8-4-9/">Minimum of 6,2,7,8,4,9</a></li>
+          
+          <li><a href="https://statisticscalculators.net/statistics/minimum-of-9-4-6-8-7-3/">Minimum of 9,4,6,8,7,3</a></li>
+          
+          <li><a href="https://statisticscalculators.net/statistics/minimum-of-8-7-3-4-6-5/">Minimum of 8,7,3,4,6,5</a></li>
+          
+   
+        </ul>                    
+      </div>
+      <div class="col-sm-4">
+        <ul>
+          
+          <li><a href="https://statisticscalculators.net/statistics/minimum-of-99-46-19-74/">Minimum of 99,46,19,74</a></li>
+          
+          <li><a href="https://statisticscalculators.net/statistics/minimum-of-78-39-58-74/">Minimum of 78,39,58,74</a></li>
+          
+          <li><a href="https://statisticscalculators.net/statistics/minimum-of-93-67-33-96/">Minimum of 93,67,33,96</a></li>
+          
+          <li><a href="https://statisticscalculators.net/statistics/minimum-of-41-96-55-82-33/">Minimum of 41,96,55,82,33</a></li>
+          
+          <li><a href="https://statisticscalculators.net/statistics/minimum-of-30-69-79-65-52/">Minimum of 30,69,79,65,52</a></li>
+          
+          <li><a href="https://statisticscalculators.net/statistics/minimum-of-21-25-75-39-82/">Minimum of 21,25,75,39,82</a></li>
+          
+          <li><a href="https://statisticscalculators.net/statistics/minimum-of-55-67-98-62-15-24/">Minimum of 55,67,98,62,15,24</a></li>
+          
+          <li><a href="https://statisticscalculators.net/statistics/minimum-of-88-13-89-96-31-48/">Minimum of 88,13,89,96,31,48</a></li>
+          
+          <li><a href="https://statisticscalculators.net/statistics/minimum-of-22-37-93-76-90-41/">Minimum of 22,37,93,76,90,41</a></li>
+          
+        </ul>                 
+      </div>
+      <div class="col-sm-4">
+      <ul>
+          
+          <li><a href="https://statisticscalculators.net/statistics/minimum-of-92-82-32-51/">Minimum of 92,82,32,51</a></li>
+          
+          <li><a href="https://statisticscalculators.net/statistics/minimum-of-34-84-23-65/">Minimum of 34,84,23,65</a></li>
+          
+          <li><a href="https://statisticscalculators.net/statistics/minimum-of-18-23-28-91/">Minimum of 18,23,28,91</a></li>
+          
+          <li><a href="https://statisticscalculators.net/statistics/minimum-of-53-81-13-55-13/">Minimum of 53,81,13,55,13</a></li>
+          
+          <li><a href="https://statisticscalculators.net/statistics/minimum-of-47-96-19-44-41/">Minimum of 47,96,19,44,41</a></li>
+          
+          <li><a href="https://statisticscalculators.net/statistics/minimum-of-69-68-65-28-78/">Minimum of 69,68,65,28,78</a></li>
+          
+          <li><a href="https://statisticscalculators.net/statistics/minimum-of-66-91-55-89-99-86/">Minimum of 66,91,55,89,99,86</a></li>
+          
+          <li><a href="https://statisticscalculators.net/statistics/minimum-of-13-96-68-78-76-85/">Minimum of 13,96,68,78,76,85</a></li>
+          
+          <li><a href="https://statisticscalculators.net/statistics/minimum-of-39-73-11-36-28-27/">Minimum of 39,73,11,36,28,27</a></li>
+             
+      </ul>			
+      </div>
+    </div>
+    <p>Related Calculators:</p>
+                    <div class="row">
+                      <div class="col-sm-5">
+                  <ul>
+                    <li><a href="/statistics/maximum-calculator/">Maximum Calculator</a></li>
+                    <li><a href="/statistics/mean-calculator/">Mean Calculator</a></li>
+                    <li><a href="/statistics/median-calculator/">Median Calculator</a></li>
+                    <li><a href="/statistics/mode-calculator/">Mode Calculator</a></li>
+                    <li><a href="/statistics/first-quartile-calculator/">First Quartile Calculator</a></li>
+                    <li><a href="/statistics/third-quartile-calculator/">Third Quartile Calculator</a></li>
+                  </ul>
+                </div>
+                </div>
+    <p><strong>Minimum Number Calculator: </strong> If you wanna find out smallest number from the given set of numbers then the Minimum Value Calculator over here can be of extreme help. This gives you results instantly and offers the step by step solutions. Without any further delay let's dwell in to the article and learn what is meant by Minimum Number, Procedure on How to find Minimum Number from a Number Set, Minimum Number Formula, etc. Refer to the below modules to learn how to find minimum number from a given data set.</p>
+</div></div>
+  <div class="card">
+    <div class="card-header"><h2 class="h2">What is meant by Minimum Number?</h2></div>
+      <div class="card-body">
+        <p>Minimum Value is defined as the smallest or least value in the given set of numbers. In short it is represented by min or minima. We can arrange the set of numbers in the form of x<sub>1</sub> ≤ x<sub>2</sub> ≤ x<sub>3</sub> ≤ ... ≤ x<sub>n</sub>. The first one is the smallest value x<sub>1</sub>. </p>
+       <p>Minimum Number Formula is given by the expression </p>
+       <img src="https://drive.google.com/file/d/1pivrdFmgd3Rx6HXjmoy-kzJLqWwLTHvd/view?usp=sharing" alt="Minimum Formula">
+      </div>
+    </div>
+  <div class="card">
+    <div class="card-header"><h3 class="h3">How to Find the Minimum Number Manually?</h3></div>
+      <div class="card-body">
+        <p>To find the minimum value follow the simple steps listed below. They are along the lines </p>
+        <ul><li>First and foremost step to keep in mind is to sort the numbers.</li>
+        <li>Arrange the numbers in ascending order from least to greatest.</li>
+      <li>After arranging in ascending order the number that is smaller is the minimum number of the given data set.</li></ul>
+        <p><strong>Example:</strong></p>
+        <p>Find the minimum of the number from the given data set: 45,32,323,453,12,621?</p>
+        <p><strong>Solution:</strong></p>
+        <p>Given numbers are 45,32,323,453,12,621</p>
+        <p>Firstly, sort the given numbers in ascending order.</p>
+        <p>Thus the list becomes like this: 12, 32, 45, 323, 453, 621</p>
+        <p>From the order of numbers, 12 is the minimum number.</p>
+        <p>Therefore, the minimum of the given data set 12, 32, 45, 323, 453, 621 is 12.</p>
+        <img src="{% static 'images/Statistics/minimum-number-calculator.jpeg' %}" alt='Minimum Number Calculator'>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-header">
+            <h2 class="h2">Minimum Number Example Calculations</h2>
+        </div>
+      <div class="card-body">
+        <div class="row">
+          <div class="col-sm-6">
+            <ul>
+                
+                <li><a href="https://statisticscalculators.net/statistics/minimum-of-121-725-833-806/">Minimum of 121,725,833,806</a></li>
+                
+                <li><a href="https://statisticscalculators.net/statistics/minimum-of-660-194-424-879/">Minimum of 660,194,424,879</a></li>
+                
+                <li><a href="https://statisticscalculators.net/statistics/minimum-of-452-986-770-280-184/">Minimum of 452,986,770,280,184</a></li>
+                
+                <li><a href="https://statisticscalculators.net/statistics/minimum-of-621-681-879-659-467/">Minimum of 621,681,879,659,467</a></li>
+                
+                <li><a href="https://statisticscalculators.net/statistics/minimum-of-841-598-118-138-849-271/">Minimum of 841,598,118,138,849,271</a></li>
+                
+                <li><a href="https://statisticscalculators.net/statistics/minimum-of-715-139-591-447-922-578/">Minimum of 715,139,591,447,922,578</a></li>
+                   
+            </ul>			
+            </div>
+            <div class="col-sm-6">
+                <ul>
+                    
+                    <li><a href="https://statisticscalculators.net/statistics/minimum-of-6764-1965-4261-9591/">Minimum of 6764,1965,4261,9591</a></li>
+                    
+                    <li><a href="https://statisticscalculators.net/statistics/minimum-of-9388-6597-2074-3860/">Minimum of 9388,6597,2074,3860</a></li>
+                    
+                    <li><a href="https://statisticscalculators.net/statistics/minimum-of-9339-4556-3375-1167-6434/">Minimum of 9339,4556,3375,1167,6434</a></li>
+                    
+                    <li><a href="https://statisticscalculators.net/statistics/minimum-of-4155-2477-3815-9742-9409/">Minimum of 4155,2477,3815,9742,9409</a></li>
+                    
+                    <li><a href="https://statisticscalculators.net/statistics/minimum-of-4919-5546-3499-4781-5469-5678/">Minimum of 4919,5546,3499,4781,5469,5678</a></li>
+                    
+                    <li><a href="https://statisticscalculators.net/statistics/minimum-of-4970-8492-4792-1405-3220-8310/">Minimum of 4970,8492,4792,1405,3220,8310</a></li>
+                    
+                </ul>
+            </div>
+            <div class="col-sm-6">
+                <ul>
+                    
+                    <li><a href="https://statisticscalculators.net/statistics/minimum-of-60068-61931-92533-76643/">Minimum of 60068,61931,92533,76643</a></li>
+                    
+                    <li><a href="https://statisticscalculators.net/statistics/minimum-of-30073-57176-20135-87753/">Minimum of 30073,57176,20135,87753</a></li>
+                    
+                    <li><a href="https://statisticscalculators.net/statistics/minimum-of-42394-74551-87818-64650-76746/">Minimum of 42394,74551,87818,64650,76746</a></li>
+                    
+                    <li><a href="https://statisticscalculators.net/statistics/minimum-of-39279-77424-49986-62855-44531/">Minimum of 39279,77424,49986,62855,44531</a></li>
+                    
+                    <li><a href="https://statisticscalculators.net/statistics/minimum-of-69689-60135-89595-58176-82922-66563/">Minimum of 69689,60135,89595,58176,82922,66563</a></li>
+                    
+                    <li><a href="https://statisticscalculators.net/statistics/minimum-of-31989-47414-53790-24843-77313-53358/">Minimum of 31989,47414,53790,24843,77313,53358</a></li>
+                    
+                </ul>
+            </div>
+            <div class="col-sm-6"> 
+                <ul>
+                    
+                    <li><a href="https://statisticscalculators.net/statistics/minimum-of-778869-542512-359554/">Minimum of 778869,542512,359554</a></li>
+                    
+                    <li><a href="https://statisticscalculators.net/statistics/minimum-of-722707-228096-675302/">Minimum of 722707,228096,675302</a></li>
+                    
+                    <li><a href="https://statisticscalculators.net/statistics/minimum-of-406721-275205-919994-870963/">Minimum of 406721,275205,919994,870963</a></li>
+                    
+                    <li><a href="https://statisticscalculators.net/statistics/minimum-of-177926-687724-711819-946506/">Minimum of 177926,687724,711819,946506</a></li>
+                    
+                    <li><a href="https://statisticscalculators.net/statistics/minimum-of-286458-290076-271377-470928-336314/">Minimum of 286458,290076,271377,470928,336314</a></li>
+                    
+                    <li><a href="https://statisticscalculators.net/statistics/minimum-of-709487-733550-410013-989307-678901/">Minimum of 709487,733550,410013,989307,678901</a></li>
+                    
+                </ul>
+            </div>
+        </div>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-header">
+            <h3 class="h3">FAQs on Minimum Value Calculator</h3>
+        </div>
+        <div class="card-body">
+            <!-- Question & Answer Starts --->
+            <p class="question"><strong>1. What is meant by a Minimum Number?</strong></p>
+            <p class="answer">Minimum Number is the first value or smallest value after arranging in the ascending order.</p><hr>
+            <p class="question"><strong>2. How to find Minimum Value from a given set of numbers?</strong></p>
+            <p class="answer">Simply sort the numbers and arrange them in ascending order and the first value is the minimum value of the given data set.</p><hr>
+            <p class="question"><strong>3. How to use the Minimum Number Calculator?</strong></p>
+            <p class="answer">Just type in the inputs in the allotted input fields and click on the calculate button to get resultant minimum value in no time.</p><hr>
+            <p class="question"><strong>4. What is Minimum Number in the set: 71,28,36,59,89,7,3,20</strong></p>
+            <p class="answer">The Minimum Number in the set 71,28,36,59,89,7,3,20 is 3</p>
+        </div>
+      </div>
+  </div>
+{%endblock%}

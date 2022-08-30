@@ -1,0 +1,255 @@
+{%extends 'base/statistics_base2.html'%}
+{%load static%}
+{%block meta%}
+<!-- HTML Defaults Broweser -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Bootstrap Stylesheet and Jquery, Google APIS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+<!-- Online Calculator Guru Site Fevicon -->
+<link rel="shortcut icon" href="https://onlinecalculator.guru/static/images/logo/Online-Calculator-Guru-Fevicon.png"
+    type="icon">
+<!-- Online Calculator Guru Project Style Sheet -->
+{%block css%}
+<link rel="stylesheet" href="https://onlinecalculator.guru/static/style.css">
+{%endblock css%}
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+<!-- Meta Title, Description and Canonical URL Starts --->
+<title>Binomial Distribution Calculator with Steps | Binomial Probability Calculator</title>
+<meta name="description"
+    content="Binomial Distribution Calculator is a free & handy tool that assists to determine the probability of events & provides the result in no time." />
+<link rel="canonical" href="{{request.build_absolute_uri}}">
+<!-- Meta Title, Description and Canonical URL ENDS --->
+
+<!-- OPEN GRAPH CONFIGURATIONS STARTS -->
+<!--  FACEBOOK CONFIGURATION STARTS  -->
+<meta content="https://www.facebook.com/OnlineCalculator-Guru-131572098650589/" property="og:url" />
+<meta property="og:title" content="Binomial Distribution Calculator with Steps | Binomial Probability Calculator" />
+<meta property="og:description" content="Binomial Distribution Calculator is a free & handy tool that assists to determine the probability of events & provides the result in no time." />
+<meta content="" property="og:site_name" />
+<meta content="https://onlinecalculator.guru/static/images/Statistics/binomial-distribution-calculator.jpeg"
+    property="og:image" />
+<meta property="og:image:type" content="image/png" />
+<meta property="og:image:height" content="435" />
+<meta property="og:image:width" content="354" />
+<!--  FACEBOOK CONFIGURATION ENDS  -->
+<!-- TWITTER CARD CONFIGURATION STARTS  -->
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:site" content="https://twitter.com/onlinecalculator" />
+<meta name="twitter:title" content="Binomial Distribution Calculator with Steps | Binomial Probability Calculator" />
+<meta name="twitter:description"
+    content="Binomial Distribution Calculator is a free & handy tool that assists to determine the probability of events & provides the result in no time." />
+<meta name="twitter:image:src"
+    content="https://onlinecalculator.guru/static/images/Statistics/binomial-distribution-calculator.jpeg" />
+<meta property="twitter:image:height" content="435" />
+<meta property="twitter:image:width" content="354" />
+<!-- TWITTER CARD CONFIGURATION ENDS  -->
+<!--  LINKEDIN CONFIGURATION STARTS-->
+<meta property='og:title' content="Binomial Distribution Calculator with Steps | Binomial Probability Calculator" />
+<meta property='og:image'
+    content="https://onlinecalculator.guru/static/images/Statistics/binomial-distribution-calculator.jpeg" />
+<meta property='og:description' content="Binomial Distribution Calculator is a free & handy tool that assists to determine the probability of events & provides the result in no time." />
+<meta property='og:url' content="https://www.linkedin.com/in/onlinecalculator/" />
+<!-- end of linkedin CONFIGURATIONS ENDS -->
+<!-- OPEN GRAPH CONFIGURATION ENDS -->
+<!-- FAQ SCHEMA STARTS -->
+<script type="application/ld+json">{"@context": "https://schema.org","@type": "FAQPage","mainEntity": [{"@type": "Question","name":"1.
+    What is the formula of the binomial probability distribution?
+    ","acceptedAnswer": {"@type": "Answer","text":"A binomial probability distribution formula is used to find the probability of success for binomial distributions. If the Binomial Probability distribution of exactly x successes from n number of trials is specified by the formula: P(X) = nCx*px*qn-x"} }, {"@type": "Question","name":"2.
+    Where can I find the binomial distribution calculator with steps?
+    ","acceptedAnswer": {"@type": "Answer","text":"There is a reliable and trusted online website statisticscalculators.net that provides free online calculators tools for all related topics. Visit the portal and you'll find the binomial distribution calculator with steps easily."} }, {"@type": "Question","name":"3.
+    How to use this handy Binomial Distribution Calculator?
+    ","acceptedAnswer": {"@type": "Answer","text":"Open the Binomial Distribution Calculator and give your input in the allotted field and click on the calculate button to get the result with detailed steps."} }]}
+</script>
+{%endblock meta %}
+
+{% block content %}
+{% if ot and r and p and n %}
+<script>
+    $(document).ready(function () {
+
+        $("#hassle").click();
+        });
+</script>
+
+<button type="button" hidden id="hassle" onclick="location.href='#binomial_distribution'">ans1</button>
+{% endif %}
+
+
+<div class="container" style="height: auto !important;">
+    <div class="card c1">
+        <div class="card-header">
+            <h1 class="h1">Binomial Distribution Calculator</h1>
+        </div>
+        <div class="card-body">
+            <p>An online tool that aids to find the binomial probability for multiple events effortlessly is the Binomial Distribution Calculator. It takes a number of trials(n), Number of successes (r), Probability of a single trail(p) as inputs and attains the output in split seconds.</p>
+            {% if messages %}
+            <ul class="messages">
+            {% for message in messages %}
+                <p {% if message.tags %} id="message_container" class="alert alert-danger text-center" {% endif %}
+                    style="color:red">{{ message }}</p>
+                {% endfor %}
+            </ul>
+            {% endif %}
+            <form action="{% url 'binomial_distribution' %}" method="POST" id="my_form">
+                {% csrf_token %}
+                 </div>
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1">Number of trails (n)</span>
+            </div>
+            
+           <input style="margin-top: 5px;width:100%" id="n" name="n" value="{{n}}"   required="" class="form-control" type="number" step="any" required width="48"> 
+       </div>
+       <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1">Number of success (r)</span>
+            </div>
+            
+           <input style="margin-top: 5px;width:100%" id="r" name="r" value="{{r}}"   required="" class="form-control" type="number" step="any" required width="48"> 
+       </div>
+
+       <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1">probability of single trail(p)</span>
+            </div>
+            
+           <input style="margin-top: 5px;width:100%" id="p" name="p" value="{{p}}"   required="" class="form-control" type="number" step="any" required width="48"> 
+       </div>
+      
+        <div class=" center col mt-2 ">
+            <center><button type="submit" class="btn btn-primary">Calculate</button>
+              <a href="{% url 'binomial_distribution' %}" class="btn btn-warning" role="button" style="margin-top:5px;">Reset</a>      
+            </center>
+          </div>
+          <p><strong>Binomial Distribution Calculator:</strong> Facing a lot of issues while solving the probability of a certain number of successes in a sequence of events? This handy Binomial Probability Calculator helps you with the calculations in a simple approach. Also, you can learn the definition, binomial probability distribution formula, criteria of a binomial distribution, and solved examples from the further section of this article.</p>
+</div>
+
+</form>
+</div>
+</div>
+<div class="container" style="height: auto !important;">
+<div class="card-header">
+    <h2 class="h2">What is Meant by Binomial Distribution & Formula?</h2>
+</div>
+<div class="card-body">
+    <p>The binomial distribution is a general discrete distribution utilized in statistics, as it summarizes the number of trails, or observations while every trial has the same probability of obtaining one specific value.</p>
+    <p>For example, if we have determined the outcome out of two is outlined as a success. Then, the probability of x successes out of N trails can be calculated as:</p>
+    <p><strong>P(X) = <sup>n</sup>C<sub>x</sub> * p<sup>x</sup> * (1 &ndash; p)<sup>(n-x)</sup> </strong></p>
+    <p><strong>or</strong></p>
+    <p><strong>P(X) = <sup>n</sup>C<sub>x</sub> p<sup>x</sup> q<sup>n-x</sup></strong></p>
+    <p>Where,</p>
+    <p>n = Total number of trials<br />x = Total number of successful trials<br />p = probability of success in a single trial<br />q = probability of failure in a single trial = 1-p</p>
+    <p><strong>Binomial Distribution Formula:</strong></p>
+    <img src="https://drive.google.com/file/d/1WoJfplWVr4V_9GdQf3ScKa8zrxDX4Jcc/view?usp=sharing" alt='binomial-distribution-formula'>
+</div> 
+</div>
+<div class="container" style="height: auto !important;">
+<div class="card">
+    <div class="card-header">
+        <h2 class="h3">Criteria of Binomial Distribution</h3>
+    </div>
+    <div class="card-body">
+        <p>There are three distinct criteria of binomial distributions. Here we have computed those three binomial distribution criteria that need to satisfy:</p>
+        <ul>
+        <li>The number of experiments or trials should be fixed. As you can only find out the probable occurrence chance of success in a trial and also must have a finite number of trials.</li>
+        <li>Each trial is independent. Not any one of your trials must affect the possibility of the next trial.</li>
+        <li>The probability constantly stays the same and equal. The probability of winning may be equivalent to more than one trial.</li>
+        </ul>
+        <p>It is mandatory to satisfy all these three criteria before performing any experiment to find the distribution is binomial or not. After figuring out them, you can easily apply the binomial formula and find out the probability distribution.</p>
+</div>
+</div> 
+</div> 
+{% if ot and r and p and n  %}
+<div class="container" style="height: auto !important;">
+<div class="card" id="binomial_distribution">
+        <div class="card-header">
+            <h2 class="h2">Steps to Find Binomial Distribution:</h2>
+        </div>
+
+        <div class="card-body">
+
+            <strong>Binomial Distribution:-</strong>
+            <br>
+            <p class="btn btn-outline-secondary active text-justify">Binomial Distribution = <sup>n</sup>C<sub>r</sub> * pr * (1−p)<sup>n−r</sup></p>
+            <br>
+            <strong>where:</strong>
+                    <ul>
+                        <li>n is the Number of trails,</li>
+                        <li>r is Number of success ,</li>
+                        <li>p is probability of single trail.</li>
+                    </ul>
+
+
+            <strong>Input values are:-</strong>
+            <p>n = {{n}} </p>
+            <p>r = {{r}} </p>
+            <p>p = {{p}} </p>
+
+            
+            <p><b>Put values into formula</b></p>
+            <p><sup>n</sup>C<sub>r</sub> = {{n}}! / ({{r}}! * ({{n}} - {{r}})!<p>
+            <p><sup>n</sup>C<sub>r</sub> = {{nf}} / ({{rf}} * {{nrf}})<p>
+            <p><sup>n</sup>C<sub>r</sub> = {{ncr}}<p>
+
+            <p>pr = {{p}}<sup>{{r}}</sup></p>
+            <p>pr = {{pr}}</p>
+
+            <p>1 - p = {{p1}}</p> 
+            <p>n -r  = {{nr}}</p>
+
+            <p>px =  {{ncr}} * {{pr}} * {{p1}}<sup>{{nr}}</sup></p>
+
+            
+            <b>px = {{result}}</b>
+                         
+   </div>
+   <img src="{% static 'images/Statistics/binomial-distribution-calculator.jpeg' %}" alt='binomial-distribution-calculator'>
+    </div>
+</div>
+<div class="container" style="height: auto !important;">
+
+<div class="card">
+    <div class="card-header">
+        <h2 class="h3">Binomial Distribution Examples</h3>
+    </div>
+    <div class="card-body">
+<p>Check out the below worked examples on how to find the binomial distribution manually and improve your problem-solving skills.</p>
+<p><strong>Example:</strong></p>
+<p>A coin is tossed 5 times. What is the probability of getting exactly 3 tails in these 5 tosses?</p>
+<p><strong>Solution: </strong></p>
+<p>Given Number of trails = 5</p>
+<p>Number of successes = 3</p>
+<p>Probability of getting tails in a single coin toss = 0.5</p>
+<p>Apply the binomial probability distribution formula ie.,</p>
+<p>b(r: n, p) = (n/r) p<sup>r</sup> (1-p)<sup>n-r</sup> or <sup>n</sup>C<sub>r</sub> * p<sup>r</sup> * (1-p)<sup>n-r</sup></p>
+<p>Substitute the given values in the above formula</p>
+<p>b(r: n,p) = <sup>5</sup>C<sub>3</sub> x (0.5)<sup>3</sup> x (1-0.5)<sup>5-3</sup><br />= <sup>5</sup>C<sub>3</sub> x (0.5)<sup>3</sup> x (0.5)<sup>2</sup><br />= 0.313</p>
+<p>Hence, the probability of getting exactly 3 tails in these 5 tosses is <strong>0.313.</strong></p>
+</div>
+</div>
+</div> 
+<div class="container" style="height: auto !important;">
+<div class="card">
+    <div class="card-header">
+    <h3 class="h3">FAQs on Free Online Binomial Probability Calculator</h3>
+    </div>
+    <div class="card-body">
+    <!-- Question & Answer Starts --->
+  <p class="question"><strong>1. What is the formula of the binomial probability distribution?</strong></p>
+   <p class="answer">A binomial probability distribution formula is used to find the probability of success for binomial distributions. If the Binomial Probability distribution of exactly x successes from n number of trials is specified by the formula:<strong>P(X) = <sup>n</sup>C<sub>x</sub> p<sup>x</sup> q<sup>n-x</sup></strong></p><hr>
+   <p class="question"><strong>2. Where can I find the binomial distribution calculator with steps?</strong></p>
+   <p class="answer">There is a reliable and trusted online website <a href="https://statisticscalculators.net/">statisticscalculators.net</a> that provides free online calculators tools for all related topics. Visit the portal and you'll find the binomial distribution calculator with steps easily.</p><hr>  
+  <p class="question"><strong>3. How to use this handy Binomial Distribution Calculator?</strong></p>
+  <p class="answer">Open the Binomial Distribution Calculator and give your input in the allotted field and click on the calculate button to get the result with detailed steps.</p><hr>
+</div>
+</div>
+</div> 
+</div>
+    {% endif %}                  
+{% endblock content %}

@@ -1,0 +1,171 @@
+{%extends 'base/statistics_base1.html'%}
+{%load static%}
+  {%block meta%}
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+  <link rel="shortcut icon" href="{% static 'images/logo/Online-Calculator-Guru-Fevicon.png' %}" type="icon">
+  {%block css%}
+  <link rel="stylesheet" href="{% static 'style.css' %}">
+  {%endblock%}
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <!-- META DATA STARTS --->
+    <title>Arithmetic Mean Calculator to find the Mean or Average of Data {{inputEnter}}</title>
+    <meta name="description" content="Mean Calculator is a free & handy tool to calculate a mean or average value of the given set of numbers ie., {{inputEnter}} and avail the result ie, {{finalAnswer}} easily.">
+    <link rel="canonical" href="{{request.build_absolute_uri}}" >
+<!-- META DATA ENDS --->
+
+<!-- OPEN GRAPH CONFIGURATIONS STARTS -->
+    <!--  FACEBOOK CONFIGURATION STARTS  -->
+    <meta content="https://www.facebook.com/OnlineCalculator-Guru-131572098650589/" property="og:url" />
+    <meta property="og:title" content="Arithmetic Mean Calculator to find the Mean or Average of Data {{inputEnter}}"/>
+    <meta property="og:description" content="Mean Calculator is a free & handy tool to calculate a mean or average value of the given set of numbers ie., {{inputEnter}} and avail the result ie, {{finalAnswer}} easily."/>
+    <meta content="" property="og:site_name" />
+    <meta  content="https://onlinecalculator.guru/static/images/Statistics/Mean-Calculator.jpeg" property="og:image" />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:height" content="435" />
+    <meta property="og:image:width" content="354" />
+    <!--  FACEBOOK CONFIGURATION ENDS  -->
+    <!-- TWITTER CARD CONFIGURATION STARTS  -->
+    <meta name="twitter:card" content="summary"/>
+    <meta name="twitter:site" content="https://twitter.com/onlinecalculator"/>
+    <meta name="twitter:title" content="Arithmetic Mean Calculator to find the Mean or Average of Data {{inputEnter}}"/>
+    <meta name="twitter:description" content="Mean Calculator is a free & handy tool to calculate a mean or average value of the given set of numbers ie., {{inputEnter}} and avail the result ie, {{finalAnswer}} easily."/>
+    <meta name="twitter:image:src" content="https://onlinecalculator.guru/static/images/Statistics/Mean-Calculator.jpeg"/>
+    <meta property="twitter:image:height" content="435"/>
+    <meta property="twitter:image:width" content="354"/>
+    <!-- TWITTER CARD CONFIGURATION ENDS  -->
+    <!--  LINKEDIN CONFIGURATION STARTS-->
+    <meta property='og:title' content="Arithmetic Mean Calculator to find the Mean or Average of Data {{inputEnter}}"/>
+    <meta property='og:image' content="https://onlinecalculator.guru/static/images/Statistics/Mean-Calculator.jpeg"/>
+    <meta property='og:description' content="Mean Calculator is a free & handy tool to calculate a mean or average value of the given set of numbers ie., {{inputEnter}} and avail the result ie, {{finalAnswer}} easily."/>
+    <meta property='og:url' content="https://www.linkedin.com/in/onlinecalculator/" />
+    <!-- end of linkedin CONFIGURATIONS ENDS -->
+<!-- OPEN GRAPH CONFIGURATION ENDS -->
+<!-- FAQ SCHEMA STARTS -->
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Where can I get the detailed solution for the mean of {{inputEnter}}?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "You can get the detailed solution for the mean of a data set {{inputEnter}} from this page."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How to find the mean or average value for the set of data {{inputEnter}}?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "First, add up all the given data ie., {{inputEnter}} and then divide it with the data count ie., to get the result ie., {{finalAnswer}}. Make use of our mean calculator and find the exact output within a fraction of seconds without performing any complex calculations."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is the mean value for the set of numbers {{inputEnter}}?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The mean value or average value for the given data set {{inputEnter}} is {{finalAnswer}}."
+        }
+      }]
+  }
+</script>
+{%endblock%}
+{%block content%}
+<div class="container">
+    <div class="card c1">
+      <div class="card-header">
+  <h1 class="h1">Finding out Mean of {{inputEnter}}</h1>
+  </div>
+  <div class="card-body">
+    <p><a href="{% url 'mean' %}">Mean Calculator</a> will assess the mean of decimals {{inputEnter}} i.e. {{finalAnswer}} immediately and also provide the elaborate steps of the solution.</p>
+    <p><b>Ex:</b> 32,45,12,17,43,68,75,8,11,29</p>
+    <form action="{% url 'mean' %}" method="POST" id="my_form" name="reg_to_scientific" onsubmit="go();">
+        {% csrf_token %}
+        <div class="form-row align-items-center">
+          <div class="col-auto">
+            <label class="sr-only" for="inlineFormInputGroup">Mean</label>
+            <div class="input-group mb-2">
+              <div class="input-group-prepend">
+                <div class="input-group-text"><strong>Mean of: </strong></div>
+              </div>
+              <input type="text" class="form-control" name="input1" id="inlineFormInputGroup" placeholder="Enter number" value="{{inputEnter}}">
+            </div>
+          </div>
+          <div class="col-auto">
+            <button type="submit" class="btn btn-primary mb-2">Calculate</button>
+          </div>
+        </div>
+    </form>
+</div></div>
+<div class="card">
+    <div class="card-header">
+<h2 class="h2">Step by Step Solution for Mean of Numbers {{inputEnter}}</h2>
+</div>
+<div class="card-body">
+{% autoescape off %}
+{{ detailStep }}
+{% endautoescape %}
+</div>
+</div>
+<div class="row">
+  <div class="col-sm-6">
+    <div class="card">
+      <div class="card-header"><h3 class="h3">Mean of Numbers Examples</h3></div>
+      <div class="card-body">
+        <ul>
+          {% for i,j in example1 %}
+          <li><a  href="{{i}}" title="{{j}}">{{j}}</a></li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-6">
+    <div class="card">
+      <div class="card-header"><h3 class="h3">Median of Numbers Examples</h3></div>
+      <div class="card-body">
+        <ul>
+          {% for i,j in example2 %}
+          <li><a  href="{{i}}" title="{{j}}">{{j}}</a></li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="card">
+  <div class="card-header">
+    <h3 class="h3">Frequently Asked Questions on Mean of {{inputEnter}}</h3>
+  </div>
+  <div class="card-body">
+      <p class="question"><strong>1. Where can I get the detailed solution for the mean of {{inputEnter}}?</strong></p>
+      <p class="answer">You can get the detailed solution for the mean of a data set {{inputEnter}} from this page.</p><hr>
+
+
+        <p class="question"><strong>2. How to find the mean or average value for the set of data {{inputEnter}}?</strong></p>
+        <p class="answer">First, add up all the given data ie., {{inputEnter}} and then divide it with the data count ie., to get the result ie., {{finalAnswer}}. Make use of our mean calculator and find the exact output within a fraction of seconds without performing any complex calculations.</p><hr>
+
+
+        <p class="question"><strong>3. What is the mean value for the set of numbers {{inputEnter}}?</strong></p>
+        <p class="answer">The mean value or average value for the given data set {{inputEnter}} is {{finalAnswer}}.</p><hr>
+  </div>
+</div>
+</div>
+<!-- <div class="card">
+  <div class="card-header"><h2>More Examples</h2></div>
+  <div class="card-body">
+    {%for post1 in post%}
+      <li><a href="{% url 'mean-detail' post1.slug %}">{{post1.solutionTitle}}</a></li>
+      {%endfor%}
+  </div>
+</div> -->
+{%endblock%}

@@ -1,0 +1,197 @@
+{%extends 'base/statistics_base1.html'%}
+{%load static%}
+  {%block meta%}
+    <!-- HTML Defaults Broweser -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Bootstrap Stylesheet and Jquery, Google APIS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <!-- Online Calculator Guru Site Fevicon -->
+    <link rel="shortcut icon" href="https://onlinecalculator.guru/static/images/logo/Online-Calculator-Guru-Fevicon.png" type="icon">
+    <!-- Online Calculator Guru Project Style Sheet -->
+    {%block css%}
+    <link rel="stylesheet" href="https://onlinecalculator.guru/static/style2.css">
+    {%endblock%}
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <!-- Meta Title, Description and Canonical URL Starts --->
+    <title>Online Gamma Function Calculator| How is Gamma Function Calculated?</title>
+    <meta name="description" content="Get this Gamma Function Calculator for calculating gamma function easily. And also learn detailed formulas and steps easily."/>
+    <link rel="canonical" href="{{request.build_absolute_uri}}">
+    <!-- Meta Title, Description and Canonical URL ENDS --->
+ 
+    <!-- OPEN GRAPH CONFIGURATIONS STARTS -->
+	<!--  FACEBOOK CONFIGURATION STARTS  -->
+        <meta content="https://www.facebook.com/OnlineCalculator-Guru-131572098650589/" property="og:url" />
+        <meta property="og:title" content="Online Gamma Function Calculator| How is Gamma Function Calculated?"/>
+        <meta property="og:description" content="Get this Gamma Function Calculator for calculating gamma function easily. And also learn detailed formulas and steps easily. "/>
+        <meta content="" property="og:site_name" />
+        <meta  content="https://onlinecalculator.guru/static/images/Numbers/Gamma-Function-Calculator.jpeg" property="og:image" />
+        <meta property="og:image:type" content="image/png" />
+        <meta property="og:image:height" content="435" />
+        <meta property="og:image:width" content="354" />
+        <!--  FACEBOOK CONFIGURATION ENDS  -->
+        <!-- TWITTER CARD CONFIGURATION STARTS  -->
+        <meta name="twitter:card" content="summary"/>
+        <meta name="twitter:site" content="https://twitter.com/onlinecalculator"/>
+        <meta name="twitter:title" content="Online Gamma Function Calculator| How is Gamma Function Calculated?"/>
+        <meta name="twitter:description" content="Get this Gamma Function Calculator for calculating gamma function easily. And also learn detailed formulas and steps easily."/>
+        <meta name="twitter:image:src" content="https://onlinecalculator.guru/static/images/Numbers/Gamma-Function-Calculator.jpeg"/>
+        <meta property="twitter:image:height" content="435"/>
+        <meta property="twitter:image:width" content="354"/>
+        <!-- TWITTER CARD CONFIGURATION ENDS  -->
+        <!--  LINKEDIN CONFIGURATION STARTS-->
+        <meta property='og:title' content="Online Gamma Function Calculator| How is Gamma Function Calculated?"/>
+        <meta property='og:image' content="https://onlinecalculator.guru/static/images/Numbers/Gamma-Function-Calculator.jpeg"/>
+        <meta property='og:description' content="Get this Gamma Function Calculator for calculating gamma function easily. And also learn detailed formulas and steps easily."/>
+        <meta property='og:url' content="https://www.linkedin.com/in/onlinecalculator/" />
+        <!-- end of linkedin CONFIGURATIONS ENDS -->
+    <!-- OPEN GRAPH CONFIGURATION ENDS -->
+    <!-- FAQ SCHEMA STARTS -->
+    <script type="application/ld+json">{"@context": "https://schema.org","@type": "FAQPage","mainEntity": [{"@type": "Question","name":"1
+        How to compute Gamma function?
+        ","acceptedAnswer": {"@type": "Answer","text":" 
+        Gamma Function can be calculated by using the formula, i.e. Γ(n) = (n − 1)!"}	}, {"@type": "Question","name":"2
+        Solve Γ3
+        ","acceptedAnswer": {"@type": "Answer","text":" 
+        Given Γ3 = Γ(n) = (n − 1)! = (3-1)! = 2! =2 x 1 =2"}	}, {"@type": "Question","name":"3
+        How to use gamma function calculator?
+        ","acceptedAnswer": {"@type": "Answer","text":"
+        Usage of gamma function calculator is simple and easy. Just you need to give the values in the input fields and click on the calculate button, you will see the answer in frcation of seconds."}	}]}</script>
+    {%endblock%}
+    {%block content%}
+    <div class="container">
+        <div class="card c1">
+            <div class="card-header">
+                <h1 class="h1">Gamma Function Calculator</h1>
+            </div>
+            <div class="card-body">
+                <p>Utilize this handy tool that is programmed to calculate the special kind of factorial which is used in probability distribution functions. To calculate, you need to give the values in the below boxes and by clicking on the calculate button you will get the exact gamma function value in microseconds.</p>
+                {%if go_tag%}
+                <a href="{{go_tag}}" id="ddd"></a>
+                {%endif%}
+                <p>Free and handy Gamma Function Calculator is online tool that solves the gamma function of a given number in fraction of seconds and displays the exact output along with the step by step solution guide. You have to enter the input number in the below box & press on the calculate button.</p>
+                <div class="box" id="gamma_function">
+                    <div style="text-align: center;"><h5><strong>Gamma Function Calculator</strong></h5></div>
+                    <form method="POST">{% csrf_token %}
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="basic-addon1">Gamma of</span>
+                            </div>
+                          {%if input1%}
+                            <input style="margin-top: 5px;" id="input1" name="input1" class="form-control" type="text" required width="48"  value="{{input1}}">
+                          {%else%}
+                            <input style="margin-top: 5px;" id="input1" name="input1" class="form-control" type="text" required width="48"  value="9.5">
+                          {%endif%}
+                          </div>
+                          <div class="col mt-2 ">
+                            <td>&nbsp;&nbsp;&nbsp;&nbsp;	<input class="btn btn-secondary btn-mr-3" type="button" onclick="myFunction()" value="Clear"></td>
+                            <td></td>	
+                            <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                            <td><button type="submit" class="btn btn-primary mb-2">Calculate</button>  </td>
+                            </div>
+                    </form>
+                    <div id="answer1">
+                    {%if detailStep%}
+                      <hr>
+                      <p><strong>Answer:</strong></p>
+                      <div style="text-align: center;">
+                      {% autoescape off %}
+                      {{detailStep}}
+                      {%endautoescape%}
+
+                      </div>
+                      <hr>
+                  {%endif%}
+                </div>
+                <script>
+                    function myFunction() {
+                      document.getElementById("input1").value="";
+                      $("#answer1").html("");
+                    }
+                    </script>
+                      </div>
+                  {% autoescape off %}
+                      {% if messages %}
+                          {% for message in messages %}
+                              <div class="row">
+                                  <div class="col-md-6">
+                                      <p class="alert alert-danger">{{message}}</p>
+                                  </div>
+                              </div>
+                          {% endfor %}
+                      {% endif %}
+                  {%endautoescape%}
+                <p><strong>Gamma Function Calculator: </strong>Wasting your time, calculating gamma function by hand? Make use of this wonderful tool to calculate the gamma function very easily and quickly. And we have also clearly explained about the gamma function formulas and definition along with some solved examples. </p>
+            </div>
+        </div>
+    <div class="card">
+	    <div class="card-header">
+            <h2 class="h2">What is Gamma Function?</h2>
+        </div>
+	    <div class="card-body">
+            <p>In Mathematics, gamma function is an addition of the factorial function, with the argument moved down by 1, to complex and real numbers. Gamma is represented by 'Γ' symbol. It is used in discrete areas like complex analysis, statistics, calculus, etc.</p>
+            </div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="h3">Gamma Function Formula</h3>
+                </div>
+                <div class="card-body">
+                    <p>We will look into the formula of Gamma function</p>
+                    <p>Gamma function Γn, defined as</p>
+                    <p>If n>0, Γs = ∫<sub>0</sub><sup>∞</sup> e<su>-x</su> x<sup>s-1</sup> dx = ∫<sub>0</sub><sup>∞</sup> e<sup>-x</sup> dx/x</p>
+                    <p>In particular, we have Γ (1) = 1 and Γ (1/2) = √π.</p>
+                    <p>Factorial Connection for gamma function is  Γn = (n-1)!</p>
+                    <p>Where, n is an integer.</p>
+            </div>
+            </div>
+            <div class="card">
+              <div class="card-header">
+                    <h3 class="h3">How to Compute Gamma Function?</h3>
+                </div>
+              <div class="card-body">
+              <p>If you follow these below steps, you can calculate the gamma function very easily by hand.</p>
+            <ul>
+              <li>Note down the values that was given in the question.</li>
+              <li>Then, apply the factorial formula and simplify it.</li>
+              <li>Finally, you will get the desired answer.</li>
+            </ul>
+</div>
+</div>     
+    <div class="card">
+    <div class="card-header">
+      <h3 class="h3">Solved Examples on Gamma Function</h3>
+    </div>
+    <div class="card-body">
+        <p><strong>Question 1:</strong> Compute Γ14?</p>
+        <p><b>Solution:</b></p>
+        <p>Given, value is Γ14</p>
+        <p>We know that Γn = (n - 1)!</p>
+        <p> Γ14 = (14 - 1)!</p>
+        <p>= 13!</p>
+        <p>= 13 x 12 x 11 x 10 x 9 x 8 x 7 x 6 x 5 x 4 x 3 x 2 x 1</p>
+        <p>= 6,22,70,20,800</p>
+        <p>Γ14 = 6,22,70,20,800</p>
+        <p>Use these calculators online to make your work easy. These online calculators will be available on <a href="https://statisticscalculators.net/">Statisticscalculator.net</a> </p>
+    </div>
+        </div>
+    <div class="card">
+  	    <div class="card-header">
+      	<h3 class="h3">Frequently Asked Questions on Gamma Function</h3>
+  	    </div>
+  	    <div class="card-body">
+      	<!-- Question & Answer Starts --->
+        <p class="question"><strong>1. How to compute Gamma function?</strong></p>
+     	<p class="answer"> Gamma Function can be calculated by using the formula, i.e. Γ(n) = (n − 1)!</p><hr>
+     	<p class="question"><strong>2. Solve Γ3?</strong></p>
+     	<p class="answer">Given Γ3 = Γ(n) = (n − 1)! = (3-1)! = 2! =2 x 1 =2</p><hr>  
+        <p class="question"><strong>3. How to use gamma function calculator?</strong></p>
+     	<p class="answer">Usage of gamma function calculator is simple and easy. Just you need to give the values in the input fields and click on the calculate button, you will see the answer in frcation of seconds.</p>
+      </div>
+    </div>
+    </div>
+{%endblock%}

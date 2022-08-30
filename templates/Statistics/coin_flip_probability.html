@@ -1,0 +1,274 @@
+{%extends 'base/statistics_base2.html'%}
+{%load static%}
+  {%block meta%}
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+  <link rel="shortcut icon" href="{% static 'images/logo/Online-Calculator-Guru-Fevicon.png' %}" type="icon">
+  {%block css%}
+  <link rel="stylesheet" href="{% static 'style2.css' %}">
+  {%endblock%}
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+	<!-- META DATA STARTS --->
+    <title>Coin Flip Probability Calculator | How do you Calculate the Probability of a Coin Flip?</title>
+	<meta name="description" content="Use our online Coin Flip Probability Calculator and get the probability of obtaining exactly h number of heads/tails in N number of Coin Toss easily. "/>
+	<link rel="canonical" href="{{request.build_absolute_uri}}">
+<!-- META DATA ENDS --->
+ 
+<!-- OPEN GRAPH CONFIGURATIONS STARTS -->
+	<!--  FACEBOOK CONFIGURATION STARTS  -->
+	<meta content="https://www.facebook.com/OnlineCalculator-Guru-131572098650589/" property="og:url" />
+	<meta property="og:title" content="Coin Flip Probability Calculator | How do you Calculate the Probability of a Coin Flip?"/>
+	<meta property="og:description" content="Use our online Coin Flip Probability Calculator and get the probability of obtaining exactly h number of heads/tails in N number of Coin Toss easily. "/>
+	<meta content="" property="og:site_name" />
+	<meta  content="https://onlinecalculator.guru/static/images/Statistics/Coin-Flip-Probability-Calculator.jpeg" property="og:image" />
+	<meta property="og:image:type" content="image/png" />
+	<meta property="og:image:height" content="435" />
+	<meta property="og:image:width" content="354" />
+	<!--  FACEBOOK CONFIGURATION ENDS  -->
+	<!-- TWITTER CARD CONFIGURATION STARTS  -->
+	<meta name="twitter:card" content="summary"/>
+	<meta name="twitter:site" content="https://twitter.com/onlinecalculator"/>
+	<meta name="twitter:title" content="Coin Flip Probability Calculator | How do you Calculate the Probability of a Coin Flip?"/>
+	<meta name="twitter:description" content="Use our online Coin Flip Probability Calculator and get the probability of obtaining exactly h number of heads/tails in N number of Coin Toss easily. "/>
+	<meta name="twitter:image:src" content="https://onlinecalculator.guru/static/images/Statistics/Coin-Flip-Probability-Calculator.jpeg"/>
+	<meta property="twitter:image:height" content="435"/>
+	<meta property="twitter:image:width" content="354"/>
+	<!-- TWITTER CARD CONFIGURATION ENDS  -->
+	<!--  LINKEDIN CONFIGURATION STARTS-->
+	<meta property='og:title' content="Coin Flip Probability Calculator | How do you Calculate the Probability of a Coin Flip?"/>
+	<meta property='og:image' content="https://onlinecalculator.guru/static/images/Statistics/Coin-Flip-Probability-Calculator.jpeg"/>
+	<meta property='og:description' content="Use our online Coin Flip Probability Calculator and get the probability of obtaining exactly h number of heads/tails in N number of Coin Toss easily. "/>
+	<meta property='og:url' content="https://www.linkedin.com/in/onlinecalculator/" />
+	<!-- end of linkedin CONFIGURATIONS ENDS -->
+<!-- OPEN GRAPH CONFIGURATION ENDS -->
+<!-- FAQ SCHEMA STARTS -->
+<script type="application/ld+json">{"@context": "https://schema.org","@type": "FAQPage","mainEntity": [{"@type": "Question","name":"1.
+	How many possibilities are there when you flip 3 coins?
+	","acceptedAnswer": {"@type": "Answer","text":" 8 possile outcomes are there when you flip 3 coins and they are HHH, HHT, HTH, HTT, THH, THT, TTH, and TTT."}	}, {"@type": "Question","name":"2.
+	What is the formula of Coin Toss or Coin Flip Probability?
+	","acceptedAnswer": {"@type": "Answer","text":" The Formula of Coin Toss Probability is  nCh/2ⁿ where n is the total number of trails, h is the number of heads in n number of trails."}	}, {"@type": "Question","name":"3.
+	How to use the Coin Flip Probability Calculator?
+	","acceptedAnswer": {"@type": "Answer","text":" Simply enter the desired number of heads, number of coin tosses in the allotted input fields and then click on the calculate button to avail the coin flip probability in seconds."}	}, {"@type": "Question","name":"4.
+	How do you Calculate the Probability of a Coin Flip?
+	","acceptedAnswer": {"@type": "Answer","text":" Probability of an event is the ratio of number of favorable outcomes to total number of outcomes. The same logic applies to coin flip probability i.e. probability of getting head is 1/2, probability of getting tail is 1/2."}	}]}</script>
+{%endblock%}
+{%block content%}
+<div class="container">
+	<div class="card c1">
+  	<div class="card-header">
+  <h1 class="h1">Coin Flip Probability Calculator</h1>
+  </div>
+  <div class="card-body">
+	  <p>Coin Flip Probability Calculator is a handy and straightforward tool for determining the probability of getting heads or tails when a coin is tossed. Simply enter the inputs in the input fields of the online tool and click on the calculate button to get the coin toss probability in no time.</p>
+	<p><strong>Coin Flip Probability:</strong> Wondering how to calculate a set number of heads/tails when a coin is tossed? Then, you have come to the right page where you will find complete information on what is meant by coin toss probability, its mathematical formula, step by step procedure on how to use the coin flip probability, etc. In addition we have also provided certain solved examples on finding the coin toss probability explained clearly for your knowledge. </p>
+	<div class="d-flex justify-content-center">   
+		<form action="{% url 'coin_flip_probability' %}" method="POST" id='my_form'>{% csrf_token %}
+			<div class="input-group mb-3">
+	
+				<div class="input-group-prepend">
+					<span class="input-group-text" id="basic-addon1">Number of flips (n)</span>
+				</div>
+				<input style="margin-top: 5px;width:100%" id="n" name="n" value="{{n}}"   required="" oninput="validateNumber(this);" class="form-control" type="text" required width="48"  >
+	
+	
+	
+	
+			  </div>
+			  <br>
+			  <div class="input-group mb-3">
+	
+				<div class="input-group-prepend">
+					<span class="input-group-text" id="basic-addon1">I want to have</span>
+				</div>
+	
+				<select id='Given' name='Given'  style="margin-top: 5px;width:100%" class="select form-control" id="inlineFormInputGroup" >
+	
+				  {% if Given == 'exactly'%}
+				  <option value='exactly' selected>exactly</option>  
+				  {% else %}
+				  <option value='exactly' >exactly</option>  
+				  {% endif %}
+				  {% if Given == 'at_most'%}
+				  <option value='at_most' selected>at most</option>  
+				  {% else %}
+				  <option value='at_most' >at most</option>  
+				  {% endif %}
+				  {% if Given == 'at_least'%}
+				  <option value='at_least' selected>at least</option>  
+				  {% else %}
+				  <option value='at_least' >at least</option>  
+				  {% endif %}
+	
+				</select>   
+				<input style="margin-top: 5px;width:100%" id="k" name="k" value="{{k}}"  oninput="validateNumber(this);" required="" oninput="validateNumber(this);" class="form-control" type="text" required width="48"  >
+				<div class="input-group-prepend">
+					<span class="input-group-text" id="basic-addon1">heads(k)</span>
+				</div>              
+			  </div>
+	
+	
+	
+	
+	
+	
+			  <div class=" center col mt-2 ">
+				<center><button type="submit" class="btn btn-primary">Calculate</button>
+	
+				  <button type="button" onclick="myFunction1()" style="margin-top:5px;" class="btn btn-danger">Reset</button>
+	
+	
+	
+				</center>
+			  </div>
+	
+	
+		</form>  
+	</div>     
+
+
+
+
+
+
+    {% autoescape off %}
+            {% if messages %}
+                {% for message in messages %}
+                        <div class="row">
+                            <div class="col-md-6">
+                                <p class="alert alert-danger">{{message}}</p>
+                            </div>
+                        </div>
+                {% endfor %}
+            {% endif %}
+        {%endautoescape%}
+</div></div>
+{% if n and k %}
+  <div class="card " style="height: auto !important;" id="Coin_Flip_Probability_answer">
+	  <div class="card-header">
+		  <b class="h2">Solution
+	  </div>
+	  <div class="card-body">
+
+<div style="text-align: left;">  
+
+<p><b><sup>n</sup>C<sub>r = </sub><sup>n! *(n-r)!</sup>/<sub>r!</sub></b></p>
+<p>Given n={{n_calculated}}</p>
+<p>Given k={{k_calculated}}</p>
+<p>Probability=
+{% autoescape off %}
+{{string1}}
+		  {% endautoescape %}
+</p>
+   <p>After substitution</p>
+	  <p>={{result}}</p>
+	  <p>Chance of Succeses=Probablity*100%</p>
+	  <p>={{p}}</p>
+	</div>
+</div>
+</div>
+{% endif %}
+
+    <style>
+      div.scroll {
+
+          align-content: center;
+          width: 1000px;
+          height: 500px;
+          overflow-x: hidden;
+          overflow-y: auto;
+          text-align:justify;
+      }
+  </style>
+
+  <script>
+    function myFunction1() {
+      document.getElementsByName("n")[0].value="";
+		document.getElementsByName("k")[0].value="";
+
+
+
+      $("#Coin_Flip_Probability_answer").html("");
+      document.getElementsById("clear").innerHTML = "";
+    }
+    </script>
+
+
+
+
+        <script>
+          var validNumber = new RegExp(/^\d*\.?-?\d*$/);
+          var fist_input = document.getElementById("inlineFormInputGroup").value;
+          function validateNumber(elem) {
+          console.log(elem)
+            if (validNumber.test(elem.value)) {
+              fist_input = elem.value;
+            } else {
+              elem.value = fist_input;
+            }
+          }
+      </script>
+<div class="card">
+	<div class="card-header"><h2 class="h2">Coin Toss Probability Formula</h2></div>
+	<div class="card-body">
+		<p>Probability of an event is nothing but the ratio of number of possible outcomes to the total number of outcomes. The same logic applies to coin flip probability as well. </p>
+  <p><strong>Probability = Number of Possible Outcomes/Total Number of Outcomes</strong></p>
+  <p>Whenever you toss a coin there is a chance of only two possible outcomes. Using the basic probability formula we can get the coin toss probability formulas as follows </p>
+<ul><li>Probability of getting a head P(Head) = P(H) = 1/2 </li>
+<li>Probability of getting a head P(Tail) = P(T) = 1/2</li></ul>
+<p>Since the outcomes of a coin toss are independent, total number of outcomes is equal to the total number of trails times the number of possible outcomes in a single trail i.e. 2. The number of favorable outcomes is nothing but the number of favorable combinations. We can obtain the coin toss probability using the formula</p> 
+<p><strong>Coin Toss Probability = nC<sub>h</sub>/2<sup>n</sup></strong> where n, is the total number of trails and h is the number of heads in n number of trails.</p>
+</div>
+</div>
+<div class="card">
+	<div class="card-header"><h3 class="h3">Coin Flip Probability Example</h3></div>
+	<div class="card-body">
+<p><strong>Question 1:</strong> What will be the probability of getting 3 heads in 5 coin tosses?</p>
+<p><strong>Solution:</strong></p>
+<p>Number of trials (n) = 5</p>
+<p>Total possible outcomes = 2<sup>n</sup> = 2<sup>5</sup> = 32</p>
+<p>Number of heads (h) = 3</p>
+<p>Total number of favourable outcomes = 5C<sub>3</sub> = 10</p>
+<p>Now probability = 10/32 = 0.3125</p>
+</div>
+  </div>
+  <div class="card">
+	<div class="card-header">
+		<h3 class="h3">How to use the Coin Flip Probability Calculator?</h3>
+	</div>
+	<div class="card-body">
+		<p>Follow the simple and easy steps outlined below on the usage of coin flip calculator. They are as under</p>
+		<ul><li>Firstly, provide the inputs number of heads or tails, coin tosses in the respectiev input fields of the calculator.</li>
+		<li>Now, tap on the calculate button to avail the resultant probability of coin toss.</li>
+	<li>You will get the coin flip probability displayed on other window showing entire steps on the work.</li></ul>
+	<p><a href="https://statisticscalculators.net/">statisticscalculators.net</a> is absolutely free and includes free online calculator tools for all your statistics concepts you might be in search of.</p>
+</div>
+		</div>
+  <div class="card">
+  	<div class="card-header">
+      	<h3 class="h3">FAQ’s on Coin Flip Probability Calculator</h3>
+  	</div>
+  	<div class="card-body">
+      	<!-- Question & Answer Starts --->
+<p class="question"><strong>1. How many possibilities are there when you flip 3 coins?</strong></p>
+<p class="answer">8 possile outcomes are there when you flip 3 coins and they are HHH, HHT, HTH, HTT, THH, THT, TTH, and TTT.</p><hr>
+<p class="question"><strong>2. What is the formula of Coin Toss or Coin Flip Probability?</strong></p>
+<p class="answer">The Formula of Coin Toss Probability is  nC<sub>h</sub>/2ⁿ where n is the total number of trails, h is the number of heads in n number of trails.</p><hr>  
+<p class="question"><strong>3. How to use the Coin Flip Probability Calculator?</strong></p>
+ <p class="answer">Simply enter the desired number of heads, number of coin tosses in the allotted input fields and then click on the calculate button to avail the coin flip probability in seconds.</p><hr>
+<p class="question"><strong>4. How do you Calculate the Probability of a Coin Flip?</strong></p>
+<p class="answer">Probability of an event is the ratio of number of favorable outcomes to total number of outcomes. The same logic applies to coin flip probability i.e. probability of getting head is 1/2, probability of getting tail is 1/2.</p><hr>
+<img src="{% static 'images/Statistics/coin-flip-probability-calculator.jpeg' %}" alt='Coin Flip Probability Calculator'>
+</div>
+   </div>
+</div>
+<script>
+	document.addEventListener('DOMContentLoaded', function () {
+		document.getElementById('ddd').click();
+	  });
+</script>
+{%endblock%}

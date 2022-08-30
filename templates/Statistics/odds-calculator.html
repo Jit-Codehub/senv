@@ -1,0 +1,235 @@
+{%extends 'base/statistics_base2.html'%}
+{%load static%}
+{%block meta%}
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+  <link rel="shortcut icon" href="{% static 'images/logo/Statistics-Calc.png' %}" type="icon">
+  {%block css%}
+  <link rel="stylesheet" href="{% static 'style.css' %}">
+  {%endblock%}
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+	<!-- META DATA STARTS --->
+    <title>Free Online Odds Calculator | How to Calculate the Odds?</title>
+	<meta name="description" content="Odds Calculator helps to calculate the probability and odds of winning and odds of loosing. Get the answer instantly by using odds calcuator.">
+	<link rel="canonical" href="{{request.build_absolute_uri}}">
+<!-- META DATA ENDS --->
+ 
+<!-- OPEN GRAOdds CONFIGURATIONS STARTS -->
+	<!--  FACEBOOK CONFIGURATION STARTS  -->
+	<meta content="https://www.facebook.com/OnlineCalculator-Guru-131572098650589/" property="og:url" />
+	<meta property="og:title" content="Free Online Odds Calculator | How to Calculate the Odds?"/>
+	<meta property="og:description" content="Odds Calculator helps to calculate the probability and odds of winning and odds of loosing. Get the answer instantly by using odds calcuator."/>
+	<meta content="" property="og:site_name" />
+	<meta  content="https://Onlinecalculator.guru/static/images/Statistics/Odds-Calculator.jpeg" property="og:image" />
+	<meta property="og:image:type" content="image/png" />
+	<meta property="og:image:height" content="435" />
+	<meta property="og:image:width" content="354" />
+	<!--  FACEBOOK CONFIGURATION ENDS  -->
+	<!-- TWITTER CARD CONFIGURATION STARTS  -->
+	<meta name="twitter:card" content="summary"/>
+	<meta name="twitter:site" content="https://twitter.com/onlinecalculator"/>
+	<meta name="twitter:title" content="Free Online Odds Calculator | How to Calculate the Odds?"/>
+	<meta name="twitter:description" content="Odds Calculator helps to calculate the probability and odds of winning and odds of loosing. Get the answer instantly by using odds calcuator."/>
+	<meta name="twitter:image:src" content="https://Onlinecalculator.guru/static/images/Statistics/Odds-Calculator.jpeg"/>
+	<meta property="twitter:image:height" content="435"/>
+	<meta property="twitter:image:width" content="354"/>
+	<!-- TWITTER CARD CONFIGURATION ENDS  -->
+	<!--  LINKEDIN CONFIGURATION STARTS-->
+	<meta property='og:title' content="Free Online Odds Calculator | How to Calculate the Odds?"/>
+	<meta property='og:image' content="https://Onlinecalculator.guru/static/images/Statistics/Odds-Calculator.jpeg"/>
+	<meta property='og:description' content="Odds Calculator helps to calculate the probability and odds of winning and odds of loosing. Get the answer instantly by using odds calcuator."/>
+	<meta property='og:url' content="https://www.linkedin.com/in/onlinecalculator/" />
+	<!-- end of linkedin CONFIGURATIONS ENDS -->
+<!-- OPEN GRAOdds CONFIGURATION ENDS -->
+<!-- FAQ SCHEMA STARTS -->
+<script type="application/ld+json">{"@context": "https://schema.org","@type": "FAQPage","mainEntity": [{"@type": "Question","name":"1
+    How to use odds calculator?
+    ","acceptedAnswer": {"@type": "Answer","text":" 
+    Simply, give the input values in the input field and press the calculate button to get the answer instantly."}	}, {"@type": "Question","name":"2
+    What is the best tool to calculate the odds?
+    ","acceptedAnswer": {"@type": "Answer","text":" 
+    Odds calculator is the best tool to calculate the odds of winning and odds of losing  and it is available in the website Statisticscalculators.net"}	}, {"@type": "Question","name":"3
+    How to calculate the probability of odds
+    ","acceptedAnswer": {"@type": "Answer","text":"
+    Calculate the probability of odds is P = A / (A + B) and PL = B/(A + B)."}	}]}</script>
+{%endblock%}
+{%block content%}
+<script>
+  $(document).ready(function(){
+      {% if answer %}
+      $("#hassle").click();
+      {% endif %}
+   $(".btn-danger").on("click",function(){
+     $(".form-control").attr("value","");
+     $("#solve-Odds-calculator").empty();
+    });
+   });
+</script>
+<div class="container">
+	<div class="card c1">
+  	<div class="card-header">
+      <button type="button" hidden id="hassle"  onclick="location.href='#solve-Odds-calculator'">ans</button>
+  <h1 class="h1">Odds Calculator</h1>
+  </div>
+  <div class="card-body">
+      <p>Utilize this handy odds calculator tool to calculate the chances of winning and losing in percentages. Very simple thing you need to do is enter the values of A and B and click the calculate button then you will see the answer in fraction of seconds.</p>
+      {% autoescape off %}
+            {% if messages %}
+                {% for message in messages %}
+                        <div class="row">
+                            <div class="col-md-6">
+                                <p class="alert alert-danger">{{message}}</p>
+                            </div>
+                        </div>
+                {% endfor %}
+                {% endif %}
+        {%endautoescape%}
+      <form action="{% url 'odds-calculator' %}" id="myForm" class="center"onsubmit="return validate()" method="post">
+            {% csrf_token %}
+            <div class="input-group mb-2 mt-3">
+                  <div class="input-group-prepend">
+                <div class="input-group-text"><strong>Chances For Success</strong></div>
+                     <input type="text" id="inlineFormInputGroup" style="margin-top: 5px;width:95%" name="a" value="{{ a }}" oninput="validateNumber1(this);" size="250" placeholder="Enter the Data" class="form-control" required></div>
+            </div>
+             <div class="input-group mb-2 mt-3">
+                  <div class="input-group-prepend">
+                <div class="input-group-text"><strong>Chances Against Success</strong></div>
+                     <input type="text" id="inlineFormInputGroup" style="margin-top: 5px;width:95%" name="b" value="{{ b }}" oninput="validateNumber1(this);" size="250" placeholder="Enter the Data" class="form-control" required></div>
+            </div>
+                <div class=" center col mt-2 ">
+                <center><button type="submit" class="btn btn-primary"  class="form-control" >Calculate</button>
+                <button type="button" onclick="this.form.reset()" style="margin-top:5px;" class="btn btn-danger" class="form-control">Reset</button>
+                </center>
+            </div>
+          <div class="input-group mb-2 mt-3">
+                  <div class="input-group-prepend">
+                      <div class="input-group-text"><strong>Probability Of Winning</strong></div>
+                     <input type="text" disabled id="inlineFormInputGroup" value="{{ c }}" oninput="validateNumber(this);" class="form-control" required></div>
+                     <b  id="inlineFormInputGroup"  class="form-control">%</b>
+                 </div>
+            <div class="input-group mb-2 mt-3">
+                  <div class="input-group-prepend">
+                      <div class="input-group-text"><strong>Probability Of Losing </strong></div>
+                     <input type="text" disabled id="inlineFormInputGroup" value="{{ d }}" oninput="validateNumber(this);" class="form-control" required></div>
+                     <b  id="inlineFormInputGroup"  class="form-control">%</b>
+                 </div>
+             <div class="input-group mb-2 mt-3">
+                  <div class="input-group-prepend">
+                      <div class="input-group-text"><strong>Fractional Odds </strong></div>
+                     <input type="text" disabled id="inlineFormInputGroup" value="{{ e }}" oninput="validateNumber(this);" class="form-control" required></div>
+
+                 </div>
+               <div class="input-group mb-2 mt-3">
+                  <div class="input-group-prepend">
+                      <div class="input-group-text"><strong>Decimal Odds</strong></div>
+                     <input type="text" disabled id="inlineFormInputGroup" value="{{ f }}" oninput="validateNumber(this);" class="form-control" required></div>
+
+                 </div>  
+        </form>
+      <p><b>Odds Calculator:</b> Get this easy to use odds calculator tool to calculate the winning and losing. By using this tool you will get the answers in a blink of an eye. And also we are going to discuss step by step process of calculating. Scroll Down to Learn!!</p>
+    </div></div>
+    {% if answer %}
+    <div class="card c1" id="solve-Odds-calculator">
+        <div class="card-header"><center class="h1">Detailed Answer</center></div>
+        <div class="card-body container">
+        {% autoescape off %}
+        {% for i,z in answer.items %}
+        {% if 'bold' in i %}
+        <p><b>{{ z }}</b></p>
+        {% else %}
+        <p>{{ z }}</p>
+        {% endif %}
+        {% endfor %}
+        {% endautoescape %}
+        </div>
+      </div>
+      {% endif %}
+    <div class="card">
+        <div class="card-header">
+          <h2 class="h2">What is meant by Odds?</h2>
+        </div>
+       <div class="card-body">
+         <p>Odds are mainly calculated in ratio and there are two types of ratios. One is "odds of winning" and the other one is "odds of losing". For example, the odd of winning a lottery might be 50 to 10000. Here, the first number is the chances of success and the second number is chances against success. And for odds of losing it will be viceversa.</p>
+       </div>
+    </div>
+    <div class="card">
+        <div class="card-header">
+          <h3 class="h3">Formula of Odds</h3>
+        </div>
+       <div class="card-body">
+           <p>Probability of winning = P<sub>w</sub> = A / (A + B).</p>
+           <p>probability of Losing  = P<sub>L</sub> = B / (A + B).</p>
+           <p>Where,</p>
+           <p>A = Chances of success.</p>
+           <p>B = Chances against success.</p>
+           <p>A+B = All chances</p>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-header">
+          <h3 class="h3">How to Calculate the Odds?</h3>
+        </div>
+        <div class="card-body">
+            <p> Below are the steps to calculate the odds in easy manner.</p>
+            <ul>
+                <li>Firstly, you need to write down the values from the given question.</li>
+                <li>Find the probability of winning and losing.</li>
+                <li>Then, you need to apply the formula and substitute the values.</li>
+                <li>At Last, you will find the answer easily.</li>
+            </ul>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-header">
+          <h3 class="h3">Odds Probability Examples</h3>
+        </div>
+        <div class="card-body">
+          <p><b>Question 1:</b> Find the  odds in favor of a number cube landing on 4?</p>
+          <p><b>Solution</b></p>
+          <p>First, decide the number that represents the chances of success and chances against success.</p>
+          <p>Chances of success(A) =1 (4)</p>
+          <p>Chances against Success(B) = 5(1,2,3,5,6)</p>
+          <p>Apply the Formula.</p>
+          <p>All chances = A+B = 1+5 =6</p>
+          <p>Probability of winning = Chances for success/ All chances.</p>
+          <p> = A/(A+B) = 1/6 =16.67%</p>
+          <p>Probability of Loosing = Chances against success / All chances.</p>
+          <p> = B/(A+B) = 5/6 = 83.33%</p>
+          <p>Odds Conversions</p>
+          <p>Fractional odds = 5/1</p>
+          <p>Decimal odds = 6</p>
+          <p><a href="https:/statisticscalculators.net/">Statisticscalculators.net</a> is the online website for all statistics calculators. It gives you error free results and very easy to use.</p>
+        </div>
+    </div>
+    <div class="card">
+    <div class="card-header">
+        <h3 class="h3">FAQs on Odds Calculator</h3>
+    </div>
+        <div class="card-body"> 
+               <!-- Question & Answer Starts --->
+               <p class="question"><strong>1. How to use odds calculator?</strong></p>
+               <p class="answer">Simply, give the input values in the input field and press the calculate button to get the answer instantly.</p><hr>
+               <p class="question"><strong>2. What is the best tool to calculate the odds?</strong></p>
+               <p class="answer">Odds calculator is the best tool to calculate the odds of winning and odds of losing and it is available in the website <a href="https:/statisticscalculators.net/">Statisticscalculators.net</a></p><hr>
+               <p class="question"><strong>3. How to calculate the probability of odds?</strong></p>
+               <p class="answer">Probability of odds can be calculated using the formula P<sub></sub> = A / (A + B) and P<sub>L</sub> = B / (A + B).</p><hr>
+<script>
+    var validNumber = new RegExp(/^\d*\.?\d*$/);
+    var fist_input = document.getElementById("inlineFormInputGroup").value;
+    function validateNumber(elem) {
+      if (validNumber.test(elem.value)) {
+        fist_input = elem.value;
+      } else {
+        elem.value = fist_input;
+      }
+    }
+</script>
+
+
+
+{%endblock%}

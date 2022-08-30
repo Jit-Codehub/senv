@@ -1,0 +1,171 @@
+{%extends 'base/statistics_base1.html'%}
+{%load static%}
+  {%block meta%}
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+  <link rel="shortcut icon" href="{% static 'images/logo/Online-Calculator-Guru-Fevicon.png' %}" type="icon">
+  {%block css%}
+  <link rel="stylesheet" href="{% static 'style.css' %}">
+  {%endblock%}
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <!-- META DATA STARTS --->
+    <title>Mode Calculator | Free Online Tool to Find the Mode of Numbers {{inputEnter}}</title>
+    <meta name="description" content="Mode Calculator evaluates the mode or modal number from the given set of numbers {{inputEnter}} & provides the result ie., {{finalAnswer}} along with detailed solution steps.">
+    <link rel="canonical" href="{{request.build_absolute_uri}}" >
+<!-- META DATA ENDS --->
+
+<!-- OPEN GRAPH CONFIGURATIONS STARTS -->
+    <!--  FACEBOOK CONFIGURATION STARTS  -->
+    <meta content="https://www.facebook.com/OnlineCalculator-Guru-131572098650589/" property="og:url" />
+    <meta property="og:title" content="Mode Calculator | Free Online Tool to Find the Mode of Numbers {{inputEnter}}"/>
+    <meta property="og:description" content="Mode Calculator evaluates the mode or modal number from the given set of numbers {{inputEnter}} & provides the result ie., {{finalAnswer}} along with detailed solution steps."/>
+    <meta content="" property="og:site_name" />
+    <meta  content="https://onlinecalculator.guru/static/images/Statistics/Mode-Calculator.jpeg" property="og:image" />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:height" content="435" />
+    <meta property="og:image:width" content="354" />
+    <!--  FACEBOOK CONFIGURATION ENDS  -->
+    <!-- TWITTER CARD CONFIGURATION STARTS  -->
+    <meta name="twitter:card" content="summary"/>
+    <meta name="twitter:site" content="https://twitter.com/onlinecalculator"/>
+    <meta name="twitter:title" content="Mode Calculator | Free Online Tool to Find the Mode of Numbers {{inputEnter}}"/>
+    <meta name="twitter:description" content="Mode Calculator evaluates the mode or modal number from the given set of numbers {{inputEnter}} & provides the result ie., {{finalAnswer}} along with detailed solution steps."/>
+    <meta name="twitter:image:src" content="https://onlinecalculator.guru/static/images/Statistics/Mode-Calculator.jpeg"/>
+    <meta property="twitter:image:height" content="435"/>
+    <meta property="twitter:image:width" content="354"/>
+    <!-- TWITTER CARD CONFIGURATION ENDS  -->
+    <!--  LINKEDIN CONFIGURATION STARTS-->
+    <meta property='og:title' content="Mode Calculator | Free Online Tool to Find the Mode of Numbers {{inputEnter}}"/>
+    <meta property='og:image' content="https://onlinecalculator.guru/static/images/Statistics/Mode-Calculator.jpeg"/>
+    <meta property='og:description' content="Mode Calculator evaluates the mode or modal number from the given set of numbers {{inputEnter}} & provides the result ie., {{finalAnswer}} along with detailed solution steps."/>
+    <meta property='og:url' content="https://www.linkedin.com/in/onlinecalculator/" />
+    <!-- end of linkedin CONFIGURATIONS ENDS -->
+<!-- OPEN GRAPH CONFIGURATION ENDS -->
+<!-- FAQ SCHEMA STARTS -->
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is the mode value for data set {{inputEnter}}?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The mode or model values for the given data set {{inputEnter}} is {{finalAnswer}} as it occurred twice in the set of numbers."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How do you find the mode of numbers {{inputEnter}} on a calculator?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Just enter the input set of numbers {{inputEnter}} in the input box of the mode calculator and tap on the calculate button to find and get the result as a mode value ie, {{finalAnswer}} in a fraction of seconds."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Where can I see step by step solution for finding a mode of the given data set {{inputEnter}}?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "You can view step by step solution for finding a mode of the given data set {{inputEnter}} on our page."
+        }
+      }]
+  }
+</script>
+{%endblock%}
+{%block content%}
+<div class="container">
+    <div class="card c1">
+      <div class="card-header">
+  <h1 class="h1">Finding the Mode of Numbers {{inputEnter}}</h1>
+  </div>
+  <div class="card-body">
+    <p>Make use of our free online <a href="{% url 'mode' %}">Mode calculator</a> and easily find out the mode of numbers {{inputEnter}} by entering the inputs in the calculator and get the result as {{finalAnswer}} in the output area along with a stepwise explanation.</p>
+    <p><b>Ex:</b> 32,45,12,17,43,68,75,8,11,29</p>
+    <form action="{% url 'mode' %}" method="POST" id="my_form" name="reg_to_scientific" onsubmit="go();">
+        {% csrf_token %}
+        <div class="form-row align-items-center">
+          <div class="col-auto">
+            <label class="sr-only" for="inlineFormInputGroup">Mode</label>
+            <div class="input-group mb-2">
+              <div class="input-group-prepend">
+                <div class="input-group-text"><strong>Mode of: </strong></div>
+              </div>
+              <input type="text" class="form-control" name="input1" id="inlineFormInputGroup" placeholder="Enter number" value="{{inputEnter}}">
+            </div>
+          </div>
+          <div class="col-auto">
+            <button type="submit" class="btn btn-primary mb-2">Calculate</button>
+          </div>
+        </div>
+    </form>
+</div></div>
+<div class="card">
+    <div class="card-header">
+<h2 class="h2">Detailed Solution of Finding the Mode or Modal of Data Set {{inputEnter}}</h2>
+</div>
+<div class="card-body">
+{% autoescape off %}
+{{ detailStep }}
+{% endautoescape %}
+</div>
+</div>
+<div class="row">
+  <div class="col-sm-6">
+    <div class="card">
+      <div class="card-header"><h3 class="h3">Mode Examples</h3></div>
+      <div class="card-body">
+        <ul>
+          {% for i,j in example1 %}
+          <li><a  href="{{i}}" title="{{j}}">{{j}}</a></li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-6">
+    <div class="card">
+      <div class="card-header"><h3 class="h3">Median Examples</h3></div>
+      <div class="card-body">
+        <ul>
+          {% for i,j in example2 %}
+          <li><a  href="{{i}}" title="{{j}}">{{j}}</a></li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="card">
+  <div class="card-header">
+    <h3 class="h3">Frequently Asked Questions on Mode of {{inputEnter}}</h3>
+  </div>
+  <div class="card-body">
+      <p class="question"><strong>1. What is the mode value for data set {{inputEnter}}?</strong></p>
+      <p class="answer">The mode or model values for the given data set {{inputEnter}} is {{finalAnswer}} as it occurred twice in the set of numbers.</p><hr>
+
+
+        <p class="question"><strong>2. How do you find the mode of numbers {{inputEnter}} on a calculator?</strong></p>
+        <p class="answer">Just enter the input set of numbers {{inputEnter}} in the input box of the mode calculator and tap on the calculate button to find and get the result as a mode value ie, {{finalAnswer}} in a fraction of seconds.</p><hr>
+
+
+        <p class="question"><strong>3. Where can I see step by step solution for finding a mode of the given data set {{inputEnter}}?</strong></p>
+        <p class="answer">You can view step by step solution for finding a mode of the given data set {{inputEnter}} on our page.</p><hr>
+  </div>
+</div>
+</div>
+<!-- <div class="card">
+  <div class="card-header"><h2>More Examples</h2></div>
+  <div class="card-body">
+    {%for post1 in post%}
+      <li><a href="{% url 'mode-detail' post1.slug %}">{{post1.solutionTitle}}</a></li>
+      {%endfor%}
+  </div>
+</div> -->
+{%endblock%}

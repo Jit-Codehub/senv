@@ -1,0 +1,165 @@
+{%extends 'base/statistics_base1.html'%}
+{%load static%}
+  {%block meta%}
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+  <link rel="shortcut icon" href="{% static 'images/logo/Online-Calculator-Guru-Fevicon.png' %}" type="icon">
+  {%block css%}
+  <link rel="stylesheet" href="{% static 'style.css' %}">
+  {%endblock%}
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <!-- META DATA STARTS --->
+    <title>Lower or First Quartile Calculator to find Q1 of Numbers {{inputEnter}}</title>
+    <meta name="description" content="Lower or First Quartile Calculator is easy & simple to use for calculating the lower quartile of numbers {{inputEnter}} & get the result ie., {{finalAnswer}} easily.">
+    <link rel="canonical" href="{{request.build_absolute_uri}}" >
+<!-- META DATA ENDS --->
+
+<!-- OPEN GRAPH CONFIGURATIONS STARTS -->
+    <!--  FACEBOOK CONFIGURATION STARTS  -->
+    <meta content="https://www.facebook.com/OnlineCalculator-Guru-131572098650589/" property="og:url" />
+    <meta property="og:title" content="Lower or First Quartile Calculator to find Q1 of Numbers {{inputEnter}}"/>
+    <meta property="og:description" content="Lower or First Quartile Calculator is easy & simple to use for calculating the lower quartile of numbers {{inputEnter}} & get the result ie., {{finalAnswer}} easily."/>
+    <meta content="" property="og:site_name" />
+    <meta  content="https://onlinecalculator.guru/static/images/Statistics/First-Quartile-Calculator.jpeg" property="og:image" />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:height" content="435" />
+    <meta property="og:image:width" content="354" />
+    <!--  FACEBOOK CONFIGURATION ENDS  -->
+    <!-- TWITTER CARD CONFIGURATION STARTS  -->
+    <meta name="twitter:card" content="summary"/>
+    <meta name="twitter:site" content="https://twitter.com/onlinecalculator"/>
+    <meta name="twitter:title" content="Lower or First Quartile Calculator to find Q1 of Numbers {{inputEnter}}"/>
+    <meta name="twitter:description" content="Lower or First Quartile Calculator is easy & simple to use for calculating the lower quartile of numbers {{inputEnter}} & get the result ie., {{finalAnswer}} easily."/>
+    <meta name="twitter:image:src" content="https://onlinecalculator.guru/static/images/Statistics/First-Quartile-Calculator.jpeg"/>
+    <meta property="twitter:image:height" content="435"/>
+    <meta property="twitter:image:width" content="354"/>
+    <!-- TWITTER CARD CONFIGURATION ENDS  -->
+    <!--  LINKEDIN CONFIGURATION STARTS-->
+    <meta property='og:title' content="Lower or First Quartile Calculator to find Q1 of Numbers {{inputEnter}}"/>
+    <meta property='og:image' content="https://onlinecalculator.guru/static/images/Statistics/First-Quartile-Calculator.jpeg"/>
+    <meta property='og:description' content="Lower or First Quartile Calculator is easy & simple to use for calculating the lower quartile of numbers {{inputEnter}} & get the result ie., {{finalAnswer}} easily."/>
+    <meta property='og:url' content="https://www.linkedin.com/in/onlinecalculator/" />
+    <!-- end of linkedin CONFIGURATIONS ENDS -->
+<!-- OPEN GRAPH CONFIGURATION ENDS -->
+<!-- FAQ SCHEMA STARTS -->
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is the First Quartile value for given data set {{inputEnter}}?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The Lower (or) First Quartile of the Numbers {{inputEnter}}."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is the median of the Q1 numbers {{inputEnter}}?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The median of the first quarter set is {{finalAnswer}} which is nothing but the lower quartile value."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How can I find the lower quartile of numbers {{inputEnter}}?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Take the set of data as input and enter the list in our free online lower or first quartile calculator and click on the calculate button to find the first quartile or Q1 of numbers {{inputEnter}}."
+        }
+      }]
+  }
+</script>
+{%endblock%}
+{%block content%}
+<div class="container">
+    <div class="card c1">
+      <div class="card-header">
+  <h1 class="h1">Find Out the First Quartile of {{inputEnter}}</h1>
+  </div>
+  <div class="card-body">
+    <p>Make use of our <a href="{% url 'first-quartile' %}">Lower or First Quartile Calculator</a> and know the exact result for the Lower (or) First Quartile of the Numbers {{inputEnter}} is {{finalAnswer}} in a fraction of seconds along with a stepwise solution.</p>
+    <p><b>Ex:</b> 32,45,12,17,43,68,75,8,11,29</p>
+    <form action="{% url 'first-quartile' %}" method="POST" id="my_form" name="reg_to_scientific" onsubmit="go();">
+        {% csrf_token %}
+        <div class="form-row align-items-center">
+          <div class="col-auto">
+            <label class="sr-only" for="inlineFormInputGroup">First Quartile</label>
+            <div class="input-group mb-2">
+              <div class="input-group-prepend">
+                <div class="input-group-text"><strong>First Quartile of: </strong></div>
+              </div>
+              <input type="text" class="form-control" name="input1" id="inlineFormInputGroup" placeholder="Enter number" value="{{inputEnter}}">
+            </div>
+          </div>
+          <div class="col-auto">
+            <button type="submit" class="btn btn-primary mb-2">Calculate</button>
+          </div>
+        </div>
+    </form>
+</div></div>
+<div class="card">
+    <div class="card-header">
+<h2 class="h2">Detailed Solution for First Quartile of {{inputEnter}}</h2>
+</div>
+<div class="card-body">
+{% autoescape off %}
+{{ detailStep }}
+{% endautoescape %}
+</div>
+</div>
+<div class="row">
+  <div class="col-sm-6">
+    <div class="card">
+      <div class="card-header"><h3 class="h3">First Quartile Calculation Examples</h3></div>
+      <div class="card-body">
+        <ul>
+          {% for i,j in example1 %}
+          <li><a  href="{{i}}" title="{{j}}">{{j}}</a></li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-6">
+    <div class="card">
+      <div class="card-header"><h3 class="h3">Third Quartile Calculation Examples</h3></div>
+      <div class="card-body">
+        <ul>
+          {% for i,j in example2 %}
+          <li><a  href="{{i}}" title="{{j}}">{{j}}</a></li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+  </div>
+  <img src="{% static 'images/Statistics/first-quartile-calculator.jpeg' %}" alt='first-quartile-calculator'>
+
+</div>
+<div class="card">
+  <div class="card-header">
+    <h3 class="h3">Frequently Asked Questions on First Quartile of {{inputEnter}}</h3>
+  </div>
+  <div class="card-body">
+      <p class="question"><strong>1. What is the First Quartile value for given data set {{inputEnter}}?</strong></p>
+      <p class="answer">The Lower (or) First Quartile of the Numbers {{inputEnter}} is {{finalAnswer}}.</p><hr>
+
+
+        <p class="question"><strong>2. What is the median of the Q1 numbers {{inputEnter}}?</strong></p>
+        <p class="answer">The median of the first quarter set is {{finalAnswer}} which is nothing but the lower quartile value.</p><hr>
+
+
+        <p class="question"><strong>3. How can I find the lower quartile of numbers {{inputEnter}}?</strong></p>
+        <p class="answer">Take the set of data as input and enter the list in our free online lower or first quartile calculator and click on the calculate button to find the first quartile or Q1 of numbers {{inputEnter}}.</p><hr>
+  </div>
+</div>
+</div>
+{%endblock%}

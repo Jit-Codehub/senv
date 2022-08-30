@@ -1,0 +1,246 @@
+{%extends 'base/statistics_base1.html'%}
+{%load static%}
+  {%block meta%}
+    <!-- HTML Defaults Broweser -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Bootstrap Stylesheet and Jquery, Google APIS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <!-- Online Calculator Guru Site Fevicon -->
+    <link rel="shortcut icon" href="https://onlinecalculator.guru/static/images/logo/Online-Calculator-Guru-Fevicon.png" type="icon">
+    <!-- Online Calculator Guru Project Style Sheet -->
+    {%block css%}
+    <link rel="stylesheet" href="/static/style.css">
+    {%endblock%}
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <!-- Meta Title, Description and Canonical URL Starts --->
+    <title>Online Average Calculator | How to Find Average or Mean of Data Set?</title>
+    <meta name="description" content="Average calculator is the best online tool to get the average or mean of a given data set in a fraction of seconds and shows the entire work. "/>
+    <link rel="canonical" href="{{request.build_absolute_uri}}">
+    <!-- Meta Title, Description and Canonical URL ENDS --->
+ 
+    <!-- OPEN GRAPH CONFIGURATIONS STARTS -->
+	<!--  FACEBOOK CONFIGURATION STARTS  -->
+        <meta content="https://www.facebook.com/OnlineCalculator-Guru-131572098650589/" property="og:url" />
+        <meta property="og:title" content="Online Average Calculator | How to Find Average or Mean of Data Set?"/>
+        <meta property="og:description" content="Average calculator is the best online tool to get the average or mean of a given data set in a fraction of seconds and shows the entire work."/>
+        <meta content="" property="og:site_name" />
+        <meta  content="https://onlinecalculator.guru/static/images/Statistics/Average-Calculator.jpeg" property="og:image" />
+        <meta property="og:image:type" content="image/png" />
+        <meta property="og:image:height" content="435" />
+        <meta property="og:image:width" content="354" />
+        <!--  FACEBOOK CONFIGURATION ENDS  -->
+        <!-- TWITTER CARD CONFIGURATION STARTS  -->
+        <meta name="twitter:card" content="summary"/>
+        <meta name="twitter:site" content="https://twitter.com/onlinecalculator"/>
+        <meta name="twitter:title" content="Online Average Calculator | How to Find Average or Mean of Data Set?"/>
+        <meta name="twitter:description" content="Average calculator is the best online tool to get the average or mean of a given data set in a fraction of seconds and shows the entire work."/>
+        <meta name="twitter:image:src" content="https://onlinecalculator.guru/static/images/Statistics/Average-Calculator.jpeg"/>
+        <meta property="twitter:image:height" content="435"/>
+        <meta property="twitter:image:width" content="354"/>
+        <!-- TWITTER CARD CONFIGURATION ENDS  -->
+        <!--  LINKEDIN CONFIGURATION STARTS-->
+        <meta property='og:title' content="Online Average Calculator | How to Find Average or Mean of Data Set?"/>
+        <meta property='og:image' content="https://onlinecalculator.guru/static/images/Statistics/Average-Calculator.jpeg"/>
+        <meta property='og:description' content="Average calculator is the best online tool to get the average or mean of a given data set in a fraction of seconds and shows the entire work."/>
+        <meta property='og:url' content="https://www.linkedin.com/in/onlinecalculator/" />
+        <!-- end of linkedin CONFIGURATIONS ENDS -->
+    <!-- OPEN GRAPH CONFIGURATION ENDS -->
+    <!-- FAQ SCHEMA STARTS -->
+    <script type="application/ld+json">{"@context": "https://schema.org","@type": "FAQPage","mainEntity": [{"@type": "Question","name":"1
+        Define Average?
+        ","acceptedAnswer": {"@type": "Answer","text":" 
+        Average is a number which is calculated by dividing the sum of the values in the set by the count of the values in the set. Average or mean give the same values."}	}, {"@type": "Question","name":"2
+        How to make use of this Average Calculator?
+        ","acceptedAnswer": {"@type": "Answer","text":" 
+        Enter the set of numbers in the given box and press the calculate button and within no time you will get the output."}	}, {"@type": "Question","name":"3
+        What is the best website for Average Calculator?
+        ","acceptedAnswer": {"@type": "Answer","text":"
+        <a href="https://statisticscalculators.net/">statisticscalculators.net</a> is the best website to use average calculator, we are also giving some useful information along with the calculator. Not only average calculator we have many other calculators in this website."}	}, {"@type": "Question","name":"4
+        Calculate the average of data set {5,8,11,34}?
+        ","acceptedAnswer": {"@type": "Answer","text":" 
+        Average (or) Mean =5+8+11+3 = 58/4 = 14.5"}	}]}</script>
+    {%endblock%}
+    {%block content%}
+    <div class="container">
+        <div class="card c1">
+            <div class="card-header">
+                <h1 class="h1">Average Calculator</h1>
+            </div>
+            <div class="card-body">
+                <p>Average Calculator is the best handy online tool to calculate the mean of sample and population data set. In statistics average and mean will be same. All you need to do is simply enter the  values in the given boxes and hit the calculate button you will see the answer in output section.</p>
+                <br>
+                <p><b>Ex:</b> 32,45,12,17,43,68,75,8,11,29</p>
+                <form action="{% url 'mean' %}" method="POST" id="my_form" name="reg_to_scientific" onsubmit="go();">
+                    {% csrf_token %}
+                    <div class="form-row align-items-center">
+                      <div class="col-auto">
+                        <label class="sr-only" for="inlineFormInputGroup">Mean</label>
+                        <div class="input-group mb-2">
+                          <div class="input-group-prepend">
+                            <div class="input-group-text"><strong>Average of: </strong></div>
+                          </div>
+                          <input type="text" class="form-control" name="input1" id="inlineFormInputGroup" placeholder="Enter number" value="{{inputEnter}}">
+                        </div>
+                      </div>
+                      <div class="col-auto">
+                        <button type="submit" class="btn btn-primary mb-2">Calculate</button>
+                      </div>
+                    </div>
+                    </form>
+                    {% autoescape off %}
+                    {{error}}
+                    {%endautoescape%}
+                    <br>
+    <p><strong>Here are some samples of Average calculations.</strong></p>
+    <div class="row">
+      <div class="col-sm-4">
+        <ul>
+          
+          <li><a href="https://statisticscalculators.net/statistics/mean-of-4-7-2-3/">Average of 4,7,2,3</a></li>
+          
+          <li><a href="https://statisticscalculators.net/statistics/mean-of-4-9-3-7/">Average of 4,9,3,7</a></li>
+          
+          <li><a href="https://statisticscalculators.net/statistics/mean-of-3-7-5-9/">Average of 3,7,5,9</a></li>
+          
+          <li><a href="https://statisticscalculators.net/statistics/mean-of-7-6-8-3-4/">Average of 7,6,8,3,4</a></li>
+          
+          <li><a href="https://statisticscalculators.net/statistics/mean-of-3-4-7-6-8/">Average of 3,4,7,6,8</a></li>
+          
+          <li><a href="https://statisticscalculators.net/statistics/mean-of-5-8-7-3-2/">Average of 5,8,7,3,2</a></li>
+          
+          <li><a href="https://statisticscalculators.net/statistics/mean-of-6-2-7-8-4-9/">Average of 6,2,7,8,4,9</a></li>
+          
+          <li><a href="https://statisticscalculators.net/statistics/mean-of-9-4-6-8-7-3/">Average of 9,4,6,8,7,3</a></li>
+          
+          <li><a href="https://statisticscalculators.net/statistics/mean-of-8-7-3-4-6-5/">Average of 8,7,3,4,6,5</a></li>
+          
+   
+        </ul>                    
+      </div>
+      <div class="col-sm-4">
+        <ul>
+          
+          <li><a href="https://statisticscalculators.net/statistics/mean-of-99-46-19-74/">Average of 99,46,19,74</a></li>
+          
+          <li><a href="https://statisticscalculators.net/statistics/mean-of-78-39-58-74/">Average of 78,39,58,74</a></li>
+          
+          <li><a href="https://statisticscalculators.net/statistics/mean-of-93-67-33-96/">Average of 93,67,33,96</a></li>
+          
+          <li><a href="https://statisticscalculators.net/statistics/mean-of-41-96-55-82-33/">Average of 41,96,55,82,33</a></li>
+          
+          <li><a href="https://statisticscalculators.net/statistics/mean-of-30-69-79-65-52/">Average of 30,69,79,65,52</a></li>
+          
+          <li><a href="https://statisticscalculators.net/statistics/mean-of-21-25-75-39-82/">Average of 21,25,75,39,82</a></li>
+          
+          <li><a href="https://statisticscalculators.net/statistics/mean-of-55-67-98-62-15-24/">Average of 55,67,98,62,15,24</a></li>
+          
+          <li><a href="https://statisticscalculators.net/statistics/mean-of-88-13-89-96-31-48/">Average of 88,13,89,96,31,48</a></li>
+          
+          <li><a href="https://statisticscalculators.net/statistics/mean-of-22-37-93-76-90-41/">Average of 22,37,93,76,90,41</a></li>
+          
+        </ul>                 
+      </div>
+      <div class="col-sm-4">
+      <ul>
+          
+          <li><a href="https://statisticscalculators.net/statistics/mean-of-92-82-32-51/">Average of 92,82,32,51</a></li>
+          
+          <li><a href="https://statisticscalculators.net/statistics/mean-of-34-84-23-65/">Average of 34,84,23,65</a></li>
+          
+          <li><a href="https://statisticscalculators.net/statistics/mean-of-18-23-28-91/">Average of 18,23,28,91</a></li>
+          
+          <li><a href="https://statisticscalculators.net/statistics/mean-of-53-81-13-55-13/">Average of 53,81,13,55,13</a></li>
+          
+          <li><a href="https://statisticscalculators.net/statistics/mean-of-47-96-19-44-41/">Average of 47,96,19,44,41</a></li>
+          
+          <li><a href="https://statisticscalculators.net/statistics/mean-of-69-68-65-28-78/">Average of 69,68,65,28,78</a></li>
+          
+          <li><a href="https://statisticscalculators.net/statistics/mean-of-66-91-55-89-99-86/">Average of 66,91,55,89,99,86</a></li>
+          
+          <li><a href="https://statisticscalculators.net/statistics/mean-of-13-96-68-78-76-85/">Average of 13,96,68,78,76,85</a></li>
+          
+          <li><a href="https://statisticscalculators.net/statistics/mean-of-39-73-11-36-28-27/">Average of 39,73,11,36,28,27</a></li>
+             
+      </ul>			
+      </div>
+    </div>
+    <p>Related Calculators:</p>
+                    <div class="row">
+                      <div class="col-sm-5">
+                  <ul>
+					          <li><a href="/statistics/median-calculator/">Median Calculator</a></li>
+                    <li><a href="/statistics/mode-calculator/">Mode Calculator</a></li>
+                    <li><a href="/statistics/first-quartile-calculator/">First Quartile Calculator</a></li>
+                    <li><a href="/statistics/third-quartile-calculator/">Third Quartile Calculator</a></li>
+                  </ul>
+                </div>
+                </div>
+                <p><strong>Average Calculator: </strong>Looking for tool to calculate the mean for more numbers at a time? Then this average calculator will be the best tool for you. In this calculator you can calculate the mean upto thirty numbers. And also we have explained about the simple steps to calculate manually and other sample examples with more useful information.</p>
+            </div>
+        </div>
+    <div class="card">
+	    <div class="card-header">
+            <h2 class="h2">How to Find Average or Mean of Data Set?</h2>
+        </div>
+	    <div class="card-body">
+            <p>Average is a number that represents all numbers in the set. Mean and average give the same values. Here are some simple steps to calculate the average of numbers easily. </p>
+            <ul>
+            <li>Primarily, note down all the values in the given data set.</li>
+            <li>Count the values you have entered, as we can sum only upto thirty numbers.</li>
+            <li>Now, add all the values in the given data set.</li>
+            <li>Finally, divide the sum by the count of values in the set to get the average.</li>
+            </ul>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-header">
+        <h3 class="h3">Average Formula</h3>
+        </div>
+        <div class="card-body">
+          <p><p>Average of a data set is described as the sum of all the values will be divided by the size of data set.</p>
+          <p>  Mean (or) Average  = x<sub>mean</sub> = (∑<sup>n</sup><sub>i=1</sub> x<sub>i</sub>) / n</p></p>
+          <p>Where,</p>
+          <p>i=1,2,3,4.....,n</p>
+          <p>n is the count of values in the set.</p>
+          </div>
+          </div>
+    <div class="card">
+        <div class="card-header">
+        <h3 class="h3">Average Calculation Examples</h3>
+        </div>
+        <div class="card-body">
+            <p><strong>Question 1: Compute the average of the given data set {24, 43, 66, 44, 97, 4, 35}?</strong></p>
+            <p><strong>Solution:</strong></p>
+            <p>Given, data set {24, 43, 66, 44, 97, 4, 35}</p>
+            <p> Count of Values = 7</p>
+            <p> Formula of Average (or) Mean = x<sub>mean</sub> = (∑<sup>n</sup><sub>i=1</sub>x<sub>i</sub>) / n</p>
+            <p>  = (24 + 43 + 66 + 44 + 97 + 4 + 35) / 7</p>
+            <p> = 313/7</p>
+            <p> = 44.71</p>
+            <p> ∴ Average = 44.71, sum = 313 and count = 7</p>
+            <p><a href="https://statisticscalculators.net/">statisticscalculators.net</a> introduces different calculators to solve lengthy and hard calculations too easily along with useful information.</p>
+        </div>
+    </div>
+    <div class="card">
+  	    <div class="card-header">
+      	<h3 class="h3">FAQs on Average Calculator</h3>
+  	    </div>
+  	    <div class="card-body">
+      	<!-- Question & Answer Starts --->
+        <p class="question"><strong>1. Define Average?</strong></p>
+     	<p class="answer">Average is a number which is calculated by dividing the sum of the values in the set by the count of the values in the set. Average or mean give the same values.</p><hr>
+     	<p class="question"><strong>2. How to make use of this Average Calculator?</strong></p>
+     	<p class="answer">Enter the set of numbers in the given box and press the calculate button and within no time you will get the output.</p><hr>  
+        <p class="question"><strong>3. What is the best website for Average Calculator?</strong></p>
+        <p class="answer"><a href="https://statisticscalculators.net/">statisticscalculators.net</a> is the best website to use average calculator, we are also giving some useful information along with the calculator. Not only average calculator we have many other calculators in this website.</p><hr>
+        <p class="question"><strong>4. Calculate the average of data set {5,8,11,34}?</strong></p>
+     	<p class="answer">Average (or) Mean =5+8+11+34 = 58/4 = 14.5</p>
+    	</div>
+    </div>
+    </div>
+{%endblock%}

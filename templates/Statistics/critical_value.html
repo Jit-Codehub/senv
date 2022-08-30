@@ -1,0 +1,311 @@
+{%extends 'base/statistics_base2.html'%}
+{%load static%}
+{%block meta%}
+<!-- HTML Defaults Broweser -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Bootstrap Stylesheet and Jquery, Google APIS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+<!-- Online Calculator Guru Site Fevicon -->
+<link rel="shortcut icon" href="https://onlinecalculator.guru/static/images/logo/Online-Calculator-Guru-Fevicon.png"
+    type="icon">
+<!-- Online Calculator Guru Project Style Sheet -->
+{%block css%}
+<link rel="stylesheet" href="/static/style.css">
+{%endblock css%}
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+<!-- Meta Title, Description and Canonical URL Starts --->
+<title>Critical Value Calculator| Free Calculator to find Critical Value</title>
+<meta name="description"
+    content="Capacitance Calculator makes it easy for you to determine the value of capacitance, area, and distance with steps." />
+<link rel="canonical" href="{{request.build_absolute_uri}}">
+<!-- Meta Title, Description and Canonical URL ENDS --->
+
+<!-- OPEN GRAPH CONFIGURATIONS STARTS -->
+<!--  FACEBOOK CONFIGURATION STARTS  -->
+<meta content="https://www.facebook.com/OnlineCalculator-Guru-131572098650589/" property="og:url" />
+<meta property="og:title" content="Angular Resolution Calculator | Free Calculator to find Angular Resolution" />
+<meta property="og:description" content="Angular Resolution Calculator" />
+<meta content="" property="og:site_name" />
+<meta content="https://onlinecalculator.guru/static/images/Chemistry/Theoratical-Yield-Calculator.jpeg"
+    property="og:image" />
+<meta property="og:image:type" content="image/png" />
+<meta property="og:image:height" content="435" />
+<meta property="og:image:width" content="354" />
+<!--  FACEBOOK CONFIGURATION ENDS  -->
+<!-- TWITTER CARD CONFIGURATION STARTS  -->
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:site" content="https://twitter.com/onlinecalculator" />
+<meta name="twitter:title" content="Angular Resolution Calculator | Free Calculator to find Angular Resolution" />
+<meta name="twitter:description"
+    content="Angular Resolution Calculator makes it easy for you to determine the theoretical yield value of the chemical reaction in fraction of seconds with steps." />
+<meta name="twitter:image:src"
+    content="https://onlinecalculator.guru/static/images/Chemistry/Theoratical-Yield-Calculator.jpeg" />
+<meta property="twitter:image:height" content="435" />
+<meta property="twitter:image:width" content="354" />
+<!-- TWITTER CARD CONFIGURATION ENDS  -->
+<!--  LINKEDIN CONFIGURATION STARTS-->
+<meta property='og:title' content="Angular Resolution Calculator | Free Calculator to find Angular Resolution" />
+<meta property='og:image'
+    content="https://onlinecalculator.guru/static/images/Chemistry/Theoratical-Yield-Calculator.jpeg" />
+<meta property='og:description' content="Angular Resolution Calculator." />
+<meta property='og:url' content="https://www.linkedin.com/in/onlinecalculator/" />
+<!-- end of linkedin CONFIGURATIONS ENDS -->
+<!-- OPEN GRAPH CONFIGURATION ENDS -->
+<!-- FAQ SCHEMA STARTS -->
+
+{%endblock meta %}
+
+{% block content %}
+{% if sl and d and ot %}
+<script>
+    $(document).ready(function () {
+
+        $("#hassle").click();
+        });
+</script>
+
+<button type="button" hidden id="hassle" onclick="location.href='#critical_value'">ans1</button>
+{% endif %}
+
+
+<div class="container" style="height: auto !important;">
+    <div class="card c1">
+        <div class="card-header">
+            <h1 class="h1">Critical Value Calculator</h1>
+        </div>
+        <div class="card-body">
+            {% if messages %}
+            <ul class="messages">
+            {% for message in messages %}
+                <p {% if message.tags %} id="message_container" class="alert alert-danger text-center" {% endif %}
+                    style="color:red">{{ message }}</p>
+                {% endfor %}
+            </ul>
+            {% endif %}
+            <form action="{% url 'critical_value' %}" method="POST" id="my_form">
+                {% csrf_token %}
+                 <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon1">What distribution?</span>
+                 </div>
+            <select id="dis" name="dis"  style="margin-top: 5px;width:100%" class="select form-control" id="inlineFormInputGroup" onchange="this.form.submit()">
+          
+            {% if dis == 'form1' %}
+            <option value='form1' selected="selected">Z (standard Normal)</option>  
+            {% else %}
+            <option value='form1' >Z (standard Normal)</option>  
+            {% endif %}
+
+            {% if dis == 'form2' %}
+            <option value='form2' selected="selected">t-Student</option>  
+            {% else %}
+            <option value='form2' >t-Student</option>  
+            {% endif %}
+
+            {% if dis == 'form3' %}
+            <option value='form3' selected="selected">X<sup>2</sup> (chi square)</option>  
+            {% else %}
+            <option value='form3' >X<sup>2</sup> (chi square)</option>  
+            {% endif %} 
+
+            {% if dis == 'form4' %}
+            <option value='form4' selected="selected">F (Fisher-Snaedecor)</option>  
+            {% else %}
+            <option value='form4' >F (Fisher-Snaedecor)</option>  
+            {% endif %}               
+          </select>                     
+      </div>
+
+      <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon1">What type of test?</span>
+                 </div>
+            <select id="test" name="test"  style="margin-top: 5px;width:100%" class="select form-control" id="inlineFormInputGroup" onchange="this.form.submit()">
+          
+            {% if test == 'form1' %}
+            <option value='form1' selected="selected">Two tailed</option>  
+            {% else %}
+            <option value='form1' >Two tailed</option>  
+            {% endif %}
+
+            {% if test == 'form2' %}
+            <option value='form2' selected="selected">Left tailed</option>  
+            {% else %}
+            <option value='form2' >Left tailed</option>  
+            {% endif %}
+
+            {% if test == 'form3' %}
+            <option value='form3' selected="selected">Right tailed</option>  
+            {% else %}
+            <option value='form3' >Right tailed</option>  
+            {% endif %}                
+          </select>                     
+      </div>
+      {% if dis == 'form2' or dis == 'form3' %}
+        <div class="input-group mb-3">
+       <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon1">Degrees of freedom (d)</span>
+        </div>
+    
+   <input style="margin-top: 5px;width:100%" id="d" name="d" value="{{d}}"   required="" max="10000" oninput="validateNumber(this);" class="form-control" type="number" step="any"  required width="48"> 
+
+    </div>
+    {% endif %}
+
+    {% if dis == 'form4' %}
+
+        <div class="input-group mb-3">
+       <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon1">Numerator degrees of freedom (d₁)</span>
+        </div>
+    
+   <input style="margin-top: 5px;width:100%" id="d1" name="d1" value="{{d1}}"   required="" max="10000" oninput="validateNumber(this);" class="form-control" type="number" step="any"  required width="48"> 
+
+    </div>
+     <div class="input-group mb-3">
+       <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon1">Denominator degrees of freedom (d₂)</span>
+        </div>
+    
+   <input style="margin-top: 5px;width:100%" id="d2" name="d2" value="{{d2}}"   required="" max="10000" oninput="validateNumber(this);" class="form-control" type="number" step="any"  required width="48"> 
+
+    </div>
+    {% endif %}
+
+    <div class="input-group mb-3">
+       <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon1">Significance level</span>
+        </div>
+    
+   <input style="margin-top: 5px;width:100%" id="sl" name="sl" value="{{sl}}" required="" oninput="validateNumber(this);" class="form-control" type="number" step="any" min="0" max="1" required width="48"> 
+
+    </div>
+
+        <div class=" center col mt-2 ">
+            <center><button type="submit" class="btn btn-primary">Calculate</button>
+              <a href="{% url 'critical_value' %}" class="btn btn-warning" role="button" style="margin-top:5px;">Reset</a>      
+            </center>
+          </div>
+    
+</div>
+
+</form>
+</div>
+</div>
+{% if dis == 'form2' and ot and sl and d %}
+<div class="container" style="height: auto !important;">
+<div class="card" id="critical_value">
+        <div class="card-header">
+            <h2 class="h2">Steps to Find t-Student Value:</h2>
+        </div>
+
+        <div class="card-body">
+
+            <strong>t-student:-</strong>
+            <b>Input Values</b>
+            <p>Degrees of freedom (d) = {{d}}</p>
+            <p>Significance level = {{sl}} </p>
+
+            <b>Result:</b>
+            <br>
+            {% if output %}
+                <b>t-Student Value = {{start}} x 10<sup>{{end}}</sup></b>
+            {% else %}
+                <b>t-Student Value = {{result}}</b>
+            {% endif %}
+                         
+   </div>
+    </div>
+</div>
+    {% endif %}  
+
+{% if dis == 'form1' and ot and sl %}
+<div class="container" style="height: auto !important;">
+<div class="card" id="critical_value">
+        <div class="card-header">
+            <h2 class="h2">Steps to Find Z (standard Normal) Value:</h2>
+        </div>
+
+        <div class="card-body">
+
+            <strong>Z (standard Normal):-</strong>
+            <b>Input Values</b>
+            <p>Significance level = {{sl}} </p>
+            
+            <b>Result:</b>
+            <br>
+            {% if output %}
+                <b>Z (standard Normal) Value = {{start}} x 10<sup>{{end}}</sup></b>
+            {% else %}
+                <b>Z (standard Normal) Value = {{result}}</b>
+            {% endif %}
+                         
+   </div>
+    </div>
+</div>
+    {% endif %} 
+
+{% if dis == 'form4' and ot and sl and d1 and d2 %}
+<div class="container" style="height: auto !important;">
+<div class="card" id="critical_value">
+        <div class="card-header">
+            <h2 class="h2">Steps to Find F (Fisher-Snaedecor) Value:</h2>
+        </div>
+
+        <div class="card-body">
+
+            <strong>F (Fisher-Snaedecor):-</strong>
+            <b>Input Values</b>
+            <p>Significance level = {{sl}} </p>
+            <p>Numerator degrees of freedom (d₁) = {{d1}}</p>
+            <p>Denominator degrees of freedom (d₂) = {{d2}}</p>
+            
+            <b>Result:</b>
+            <br>
+            {% if output %}
+                <b>F (Fisher-Snaedecor) = {{start}} x 10<sup>{{end}}</sup></b>
+            {% else %}
+                <b>F (Fisher-Snaedecor) = {{result}}</b>
+            {% endif %}
+                         
+   </div>
+    </div>
+</div>
+    {% endif %}
+
+{% if dis == 'form3' and ot and sl and d %}
+<div class="container" style="height: auto !important;">
+<div class="card" id="critical_value">
+        <div class="card-header">
+            <h2 class="h2">Steps to Find X<sup>2</sup> (chi-square) Value:</h2>
+        </div>
+
+        <div class="card-body">
+
+            <strong>F (Fisher-Snaedecor):-</strong>
+            <b>Input Values</b>
+
+            <p>Significance level = {{sl}} </p>
+            <p>Degrees of freedom = {{d}}</p>
+            
+            <b>Result:</b>
+            <br>
+            {% if output %}
+                <b>X<sup>2</sup> (chi-square) = {{start}} x 10<sup>{{end}}</sup></b>
+            {% else %}
+                <b>X<sup>2</sup> (chi-square) = {{result}}</b>
+            {% endif %}
+                         
+   </div>
+</div>
+<img src="{% static 'images/Statistics/critical-value-calculator.jpeg' %}" alt='critical-value-calculator'>
+        
+</div>
+    {% endif %}                  
+{% endblock content %}

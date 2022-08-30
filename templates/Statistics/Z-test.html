@@ -1,0 +1,250 @@
+{%extends 'base/statistics_base2.html'%}
+{%load static%}
+{%block meta%}
+<!-- HTML Defaults Broweser -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Bootstrap Stylesheet and Jquery, Google APIS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+<!-- Online Calculator Guru Site Fevicon -->
+<link rel="shortcut icon" href="https://onlinecalculator.guru/static/images/logo/Online-Calculator-Guru-Fevicon.png"
+    type="icon">
+<!-- Online Calculator Guru Project Style Sheet -->
+{%block css%}
+<link rel="stylesheet" href="/static/style.css">
+{%endblock css%}
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+<!-- Meta Title, Description and Canonical URL Starts --->
+<title>Z-test Calculator | Free Calculator to find Z-test</title>
+<meta name="description"
+    content="Capacitance Calculator makes it easy for you to determine the value of capacitance, area, and distance with steps." />
+<link rel="canonical" href="{{request.build_absolute_uri}}">
+<!-- Meta Title, Description and Canonical URL ENDS --->
+
+<!-- OPEN GRAPH CONFIGURATIONS STARTS -->
+<!--  FACEBOOK CONFIGURATION STARTS  -->
+<meta content="https://www.facebook.com/OnlineCalculator-Guru-131572098650589/" property="og:url" />
+<meta property="og:title" content="Angular Resolution Calculator | Free Calculator to find Angular Resolution" />
+<meta property="og:description" content="Angular Resolution Calculator" />
+<meta content="" property="og:site_name" />
+<meta content="https://onlinecalculator.guru/static/images/Chemistry/Theoratical-Yield-Calculator.jpeg"
+    property="og:image" />
+<meta property="og:image:type" content="image/png" />
+<meta property="og:image:height" content="435" />
+<meta property="og:image:width" content="354" />
+<!--  FACEBOOK CONFIGURATION ENDS  -->
+<!-- TWITTER CARD CONFIGURATION STARTS  -->
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:site" content="https://twitter.com/onlinecalculator" />
+<meta name="twitter:title" content="Angular Resolution Calculator | Free Calculator to find Angular Resolution" />
+<meta name="twitter:description"
+    content="Angular Resolution Calculator makes it easy for you to determine the theoretical yield value of the chemical reaction in fraction of seconds with steps." />
+<meta name="twitter:image:src"
+    content="https://onlinecalculator.guru/static/images/Chemistry/Theoratical-Yield-Calculator.jpeg" />
+<meta property="twitter:image:height" content="435" />
+<meta property="twitter:image:width" content="354" />
+<!-- TWITTER CARD CONFIGURATION ENDS  -->
+<!--  LINKEDIN CONFIGURATION STARTS-->
+<meta property='og:title' content="Angular Resolution Calculator | Free Calculator to find Angular Resolution" />
+<meta property='og:image'
+    content="https://onlinecalculator.guru/static/images/Chemistry/Theoratical-Yield-Calculator.jpeg" />
+<meta property='og:description' content="Angular Resolution Calculator." />
+<meta property='og:url' content="https://www.linkedin.com/in/onlinecalculator/" />
+<!-- end of linkedin CONFIGURATIONS ENDS -->
+<!-- OPEN GRAPH CONFIGURATION ENDS -->
+<!-- FAQ SCHEMA STARTS -->
+
+{%endblock meta %}
+
+{% block content %}
+{% if  n and x %}
+<script>
+    $(document).ready(function () {
+
+        $("#hassle").click();
+        });
+</script>
+
+<button type="button" hidden id="hassle" onclick="location.href='#z-test'">ans1</button>
+{% endif %}
+
+
+<div class="container" style="height: auto !important;">
+    <div class="card c1">
+        <div class="card-header">
+            <h1 class="h1">Z-test Calculator
+</h1>
+        </div>
+        <div class="card-body">
+            {% if messages %}
+            <ul class="messages">
+            {% for message in messages %}
+                <p {% if message.tags %} id="message_container" class="alert alert-danger text-center" {% endif %}
+                    style="color:red">{{ message }}</p>
+                {% endfor %}
+            </ul>
+            {% endif %}
+            <form action="{% url 'Z-test' %}" method="POST" id="my_form">
+                {% csrf_token %}
+
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon1">Alternative hypothesis H₁</span>
+                 </div>
+            <select id="h1" name="h1"  style="margin-top: 5px;width:100%" class="select form-control" id="inlineFormInputGroup" onchange="this.form.submit()">
+          
+            {% if h1 == 'form1' %}
+            <option value='form1' selected="selected">two-tailed (μ ≠ μ₀)</option>  
+            {% else %}
+            <option value='form1' >two-tailed (μ ≠ μ₀)</option>  
+            {% endif %}
+
+            {% if h1 == 'form2' %}
+            <option value='form2' selected="selected">left-tailed (μ < μ₀)</option>  
+            {% else %}
+            <option value='form2' >left-tailed (μ < μ₀)</option>  
+            {% endif %}
+
+            {% if h1 == 'form3' %}
+            <option value='form3' selected="selected">right-tailed (μ > μ₀)</option>  
+            {% else %}
+            <option value='form3' >right-tailed (μ > μ₀)</option>  
+            {% endif %}               
+          </select>                     
+      </div>
+
+      <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon1">Approach</span>
+                 </div>
+            <select id="ap" name="ap"  style="margin-top: 5px;width:100%" class="select form-control" id="inlineFormInputGroup" onchange="this.form.submit()">
+          
+            {% if ap == 'form1' %}
+            <option value='form1' selected="selected">p-value</option>  
+            {% else %}
+            <option value='form1' >p-value</option>  
+            {% endif %}
+
+            {% if ap == 'form2' %}
+            <option value='form2' selected="selected">critical values</option>  
+            {% else %}
+            <option value='form2' >critical values</option>  
+            {% endif %}             
+          </select>                     
+      </div>
+      {% if ap == 'form2' %}
+      <div class="input-group mb-3">
+       <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon1">Significance level α</span>
+        </div>
+    
+   <input style="margin-top: 5px;width:100%" id="sl" name="sl" value="0.05" value="{{sl}}"   required="" oninput="validateNumber(this);" class="form-control" type="number" step="any"  required width="48"> </div>
+   {% endif %}
+      <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon1">Do you know the Z-score?</span>
+                 </div>
+            <select id="ztype" name="ztype"  style="margin-top: 5px;width:100%" class="select form-control" id="inlineFormInputGroup" onchange="this.form.submit()">
+          
+            {% if ztype == 'form1' %}
+            <option value='form1' selected="selected">Yes</option>  
+            {% else %}
+            <option value='form1' >Yes</option>  
+            {% endif %}
+
+            {% if ztype == 'form2' %}
+            <option value='form2' selected="selected">No</option>  
+            {% else %}
+            <option value='form2' >No</option>  
+            {% endif %}             
+          </select>                     
+      </div>
+      {% if ztype == 'form1' %}
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1">Z-score</span>
+            </div>
+           <input style="margin-top: 5px;width:100%" id="z" name="z" value="4" value="{{z}}"   required="" oninput="validateNumber(this);" class="form-control" type="number" step="any" required width="48"> 
+       </div>
+       {% endif %}
+       {% if ztype == 'form2' %}
+            <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1">Sample mean x̄</span>
+            </div>
+           <input style="margin-top: 5px;width:100%" id="sm" name="sm" value="4" value="{{sm}}"   required="" oninput="validateNumber(this);" class="form-control" type="number" step="any" required width="48"> 
+       </div>
+       <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1">Tested mean μ₀</span>
+            </div>
+           <input style="margin-top: 5px;width:100%" id="tm" name="tm" value="4" value="{{tm}}"   required="" oninput="validateNumber(this);" class="form-control" type="number" step="any" required width="48"> 
+       </div>
+       <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1">Population standard deviation σ</span>
+            </div>
+           <input style="margin-top: 5px;width:100%" id="sd" name="sd" value="4" value="{{sd}}"   required="" oninput="validateNumber(this);" class="form-control" type="number" step="any" required width="48"> 
+       </div>
+       {% endif %}       
+        <div class=" center col mt-2 ">
+            <center><button type="submit" class="btn btn-primary">Calculate</button>
+              <a href="{% url 'Z-test' %}" class="btn btn-warning" role="button" style="margin-top:5px;">Reset</a>      
+            </center>
+          </div>
+    
+</div>
+
+</form>
+</div>
+</div>
+{% if n and x and ot %}
+<div class="container" style="height: auto !important;">
+<div class="card" id="z-test">
+        <div class="card-header">
+            <h2 class="h2">Steps to Find Z-test:</h2>
+        </div>
+
+        <div class="card-body">
+
+            <strong>Z-test:-</strong>
+            <br>
+            <p class="btn btn-outline-secondary active text-justify">Z-test = 
+            </p>
+            <br>
+            <strong>where:</strong>
+                    <ul>
+                    <li>x is the number of successes in the sample,</li>
+                    <li>n is the sample size or the number of trials</li>
+                    <li>z is the z-score associated with a level of confidence.</li>                       
+                    </ul>
+
+
+            <strong>Input values are:-</strong>
+            <p>n = {{n}} </p>
+            <p>x = {{x}} </p>
+            <p>Confidence = {{Given}} = {{z}}</p>
+
+
+            <p><b>Put values into formula</b></p>
+
+            
+            {% if output %}
+                <b>Best Z-test = {{start}} x 10<sup>{{end}}</sup></b>
+            {% else %}
+                <b>Best Z-test = {{result}}</b>
+            {% endif %}
+
+            
+                         
+   </div>
+    </div>
+</div>
+    {% endif %} 
+<img src="{% static 'images/Statistics/z-test-calculator.jpeg' %}" alt='z-test-calculator'>                 
+{% endblock content %}

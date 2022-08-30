@@ -1,0 +1,168 @@
+{%extends 'base/statistics_base2.html'%}
+{%load static%}
+{%block meta%}
+<!-- HTML Defaults Broweser -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Bootstrap Stylesheet and Jquery, Google APIS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+<!-- Online Calculator Guru Site Fevicon -->
+<link rel="shortcut icon" href="https://onlinecalculator.guru/static/images/logo/Online-Calculator-Guru-Fevicon.png"
+    type="icon">
+<!-- Online Calculator Guru Project Style Sheet -->
+{%block css%}
+<link rel="stylesheet" href="https://onlinecalculator.guru/static/style.css">
+{%endblock css%}
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+<!-- Meta Title, Description and Canonical URL Starts --->
+<title>Negative Binomial Distribution Calculator | Free Calculator to find Negative Binomial Distribution</title>
+<meta name="description"
+    content="Capacitance Calculator makes it easy for you to determine the value of capacitance, area, and distance with steps." />
+<link rel="canonical" href="{{request.build_absolute_uri}}">
+<!-- Meta Title, Description and Canonical URL ENDS --->
+
+<!-- OPEN GRAPH CONFIGURATIONS STARTS -->
+<!--  FACEBOOK CONFIGURATION STARTS  -->
+<meta content="https://www.facebook.com/OnlineCalculator-Guru-131572098650589/" property="og:url" />
+<meta property="og:title" content="Angular Resolution Calculator | Free Calculator to find Angular Resolution" />
+<meta property="og:description" content="Angular Resolution Calculator" />
+<meta content="" property="og:site_name" />
+<meta content="https://onlinecalculator.guru/static/images/Chemistry/Theoratical-Yield-Calculator.jpeg"
+    property="og:image" />
+<meta property="og:image:type" content="image/png" />
+<meta property="og:image:height" content="435" />
+<meta property="og:image:width" content="354" />
+<!--  FACEBOOK CONFIGURATION ENDS  -->
+<!-- TWITTER CARD CONFIGURATION STARTS  -->
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:site" content="https://twitter.com/onlinecalculator" />
+<meta name="twitter:title" content="Angular Resolution Calculator | Free Calculator to find Angular Resolution" />
+<meta name="twitter:description"
+    content="Angular Resolution Calculator makes it easy for you to determine the theoretical yield value of the chemical reaction in fraction of seconds with steps." />
+<meta name="twitter:image:src"
+    content="https://onlinecalculator.guru/static/images/Chemistry/Theoratical-Yield-Calculator.jpeg" />
+<meta property="twitter:image:height" content="435" />
+<meta property="twitter:image:width" content="354" />
+<!-- TWITTER CARD CONFIGURATION ENDS  -->
+<!--  LINKEDIN CONFIGURATION STARTS-->
+<meta property='og:title' content="Angular Resolution Calculator | Free Calculator to find Angular Resolution" />
+<meta property='og:image'
+    content="https://onlinecalculator.guru/static/images/Chemistry/Theoratical-Yield-Calculator.jpeg" />
+<meta property='og:description' content="Angular Resolution Calculator." />
+<meta property='og:url' content="https://www.linkedin.com/in/onlinecalculator/" />
+<!-- end of linkedin CONFIGURATIONS ENDS -->
+<!-- OPEN GRAPH CONFIGURATION ENDS -->
+<!-- FAQ SCHEMA STARTS -->
+
+{%endblock meta %}
+
+{% block content %}
+{% if ot and n and r and p %}
+<script>
+    $(document).ready(function () {
+
+        $("#hassle").click();
+        });
+</script>
+
+<button type="button" hidden id="hassle" onclick="location.href='#negative_binomial_distribution'">ans1</button>
+{% endif %}
+
+
+<div class="container" style="height: auto !important;">
+    <div class="card c1">
+        <div class="card-header">
+            <h1 class="h1">Negative Binomial Distribution Calculator</h1>
+        </div>
+        <div class="card-body">
+            {% if messages %}
+            <ul class="messages">
+            {% for message in messages %}
+                <p {% if message.tags %} id="message_container" class="alert alert-danger text-center" {% endif %}
+                    style="color:red">{{ message }}</p>
+                {% endfor %}
+            </ul>
+            {% endif %}
+            <form action="{% url 'negative_binomial_distribution' %}" method="POST" id="my_form">
+                {% csrf_token %}
+                 </div>
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1">n (number of events)</span>
+            </div>
+            
+           <input style="margin-top: 5px;width:100%" id="n" name="n" value="{{n}}" min="0" required="" class="form-control" type="number" step="any" required width="48"> 
+       </div>
+       <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1">r (number of successes)
+</span>
+            </div>
+            
+           <input style="margin-top: 5px;width:100%" id="r" name="r" value="{{r}}" min="0" max="{{n}}" required="" class="form-control" type="number" step="any" required width="48"> 
+       </div>
+       <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1">Probability of one success</span>
+            </div>
+            
+           <input style="margin-top: 5px;width:100%" id="p" name="p" value="{{p}}" min="0" max="1" required="" class="form-control" type="number" step="any" required width="48"> 
+       </div>
+       
+       
+        <div class=" center col mt-2 ">
+            <center><button type="submit" class="btn btn-primary">Calculate</button>
+              <a href="{% url 'negative_binomial_distribution' %}" class="btn btn-warning" role="button" style="margin-top:5px;">Reset</a>      
+            </center>
+          </div>
+</div>
+
+</form>
+</div>
+</div>
+
+{% if ot and n and r and p %}
+<div class="container" style="height: auto !important;">
+<div class="card" id="negative_binomial_distribution">
+        <div class="card-header">
+            <h2 class="h2">Steps to Find Negative Binomial Distribution:</h2>
+        </div>
+
+        <div class="card-body">
+
+            <strong>Negative Binomial Distribution:-</strong>
+            <br>
+            <p class="btn btn-outline-secondary active text-justify">Negative Binomial Distribution P(Y=n) = (n-1)C(r-1) * pr * (1-p)(n-r)</p>
+            <br>
+            <strong>where:</strong>
+                    <ul>
+                        <li>n is the total number of trials,</li>
+                        <li>r is the number of successes,</li>
+                        <li>p is the probability of one success.</li>
+                    </ul>
+
+
+            <strong>Input values are:-</strong>
+            <p>n = {{n}} </p>
+            <p>r = {{r}} </p>
+            <p>p = {{p}} </p>
+        
+            <p><b>Put values into formula</b></p>
+            
+            <p>P(Y=n) = (n-1)C(r-1) * pr * (1-p)(n-r)</p>
+            <p>P(Y=n) = {{nCr}} * {{p}}<sup>{{r}}</sup> * (1-{{p}})<sup>({{n}}-{{r}})</sup></p>
+            
+            <b>P(Y=n) = {{result}} </b>
+
+                            
+   </div>
+    </div>
+</div>
+    {% endif %}      
+<img src="{% static 'images/Statistics/negative-binomial-distribution-calculator.jpeg' %}" alt='negative-binomial-distribution-calculator'>            
+{% endblock content %}

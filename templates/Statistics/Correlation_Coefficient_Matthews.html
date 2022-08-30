@@ -1,0 +1,264 @@
+{%extends 'base/statistics_base2.html'%}
+{%load static%}
+{%block meta%}
+<!-- HTML Defaults Broweser -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Bootstrap Stylesheet and Jquery, Google APIS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+<!-- Online Calculator Guru Site Fevicon -->
+<link rel="shortcut icon" href="https://onlinecalculator.guru/static/images/logo/Online-Calculator-Guru-Fevicon.png"
+    type="icon">
+<!-- Online Calculator Guru Project Style Sheet -->
+{%block css%}
+<link rel="stylesheet" href="/static/style.css">
+{%endblock css%}
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+<!-- Meta Title, Description and Canonical URL Starts --->
+<title>Correlation Coefficient Calculator (Matthews) | Steps to Find Correlation Coefficient</title>
+<meta name="description"
+    content="Correlation Coefficient Calculator (Matthews) determines matthews correlation coefficient for the given details. Check steps to calculate matthews correlation coefficient." />
+<link rel="canonical" href="{{request.build_absolute_uri}}">
+<!-- Meta Title, Description and Canonical URL ENDS --->
+
+<!-- OPEN GRAPH CONFIGURATIONS STARTS -->
+<!--  FACEBOOK CONFIGURATION STARTS  -->
+<meta content="https://www.facebook.com/OnlineCalculator-Guru-131572098650589/" property="og:url" />
+<meta property="og:title" content="Correlation Coefficient Calculator (Matthews) | Steps to Find Correlation Coefficient" />
+<meta property="og:description" content="Correlation Coefficient Calculator (Matthews) determines matthews correlation coefficient for the given details. Check steps to calculate matthews correlation coefficient." />
+<meta content="" property="og:site_name" />
+<meta content="https://onlinecalculator.guru/static/images/Chemistry/Correlation-Coefficient-Matthews-Calculator.jpeg"
+    property="og:image" />
+<meta property="og:image:type" content="image/png" />
+<meta property="og:image:height" content="435" />
+<meta property="og:image:width" content="354" />
+<!--  FACEBOOK CONFIGURATION ENDS  -->
+<!-- TWITTER CARD CONFIGURATION STARTS  -->
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:site" content="https://twitter.com/onlinecalculator" />
+<meta name="twitter:title" content="Correlation Coefficient Calculator (Matthews) | Steps to Find Correlation Coefficient" />
+<meta name="twitter:description"
+    content="Correlation Coefficient Calculator (Matthews) determines matthews correlation coefficient for the given details. Check steps to calculate matthews correlation coefficient." />
+<meta name="twitter:image:src"
+    content="https://onlinecalculator.guru/static/images/Chemistry/Correlation-Coefficient-Matthews-Calculator.jpeg" />
+<meta property="twitter:image:height" content="435" />
+<meta property="twitter:image:width" content="354" />
+<!-- TWITTER CARD CONFIGURATION ENDS  -->
+<!--  LINKEDIN CONFIGURATION STARTS-->
+<meta property='og:title' content="Correlation Coefficient Calculator (Matthews) | Steps to Find Correlation Coefficient" />
+<meta property='og:image'
+    content="https://onlinecalculator.guru/static/images/Chemistry/Correlation-Coefficient-Matthews-Calculator.jpeg" />
+<meta property='og:description' content="Correlation Coefficient Calculator (Matthews) determines matthews correlation coefficient for the given details. Check steps to calculate matthews correlation coefficient." />
+<meta property='og:url' content="https://www.linkedin.com/in/onlinecalculator/" />
+<!-- end of linkedin CONFIGURATIONS ENDS -->
+<!-- OPEN GRAPH CONFIGURATION ENDS -->
+<!-- FAQ SCHEMA STARTS -->
+<script type="application/ld+json">{"@context": "https://schema.org","@type": "FAQPage","mainEntity": [{"@type": "Question","name":"1.
+    What is Matthews Correlation Coefficient formula?
+    ","acceptedAnswer": {"@type": "Answer","text":" Correlation coefficient (Matthews) formula is Correlation Coefficient (Matthews) = ((TP*TN) - (FP*FN))/√((TP+FP)*(TP+FN)*(TN+FP)*(TN+FN)). Here TP is the true positive, FP is false positive, TN is true negative and FN is false negative."}	}, {"@type": "Question","name":"2.
+    What does MCC 0 mean?
+    ","acceptedAnswer": {"@type": "Answer","text":" In general, Matthews Correlation Coefficient lies between -1 and +1 including 0. If the MCC value is 0 means it is not better than a random flip of a coin."}	}, {"@type": "Question","name":"3.
+    How to find Matthews Correlation Coefficient?
+    ","acceptedAnswer": {"@type": "Answer","text":" Give true positive, true negative, false positive and false negative values as inputs for the calculator and press the calculate button to check Matthews correlation coefficient value as output."}	}, {"@type": "Question","name":"4.
+    If true positive is 150, true negative is 200, false positive is 110 and false negative 140 calculate the Matthews correlation coefficient?
+    ","acceptedAnswer": {"@type": "Answer","text":" Given values are
+    tp = 150, fp = 110, tn = 200, and fn = 140
+    The formula of Correlation Coefficient (Matthews) = ((TP*TN) - (FP*FN))/√((TP+FP)*(TP+FN)*(TN+FP)*(TN+FN))
+    = ((150.0 * 200.0) - (110.0 * 140.0)) / √((150.0 + 110.0)*(150.0 + 140.0)*(200.0 + 110.0)*(200.0 + 140.0))
+    = 0.1637"}	}]}</script>
+{%endblock meta %}
+
+{% block content %}
+{% if tn and fn and tp and fp and ot %}
+<script>
+    $(document).ready(function () {
+
+        $("#hassle").click();
+        });
+</script>
+
+<button type="button" hidden id="hassle" onclick="location.href='#correlation_coefficient_matthews'">ans1</button>
+{% endif %}
+
+
+<div class="container" style="height: auto !important;">
+    <div class="card c1">
+        <div class="card-header">
+            <h1 class="h1">Correlation Coefficient Calculator (Matthews)</h1>
+        </div>
+        <div class="card-body">
+            <p>Correlation Coefficient Matthews Calculator displays the value of Matthews correlation coefficient easily and quickly. This free calculator tool takes true positive, true negative, false positive and false negative values as input and produces the correlation coefficient Matthews as result within seconds.</p>
+            {% if messages %}
+            <ul class="messages">
+            {% for message in messages %}
+                <p {% if message.tags %} id="message_container" class="alert alert-danger text-center" {% endif %}
+                    style="color:red">{{ message }}</p>
+                {% endfor %}
+            </ul>
+            {% endif %}
+            <form action="{% url 'Correlation_Coefficient_Matthews' %}" method="POST" id="my_form">
+                {% csrf_token %}
+                 <div class="input-group mb-3">
+                      
+          </div>
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1">True Positive (TP)</span>
+            </div>
+            
+           <input style="margin-top: 5px;width:100%" id="tp" name="tp" value="{{tp}}"   required="" oninput="validateNumber(this);" class="form-control" type="number" step="any" required width="48"> 
+       </div>
+       <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1">False Positive (FP)</span>
+            </div>
+            
+           <input style="margin-top: 5px;width:100%" id="fp" name="fp" value="{{fp}}"   required="" oninput="validateNumber(this);" class="form-control" type="number" step="any"  required width="48"> 
+       </div>
+       <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1">True Negative (TN)</span>
+            </div>
+            
+           <input style="margin-top: 5px;width:100%" id="tn" name="tn" value="{{tn}}"   required="" oninput="validateNumber(this);" class="form-control" type="number" step="any"  required width="48"> 
+       </div>
+       <div class="input-group mb-3">
+       <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon1">False Negative (FN)</span>
+        </div>
+    
+    <input style="margin-top: 5px;width:100%" id="fn" name="fn" value="{{fn}}"   required="" oninput="validateNumber(this);" class="form-control" type="number" step="any"  required width="48"> 
+                            
+      </div>
+
+
+        <div class=" center col mt-2 ">
+            <center><button type="submit" class="btn btn-primary">Calculate</button>
+              <a href="{% url 'Correlation_Coefficient_Matthews' %}" class="btn btn-warning" role="button" style="margin-top:5px;">Reset</a>      
+            </center>
+          </div>
+    
+</div>
+
+</form>
+<p><strong>Correlation Coefficient Matthews Calculator: </strong>Avail this free and easy to operate calculator to compute the MCC value effortlessly. This calculator helps to explore the statistics and Matthews equation is based on binary classification. Below we are giving the Matthews Correlation Coefficient definition, formula and solved examples. The Matthews correlation is a measure for interpreting data. Also, get the steps on how to calculate correlation coefficient Matthews on this page.</p>
+</div>
+</div>
+{% if tn and fn and tp and fp and ot %}
+<div class="container" style="height: auto !important;">
+<div class="card" id="correlation_coefficient_matthews">
+        <div class="card-header">
+            <h2 class="h2">Steps to Find Correlation Coefficient (Matthews):</h2>
+        </div>
+
+        <div class="card-body">
+
+            <strong>Correlation Coefficient (Matthews):-</strong>
+            <br>
+            <p class="btn btn-outline-secondary active text-justify">Correlation Coefficient (Matthews) = ((TP * TN) - (FP * FN)) / √((TP + FP)*(TP + FN)*(TN + FP)*(TN + FN))</p>
+            <br>
+            <strong>where:</strong>
+                    <ul>
+                    <li>TP is True Positive</li>
+                    <li>FP is False Positive</li>
+                    <li>TN is True Negative</li>
+                    <li>FN is False Negative</li>                        
+                    </ul>
+
+
+            <strong>Input values are:-</strong>
+            <p>tp = {{tp}} </p>
+            <p>fp = {{fp}} </p>
+            <p>tn = {{tn}} </p>
+            <p>fn = {{fn}} </p>
+
+            <p><b>Put values into formula</b></p>
+    
+            <p>Correlation Coefficient (Matthews) = (({{tp}} * {{tn}}) - ({{fp}} * {{fn}})) / √(({{tp}} + {{fp}})*({{tp}} + {{fn}})*({{tn}} + {{fp}})*({{tn}} + {{fn}}))</p>
+
+            {% if output %}
+                <b>Correlation Coefficient (Matthews) = {{start}} x 10<sup>{{end}}</sup></b>
+            {% else %}
+                <b>Correlation Coefficient (Matthews) = {{result}}</b>
+            {% endif %}
+                         
+   </div>
+    </div>
+    <img src="{% static 'images/Statistics/correlation-coefficient-calculator-(matthews).jpeg' %}" alt='correlation-coefficient-calculator-(matthews)'>
+    <div class="card">
+        <div class="card-header">
+            <h2 class="h2">How to Calculate Matthews Correlation Coefficient?</h2>
+        </div>
+        <div class="card-body">
+            <p>Get the simple steps to find the Matthews correlation coefficient for the data. Follow these rules to obtain the result.</p>
+           <ul>
+               <li>Check true positive, false positive, true negative and false negative values.</li>
+<li>Substitute all these values in the Matthews correlation coefficient formula.</li>
+<li>Do all required calculations to find the MCC value.</li>
+            </ul>
+            </div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="h3">What is Matthews Correlation Coefficient? | Formula of MCC</h3>
+                </div>
+                <div class="card-body">
+                    <p>A correlation coefficient is the measure of the strength of correlation, i.e the statistical connection between two variables. MCC describes how changing one variable value to affect another variable value. The correlation value lies between -1 to +1.
+                    </p><ul><li>   0 indicates no relationship between a set of variables</li>
+                        <li>  -1 indicates an ideal relation i.e variables change in opposite direction</li>
+                            <li> +1 indicates a perfect positive relation i.e variables change in the same direction</li></ul>
+                        
+                       <p> The formula to find Matthews correlation coefficient is given here.</p>
+                        <img src="https://drive.google.com/file/d/1MBVxjjiwatdZBuSpxHQSZvGSfZrAoQXw/view?usp=sharing">
+                      <p>  Where,</p>
+                        <ul><li>  TP (True Positive) is the outcome where the model correctly predicts the positive class</li>
+                            <li>  TN (True Negative) is the outcome where the model correctly predicts the negative class</li>
+                                <li>  FP (False Positive) is the outcome where the model incorrectly predicts the positive class</li>
+                                    <li>  FN (False Negative) is the outcome where the model incorrectly predicts the negative class</li></ul>
+                                    </div>
+                                    </div>
+                                    <div class="card">
+                                        <div class="card-header">
+                                            <h3 class="h3">Correlation Coefficient(Matthews) Example Questions</h3>
+                                        </div>
+                                        <div class="card-body">         
+                                            <p><strong>Find the Matthews Correlation Coefficient. When true positive is 170, true negative is 220, false positive is 450 and false negative is 330.</strong></p>
+                                            <p>Solution:</p>
+                                            <p>Given that,</p>
+                                            <p>True positive TP = 170</p>
+                                                <p>True negative TN = 220</p>
+                                                    <p>False positive FP = 450</p>
+                                                        <p>False negative FN = 330</p>
+                                                        <p>Matthews correlation coefficient formula is MCC = ((TP*TN) - (FP*FN))/√((TP+FP)*(TP+FN)*(TN+FP)*(TN+FN)) </p>
+                                                        <p>Substitute the values in the above formula.</p>
+                                                        <p>MCC = ((170.0 * 220.0) - (450.0 * 330.0)) / √((170.0 + 450.0)*(170.0 + 330.0)*(220.0 + 450.0)*(220.0 + 330.0))</p>
+                                                        <p>= -0.3287111728354338</p>
+                                                        <p>Therefore, Matthews Correlation Coefficient is -0.3287111728354338.</p>
+                                                        <p><a href="/">statisticscalculators.net</a> has plenty of calculators at one page, just take the help from the required calculator to achieve the results accurately at a faster pace and also understand the concept by taking the help of provided steps.</p>
+    <div class="card">
+        <div class="card-header">
+            <h3 class="h3">FAQs on Matthews Correlation Coefficient Calculator</h3>
+        </div>
+        <div class="card-body">
+            <!-- Question & Answer Starts --->
+                
+                    <p class="question"><strong>        1. What is Matthews Correlation Coefficient formula?</strong></p>
+                    <p class="answer">Correlation coefficient (Matthews) formula is Correlation Coefficient (Matthews) = ((TP*TN) - (FP*FN))/√((TP+FP)*(TP+FN)*(TN+FP)*(TN+FN)). Here TP is the true positive, FP is false positive, TN is true negative and FN is false negative.</p><hr>
+<p class="question"><strong>2. What does MCC 0 mean?</strong></p>
+<p class="answer">In general, Matthews Correlation Coefficient lies between -1 and +1 including 0. If the MCC value is 0 means it is not better than a random flip of a coin.</p><hr>
+<p class="question"><strong>3. How to find Matthews Correlation Coefficient?</strong></p>
+<p class="answer">Give true positive, true negative, false positive and false negative values as inputs for the calculator and press the calculate button to check Matthews correlation coefficient value as output.</p><hr>
+<p class="question"><strong>4. If true positive is 150, true negative is 200, false positive is 110 and false negative 140 calculate the Matthews correlation coefficient?</strong></p>
+<p class="answer">Given values are</p>
+<p>tp = 150, fp = 110, tn = 200, and fn = 140</p>
+<p>The formula of Correlation Coefficient (Matthews) = ((TP*TN) - (FP*FN))/√((TP+FP)*(TP+FN)*(TN+FP)*(TN+FN))</p>
+<p>= ((150.0 * 200.0) - (110.0 * 140.0)) / √((150.0 + 110.0)*(150.0 + 140.0)*(200.0 + 110.0)*(200.0 + 140.0))</p>
+<p>= 0.1637</p>
+</div>
+    {% endif %}                  
+{% endblock content %}

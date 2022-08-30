@@ -1,0 +1,340 @@
+{%extends 'base/statistics_base2.html'%}
+{%load static%}
+{%block meta%}
+<!-- HTML Defaults Broweser -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Bootstrap Stylesheet and Jquery, Google APIS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+<!-- Online Calculator Guru Site Fevicon -->
+<link rel="shortcut icon" href="https://onlinecalculator.guru/static/images/logo/Online-Calculator-Guru-Fevicon.png"
+    type="icon">
+<!-- Online Calculator Guru Project Style Sheet -->
+{%block css%}
+<link rel="stylesheet" href="https://onlinecalculator.guru/static/style.css">
+{%endblock css%}
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+<!-- Meta Title, Description and Canonical URL Starts --->
+<title>Exponential Growth Calculator | Free Online Tool to Find Exponential Growth</title>
+<meta name="description"
+    content="Free & Handy Exponential Growth Calculator is here to determine the exponential growth problems easily in split seconds." />
+<link rel="canonical" href="{{request.build_absolute_uri}}">
+<!-- Meta Title, Description and Canonical URL ENDS --->
+
+<!-- OPEN GRAPH CONFIGURATIONS STARTS -->
+<!--  FACEBOOK CONFIGURATION STARTS  -->
+<meta content="https://www.facebook.com/OnlineCalculator-Guru-131572098650589/" property="og:url" />
+<meta property="og:title" content="Exponential Growth Calculator | Free Online Tool to Find Exponential Growth" />
+<meta property="og:description" content="Exponential Growth Calculator" />
+<meta content="" property="og:site_name" />
+<meta content="https://onlinecalculator.guru/static/images/Chemistry/Theoratical-Yield-Calculator.jpeg"
+    property="og:image" />
+<meta property="og:image:type" content="image/png" />
+<meta property="og:image:height" content="435" />
+<meta property="og:image:width" content="354" />
+<!--  FACEBOOK CONFIGURATION ENDS  -->
+<!-- TWITTER CARD CONFIGURATION STARTS  -->
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:site" content="https://twitter.com/onlinecalculator" />
+<meta name="twitter:title" content="Exponential Growth Calculator | Free Online Tool to Find Exponential Growth" />
+<meta name="twitter:description"
+    content="Free & Handy Exponential Growth Calculator is here to determine the exponential growth problems easily in split seconds." />
+<meta name="twitter:image:src"
+    content="https://onlinecalculator.guru/static/images/Chemistry/Theoratical-Yield-Calculator.jpeg" />
+<meta property="twitter:image:height" content="435" />
+<meta property="twitter:image:width" content="354" />
+<!-- TWITTER CARD CONFIGURATION ENDS  -->
+<!--  LINKEDIN CONFIGURATION STARTS-->
+<meta property='og:title' content="Exponential Growth Calculator | Free Online Tool to Find Exponential Growth" />
+<meta property='og:image'
+    content="https://onlinecalculator.guru/static/images/Chemistry/Theoratical-Yield-Calculator.jpeg" />
+<meta property='og:description' content="Exponential Growth Calculator" />
+<meta property='og:url' content="https://www.linkedin.com/in/onlinecalculator/" />
+<!-- end of linkedin CONFIGURATIONS ENDS -->
+<!-- OPEN GRAPH CONFIGURATION ENDS -->
+<!-- FAQ SCHEMA STARTS -->
+<script type="application/ld+json">{"@context": "https://schema.org","@type": "FAQPage","mainEntity": [{"@type": "Question","name":"1.
+    What is the general representation of exponential growth?
+    ","acceptedAnswer": {"@type": "Answer","text":"Exponential growth is generally represented by the formula: P(t)=P0ekt."} }, {"@type": "Question","name":"2.
+    What is the formula of exponential decay?
+    ","acceptedAnswer": {"@type": "Answer","text":"The exponential decay formula is <b>(y) = a * (1 – r) ^x</b> Where,
+    a = Initial growth (the amount before measuring decay)
+    r = Decay rate (most often represented as a percentage and expressed as a decimal)
+    x = Number of time intervals that have passed"} }, {"@type": "Question","name":"3.
+    Where can I find the free online exponential growth calculator? 
+    ","acceptedAnswer": {"@type": "Answer","text":"You can easily find the free online exponential growth calculator from our website @ statisticscalculators.net"} }]}
+</script>
+{%endblock meta %}
+
+{% block content %}
+{% if ot and r and t and x0 %}
+<script>
+    $(document).ready(function () {
+
+        $("#hassle").click();
+        });
+</script>
+
+<button type="button" hidden id="hassle" onclick="location.href='#exponential_growth_prediction'">ans1</button>
+{% endif %}
+
+
+<div class="container" style="height: auto !important;">
+    <div class="card c1">
+        <div class="card-header">
+            <h1 class="h1">Exponential Growth Calculator</h1>
+        </div>
+        <div class="card-body">
+            <p>Utilize our free online Exponential Growth Calculator and solve all complex problems on the exponential growth model effortlessly. Just enter the input values like initial amount, rate of change, elapsed time, and click on the calculate button to get the result in a matter of seconds.</p>
+            {% if messages %}
+            <ul class="messages">
+            {% for message in messages %}
+                <p {% if message.tags %} id="message_container" class="alert alert-danger text-center" {% endif %}
+                    style="color:red">{{ message }}</p>
+                {% endfor %}
+            </ul>
+            {% endif %}
+            <form action="{% url 'exponential_growth_prediction' %}" method="POST" id="my_form">
+                {% csrf_token %}
+                 </div>
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1">Initial value x₀</span>
+            </div>
+            
+           <input style="margin-top: 5px;width:100%" id="x0" name="x0" value="{{x0}}"   required="" class="form-control" type="number" step="any" required width="48"> 
+       </div>
+       <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1">Rate of change r</span>
+            </div>
+            
+           <input style="margin-top: 5px;width:100%" id="r" name="r" value="{{r}}"   required="" class="form-control" type="number" step="any" required width="48"> 
+       </div>
+       <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1">Elapsed time t</span>
+            </div>
+                        
+           <input style="margin-top: 5px;width:100%" id="t" name="t" value="{{t}}"   required="" oninput="validateNumber(this);" class="form-control" type="number" step="any" required width="48"  >
+                        <select class="select form-control" id="inlineFormInputGroup" name="ti_op">
+                            {% if ti_op == 'min' %}
+                            <option value="min" selected="selected">minute</opti-on>
+                            {% else %}
+                            <option value="min">minute</option>
+                            {% endif %}
+
+                            {% if ti_op == 'sec' %}
+                            <option value="sec" selected="selected">second</option>
+                            {% else %}
+                            <option value="sec">second</option>
+                            {% endif %}
+
+                            {% if ti_op == 'hrs' %}
+                            <option value="hrs" selected="selected">hours</option>
+                            {% else %}
+                            <option value="hrs">hours</option>
+                            {% endif %}
+
+                            {% if ti_op == 'days' %}
+                            <option value="days" selected="selected">days</option>
+                            {% else %}
+                            <option value="days">days</option>
+                            {% endif %}
+
+                            {% if ti_op == 'wks' %}
+                            <option value="wks" selected="selected">weeks</option>
+                            {% else %}
+                            <option value="wks">weeks</option>
+                            {% endif %}
+
+                            {% if ti_op == 'mon' %}
+                            <option value="mon" selected="selected">Months</option>
+                            {% else %}
+                            <option value="mon">Months</option>
+                            {% endif %}
+
+                            {% if ti_op == 'yrs' %}
+                            <option value="yrs" selected="selected">years</option>
+                            {% else %}
+                            <option value="yrs">years</option>
+                            {% endif %}
+                        </select> 
+          </div>
+    
+        <div class=" center col mt-2 ">
+            <center><button type="submit" class="btn btn-primary">Calculate</button>
+              <a href="{% url 'exponential_growth_prediction' %}" class="btn btn-warning" role="button" style="margin-top:5px;">Reset</a>      
+            </center>
+          </div>  
+          <p><strong>Exponential Growth Calculator:</strong> Confused to calculate the exponential growth of the given quantities. We have the best solution for your issue i.e., the Exponential Growth Calculator. It is a flexible, reliable, free, handy online tool that easily calculates the population growth at a stated pattern in a fraction of seconds.</p>
+<p>In addition, it also helps students to learn what is exponential growth, its formula, and detailed steps to find the exponential growth by hand. Moreover, you can check the accurate results with a detailed explanation of the solution by using our online exponential growth and decay calculator.</p> 
+</div>
+</div>
+
+</form>
+</div>
+</div>
+{% if ot and r and t and x0  %}
+<div class="container" style="height: auto !important;">
+    <div class="card" id="exponential_growth_prediction">
+        <div class="card-header">
+                <h2 class="h2">Deatiled Answer</h2>
+            </div>
+        <div class="card-body">
+            <strong>Exponential Growth Prediction:-</strong>
+            <br>
+            <p class="btn btn-outline-secondary active text-justify">Exponential Growth Prediction xt = x0 * ( 1 + r / 100)<sup>t</sup></p>
+            <br>
+            <strong>where:</strong>
+                    <ul>
+                        <li>x0 is the initial value,</li>
+                        <li>r is a Rate of change,</li>
+                        <li>t is a Elapsed time.</li>
+                    </ul>
+
+
+            <strong>Input values are:-</strong>
+            <p>x0 = {{x0}} </p>
+            <p>r = {{r}} </p>
+            <p>t = {{t}} </p>
+
+            {% if ti_op == "min" %}
+            <details class="border border-primary">
+            <summary><b>Convert the time {{t}} "{{ti_op}}" to "years"</b></summary>
+            <p>1 min = 1.90259 * 10<sup>-6</sup> year</p>
+            <p>Elapsed time = Elapsed time / 525600 yrs</p>
+            <p>Elapsed time = {{t}} / 525600 yrs</p>
+            <p>Elapsed time = {{tv}} yrs</p>
+            </details>
+
+            {% elif ti_op == "sec" %}
+            <details class="border border-primary">
+            <summary><b>Convert the time {{t}} "{{ti_op}}" to "years"</b></summary>
+            <p>1 Sec = 3.17098 * 10<sup>8</sup> year</p>
+            <p>Elapsed time = Elapsed time / 3.154 * 10<sup>7<sup> yrs</p>
+            <p>Elapsed time = {{t}} / 3.154 * 10<sup>7<sup> yrs</p>
+            <p>Elapsed time = {{tv}} yrs</p>
+            </details>
+
+            {% elif ti_op == "hrs" %}
+            <details class="border border-primary">
+            <summary><b>Convert the time {{t}} "{{ti_op}}" to "years"</b></summary>
+            <p>1 hours = 0.000114155 year</p>
+            <p>Elapsed time = Elapsed time / 8760 yrs</p>
+            <p>Elapsed time = {{t}} / 8760 yrs</p>
+            <p>Elapsed time = {{tv}} yrs</p>
+            </details>
+
+            {% elif ti_op == "days" %}
+            <details class="border border-primary">
+            <summary><b>Convert the time {{t}} "{{ti_op}}" to "years"</b></summary>
+            <p>1 days = 0.00273973 year</p>
+            <p>Elapsed time = Elapsed time / 365 yrs</p>
+            <p>Elapsed time = {{t}} / 365 yrs</p>
+            <p>Elapsed time = {{tv}} yrs</p>
+            </details>
+
+            {% elif ti_op == "wks" %}
+            <details class="border border-primary">
+            <summary><b>Convert the time {{t}} "{{ti_op}}" to "years"</b></summary>
+            <p>1 Weeks = 0.00273973 year</p>
+            <p>Elapsed time = Elapsed time / 52.143 yrs</p>
+            <p>Elapsed time = {{t}} / 52.143 yrs</p>
+            <p>Elapsed time = {{tv}} yrs</p>
+            </details>
+
+            {% elif ti_op == "mon" %}
+            <details class="border border-primary">
+            <summary><b>Convert the time {{t}} "{{ti_op}}" to "years"</b></summary>
+            <p>1 Months = 0.00273973 year</p>
+            <p>Elapsed time = Elapsed time / 10 yrs</p>
+            <p>Elapsed time = {{t}} / 10 yrs</p>
+            <p>Elapsed time = {{tv}} yrs</p>
+            </details>
+
+            {% endif %}
+            <p><b>Put values into formula</b></p>
+
+            <p>xt = {{x0}} * ( 1 + {{r}} / 100)<sup>{{tv}}</sup></p>
+
+            <b>xt = {{result}}</b>
+            <br>
+            </div>
+        </div>
+    </div>    
+    {% endif %}    
+    <div class="container" style="height: auto !important;">
+        <div class="card" id="sample_mean">
+                <div class="card-header">
+                    <h2 class="h2">What is Meant by Exponential Growth &amp; Formula?</h2>
+                </div>
+        
+            <div class="card-body">
+                <p>Exponential growth is generally used in the science fields to predict what will be the state of a quantity in the next coming time. The quantity that increases is called growth. Simply, the process that rises quantity over time is called exponential growth. Real-life examples of exponential growth include microorganisms in culture, spoilage of food, human population, etc.</p>
+            <h3>Formula of Exponential Growth</h3>
+            <p>The exponential growth formula is appiled to reveal a function of exponential growth. Following is the exponential growth formula:</p>
+            <p><strong>x(t) = x<sub>0</sub> &times; (1 + r)<sup>t</sup></strong></p>
+            <p>Where,</p>
+            <p>x(t) is the final value after time t<br />x<sub>0</sub> is the initial value<br />r is the rate of growth in percent<br />t is the total time in discrete intervals and selected time units.</p> 
+            <img src="https://drive.google.com/file/d/11cY73esRyhpFDobJ1b3hMcHNmmziW-ND/view?usp=sharing" alt='exponential-growth-formulas'>       
+        </div>
+        </div>
+    </div>                      
+
+
+<div class="container" style="height: auto !important;">
+<div class="card" id="sample_mean">
+        <div class="card-header">
+            <h2 class="h2">Step-by-step Solution on Calculating the Exponential Growth</h2>
+        </div>
+
+    <div class="card-body">
+    <p>The following steps are used to calculate the exponential growth manually:</p>
+<ul>
+<li>Firstly, find out the initial value for the quantity we want to determine the future value.</li>
+<li>Next, define the growth rate of that quantity, which might be with respect to years or months to even minutes and seconds.</li>
+<li>After these two steps, it figured out the tenure or the total period for which the quantity will stay in the system.</li>
+<li>At this point, we have to calculate the total number of periods for which growth has to be calculated and compounded.</li>
+<li>At last, by combining the initial value, the annual growth rate and the number of periods in the tenure, the exponential growth of the quantity will be solved.</li>
+</ul>
+<p><strong>Example:</strong></p>
+<p>James loans $10,000 to his friend at an annual interest rate of 4.7%, compounded yearly. Find the amount owed by his friend after 5 years by the exponential growth formula?</p>
+<p><strong>Solution:</strong></p>
+<p>Given initial amount is a = $10,000.</p>
+<p>r = rate of interest (growth) = 4.7% = 4.7/100 = 0.047.</p>
+<p>x = number of years = 5 years</p>
+<p>Apply the exponential growth formula, i.e.,</p>
+<p>f(x) = a (1 + r)^x</p>
+<p>f(x) = 10000 (1 + 0.047)^5 &asymp; 12,582 (Rounded to the nearest integer).</p>
+<p>Hence, the total amount owed after 5 years = $12,582.</p>
+<img src="{% static 'images/Statistics/exponential-growth-calculator.jpeg' %}" alt='exponential-growth-calculator'>       
+</div>
+</div>
+</div>
+<div class="container" style="height: auto !important;">
+    <div class="card" id="sample_mean">
+        <div class="card-header">
+                <h2 class="h3">FAQs on Free Online Exponential Growth Calculator with Steps</h3>
+            </div>
+        <div class="card-body">
+         <!-- Question & Answer Starts --->
+<p class="question"><strong>1. What is the general representation of exponential growth?</strong></p>
+<p class="answer">Exponential growth is generally represented by the formula: P(t)=P<sub>0</sub>e<sup>kt</sup>.</p><hr>
+<p class="question"><strong>2. What is the formula of exponential decay?</strong></p>
+<p class="answer">The exponential decay formula is <strong>(y) = a * (1 – r) ^x</strong>. Where,
+    a = Initial growth (the amount before measuring decay)
+    r = Decay rate (most often represented as a percentage and expressed as a decimal)
+    x = Number of time intervals that have passed</p><hr>  
+<p class="question"><strong>3. Where can I find the free online exponential growth calculator? </strong></p>
+<p class="answer">You can easily find the free online exponential growth calculator from our website @ <a href="https://statisticscalculators.net/">statisticscalculators.net</a></p><hr>   
+     </div>
+      </div>
+    </div>
+         
+{% endblock content %}

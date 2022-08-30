@@ -1,0 +1,209 @@
+{%extends 'base/statistics_base2.html'%}
+{%load static%}
+{%block meta%}
+<!-- HTML Defaults Broweser -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Bootstrap Stylesheet and Jquery, Google APIS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+<!-- Online Calculator Guru Site Fevicon -->
+<link rel="shortcut icon" href="https://onlinecalculator.guru/static/images/logo/Online-Calculator-Guru-Fevicon.png"
+    type="icon">
+<!-- Online Calculator Guru Project Style Sheet -->
+{%block css%}
+<link rel="stylesheet" href="https://onlinecalculator.guru/static/style.css">
+{%endblock css%}
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+<!-- Meta Title, Description and Canonical URL Starts --->
+<title>Sample Mean Calculator with Steps | Free Online tool to find Sample Mean</title>
+<meta name="description"
+    content="Want to estimate the sample mean of the given data in a fraction of seconds? Utilize this handy Sample Mean Calculator & find the sample mean" />
+<link rel="canonical" href="{{request.build_absolute_uri}}">
+<!-- Meta Title, Description and Canonical URL ENDS --->
+
+<!-- OPEN GRAPH CONFIGURATIONS STARTS -->
+<!--  FACEBOOK CONFIGURATION STARTS  -->
+<meta content="https://www.facebook.com/OnlineCalculator-Guru-131572098650589/" property="og:url" />
+<meta property="og:title" content="Sample Mean Calculator with Steps | Free Online tool to find Sample Mean" />
+<meta property="og:description" content="Sample Mean Calculator" />
+<meta content="" property="og:site_name" />
+<meta content="https://onlinecalculator.guru/static/images/Chemistry/Theoratical-Yield-Calculator.jpeg"
+    property="og:image" />
+<meta property="og:image:type" content="image/png" />
+<meta property="og:image:height" content="435" />
+<meta property="og:image:width" content="354" />
+<!--  FACEBOOK CONFIGURATION ENDS  -->
+<!-- TWITTER CARD CONFIGURATION STARTS  -->
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:site" content="https://twitter.com/onlinecalculator" />
+<meta name="twitter:title" content="Sample Mean Calculator with Steps | Free Online tool to find Sample Mean" />
+<meta name="twitter:description"
+    content="Want to estimate the sample mean of the given data in a fraction of seconds? Utilize this handy Sample Mean Calculator & find the sample mean" />
+<meta name="twitter:image:src"
+    content="https://onlinecalculator.guru/static/images/Chemistry/Theoratical-Yield-Calculator.jpeg" />
+<meta property="twitter:image:height" content="435" />
+<meta property="twitter:image:width" content="354" />
+<!-- TWITTER CARD CONFIGURATION ENDS  -->
+<!--  LINKEDIN CONFIGURATION STARTS-->
+<meta property='og:title' content="Sample Mean Calculator with Steps | Free Online tool to find Sample Meann" />
+<meta property='og:image'
+    content="https://onlinecalculator.guru/static/images/Chemistry/Theoratical-Yield-Calculator.jpeg" />
+<meta property='og:description' content="Sample Mean Calculator." />
+<meta property='og:url' content="https://www.linkedin.com/in/onlinecalculator/" />
+<!-- end of linkedin CONFIGURATIONS ENDS -->
+<!-- OPEN GRAPH CONFIGURATION ENDS -->
+<!-- FAQ SCHEMA STARTS -->
+<script type="application/ld+json">{"@context": "https://schema.org","@type": "FAQPage","mainEntity": [{"@type": "Question","name":"1.
+    What is the sample mean?
+    ","acceptedAnswer": {"@type": "Answer","text":"One of the most frequently used measures of central tendency, that summarizes the data into one average value is known as a sample mean. It gives a measure of the location of a distribution."} }, {"@type": "Question","name":"2.
+    What is the formula to calculate the sample mean?
+    ","acceptedAnswer": {"@type": "Answer","text":"Let {x1, x2, x3, . . . , xn} be the sample data. The formula that is used to compute the sample mean is given here."} }, {"@type": "Question","name":"3.
+    How do you calculate the sample mean?
+    ","acceptedAnswer": {"@type": "Answer","text":"The sample mean is calculated by diving the sum of all the values in the sample by the number of elements in the sample."} }]}</script>
+{%endblock meta %}
+
+{% block content %}
+{% if ot and x %}
+<script>
+    $(document).ready(function () {
+
+        $("#hassle").click();
+        });
+</script>
+
+<button type="button" hidden id="hassle" onclick="location.href='#sample_mean'">ans1</button>
+{% endif %}
+
+
+<div class="container" style="height: auto !important;">
+    <div class="card c1">
+        <div class="card-header">
+            <h1 class="h1">Sample Mean Calculator</h1>
+        </div>
+        <div class="card-body">
+        <p>Sample Mean Calculator is a handy &amp; user-friendly online calculator that aids students in calculating the mean of the given sample data. Enter the input data values and click on the calculate button to avail the sample mean in a few seconds.</p>
+            {% if messages %}
+            <ul class="messages">
+            {% for message in messages %}
+                <p {% if message.tags %} id="message_container" class="alert alert-danger text-center" {% endif %}
+                    style="color:red">{{ message }}</p>
+                {% endfor %}
+            </ul>
+            {% endif %}
+            <form action="{% url 'sample_mean' %}" method="POST" id="my_form">
+                {% csrf_token %}
+                 </div>
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1">x Values (separated by comma)</span>
+            </div>
+            
+           <input style="margin-top: 5px;width:100%" id="x" name="x" value="{{x}}"   required="" o class="form-control" type="text" required width="48"> 
+       </div>
+
+        <div class=" center col mt-2 ">
+            <center><button type="submit" class="btn btn-primary">Calculate</button>
+              <a href="{% url 'sample_mean' %}" class="btn btn-warning" role="button" style="margin-top:5px;">Reset</a>      
+            </center>
+          </div>
+           <p><strong>Sample Mean Calculator:</strong> The sample mean is an estimate of the population mean(mu). In other words, it is also known as empirical mean. However, the arithmetic average of the sample values is called Sample mean in statistics. Need more details about the sample mean, visit our <a href="https://statisticscalculators.net/">statisticscalculators.net</a> website and click on the sample mean calculator to estimate the mean of a sample and total numbers in a matter of seconds.</p>
+</div>
+
+</form>
+</div>
+</div>
+
+    
+            
+    
+{% if x and ot %}
+<div class="container" style="height: auto !important;">
+    <div class="card" id="sample_mean">
+        <div class="card-header">
+                <h2 class="h2">What is Meant by Sample Mean in Statistics?</h2>
+            </div>
+        <div class="card-body">
+            <div class="card-body">
+    
+                <strong>Sample Mean Deviation:-</strong>
+                <br>
+                <p class="btn btn-outline-secondary active text-justify"> Sample Mean = S / N</p>
+                <br>
+                <strong>where:</strong>
+                        <ul>
+                            <li>N is the number of elements,</li>
+                            <li>S is the sum elements of x,</li>
+                        </ul>
+    
+    
+                <strong>Input values are:-</strong>
+                <p>x = {{x}} </p>
+    
+                <p><b>Put values into formula</b></p>
+    
+                <p>Sample Mean μ= Sum of Elements / Number's of Element</p>
+                <p>Sample Mean μ= {{xsum}} / {{n}} </p>
+                <b>Sample Mean μ = {{result}}</b>
+            <p>In statistics, the sample is the subset of the population. The mean determines the population mean. The sample mean is the average of n observations from the population. Also, it is defined as the measure of the center of the data or the sum of all observations divided by the number of observations. The symbol of the sample mean is <strong>x̄</strong>.</p>
+            <h3>Sample Mean Formula</h3>
+            <p>To solve the sample mean via calculators or by hand, we simply use the standard formula ie.,</p>
+            <p style="text-align: center;"><strong>Sample mean or Average (x̄) = (x<sub>1</sub> + x<sub>2</sub> + x<sub>3</sub>...+ x<sub>n</sub>) / n</strong></p>
+            <p style="text-align: center;"><strong>x̄ = ( &Sigma; x<sub>i</sub> ) / n</strong></p>
+            <p>Where,<br />n is the total number of terms,<br />x<sub>1</sub>, x<sub>2</sub>, x<sub>3</sub>, . . . , x<sub>n</sub> (&Sigma;x<sub>i</sub> ) is the given n terms</p>  
+        <img src="https://drive.google.com/file/d/1lLqVvL8P8QqvxpyUw7IhwI_DgPaNSL0K/view?usp=sharing" alt='sample-mean-formula'>                        
+       </div>
+        </div>
+    </div>                      
+
+<div class="container" style="height: auto !important;">
+<div class="card" id="sample_mean">
+        <div class="card-header">
+            <h2 class="h2">Detailed Procedure To Calculate the Sample Mean</h2>
+        </div>
+
+        <div class="card-body">
+        <p>Finding the sample mean is so easy and simple as it adds up the number of items in a sample set and then divides that summation in the sample set. Following are the simple steps that show how to calculate the sample mean of a given data set:</p>
+            <ul>
+            <li>First, consider all the given items and sum up the sample items'</li>
+            <li>Divide the added value by the number of samples</li>
+            <li>The obtained value is the sample mean of the given data set.</li>
+            </ul>
+            <p><strong>Example:</strong></p>
+            <p>Find the sample mean of 25, 1, 7, 15, 6, 14?</p>
+            <p><strong>Solution: </strong></p>
+            <p>Given data is 25, 1, 7, 15, 6, 14</p>
+            <p>The formula to find the sample mean is (x<sub>1</sub> + x<sub>2</sub> + x<sub>3</sub>...+ x<sub>n</sub>) / n</p>
+            <p>= (25 + 1 + 7 + 15 + 6 + 14) / 6</p>
+            <p>= 68 / 6</p>
+            <p>= 11.33</p>
+            <p>Hence, the sample mean of the given data is <strong>11.33.</strong></p>  
+            <img src="{% static 'images/Statistics/sample-mean-calculator.jpeg' %}" alt='sample-mean-calculator'>
+         
+   </div>
+    </div>
+</div>
+<div class="container" style="height: auto !important;">
+    <div class="card" id="sample_mean">
+        <div class="card-header">
+                <h2 class="h3">FAQs on User-friendly Sample Mean Online Calculator</h3>
+            </div>
+        <div class="card-body">
+         <!-- Question & Answer Starts --->
+<p class="question"><strong>1. What is the sample mean?</strong></p>
+<p class="answer">One of the most frequently used measures of central tendency, that summarizes the data into one average value is known as a sample mean. It gives a measure of the location of a distribution.</p><hr>
+<p class="question"><strong>2. What is the formula to calculate the sample mean?</strong></p>
+<p class="answer">Let {x1, x2, x3, . . . , xn} be the sample data. The formula that is used to compute the sample mean is as follows:
+    <img src="https://drive.google.com/file/d/11O8_CF3RAFBQjZ-_xcqVGwEXnW4ce3Fl/view?usp=sharing" alt='formula-of-sample-mean'></p><hr>  
+<p class="question"><strong>3. How do you calculate the sample mean?</strong></p>
+<p class="answer">The sample mean is calculated by diving the sum of all the values in the sample by the number of elements in the sample.</p><hr>           
+       </div>
+        </div>
+    </div>
+    {% endif %}      
+            
+{% endblock content %}

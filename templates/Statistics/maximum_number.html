@@ -1,0 +1,306 @@
+{%extends 'base/statistics_base3.html'%}
+{%load static%}
+  {%block meta%}
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+  <link rel="shortcut icon" href="{% static 'images/logo/Online-Calculator-Guru-Fevicon.png' %}" type="icon">
+  {%block css%}
+  <link rel="stylesheet" href="{% static 'style.css' %}">
+  {%endblock%}
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <!-- META DATA STARTS --->
+    <title>Maximum Number Calculator | How to Find the Maximum Value in a Number Set?</title>
+    <meta name="description" content="Maximum Number Calculator is a easy to use online tool that displays the maximum value among a given set of numbers effortlessly and explains the process.">
+    <link rel="canonical" href="{{request.build_absolute_uri}}" >
+<!-- META DATA ENDS --->
+
+<!-- OPEN GRAPH CONFIGURATIONS STARTS -->
+    <!--  FACEBOOK CONFIGURATION STARTS  -->
+    <meta content="https://www.facebook.com/OnlineCalculator-Guru-131572098650589/" property="og:url" />
+    <meta property="og:title" content="Maximum Number Calculator | How to Find the Maximum Value in a Number Set?"/>
+    <meta property="og:description" content="Maximum Number Calculator is a easy to use online tool that displays the maximum value among a given set of numbers effortlessly and explains the process."/>
+    <meta content="" property="og:site_name" />
+    <meta  content="https://onlinecalculator.guru/static/images/Statistics/Maximum-Number-Calculator.jpeg" property="og:image" />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:height" content="435" />
+    <meta property="og:image:width" content="354" />
+    <!--  FACEBOOK CONFIGURATION ENDS  -->
+    <!-- TWITTER CARD CONFIGURATION STARTS  -->
+    <meta name="twitter:card" content="summary"/>
+    <meta name="twitter:site" content="https://twitter.com/onlinecalculator"/>
+    <meta name="twitter:title" content="Maximum Number Calculator | How to Find the Maximum Value in a Number Set?"/>
+    <meta name="twitter:description" content="Maximum Number Calculator is a easy to use online tool that displays the maximum value among a given set of numbers effortlessly and explains the process."/>
+    <meta name="twitter:image:src" content="https://onlinecalculator.guru/static/images/Statistics/Maximum-Number-Calculator.jpeg"/>
+    <meta property="twitter:image:height" content="435"/>
+    <meta property="twitter:image:width" content="354"/>
+    <!-- TWITTER CARD CONFIGURATION ENDS  -->
+    <!--  LINKEDIN CONFIGURATION STARTS-->
+    <meta property='og:title' content="Maximum Number Calculator | How to Find the Maximum Value in a Number Set?"/>
+    <meta property='og:image' content="https://onlinecalculator.guru/static/images/Statistics/Maximum-Number-Calculator.jpeg"/>
+    <meta property='og:description' content="Maximum Number Calculator is a easy to use online tool that displays the maximum value among a given set of numbers effortlessly and explains the process."/>
+    <meta property='og:url' content="https://www.linkedin.com/in/onlinecalculator/" />
+    <!-- end of linkedin CONFIGURATIONS ENDS -->
+<!-- OPEN GRAPH CONFIGURATION ENDS -->
+<!-- FAQ SCHEMA STARTS -->
+<script type="application/ld+json">{"@context": "https://schema.org","@type": "FAQPage","mainEntity": [{"@type": "Question","name":"1.
+  What is meant by Maximum Value?
+  ","acceptedAnswer": {"@type": "Answer","text":" Maximum Value is nothing but the greater value among the ordered set of numbers."}	}, {"@type": "Question","name":"2.
+  How do you find the maximum value on a calculator?
+  ","acceptedAnswer": {"@type": "Answer","text":" Simply povide the given data set in the input fields and then click on the calculate button to avail output i.e. maximum number in a matter of seconds"}	}, {"@type": "Question","name":"3.
+  What is Maximum Value among set of numbers 514, 987, 43, 94,  67, 158, 83? 
+  ","acceptedAnswer": {"@type": "Answer","text":" Maximum Value among given set of numbers 514, 987, 43, 94,  67, 158, 83 is 987."}	}, {"@type": "Question","name":"4.
+  How to find the Maximum Value among a set of numbers?
+  ","acceptedAnswer": {"@type": "Answer","text":" In Order to find the Maximum Value, firstly sort the given numbers in ascending order and the number on the last is the maximum value among given set of numbers."}	}]}</script>
+{%endblock%}
+{%block content%}
+<div class="container">
+    <div class="card c1">
+      <div class="card-header">
+  <h1 class="h1">Maximum Calculator</h1>
+  </div>
+  <div class="card-body">
+    <p>Maximum Number Calculator is a userfriendly and straightforward tool that displays the maximum number among given set of numbers instantly. You just need to give the set of numbers as input and click on the calculate button to get the maximum number.</p>
+    <br>
+    <p><b>Ex:</b> 32,45,12,17,43,68,75,8,11,29</p>
+    <form action="{% url 'maximum-number' %}" method="POST" id="my_form" name="reg_to_scientific" onsubmit="go();">
+    {% csrf_token %}
+    <div class="form-row align-items-center">
+      <div class="col-auto">
+        <label class="sr-only" for="inlineFormInputGroup">Maximum Number</label>
+        <div class="input-group mb-2">
+          <div class="input-group-prepend">
+            <div class="input-group-text"><strong>Maximum Number of: </strong></div>
+          </div>
+          <input type="text" class="form-control" name="input1" id="inlineFormInputGroup" placeholder="Enter number" value="{{inputEnter}}">
+        </div>
+      </div>
+      <div class="col-auto">
+        <button type="submit" class="btn btn-primary mb-2">Calculate</button>
+      </div>
+    </div>
+    </form>
+    {% autoescape off %}
+    {{error}}
+    {%endautoescape%}
+    <br>
+    <p><strong>Here are some samples of Maximum Number calculations.</strong></p>
+    <div class="row">
+      <div class="col-sm-4">
+        <ul>
+          
+          <li><a href="https://statisticscalculators.net/statistics/maximum-of-4-7-2-3/">Maximum of 4,7,2,3</a></li>
+          
+          <li><a href="https://statisticscalculators.net/statistics/maximum-of-4-9-3-7/">Maximum of 4,9,3,7</a></li>
+          
+          <li><a href="https://statisticscalculators.net/statistics/maximum-of-3-7-5-9/">Maximum of 3,7,5,9</a></li>
+          
+          <li><a href="https://statisticscalculators.net/statistics/maximum-of-7-6-8-3-4/">Maximum of 7,6,8,3,4</a></li>
+          
+          <li><a href="https://statisticscalculators.net/statistics/maximum-of-3-4-7-6-8/">Maximum of 3,4,7,6,8</a></li>
+          
+          <li><a href="https://statisticscalculators.net/statistics/maximum-of-5-8-7-3-2/">Maximum of 5,8,7,3,2</a></li>
+          
+          <li><a href="https://statisticscalculators.net/statistics/maximum-of-6-2-7-8-4-9/">Maximum of 6,2,7,8,4,9</a></li>
+          
+          <li><a href="https://statisticscalculators.net/statistics/maximum-of-9-4-6-8-7-3/">Maximum of 9,4,6,8,7,3</a></li>
+          
+          <li><a href="https://statisticscalculators.net/statistics/maximum-of-8-7-3-4-6-5/">Maximum of 8,7,3,4,6,5</a></li>
+          
+   
+        </ul>                    
+      </div>
+      <div class="col-sm-4">
+        <ul>
+          
+          <li><a href="https://statisticscalculators.net/statistics/maximum-of-99-46-19-74/">Maximum of 99,46,19,74</a></li>
+          
+          <li><a href="https://statisticscalculators.net/statistics/maximum-of-78-39-58-74/">Maximum of 78,39,58,74</a></li>
+          
+          <li><a href="https://statisticscalculators.net/statistics/maximum-of-93-67-33-96/">Maximum of 93,67,33,96</a></li>
+          
+          <li><a href="https://statisticscalculators.net/statistics/maximum-of-41-96-55-82-33/">Maximum of 41,96,55,82,33</a></li>
+          
+          <li><a href="https://statisticscalculators.net/statistics/maximum-of-30-69-79-65-52/">Maximum of 30,69,79,65,52</a></li>
+          
+          <li><a href="https://statisticscalculators.net/statistics/maximum-of-21-25-75-39-82/">Maximum of 21,25,75,39,82</a></li>
+          
+          <li><a href="https://statisticscalculators.net/statistics/maximum-of-55-67-98-62-15-24/">Maximum of 55,67,98,62,15,24</a></li>
+          
+          <li><a href="https://statisticscalculators.net/statistics/maximum-of-88-13-89-96-31-48/">Maximum of 88,13,89,96,31,48</a></li>
+          
+          <li><a href="https://statisticscalculators.net/statistics/maximum-of-22-37-93-76-90-41/">Maximum of 22,37,93,76,90,41</a></li>
+          
+        </ul>                 
+      </div>
+      <div class="col-sm-4">
+      <ul>
+          
+          <li><a href="https://statisticscalculators.net/statistics/maximum-of-92-82-32-51/">Maximum of 92,82,32,51</a></li>
+          
+          <li><a href="https://statisticscalculators.net/statistics/maximum-of-34-84-23-65/">Maximum of 34,84,23,65</a></li>
+          
+          <li><a href="https://statisticscalculators.net/statistics/maximum-of-18-23-28-91/">Maximum of 18,23,28,91</a></li>
+          
+          <li><a href="https://statisticscalculators.net/statistics/maximum-of-53-81-13-55-13/">Maximum of 53,81,13,55,13</a></li>
+          
+          <li><a href="https://statisticscalculators.net/statistics/maximum-of-47-96-19-44-41/">Maximum of 47,96,19,44,41</a></li>
+          
+          <li><a href="https://statisticscalculators.net/statistics/maximum-of-69-68-65-28-78/">Maximum of 69,68,65,28,78</a></li>
+          
+          <li><a href="https://statisticscalculators.net/statistics/maximum-of-66-91-55-89-99-86/">Maximum of 66,91,55,89,99,86</a></li>
+          
+          <li><a href="https://statisticscalculators.net/statistics/maximum-of-13-96-68-78-76-85/">Maximum of 13,96,68,78,76,85</a></li>
+          
+          <li><a href="https://statisticscalculators.net/statistics/maximum-of-39-73-11-36-28-27/">Maximum of 39,73,11,36,28,27</a></li>
+             
+      </ul>			
+      </div>
+    </div>
+    <p>Related Calculators:</p>
+                    <div class="row">
+                      <div class="col-sm-5">
+                  <ul>
+                    <li><a href="/statistics/minimum-calculator/">Minimum Calculator</a></li>
+                    <li><a href="/statistics/mean-calculator/">Mean Calculator</a></li>
+                    <li><a href="/statistics/median-calculator/">Median Calculator</a></li>
+                    <li><a href="/statistics/mode-calculator/">Mode Calculator</a></li>
+                    <li><a href="/statistics/first-quartile-calculator/">First Quartile Calculator</a></li>
+                    <li><a href="/statistics/third-quartile-calculator/">Third Quartile Calculator</a></li>
+                  </ul>
+                </div>
+                </div>
+    <p><strong>Maximum Number Calculator:</strong> Are you working towards finding the maximum number among given data set? Then, you have arrived at the right place where you will find information on what is meant by maximum, how to find maxima among a given set of numbers, maximum number formula, etc. Look no further lets dive in and learn how to find maxima of a number with the solved examples provided.</p>
+</div></div>
+  <div class="card">
+    <div class="card-header"><h2 class="h2">What is meant by Maximum Number or Maxima?</h2></div>
+      <div class="card-body">
+        <p>The Largest Number among a given set of data is known as Maximum Number. We use the symbol Max to denote the Maximum Number and the plural form is Maxima. For Example if a data includes set of numbers 4, 16, 78, 91 then the maximum number among the list is 91.</p>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-header"><h2 class="h2">Maximum Number Formula</h3></div>
+        <div class="card-body">
+          <p>Maximum is the largest value in a sample data set. On arranging the data set from lowest to highest we have x<sub>1</sub> ≤ x<sub>2</sub> ≤ x<sub>3</sub> ≤ ... ≤ x<sub>n</sub> where x<sub>n</sub> is the large value.  The formula to determine the maximum number is given by the expression</p> 
+        <img src="https://drive.google.com/file/d/1M-ATerbD_bBX9Tj2EcTTQ_01JHO_kzWV/view?usp=sharing" alt="Maximum Formula">
+      </div>
+  </div>
+<div class="card">
+  <div class="card-header"><h3 class="h3">How do you find the Maximum Value of a Number Set?</h3></div>
+    <div class="card-body">
+      <p>Go through the steps mentioned below to determine the maximum number among a given data set of numbers manually. They are as below </p>
+      <ol>
+        <li>Initial step is to sort the given data set from low to high i.e. in ascending order.</li>
+        <li>As you have sorted it is easier to find the largest value from the set of numbers.</li>
+        <li>The last value in the data set is nothing but the maximum number of the given data set.</li>
+      </ol>
+      <p>To have a clear idea on the concept and maximum number calculations we have outlined few examples below. Check out them and resolve all your doubts.</p>
+      <p><strong>Example 1:</strong></p>
+      <p>Find out the maximum value among the set of numbers: 52, 25, 108, 39, 452</p>
+      <p><strong>Solution:</strong></p>
+      <p>Given numbers are 52, 25, 108, 39, 452</p>
+      <p>Initially, sort the numbers and arrange the given numbers in ascending order</p>
+      <p>Arranging given set of numbers in ascending order we have 25, 39, 52, 108, 452</p>
+      <p>From the numbers sorted we can see the maximum number is 452.</p>
+      <img src="{% static 'images/Statistics/maximum-number-calculator.jpeg' %}" alt='Maximum Number Calculator'>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-header">
+          <h2 class="h2">Maximum Number Example Calculations</h2>
+      </div>
+    <div class="card-body">
+      <div class="row">
+        <div class="col-sm-6">
+          <ul>
+              
+              <li><a href="https://statisticscalculators.net/statistics/maximum-of-121-725-833-806/">Maximum of 121,725,833,806</a></li>
+              
+              <li><a href="https://statisticscalculators.net/statistics/maximum-of-660-194-424-879/">Maximum of 660,194,424,879</a></li>
+              
+              <li><a href="https://statisticscalculators.net/statistics/maximum-of-452-986-770-280-184/">Maximum of 452,986,770,280,184</a></li>
+              
+              <li><a href="https://statisticscalculators.net/statistics/maximum-of-621-681-879-659-467/">Maximum of 621,681,879,659,467</a></li>
+              
+              <li><a href="https://statisticscalculators.net/statistics/maximum-of-841-598-118-138-849-271/">Maximum of 841,598,118,138,849,271</a></li>
+              
+              <li><a href="https://statisticscalculators.net/statistics/maximum-of-715-139-591-447-922-578/">Maximum of 715,139,591,447,922,578</a></li>
+                 
+          </ul>			
+          </div>
+          <div class="col-sm-6">
+              <ul>
+                  
+                  <li><a href="https://statisticscalculators.net/statistics/maximum-of-6764-1965-4261-9591/">Maximum of 6764,1965,4261,9591</a></li>
+                  
+                  <li><a href="https://statisticscalculators.net/statistics/maximum-of-9388-6597-2074-3860/">Maximum of 9388,6597,2074,3860</a></li>
+                  
+                  <li><a href="https://statisticscalculators.net/statistics/maximum-of-9339-4556-3375-1167-6434/">Maximum of 9339,4556,3375,1167,6434</a></li>
+                  
+                  <li><a href="https://statisticscalculators.net/statistics/maximum-of-4155-2477-3815-9742-9409/">Maximum of 4155,2477,3815,9742,9409</a></li>
+                  
+                  <li><a href="https://statisticscalculators.net/statistics/maximum-of-4919-5546-3499-4781-5469-5678/">Maximum of 4919,5546,3499,4781,5469,5678</a></li>
+                  
+                  <li><a href="https://statisticscalculators.net/statistics/maximum-of-4970-8492-4792-1405-3220-8310/">Maximum of 4970,8492,4792,1405,3220,8310</a></li>
+                  
+              </ul>
+          </div>
+          <div class="col-sm-6">
+              <ul>
+                  
+                  <li><a href="https://statisticscalculators.net/statistics/maximum-of-60068-61931-92533-76643/">Maximum of 60068,61931,92533,76643</a></li>
+                  
+                  <li><a href="https://statisticscalculators.net/statistics/maximum-of-30073-57176-20135-87753/">Maximum of 30073,57176,20135,87753</a></li>
+                  
+                  <li><a href="https://statisticscalculators.net/statistics/maximum-of-42394-74551-87818-64650-76746/">Maximum of 42394,74551,87818,64650,76746</a></li>
+                  
+                  <li><a href="https://statisticscalculators.net/statistics/maximum-of-39279-77424-49986-62855-44531/">Maximum of 39279,77424,49986,62855,44531</a></li>
+                  
+                  <li><a href="https://statisticscalculators.net/statistics/maximum-of-69689-60135-89595-58176-82922-66563/">Maximum of 69689,60135,89595,58176,82922,66563</a></li>
+                  
+                  <li><a href="https://statisticscalculators.net/statistics/maximum-of-31989-47414-53790-24843-77313-53358/">Maximum of 31989,47414,53790,24843,77313,53358</a></li>
+                  
+              </ul>
+          </div>
+          <div class="col-sm-6"> 
+              <ul>
+                  
+                  <li><a href="https://statisticscalculators.net/statistics/maximum-of-778869-542512-359554/">Maximum of 778869,542512,359554</a></li>
+                  
+                  <li><a href="https://statisticscalculators.net/statistics/maximum-of-722707-228096-675302/">Maximum of 722707,228096,675302</a></li>
+                  
+                  <li><a href="https://statisticscalculators.net/statistics/maximum-of-406721-275205-919994-870963/">Maximum of 406721,275205,919994,870963</a></li>
+                  
+                  <li><a href="https://statisticscalculators.net/statistics/maximum-of-177926-687724-711819-946506/">Maximum of 177926,687724,711819,946506</a></li>
+                  
+                  <li><a href="https://statisticscalculators.net/statistics/maximum-of-286458-290076-271377-470928-336314/">Maximum of 286458,290076,271377,470928,336314</a></li>
+                  
+                  <li><a href="https://statisticscalculators.net/statistics/maximum-of-709487-733550-410013-989307-678901/">Maximum of 709487,733550,410013,989307,678901</a></li>
+                  
+              </ul>
+          </div>
+      </div>
+      </div>
+  </div>
+  <div class="card">
+      <div class="card-header">
+          <h3 class="h3">FAQs on Maximum Value Calculator</h3>
+      </div>
+      <div class="card-body">
+          <!-- Question & Answer Starts --->
+         <p class="question"><strong>1. What is meant by Maximum Value?</strong></p>
+         <p class="answer">Maximum Value is nothing but the greater value among the ordered set of numbers.</p><hr>
+         <p class="question"><strong>2. How do you find the maximum value on a calculator?</strong></p>
+         <p class="answer">Simply povide the given data set in the input fields and then click on the calculate button to avail output i.e. maximum number in a matter of seconds.</p><hr>
+         <p class="question"><strong>3. What is Maximum Value among set of numbers 514, 987, 43, 94,  67, 158, 83? </strong></p>
+         <p class="answer">Maximum Value among given set of numbers 514, 987, 43, 94,  67, 158, 83 is 987.</p><hr>
+         <p class="question"><strong>4. How to find the Maximum Value among a set of numbers?</strong>></p>
+         <p class="answer">In Order to find the Maximum Value, firstly sort the given numbers in ascending order and the number on the last is the maximum value among given set of numbers.</p>
+      </div>
+   </div>
+</div>
+{%endblock%}

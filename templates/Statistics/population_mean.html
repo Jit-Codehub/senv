@@ -1,0 +1,209 @@
+{%extends 'base/statistics_base2.html'%}
+{%load static%}
+{%block meta%}
+<!-- HTML Defaults Broweser -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Bootstrap Stylesheet and Jquery, Google APIS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+<!-- Online Calculator Guru Site Fevicon -->
+<link rel="shortcut icon" href="https://onlinecalculator.guru/static/images/logo/Online-Calculator-Guru-Fevicon.png"
+    type="icon">
+<!-- Online Calculator Guru Project Style Sheet -->
+{%block css%}
+<link rel="stylesheet" href="https://onlinecalculator.guru/static/style.css">
+{%endblock css%}
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+<!-- Meta Title, Description and Canonical URL Starts --->
+<title>Online Population Mean Calculator | How do you find the population mean?</title>
+<meta name="description"
+    content="Population Mean Calculator makes your calculations easier just by taking a set of data values as inputs. It finds the results in less time. " />
+<link rel="canonical" href="{{request.build_absolute_uri}}">
+<!-- Meta Title, Description and Canonical URL ENDS --->
+
+<!-- OPEN GRAPH CONFIGURATIONS STARTS -->
+<!--  FACEBOOK CONFIGURATION STARTS  -->
+<meta content="https://www.facebook.com/OnlineCalculator-Guru-131572098650589/" property="og:url" />
+<meta property="og:title" content="Angular Resolution Calculator | Free Calculator to find Angular Resolution" />
+<meta property="og:description" content="Angular Resolution Calculator" />
+<meta content="" property="og:site_name" />
+<meta content="https://onlinecalculator.guru/static/images/Chemistry/Theoratical-Yield-Calculator.jpeg"
+    property="og:image" />
+<meta property="og:image:type" content="image/png" />
+<meta property="og:image:height" content="435" />
+<meta property="og:image:width" content="354" />
+<!--  FACEBOOK CONFIGURATION ENDS  -->
+<!-- TWITTER CARD CONFIGURATION STARTS  -->
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:site" content="https://twitter.com/onlinecalculator" />
+<meta name="twitter:title" content="Angular Resolution Calculator | Free Calculator to find Angular Resolution" />
+<meta name="twitter:description"
+    content="Angular Resolution Calculator makes it easy for you to determine the theoretical yield value of the chemical reaction in fraction of seconds with steps." />
+<meta name="twitter:image:src"
+    content="https://onlinecalculator.guru/static/images/Chemistry/Theoratical-Yield-Calculator.jpeg" />
+<meta property="twitter:image:height" content="435" />
+<meta property="twitter:image:width" content="354" />
+<!-- TWITTER CARD CONFIGURATION ENDS  -->
+<!--  LINKEDIN CONFIGURATION STARTS-->
+<meta property='og:title' content="Angular Resolution Calculator | Free Calculator to find Angular Resolution" />
+<meta property='og:image'
+    content="https://onlinecalculator.guru/static/images/Chemistry/Theoratical-Yield-Calculator.jpeg" />
+<meta property='og:description' content="Angular Resolution Calculator." />
+<meta property='og:url' content="https://www.linkedin.com/in/onlinecalculator/" />
+<!-- end of linkedin CONFIGURATIONS ENDS -->
+<!-- OPEN GRAPH CONFIGURATION ENDS -->
+<!-- FAQ SCHEMA STARTS -->
+<script type="application/ld+json">{"@context": "https://schema.org","@type": "FAQPage","mainEntity": [{"@type": "Question","name":"1.
+    How do you calculate the population mean?
+    ","acceptedAnswer": {"@type": "Answer","text":"In order to calculate the population mean, you have to sum up all the given data values and then divide the result by the total number of values count. Thus, you can get the result of the population mean of the given data set."} }, {"@type": "Question","name":"2.
+    What does population mean called?
+    ","acceptedAnswer": {"@type": "Answer","text":"The Population Mean is called the actual mean of the entire population of the given data items. "} }, {"@type": "Question","name":"3.
+    Is the sample mean equal to the population mean?
+    ","acceptedAnswer": {"@type": "Answer","text":"The sampling distribution of the mean will consistently be the same as the mean of the original non-normal distribution so in short, the sample mean is similar to the population mean."} }]}</script>
+{%endblock%}
+{% block content %}
+{% if ot and x %}
+<script>
+    $(document).ready(function () {
+
+        $("#hassle").click();
+        });
+</script>
+<button type="button" hidden id="hassle" onclick="location.href='#population_mean'">ans1</button>
+{% endif %}
+<div class="container" style="height: auto !important;">
+    <div class="card c1">
+        <div class="card-header">
+            <h1 class="h1">Population Mean Calculator</h1>
+        </div>
+        <div class="card-body">
+            <p>Population Mean Calculator is a free online tool that determines the sum of values by a total number of values in just a few seconds. Enter the data set in the input field and click on the calculate button to get the accurate results of the population mean of given data values.</p>            {% if messages %}
+            <ul class="messages">
+            {% for message in messages %}
+                <p {% if message.tags %} id="message_container" class="alert alert-danger text-center" {% endif %}
+                    style="color:red">{{ message }}</p>
+                {% endfor %}
+            </ul>
+            {% endif %}
+            <form action="{% url 'population_mean' %}" method="POST" id="my_form">
+                {% csrf_token %}
+                 </div>
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1">x Values (separated by comma)</span>
+            </div>
+            
+           <input style="margin-top: 5px;width:100%" id="x" name="x" value="{{x}}"   required="" o class="form-control" type="text" required width="48"> 
+       </div>
+          <div class=" center col mt-2 ">
+            <center><button type="submit" class="btn btn-primary">Calculate</button>
+              <a href="{% url 'population_mean' %}" class="btn btn-warning" role="button" style="margin-top:5px;">Reset</a>      
+            </center>
+            <p><strong>Population Mean Calculator:</strong> Explore this page and learn what is the population mean, the formula to calculate the population mean, and steps to solve the problems manually with ease. Make use of our free online and user-friendly population mean calculator and estimate the population mean of the given statistical data easily at a faster pace.</p>        
+        </div>
+    
+</form>
+</div>
+{% if x and ot %}
+
+<div class="card" id="population_mean">
+        <div class="card-header">
+            <h2 class="h2">Steps to Find Population Mean:</h2>
+        </div>
+
+        <div class="card-body">
+
+            <strong>Population Mean Deviation:-</strong>
+            <br>
+            <p class="btn btn-outline-secondary active text-justify"> Population Mean = S / N</p>
+            <br>
+            <strong>where:</strong>
+                    <ul>
+                        <li>N is the number of elements,</li>
+                        <li>S is the sum elements of x,</li>
+                    </ul>
+
+
+            <strong>Input values are:-</strong>
+            <p>x = {{x}} </p>
+
+            <p><b>Put values into formula</b></p>
+
+            <p>Population Mean μ= Sum of Elements / Number's of Element</p>
+            <p>Population Mean μ= {{xsum}} / {{n}} </p>
+            <b>Population Mean μ = {{result}}</b>
+
+   </div>
+</div>
+   {% endif %}
+<div class="card">
+    <div class="card-header">
+    <h3 class="h2">What is the Population Mean in Statistics?</h2>
+    </div>
+    <div class="card-body">
+        <p>In statistics, Population Mean is known as an average of a group characteristic. The pool of persons from which a statistical sample is drawn for a study is called a population in statistics. The symbol of the Population Mean is<strong> &mu;</strong>.</p>
+        <p>For instance, In a classroom of 100 students, the average GPA is 2.5.</p>
+        <h3>Population Mean Formula</h3>
+        <p>The formula to calculate the population mean deviation for the given data set is as follows:</p>
+        <p>Population mean (&mu;) = Sum of the all Items/Total Number of Items</p>
+        <p><strong>Population mean (&mu;) = S/N</strong></p>
+        <p>where,</p>
+        <p>&mu; is the population mean</p>
+        <p>S is Sum of the elements/items</p>
+        <p>N is the total number of elements/items</p>  
+        <img src="https://drive.google.com/file/d/15b0O4JWC92YLQtlDvbjQjNjCa1hWdCTe/view?usp=sharing" alt='population-mean-formula'>               
+    </div>
+</div>
+<div class="card">
+<div class="card-header">
+    <h2 class="h2">Detailed Steps on Estimation of the Population Mean PDF</h2>
+</div>
+<div class="card-body">
+    <p>The simple steps that you should follow carefully to solve the population mean are listed below:</p>
+    <ul>
+    <li>Firstly, memorize the formula of the population mean deviation.</li>
+    <li>Now, calculate the sum of each and every data item.</li>
+    <li>Finally, divide the result by the total number of items to get the population mean value.</li>
+    </ul>
+    <p>Have a look at the below-solved example on how to find the population mean of the given data set and practice well efficiently &amp; clear all your doubts.</p>
+    <p><strong>Example:</strong></p>
+    <p>Find the population mean of the following data set: 13, 28, 49, 68, 95</p>
+    <p><strong>Solution:</strong></p>
+    <p>Given data set is 13, 28, 49, 68, 95</p>
+    <p>Now, find the sum of the given data values ie., S = 13+28+49+68+95</p>
+    <p>S = 253</p>
+    <p>Later, find the total number of values given ie., N = 5</p>
+    <p>Apply the population mean formula i.e, <strong>(&mu;) = S/N</strong></p>
+    <p>&mu; = 253/5</p>
+    <p>&mu; = 50.6</p>
+    <p>Hence, the population mean of the 13, 28, 49, 68, 95 data set is<strong> 50.6</strong></p>  
+<p>Let's visit our reliable and trusted <a href="https://statisticscalculators.net/">statisticscalculators.net</a> website and grab the opportunity of utilizing all statistics consepts related free online calculators at one roof and improve your skills.</p>
+<img src="{% static 'images/Statistics/population-mean-calculator.jpeg' %}" alt='population-mean-calculator'>               
+</div>
+</div>
+<div class="card">
+  <div class="card-header">
+  <h3 class="h3">FAQs on Handy Online Population Mean Calculator Statistics</h3>
+  </div>
+  <div class="card-body">
+  <!-- Question & Answer Starts --->
+<p class="question"><strong>1. How do you calculate the population mean?</strong></p>
+ <p class="answer">In order to calculate the population mean, you have to sum up all the given data values and then divide the result by the total number of values count. Thus, you can get the result of the population mean of the given data set.</p><hr>
+ <p class="question"><strong>2. What does population mean called?</strong></p>
+ <p class="answer">The Population Mean is called the actual mean of the entire population of the given data items.</p><hr>  
+<p class="question"><strong>3. Is the sample mean equal to the population mean?</strong></p>
+<p class="answer">The sampling distribution of the mean will consistently be the same as the mean of the original non-normal distribution so in short, the sample mean is similar to the population mean.</p><hr>
+</div>
+</div>
+</div>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    document.getElementById('ddd').click();
+  });
+</script>
+{%endblock%}

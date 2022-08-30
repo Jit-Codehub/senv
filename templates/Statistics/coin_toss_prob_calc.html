@@ -1,0 +1,203 @@
+{%extends 'base/statistics_base1.html'%}
+{%load static%}
+  {%block meta%}
+   <!-- HTML Defaults Broweser -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Bootstrap Stylesheet and Jquery, Google APIS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <!-- Online Calculator Guru Site Fevicon -->
+    <link rel="shortcut icon" href="https://onlinecalculator.guru/static/images/logo/Online-Calculator-Guru-Fevicon.png" type="icon">
+    <!-- Online Calculator Guru Project Style Sheet -->
+    {%block css%}
+    <link rel="stylesheet" href="/static/style.css">
+    {%endblock%}
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <!-- Meta Title, Description and Canonical URL Starts --->
+    <title>Coin Flip Probability Calculator | How to find Probability of Tossing Coins?</title>
+    <meta name="description" content="Coin Flip or Coin Toss Probability Calculator is a free tool that determines the probability of getting heads/ tails in a matter of seconds."/>
+    <link rel="canonical" href="{{request.build_absolute_uri}}">
+    <!-- Meta Title, Description and Canonical URL ENDS --->
+ 
+    <!-- OPEN GRAPH CONFIGURATIONS STARTS -->
+	<!--  FACEBOOK CONFIGURATION STARTS  -->
+        <meta content="https://www.facebook.com/OnlineCalculator-Guru-131572098650589/" property="og:url" />
+        <meta property="og:title" content="Coin Flip Probability Calculator | How to find Probability of Tossing Coins?"/>
+        <meta property="og:description" content="Coin Flip or Coin Toss Probability Calculator is a free tool that determines the probability of getting heads/ tails in a matter of seconds."/>
+        <meta content="" property="og:site_name" />
+        <meta  content="https://onlinecalculator.guru/static/images/Chemistry/coin-toss-probability-calculator.jpeg" property="og:image" />
+        <meta property="og:image:type" content="image/png" />
+        <meta property="og:image:height" content="435" />
+        <meta property="og:image:width" content="354" />
+        <!--  FACEBOOK CONFIGURATION ENDS  -->
+        <!-- TWITTER CARD CONFIGURATION STARTS  -->
+        <meta name="twitter:card" content="summary"/>
+        <meta name="twitter:site" content="https://twitter.com/onlinecalculator"/>
+        <meta name="twitter:title" content="Coin Flip Probability Calculator | How to find Probability of Tossing Coins?"/>
+        <meta name="twitter:description" content="Coin Flip or Coin Toss Probability Calculator is a free tool that determines the probability of getting heads/ tails in a matter of seconds."/>
+        <meta name="twitter:image:src" content="https://onlinecalculator.guru/static/images/Chemistry/coin-toss-probability-calculator.jpeg"/>
+        <meta property="twitter:image:height" content="435"/>
+        <meta property="twitter:image:width" content="354"/>
+        <!-- TWITTER CARD CONFIGURATION ENDS  -->
+        <!--  LINKEDIN CONFIGURATION STARTS-->
+        <meta property='og:title' content="Coin Flip Probability Calculator | How to find Probability of Tossing Coins?"/>
+        <meta property='og:image' content="https://onlinecalculator.guru/static/images/Chemistry/coin-toss-probability-calculator.jpeg"/>
+        <meta property='og:description' content="Coin Flip or Coin Toss Probability Calculator is a free tool that determines the probability of getting heads/ tails in a matter of seconds."/>
+        <meta property='og:url' content="https://www.linkedin.com/in/onlinecalculator/" />
+        <!-- end of linkedin CONFIGURATIONS ENDS -->
+    <!-- OPEN GRAPH CONFIGURATION ENDS -->
+    <!-- FAQ SCHEMA STARTS -->
+    <script type="application/ld+json">{"@context": "https://schema.org","@type": "FAQPage","mainEntity": [{"@type": "Question","name":"1. 
+      How do you find the Probability of a Coin Toss?
+      ","acceptedAnswer": {"@type": "Answer","text":" You can find the probability of coin toss using the formula Probability = No. of Favorable Outcomes/ Total Number of Outcomes"}	}, {"@type": "Question","name":"2. 
+      What are different types of probability?
+      ","acceptedAnswer": {"@type": "Answer","text":" The different types of probability are Unconditional probability, Experimental probability, Theoretical probability, Classical probability, Conditional probability, and Markov Chain probability."}	}, {"@type": "Question","name":"3. 
+      What is the range of probability value?
+      ","acceptedAnswer": {"@type": "Answer","text":" The range of probability value is between 0 to 1."}	}, {"@type": "Question","name":"4. 
+      What is the probability of getting a head when a coin is tossed?
+      ","acceptedAnswer": {"@type": "Answer","text":" The probability of getting a head when a coin is tossed is 1/2."}	}]}</script>
+    {%endblock%}
+    {%block content%}
+
+    <div class="container">
+      <div class="card c1">
+        <div class="card-header">
+      <h1 class="h1">Coin Toss Probability Calculator</h1>
+      </div>
+      <div class="card-body">
+      {%if go_tag%}
+      <a href="{{go_tag}}" id="ddd"></a>
+      {%endif%}
+    <p>Make use of our free Coin Toss Probability Calculator when you want to know the probability of a coin toss. This handy calculator tool gives the results in fraction of seconds by taking the input question. Simply enter your input in the fields provision and press the calculate button to get the output within no time.</p>
+    <div class="box" id="coin_toss">
+      <div style="text-align: center;"><h5><strong>Coin Toss Probability</strong></h5></div>
+      <form method="POST">{% csrf_token %}
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon1">No. of Tosses</span>
+          </div>
+          {%if input1%}
+            <input style="margin-top: 5px;" id="input1" name="input1" class="form-control" type="text" required width="48"  value="{{input1}}">
+          {%else%}
+            <input style="margin-top: 5px;" id="input1" name="input1" class="form-control" type="text" required width="48"  value="18">
+          {%endif%}
+        </div>
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon1">Heads/Tails needed</span>
+          </div>
+          {%if input2%}
+            <input style="margin-top: 5px;" id="input2" name="input2" class="form-control" type="text" required width="48"  value="{{input2}}">
+          {%else%}
+            <input style="margin-top: 5px;" id="input2" name="input2" class="form-control" type="text" required width="48"  value="11">
+          {%endif%}
+        </div>
+        <div class="col mt-2 ">
+          <td>&nbsp;&nbsp;&nbsp;&nbsp;	<input class="btn btn-secondary btn-mr-3" type="button" onclick="myFunction()" value="Clear"></td>
+          <td></td>	
+          <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+          <td><button type="submit" class="btn btn-primary mb-2">Calculate</button>  </td>
+          </div>
+      </form>
+      <div id="answer1">
+      {%if detailStep%}
+        <hr>
+        <p><strong>Answer:</strong></p>
+        <div style="text-align: center;">
+        {% autoescape off %}
+        {{detailStep}}
+        {%endautoescape%}
+        </div>
+        <hr>
+        {%endif%}
+      </div>
+      <script>
+        function myFunction() {
+          document.getElementById("input1").value="";
+          document.getElementById("input2").value="";
+          $("#answer1").html("");
+        }
+        </script>
+        </div>
+      {% autoescape off %}
+        {% if messages %}
+          {% for message in messages %}
+            <div class="row">
+              <div class="col-md-6">
+                <p class="alert alert-danger">{{message}}</p>
+              </div>
+            </div>
+          {% endfor %}
+        {% endif %}
+      {%endautoescape%}
+        <p><strong>Coin Toss Probability Calculator: </strong>If you are not sure about how to find the probability of getting your output when flipping a coin and you might be looking for some help? Coin Flip Probability Calculator provided here will help you in getting the probability of tossing a coin as early as possible. Take the help of an online free calculator to determine the coin toss probability simply instead of searching to find this everywhere. For your convenience, we have also given the easy procedure to get the coin toss probability with an example.</p>
+    </div></div>
+        <div class="card">
+              <div class="card-header">
+                <h2 class="h2">How to find Coin Toss Probability?</h2>
+              </div>
+              <div class="card-body">
+                <p>Probability is nothing but the ratio of favorable outcomes to entire number of outcomes. This formula applies to coin toss probability too. Since the number of outcomes of coin toss are independent, total number of outcomes are equal to total number of trails times the number of possible outcomes in a single trial i.e. 2 and number of favorable outcomes is equal to number of possible combinations. </p>  
+                <p>No.of Favorable Outcomes = nC<sub>h</sub>/2<sup>n</sup></p>
+                <p><strong>Probability = Number of favorable outcomes/Total number of outcomes</strong></p>
+              <p>In the above formula n is the total no. of trails and h is the number of heads in the number of trails.</p>
+              </div>
+            </div>
+            <br><div class="card">
+            <div class="card-header">
+              <h3 class="h3">Solved Examples on finding Coin Toss Probability</h3>
+            </div>
+            <div class="card-body">
+              <p><strong>Question 1:</strong> What will be the probability of getting 3 heads in 5 coin tosses? </p>
+              <p><strong>Solution:</strong></p>
+              <p>Given Number of trials (n) = 3</p>
+              <p>Total possible outcomes = 2<sup>n</sup> = 2 <sup>5</sup> = 32</p>
+              <p>Number of heads (h) = 3</p>
+              <p>We know the formula to find favorable outcomes is nC<sub>h</sub>/2<sup>n</sup> </p>
+              <p>Substituting the given inputs in the above formula we have coin toss probability = 5C<sub>3</sub> = 10</p>
+              <p>Now probability = 10/32</p>
+              <p>Probability = 0.3125</p>          
+              <p>Therefore probability of geeting 3 heads in 5 coin tosses is 0.3125</p>
+              <p><strong>Question 2:</strong> On tossing a coin thrice, what is the probability of getting exactly only one head? </p>
+              <p><strong>Solution:</strong></p>
+              <p>On tossing a coin thrice, the possible outcomes are {HHH, HHT, HTT, TTT, THH, HTH, TTH, THT}
+              <p>Therefore, the total number of outcomes is 8</p>
+              <p>Getting only one head includes {HTT, TTH, THT}</p>
+              <p>Therefore, the number of favorable outcomes is 3</p>
+              <p>Hence, using the coin toss probability formula, the probability of getting exactly one head is 3/8</p> 
+            </div>
+        </div>
+        <br><div class="card">
+          <div class="card-header">
+              <h3 class="h3">How to use the Coin Toss Probability Calculator?</h3>
+          </div>
+          <div class="card-body">
+            <p>Follow the simple steps listed to use the coin toss probability calculator and they are mentioned below. They are as follows</p>
+            <ul><li>Firstly, enter the desired heads/tails needed, no. of coin tosses in the input fields of the calculator.</li>
+            <li>Click on the calculate button to obtain the probability.</li>
+            <li>Tap on the reset button to avail the coin toss probability in a matter of seconds. </li></ul>
+          </div>
+        </div> 
+        <br><div class="card">
+            <div class="card-header">
+                 <h3 class="h3">FAQs on Coin Toss Probability</h3>
+            </div>
+            <div class="card-body"> 
+                <!-- Question & Answer Starts --->
+                <p class="question"><strong>1. How do you find the Probability of a Coin Toss?</strong></p>
+                <p class="answer">You can find the probability of coin toss using the formula Probability = No. of Favorable Outcomes/ Total Number of Outcomes</p><hr>   
+                <p class="question"><strong>2. What are different types of probability?</strong></p>
+                <p class="answer">The different types of probability are Unconditional probability, Experimental probability, Theoretical probability, Classical probability, Conditional probability, and Markov Chain probability.</p><hr>   
+                <p class="question"><strong>3. What is the range of probability value?</strong></p>
+                <p class="answer">The range of probability value is between 0 to 1.</p><hr>
+                <p class="question"><strong>4. What is the probability of getting a head when a coin is tossed?</strong></p>
+                <p class="answer">The probability of getting a head when a coin is tossed is 1/2.</p><hr>
+            </div>
+        </div>
+</div>
+    
+{%endblock%}

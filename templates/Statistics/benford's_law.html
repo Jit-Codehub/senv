@@ -1,0 +1,343 @@
+{%extends 'base/statistics_base3.html'%}
+{%load static%}
+  {%block meta%}
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+  <link rel="shortcut icon" href="{% static 'images/logo/Online-Calculator-Guru-Fevicon.png' %}" type="icon">
+  {%block css%}
+  <link rel="stylesheet" href="{% static 'style.css' %}">
+  {%endblock%}
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <!-- META DATA STARTS --->
+    <title>Benford's Law Calculator | Finds the frequency</title>
+    <meta name="description" content="Benford's Law Calculator is a free online tool that calculates the Class Width value .">
+    <link rel="canonical" href="{{request.build_absolute_uri}}" >
+<!-- META DATA ENDS --->
+
+<!-- OPEN GRAPH CONFIGURATIONS STARTS -->
+    <!--  FACEBOOK CONFIGURATION STARTS  -->
+    <meta content="https://www.facebook.com/OnlineCalculator-Guru-131572098650589/" property="og:url" />
+    <meta property="og:title" content="Risk Calculator | Finds the Class Width "/>
+    <meta property="og:description" content="Class Width Calculator is a free online tool that calculates the Class Width value ."/>
+    <meta content="" property="og:site_name" />
+    <meta  content="https://onlinecalculator.guru/static/images/Statistics/Median-Calculator.jpeg" property="og:image" />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:height" content="435" />
+    <meta property="og:image:width" content="354" />
+    <!--  FACEBOOK CONFIGURATION ENDS  -->
+    <!-- TWITTER CARD CONFIGURATION STARTS  -->
+    <meta name="twitter:card" content="summary"/>
+    <meta name="twitter:site" content="https://twitter.com/onlinecalculator"/>
+    <meta name="twitter:title" content="Median Calculator | Finds the median value of a set of data: {{inputEnter}}"/>
+    <meta name="twitter:description" content="Median Calculator is a free online tool that calculates the median value for the set of numbers {{inputEnter}} instantly and gives result ie., {{finalAnswer}} in no time."/>
+    <meta name="twitter:image:src" content="https://onlinecalculator.guru/static/images/Statistics/Median-Calculator.jpeg"/>
+    <meta property="twitter:image:height" content="435"/>
+    <meta property="twitter:image:width" content="354"/>
+    <!-- TWITTER CARD CONFIGURATION ENDS  -->
+    <!--  LINKEDIN CONFIGURATION STARTS-->
+    <meta property='og:title' content="Median Calculator | Finds the median value of a set of data: {{inputEnter}}"/>
+    <meta property='og:image' content="https://onlinecalculator.guru/static/images/Statistics/Median-Calculator.jpeg"/>
+    <meta property='og:description' content="Median Calculator is a free online tool that calculates the median value for the set of numbers {{inputEnter}} instantly and gives result ie., {{finalAnswer}} in no time."/>
+    <meta property='og:url' content="https://www.linkedin.com/in/onlinecalculator/" />
+    <!-- end of linkedin CONFIGURATIONS ENDS -->
+<!-- OPEN GRAPH CONFIGURATION ENDS -->
+<!-- FAQ SCHEMA STARTS -->
+{%endblock%}
+{%block content%}
+<div class="container" style="height: auto !important;">
+    <div class="card c1">
+      <div class="card-header">
+        <h1 class="h1">Benford's law Calculator</h1>
+      </div>
+        <div class="card-body">
+            <ul class="messages">
+                {% for message in messages %}
+                <p {% if message.tags %} id="message_container" class="alert alert-danger text-center" {% endif %}
+                    style="color:red">{{ message }}</p>
+                {% endfor %}
+            </ul>
+            <form action="" method="POST" id="my_form" ">
+                {% csrf_token %}
+                <div class="form-row align-items-center">
+                <div class="col-auto">
+                    <div class="input-group mb-2">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text"><strong>Digit 1</strong></div>
+                        </div>
+                        <input type="number"  oninput="validateNumber(this)"; id="inlineFormInputGroup" required="" 
+                            placeholder="Enter number of value starting with 1" min="0"  class="form-control" name="d1"  value="{{d1}}" >
+                            
+                            
+                    </div>
+                    <div class="input-group mb-2">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text"><strong>Digit 2</strong></div>
+                        </div>
+                        <input type="number"  oninput="validateNumber(this);" id="inlineFormInputGroup" required=""
+                            placeholder="Enter number of value starting with 2" min="0.0000"  class="form-control" name="d2"   value="{{d2}}"  >
+                    </div>
+                    <div class="input-group mb-2">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text"><strong>Digit 3</strong></div>
+                        </div>
+                        <input type="number"  oninput="validateNumber(this);" id="inlineFormInputGroup" required=""
+                            placeholder="Enter number of value starting with 3" min="0.0000" class="form-control" name="d3"   value="{{d3}}"  >
+                    </div>
+                    <div class="input-group mb-2">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text"><strong>Digit 4</strong></div>
+                        </div>
+                        <input type="number"  oninput="validateNumber(this);" id="inlineFormInputGroup" required=""
+                            placeholder="Enter number of value starting with 4" min="0.0000"  class="form-control" name="d4"   value="{{d4}}"  >
+                    </div>
+                    <div class="input-group mb-2">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text"><strong>Digit 5</strong></div>
+                        </div>
+                        <input type="number"  oninput="validateNumber(this);" id="inlineFormInputGroup" required=""
+                            placeholder="Enter number of value starting with 5" min="0.0000"  class="form-control" name="d5"   value="{{d5}}"  >
+                    </div>
+                    <div class="input-group mb-2">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text"><strong>Digit 6</strong></div>
+                        </div>
+                        <input type="number"  oninput="validateNumber(this);" id="inlineFormInputGroup" required=""
+                            placeholder="Enter number of value starting with 6" min="0.0000"  class="form-control" name="d6"   value="{{d6}}"  >
+                    </div>
+                    <div class="input-group mb-2">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text"><strong>Digit 7</strong></div>
+                        </div>
+                        <input type="number"  oninput="validateNumber(this);" id="inlineFormInputGroup" required=""
+                            placeholder="Enter number of value starting with 7" min="0.0000"  class="form-control" name="d7"   value="{{d7}}"  >
+                    </div>
+                    <div class="input-group mb-2">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text"><strong>Digit 8</strong></div>
+                        </div>
+                        <input type="number"  oninput="validateNumber(this);" id="inlineFormInputGroup" required=""
+                            placeholder="Enter number of value starting with 8" min="0.0000" class="form-control" name="d8"   value="{{d8}}"  >
+                    </div>
+                    <div class="input-group mb-2">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text"><strong>Digit 9</strong></div>
+                        </div>
+                        <input type="number"  oninput="validateNumber(this);" id="inlineFormInputGroup" required=""
+                            placeholder="Enter number of value starting with 9" min="0.0000" class="form-control" name="d9"   value="{{d9}}"  >
+                    </div>
+                    
+                    <div class=" center col mt-2 ">
+                        <center><button type="submit" class="btn btn-primary" name="f1" >Calculate</button>
+                            <button type="button" onclick="myFunction()" style="margin-top:5px;"
+                            class="btn btn-danger">Reset</button>
+                        </center>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% if id == 1 %}
+<div id="clear">
+    <div class="card" id="magnetic-force">
+        <div class="card-header">
+            <h2 class="h2">Steps to Calculate Benford's law</h2>
+        </div>
+        <div class="card-body">
+            <strong>Benford's law Formula-</strong>
+            <br>
+            <p class="btn btn-outline-secondary active">P(d) = log10(d+1) - log10(d) = log10(1 + 1/d)</p>
+            <br>
+            
+            <strong>where:</strong>
+                    <ul>
+                        <li>d - the leading digit</li>
+                        
+                        
+                    </ul>
+            
+            <table>
+                <tr><th>Digit</th><th>Observed in <br> your sample</th><th>Frequency in <br> your sample</th><th>Frequency according<br> to Benford's law</th></tr>
+                <tr><td>1</td><td>{{d1}}</td><td>{{f1}}</td><td>{{P1}}</td></tr>
+                <tr><td>2</td><td>{{d2}}</td><td>{{f2}}</td><td>{{P2}}</td></tr>
+                <tr><td>3</td><td>{{d3}}</td><td>{{f3}}</td><td>{{P3}}</td></tr>
+                <tr><td>4</td><td>{{d4}}</td><td>{{f4}}</td><td>{{P4}}</td></tr>
+                <tr><td>5</td><td>{{d5}}</td><td>{{f5}}</td><td>{{P5}}</td></tr>
+                <tr><td>6</td><td>{{d6}}</td><td>{{f6}}</td><td>{{P6}}</td></tr>
+                <tr><td>7</td><td>{{d7}}</td><td>{{f7}}</td><td>{{P7}}</td></tr>
+                <tr><td>8</td><td>{{d8}}</td><td>{{f8}}</td><td>{{P8}}</td></tr>
+                <tr><td>9</td><td>{{d9}}</td><td>{{f9}}</td><td>{{P9}}</td></tr>
+
+
+            </table>
+            <div id="chartContainer" style="height: 370px; width: 100%;"></div>
+<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+
+<canvas id="myChart" style="width:100%;max-width:700px"></canvas>
+            
+            
+            
+            <br>
+            
+            <strong>Put values into formula of Benford's law to find it</strong>
+            <strong>Suppose we want to find the frequency according to Benford's law for digit 1 is </strong>
+            <p> P(d) = log10(d+1) - log10(d) = log10(1 + 1/d) </p>
+            <p>  P(d) = log10(1+1) - log10(1) = log10(1 + 1/1) </p>
+            <p><b> Frequency = {{P1}} </b></p>
+            
+        </div>
+    </div>
+</div>
+{% endif %}
+
+
+
+
+
+
+
+
+
+
+<script>
+d1=parseInt(document.getElementsByName("d1")[0].value);
+d2=parseInt(document.getElementsByName("d2")[0].value);
+d3=parseInt(document.getElementsByName("d3")[0].value);
+d4=parseInt(document.getElementsByName("d4")[0].value);
+d5=parseInt(document.getElementsByName("d5")[0].value);
+d6=parseInt(document.getElementsByName("d6")[0].value);
+d7=parseInt(document.getElementsByName("d7")[0].value);
+d8=parseInt(document.getElementsByName("d8")[0].value);
+d9=parseInt(document.getElementsByName("d9")[0].value);
+
+window.onload = function () {
+
+var chart = new CanvasJS.Chart("chartContainer", {
+	animationEnabled: true,
+	title:{
+		text: "First digit frequency"
+	},
+	axisY: {
+		title: "Frequency",
+		includeZero: true
+	},
+	legend: {
+		cursor:"pointer",
+		itemclick : toggleDataSeries
+	},
+	toolTip: {
+		shared: true,
+		content: toolTipFormatter
+	},
+	data: [{
+		type: "bar",
+		showInLegend: true,
+		name: "Sample Frequency",
+		color: "red",
+		dataPoints: [
+			{ y: d1/100, label: "1"},
+			{ y: d2/100, label: "2" },
+			{ y: d3/100, label: "3" },
+			{ y: d4/100, label: "4" },
+			{ y: d5/100, label: "5" },
+			{ y: d6/100, label: "6" },
+			{ y: d7/100, label: "7" },
+            { y: d8/100, label: "8" },
+            { y: d9/100, label: "9" }
+
+		]
+	},
+	{
+		type: "bar",
+		showInLegend: true,
+		name: "Benford's law",
+		color: "blue",
+		dataPoints: [
+            { y:30.10/100, label: "1"},
+			{ y: 17.61/100, label: "2" },
+			{ y: 12.49/100, label: "3" },
+			{ y: 9.69/100, label: "4" },
+			{ y: 7.92/100, label: "5" },
+			{ y: 6.69/100, label: "6" },
+			{ y: 5.80/100, label: "7" },
+            { y: 5.12/100, label: "8" },
+            { y: 4.58/100, label: "9" }
+           
+		]
+	}]
+});
+chart.render();
+
+function toolTipFormatter(e) {
+	var str = "";
+	var total = 0 ;
+	var str3;
+	var str2 ;
+	for (var i = 0; i < e.entries.length; i++){
+		var str1 = "<span style= \"color:"+e.entries[i].dataSeries.color + "\">" + e.entries[i].dataSeries.name + "</span>: <strong>"+  e.entries[i].dataPoint.y + "</strong> <br/>" ;
+		total = e.entries[i].dataPoint.y + total;
+		str = str.concat(str1);
+	}
+	str2 = "<strong>" + e.entries[0].dataPoint.label + "</strong> <br/>";
+	
+	return str2.concat(str);
+}
+
+function toggleDataSeries(e) {
+	if (typeof (e.dataSeries.visible) === "undefined" || e.dataSeries.visible) {
+		e.dataSeries.visible = false;
+	}
+	else {
+		e.dataSeries.visible = true;
+	}
+	chart.render();
+}
+
+}
+    
+
+
+
+
+
+
+
+
+
+
+        
+if(id==1)
+{
+    var scrollDiv = document.getElementById("clear").offsetTop;
+     window.scrollTo({ top: scrollDiv, behavior: 'smooth'});
+     
+}
+ 
+     function myFunction() {
+         document.getElementsByName("d1")[0].value = 0;
+         document.getElementsByName("d2")[0].value = 0;
+         document.getElementsByName("d3")[0].value = 0;
+         document.getElementsByName("d4")[0].value = 0;
+         document.getElementsByName("d5")[0].value = 0;
+         document.getElementsByName("d6")[0].value = 0;
+         document.getElementsByName("d7")[0].value = 0;
+         document.getElementsByName("d8")[0].value = 0;
+         document.getElementsByName("d9")[0].value = 0;
+         
+         
+ 
+         document.getElementById("clear").innerHTML = "";
+ 
+     } 
+
+     
+     
+    
+
+</script>   
+{%endblock%}

@@ -1,0 +1,176 @@
+{%extends 'base/statistics_base2.html'%}
+{%load static%}
+{%block meta%}
+<!-- HTML Defaults Broweser -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Bootstrap Stylesheet and Jquery, Google APIS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+<!-- Online Calculator Guru Site Fevicon -->
+<link rel="shortcut icon" href="https://onlinecalculator.guru/static/images/logo/Online-Calculator-Guru-Fevicon.png"
+    type="icon">
+<!-- Online Calculator Guru Project Style Sheet -->
+{%block css%}
+<link rel="stylesheet" href="/static/style.css">
+{%endblock css%}
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+<!-- Meta Title, Description and Canonical URL Starts --->
+<title>Linear Regression Calculator | Free Calculator to find Linear Regression</title>
+<meta name="description"
+    content="Capacitance Calculator makes it easy for you to determine the value of capacitance, area, and distance with steps." />
+<link rel="canonical" href="{{request.build_absolute_uri}}">
+<!-- Meta Title, Description and Canonical URL ENDS --->
+
+<!-- OPEN GRAPH CONFIGURATIONS STARTS -->
+<!--  FACEBOOK CONFIGURATION STARTS  -->
+<meta content="https://www.facebook.com/OnlineCalculator-Guru-131572098650589/" property="og:url" />
+<meta property="og:title" content="Angular Resolution Calculator | Free Calculator to find Angular Resolution" />
+<meta property="og:description" content="Angular Resolution Calculator" />
+<meta content="" property="og:site_name" />
+<meta content="https://onlinecalculator.guru/static/images/Chemistry/Theoratical-Yield-Calculator.jpeg"
+    property="og:image" />
+<meta property="og:image:type" content="image/png" />
+<meta property="og:image:height" content="435" />
+<meta property="og:image:width" content="354" />
+<!--  FACEBOOK CONFIGURATION ENDS  -->
+<!-- TWITTER CARD CONFIGURATION STARTS  -->
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:site" content="https://twitter.com/onlinecalculator" />
+<meta name="twitter:title" content="Angular Resolution Calculator | Free Calculator to find Angular Resolution" />
+<meta name="twitter:description"
+    content="Angular Resolution Calculator makes it easy for you to determine the theoretical yield value of the chemical reaction in fraction of seconds with steps." />
+<meta name="twitter:image:src"
+    content="https://onlinecalculator.guru/static/images/Chemistry/Theoratical-Yield-Calculator.jpeg" />
+<meta property="twitter:image:height" content="435" />
+<meta property="twitter:image:width" content="354" />
+<!-- TWITTER CARD CONFIGURATION ENDS  -->
+<!--  LINKEDIN CONFIGURATION STARTS-->
+<meta property='og:title' content="Angular Resolution Calculator | Free Calculator to find Angular Resolution" />
+<meta property='og:image'
+    content="https://onlinecalculator.guru/static/images/Chemistry/Theoratical-Yield-Calculator.jpeg" />
+<meta property='og:description' content="Angular Resolution Calculator." />
+<meta property='og:url' content="https://www.linkedin.com/in/onlinecalculator/" />
+<!-- end of linkedin CONFIGURATIONS ENDS -->
+<!-- OPEN GRAPH CONFIGURATION ENDS -->
+<!-- FAQ SCHEMA STARTS -->
+
+{%endblock meta %}
+
+{% block content %}
+{% if  x and y %}
+<script>
+    $(document).ready(function () {
+
+        $("#hassle").click();
+
+
+    });
+
+
+</script>
+
+<button type="button" hidden id="hassle" onclick="location.href='#linear_regression'">ans1</button>
+{% endif %}
+
+
+<div class="container" style="height: auto !important;">
+    <div class="card c1">
+        <div class="card-header">
+            <h1 class="h1">Linear Regression Calculator</h1>
+        </div>
+        <div class="card-body">
+            {% if messages %}
+            <ul class="messages">
+            {% for message in messages %}
+                <p {% if message.tags %} id="message_container" class="alert alert-danger text-center" {% endif %}
+                    style="color:red">{{ message }}</p>
+                {% endfor %}
+            </ul>
+            {% endif %}
+            <form action="{% url 'linear_regression' %}" method="POST" id="my_form">
+                {% csrf_token %}
+                 <div class="input-group mb-3">
+                      
+          </div>
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1">x Values (separated by space)</span>
+            </div>
+            
+           <input style="margin-top: 5px;width:100%" id="x" name="x" value="5 4 3 2 1" value="{{x}}"   required="" oninput="validateNumber(this);" class="form-control" type="text" required width="48"> 
+       </div>
+       <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1">y Values (separated by space)</span>
+            </div>
+            
+           <input style="margin-top: 5px;width:100%" id="y" name="y" value="1 2 3 4 5" value="{{y}}"   required="" oninput="validateNumber(this);" class="form-control" type="text"  required width="48"> 
+       </div>
+
+        <div class=" center col mt-2 ">
+            <center><button type="submit" class="btn btn-primary">Calculate</button>
+              <a href="{% url 'linear_regression' %}" class="btn btn-warning" role="button" style="margin-top:5px;">Reset</a>      
+            </center>
+          </div>
+    
+</div>
+
+</form>
+</div>
+</div>
+{% if x and y and ot%}
+<div class="container" style="height: auto !important;">
+<div class="card" id="linear_regression">
+        <div class="card-header">
+            <h2 class="h2">Steps to Find linear Regression:</h2>
+        </div>
+
+        <div class="card-body">
+
+            <strong>linear Regression:-</strong>
+            <br>
+            <p class="btn btn-outline-secondary active text-justify">linear Regression Formula ŷ = bX + a<br>b = sp / ss<sub>x</sub><br>a = m<sub>y</sub>-(b * m<sub>x</sub>)</p>
+            <br>
+            <strong>where:</strong>
+                    <ul>
+                        <li>x is the sum of x,</li>
+                        <li>y is the sum of y,</li>
+                        <li>M<sup>x</sup> is the mean of x,</li>
+                        <li>M<sup>y</sup> is the mean of y,</li>
+                        <li>sp is the sum of products,</li>
+                        <li>ss<sub>x</sub> is the sum of squares,</li>
+                        
+                    </ul>
+
+
+            <strong>Input values are:-</strong>
+            <p>x = {{x}} </p>
+            <p>y = {{y}} </p>
+
+            <p><b>Put values into formula</b></p>
+            <p>Sum of x = {{xsum}}<br>
+                Sum of y = {{ysum}}<br>
+                Mean x = {{xmean}}<br>
+                Mean y = {{xmean}}<br>
+                Sum of squares (ss<sub>x</sub>) = {{ss}}<br>
+                Sum of products (sp) = {{sp}} </p>
+            <p>b = {{sp}} / {{ss}} = {{b}}</p>
+            <p>a = {{ymean}} - ({{b}} * {{xmean}}) = {{a}}</p>
+            
+            {% if output %}
+                <b>linear Regression = {{start}} x 10<sup>{{end}}</sup></b>
+            {% else %}
+                <b>linear Regression = {{result}}</b>
+            {% endif %}
+                         
+   </div>
+    </div>
+</div>
+    {% endif %}  
+<img src="{% static 'images/Statistics/linear-regression-calculator.jpeg' %}" alt='linear-regression-calculator'>                
+{% endblock content %}

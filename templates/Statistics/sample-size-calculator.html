@@ -1,0 +1,237 @@
+{%extends 'base/statistics_base2.html'%}
+{%load static%}
+{%block meta%}
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+  <link rel="shortcut icon" href="{% static 'images/logo/Chemistry-Calc.png' %}" type="icon">
+  {%block css%}
+  <link rel="stylesheet" href="{% static 'style.css' %}">
+  {%endblock%}
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+	<!-- META DATA STARTS --->
+    <title>Sample Size Calculator | Best Online Free Tool to Find Sample Size</title>
+	<meta name="description" content="Sample size calculator is the best free online tool to be used for surveys for instant results easily and quickly.">
+	<link rel="canonical" href="{{request.build_absolute_uri}}">
+<!-- META DATA ENDS --->
+ 
+<!-- OPEN GRAPH CONFIGURATIONS STARTS -->
+	<!--  FACEBOOK CONFIGURATION STARTS  -->
+	<meta content="https://www.facebook.com/OnlineCalculator-Guru-131572098650589/" property="og:url" />
+	<meta property="og:title" content="Sample Size Calculator | Best Online Free Tool to Find Sample Size"/>
+	<meta property="og:description" content="Sample size calculator is the best free online tool to be used for surveys for instant results easily and quickly."/>
+	<meta content="" property="og:site_name" />
+	<meta  content="https://chemistrycalc.com/static/images/Statistics/Sample-Size-Calculator.jpeg" property="og:image" />
+	<meta property="og:image:type" content="image/png" />
+	<meta property="og:image:height" content="435" />
+	<meta property="og:image:width" content="354" />
+	<!--  FACEBOOK CONFIGURATION ENDS  -->
+	<!-- TWITTER CARD CONFIGURATION STARTS  -->
+	<meta name="twitter:card" content="summary"/>
+	<meta name="twitter:site" content="https://twitter.com/onlinecalculator"/>
+	<meta name="twitter:title" content="Sample Size Calculator | Best Online Free Tool to Find Sample Size"/>
+	<meta name="twitter:description" content="Sample size calculator is the best free online tool to be used for surveys for instant results easily and quickly."/>
+	<meta name="twitter:image:src" content="https://chemistrycalc.com/static/images/Statistics/Sample-Size-Calculator.jpeg"/>
+	<meta property="twitter:image:height" content="435"/>
+	<meta property="twitter:image:width" content="354"/>
+	<!-- TWITTER CARD CONFIGURATION ENDS  -->
+	<!--  LINKEDIN CONFIGURATION STARTS-->
+	<meta property='og:title' content="Sample Size Calculator | Best Online Free Tool to Find Sample Size"/>
+	<meta property='og:image' content="https://chemistrycalc.com/static/images/Statistics/Sample-Size-Calculator.jpeg"/>
+	<meta property='og:description' content="Sample size calculator is the best free online tool to be used for surveys for instant results easily and quickly."/>
+	<meta property='og:url' content="https://www.linkedin.com/in/onlinecalculator/" />
+	<!-- end of linkedin CONFIGURATIONS ENDS -->
+<!-- OPEN GRAPH CONFIGURATION ENDS -->
+<!-- FAQ SCHEMA STARTS -->
+<script type="application/ld+json">{"@context": "https://schema.org","@type": "FAQPage","mainEntity": [{"@type": "Question","name":"1
+    What do you mean by sample size?
+    ","acceptedAnswer": {"@type": "Answer","text":" 
+    Sample size is the number of responses that was completed by your survey. As it represent the part of target population that whose opinions are important for you we call it as sample."}	}, {"@type": "Question","name":"2
+    What are the 3 key factors to determine the sample size?
+    ","acceptedAnswer": {"@type": "Answer","text":" 
+    For Finding the sample size you need to know the population proportion, confidence level and population size."}	}, {"@type": "Question","name":"3
+    What is the formula to calculate sample size for infinite population?
+    ","acceptedAnswer": {"@type": "Answer","text":"
+    For Infinite population (n) = [Z<sup>2</sup> x p(1-p)]/e<sup>2</sup>"}	}, {"@type": "Question","name":"4
+    How to use sample size calculator?
+    ","acceptedAnswer": {"@type": "Answer","text":" 
+    Give the inputs in the input value field and click the calculate button to get the answers quickly."}	}]}</script>
+{%endblock%}
+{%block content%}
+<script>
+       $(document).ready(function(){
+        {% if answer %}
+        $("#hassle").click();
+        {% endif %}
+        $(".btn-danger").on("click",function(){
+          $(".form-control").attr("value","");
+          $("#solve-sample-size-calculator").empty();
+         });
+        });
+    </script>
+<div class="container">
+    <div class="card c1">
+  	<div class="card-header">
+  <h1 class="h1">Sample Size Calculator</h1>
+  </div>
+  <button type="button" hidden id="hassle"  onclick="location.href='#solve-sample-size-calculator'">ans</button>
+
+  <div class="card-body">
+      <p>Utilize this free tool to calculate the number of responses completed by the survey. All you have to do is enter your choices and tap the calculate button which you can see below the inputs to get the answers right away.</p>
+      {% autoescape off %}
+            {% if messages %}
+                {% for message in messages %}
+                        <div class="row">
+                            <div class="col-md-6">
+                                <p class="alert alert-danger">{{message}}</p>
+                            </div>
+                        </div>
+                {% endfor %}
+                {% endif %}
+        {%endautoescape%}
+      <form action="{% url 'sample-size-calculator' %}" id="myForm" class="center" method="post">
+            {% csrf_token %}
+            <div class="input-group mb-2 mt-3">
+                  <div class="input-group-prepend">
+                <div class="input-group-text"><strong>Confidence Level</strong></div>
+                      <input type="text"  id="inlineFormInputGroup" name="c" value="{{ c }}" oninput="validateNumber(this);" class="form-control" required></div>
+                        <b  id="inlineFormInputGroup"  class="form-control">%</b>
+                  
+            </div>
+             <div class="input-group mb-2 mt-3">
+                  <div class="input-group-prepend">
+                <div class="input-group-text"><strong>Margin of error</strong></div>
+                      <input type="text"  id="inlineFormInputGroup" name="m" value="{{ m }}" oninput="validateNumber(this);" class="form-control" required></div>
+                        <b  id="inlineFormInputGroup"  class="form-control">%</b>
+                     
+            </div>
+             <div class="input-group mb-2 mt-3">
+                  <div class="input-group-prepend">
+                      <div class="input-group-text score"><strong>Proportion Estimate</strong></div>
+                     <input type="text"  id="inlineFormInputGroup" name="pe" value="{{ pe }}" oninput="validateNumber(this);" class="form-control" required></div>
+                    <b  id="inlineFormInputGroup"  class="form-control">%</b>
+                 </div>
+            
+                <div class=" center col mt-2 ">
+                <center><button type="submit" class="btn btn-primary"  class="form-control" >Calculate</button>
+                <button type="button" onclick="this.form.reset()" style="margin-top:5px;" class="btn btn-danger" class="form-control">Reset</button>
+                </center>
+            </div>
+         
+            <div class="input-group mb-2 mt-3">
+                  <div class="input-group-prepend">
+                      <div class="input-group-text"><strong>sample size</strong></div>
+                     <input type="text" disabled id="inlineFormInputGroup" value="{{ sz }}" oninput="validateNumber(this);" class="form-control" required></div>
+                     
+                 </div>
+            
+                  <p><b>Sample Size Calculator: </b>Want to make your survey easy? Then, this sample size calculator works best for you. Easy to use calculator and gives you instant results. And also we are going to explain about the definition, formula and step by step process with some solved examples. By using this calculator calculate the number of respondents you need for a survey.</p>
+        </form>
+
+    </div>
+</div>
+    {% if answer %}
+    <div class="card c1" id="solve-sample-size-calculator">
+        <div class="card-header"><center class="h1">Detailed Answer</center></div>
+        <div class="card-body container">
+        {% autoescape off %}
+        {% for i,z in answer.items %}
+        {% if 'bold' in i %}
+        <p><b>{{ z }}</b></p>
+        {% else %}
+        <p>{{ z }}</p>
+        {% endif %}
+        {% endfor %}
+        {% endautoescape %}
+        </div>
+    </div>
+    {% endif %}
+
+<div class="card c1" id="solve-sample-size-calculator">
+    <div class="card-header">
+        <h3 class="h3">What is Sample Size?</h3>
+        </div>
+    <div class="card-body">
+        <p>Sample size is the number of responses that was completed by your survey. As it represent the part of target population that whose opinions are important for you we call it as sample. </p>
+    </div>
+</div>
+<div class="card c1" id="solve-sample-size-calculator">
+    <div class="card-header">
+        <h3 class="h3">Sample Size Formula</h3>
+        </div>
+    <div class="card-body">
+        <p>Let us see the formula to calculate the sample size.</p>
+        <img src="https://drive.google.com/file/d/1etBonNiRstTBVKBJaDnDQhzskTsvrZ4N/view?usp=sharing" alt='Sample-Size-Formula'>
+        <p>Where,</p>
+        <p>N is size of population</p>
+        <p>e is Margin of error </p>
+        <p>z is z-score</p>
+        <p>p is the population proportion</p>
+    </div>
+</div>   
+<div class="card c1" id="solve-sample-size-calculator">
+    <div class="card-header">
+        <h3 class="h3">How to Find Sample Size?</h3>
+        </div>
+    <div class="card-body">
+        <p>By adhering the below guidelines you can do the calculation very easily by hand and find the sample size.</p>
+        <ul>
+            <li>Note down the population size and the values given in the problem.</li>
+            <li>Next, you need to apply the formula.</li>
+            <li>For finding the z score you need to take it from the table.</li>
+            <li>For calculating margin of error click on the <a href="https://drive.google.com/file/d/1fngs2Loa6LvRNGJ_KYWlgUQ01iW2ftcc/view?usp=sharing">Margin of Error Calculator</a></li>
+            <li>And then, substitute the values and simplify it.</li>
+            <li>Finally, you will get the answer.</li>
+        </ul>
+    </div>
+</div>
+<div class="card c1" id="solve-sample-size-calculator">
+    <div class="card-header">
+        <h3 class="h3">Sample Size Calculator with Example Solution</h3>
+        </div>
+    <div class="card-body">
+        <p><b>Example</b></p>
+        <p><b>Question: </b>Find the sample size for the proportion of people shopping at supermarket. And in that vegan at 95% confidence interval and with 2% margin of error. Assume that proportion of population is 0.6 and infinite population.</p>
+        <p><b>Solution</b></p>
+        <p>Given, z = 95% confidence level, p=0.6 </p>
+        <p>Z value taken from the table is 1.96 for 95% confidence.</p>
+        <p>Using the formula,</p>
+        <p>Infinite population (n) = [z<sup>2</sup> x p(1-p)]/e<sup>2</sup></p>
+        <p>n= (1.96)<sup>2</sup> x 0.6 (1-0.6) / (0.02) <sup>2</sup></p>
+        <p>Sample size for infinite population is 2401</p>
+        <p>Use all the statistics calculators to get the answers very easily and accurately, and they are available at <a href="https://statisticscalculators.net/">statisticscalculators.net</a></p>
+    </div>
+</div>
+<div class="card c1" id="solve-sample-size-calculator">
+    <div class="card-header">
+        <h3 class="h3">FAQs on Sample Size Calculator</h3>
+        </div>
+    <div class="card-body">
+        <!-- Question & Answer Starts --->
+        <p class="question"><strong>1. What do you mean by sample size?</strong></p>
+        <p class="answer">Sample size is the number of responses that was completed by your survey. As it represent the part of target population that whose opinions are important for you we call it as sample.</p><hr>
+        <p class="question"><strong>2. What are the 3 key factors to determine the sample size?</strong></p>
+        <p class="answer">For finding the sample size you need to know the population proportion, confidence level and population size.</p><hr>  
+        <p class="question"><strong>3.What is the formula to calculate sample size for infinite population?</strong></p>
+        <p class="answer">For Infinite population (n) = [z<sup>2</sup> x p(1-p)]/e<sup>2</sup></p><hr>
+        <p class="question"><strong>4. How to use sample size calculator?</strong></p>
+        <p class="answer">Give the inputs in the input value field and click the calculate button to get the answers quickly.</p><hr>
+<script>
+    var validNumber = new RegExp(/^\d*\.?\d*$/);
+    var fist_input = document.getElementById("inlineFormInputGroup").value;
+    function validateNumber(elem) {
+      if (validNumber.test(elem.value)) {
+        fist_input = elem.value;
+      } else {
+        elem.value = fist_input;
+      }
+    }
+</script>
+
+
+
+{%endblock%}

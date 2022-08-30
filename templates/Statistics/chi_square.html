@@ -1,0 +1,294 @@
+{%extends 'base/statistics_base2.html'%}
+{%load static%}
+{%block meta%}
+<!-- HTML Defaults Broweser -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Bootstrap Stylesheet and Jquery, Google APIS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+<!-- Online Calculator Guru Site Fevicon -->
+<link rel="shortcut icon" href="https://onlinecalculator.guru/static/images/logo/Online-Calculator-Guru-Fevicon.png"
+    type="icon">
+<!-- Online Calculator Guru Project Style Sheet -->
+{%block css%}
+<link rel="stylesheet" href="https://onlinecalculator.guru/static/style.css">
+{%endblock css%}
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+<!-- Meta Title, Description and Canonical URL Starts --->
+<title>Online Chi Square Calculator with Steps | What is Chi-Square & Formula?</title>
+<meta name="description"
+    content="Learn about the chi-square test definition, formulas & how to solve it from the Chi Square Calculator. Check Chi-squared Distribution Example" />
+<link rel="canonical" href="{{request.build_absolute_uri}}">
+<!-- Meta Title, Description and Canonical URL ENDS --->
+
+<!-- OPEN GRAPH CONFIGURATIONS STARTS -->
+<!--  FACEBOOK CONFIGURATION STARTS  -->
+<meta content="https://www.facebook.com/OnlineCalculator-Guru-131572098650589/" property="og:url" />
+<meta property="og:title" content="Online Chi Square Calculator with Steps | What is Chi-Square & Formula?" />
+<meta property="og:description" content="Learn about the chi-square test definition, formulas & how to solve it from the Chi Square Calculator. Check Chi-squared Distribution Example" />
+<meta content="" property="og:site_name" />
+<meta content="https://onlinecalculator.guru/static/images/Statistics/chi-square-calculator.jpeg"
+    property="og:image" />
+<meta property="og:image:type" content="image/png" />
+<meta property="og:image:height" content="435" />
+<meta property="og:image:width" content="354" />
+<!--  FACEBOOK CONFIGURATION ENDS  -->
+<!-- TWITTER CARD CONFIGURATION STARTS  -->
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:site" content="https://twitter.com/onlinecalculator" />
+<meta name="twitter:title" content="Online Chi Square Calculator with Steps | What is Chi-Square & Formula?" />
+<meta name="twitter:description"
+    content="Learn about the chi-square test definition, formulas & how to solve it from the Chi Square Calculator. Check Chi-squared Distribution Example" />
+<meta name="twitter:image:src"
+    content="https://onlinecalculator.guru/static/images/Statistics/chi-square-calculator.jpeg" />
+<meta property="twitter:image:height" content="435" />
+<meta property="twitter:image:width" content="354" />
+<!-- TWITTER CARD CONFIGURATION ENDS  -->
+<!--  LINKEDIN CONFIGURATION STARTS-->
+<meta property='og:title' content="Online Chi Square Calculator with Steps | What is Chi-Square & Formula?" />
+<meta property='og:image'
+    content="https://onlinecalculator.guru/static/images/Statistics/chi-square-calculator.jpeg" />
+<meta property='og:description' content="Learn about the chi-square test definition, formulas & how to solve it from the Chi Square Calculator. Check Chi-squared Distribution Example" />
+<meta property='og:url' content="https://www.linkedin.com/in/onlinecalculator/" />
+<!-- end of linkedin CONFIGURATIONS ENDS -->
+<!-- OPEN GRAPH CONFIGURATION ENDS -->
+<!-- FAQ SCHEMA STARTS -->
+<script type="application/ld+json">{"@context": "https://schema.org","@type": "FAQPage","mainEntity": [{"@type": "Question","name":"1.
+    What is the chi-square probability?
+    ","acceptedAnswer": {"@type": "Answer","text":"The chi-square or &chi;2-distribution or chi-squared distribution with k degrees of freedom in probability theory and statistics is the distribution of a sum of the squares of k independent standard normal random variables."} }, {"@type": "Question","name":"2.
+    How do you calculate chi-square?
+    ","acceptedAnswer": {"@type": "Answer","text":"Take a look at the above process of chi-square calculation and verify your answers from our free online chi-square calculator in just scants."} }, {"@type": "Question","name":"3.
+    What is a chi-square used for?
+    ","acceptedAnswer": {"@type": "Answer","text":"The chi-square statistical test is utilized for comparing observed outcomes with expected outcomes. The main goal of this test is to find if a difference between observed data & expected data is because of chance, or if it is as a result of a relationship between the variables you are studying."} }, {"@type": "Question","name":"4.
+    What is a chi-square p-value?
+    ","acceptedAnswer": {"@type": "Answer","text":"The probability of getting a chi-square as big or more than that in the current experiment is called p-value in a chi-square analysis."}  }]}
+</script>
+{%endblock meta %}
+
+{% block content %}
+{% if ot and ov and ev %}
+<script>
+    $(document).ready(function () {
+
+        $("#hassle").click();
+        });
+</script>
+
+<button type="button" hidden id="hassle" onclick="location.href='#chi_square'">ans1</button>
+{% endif %}
+
+
+<div class="container" style="height: auto !important;">
+    <div class="card c1">
+        <div class="card-header">
+            <h1 class="h1">Chi Square Calculator</h1>
+        </div>
+        <div class="card-body">
+            <p>Chi Square Calculator is a free online tool that calculates the difference between the observed value and the expected value easily. All you have to do is enter the observed and expected values in the input fields and click on the calculate button to get the output in a fraction of seconds.</p>
+            {% if messages %}
+            <ul class="messages">
+            {% for message in messages %}
+                <p {% if message.tags %} id="message_container" class="alert alert-danger text-center" {% endif %}
+                    style="color:red">{{ message }}</p>
+                {% endfor %}
+            </ul>
+            {% endif %}
+            <form action="{% url 'chi_square' %}" method="POST" id="my_form">
+                {% csrf_token %}
+                 </div>
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1">Observed value</span>
+            </div>
+            
+           <input style="margin-top: 5px;width:100%" id="ov" name="ov" value="{{ov}}"   required="" class="form-control" type="number" step="any" required width="48"> 
+       </div>
+       <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1">Expected value</span>
+            </div>
+            
+           <input style="margin-top: 5px;width:100%" id="ev" name="ev" value="{{ev}}"   required="" class="form-control" type="number" step="any" required width="48"> 
+       </div>
+
+       
+        <div class=" center col mt-2 ">
+            <center><button type="submit" class="btn btn-primary">Calculate</button>
+              <a href="{% url 'chi_square' %}" class="btn btn-warning" role="button" style="margin-top:5px;">Reset</a>      
+            </center>
+          </div>
+          <p><strong>Chi Square Calculator:</strong> Excited to learn what is chi-square, formula, how to calculate the chi-square value? If yes, then you are on the right page. Here, we have the best solution ie., a Free Online Chi Square Calculator from <a href="https://statisticscalculators.net/">statisticscalculators.net</a>. It helps you conduct the goodness of fit test and the test of independence (known as the chi-square test) in a blink of an eye along with detailed steps and solved examples.</p>
+</div>
+</form>
+</div>
+</div>
+<div class="container" style="height: auto !important;">
+    <div class="card-header">
+        <h2 class="h2">What is Meant by Chi-Square in Statistics?</h2>
+    </div>
+    <div class="card-body">
+        <p>In statistics, a chi-square is a test that assesses how a model compares to actual observed data. Also, it is the difference between the observed and expected frequencies of the results of a set of events or variables. The symbol of chi-square is '&chi;2' and it depends on the size of the difference between actual and observed values, the degrees of freedom, and the sample size.</p>
+<p>For calculating a chi-square statistic, the data utilized should be random, raw, taken from independent variables, adapted from a large enough sample, mutually exclusive. The two main kinds of chi-square tests are as follows:</p>
+<ul>
+<li>The test of independence</li>
+<li>The goodness of fit test</li>
+</ul>
+<h3>Chi-Square Test Formula</h3>
+<p>Before we go for the chi-square formula, let's learn the representation of the chi-square. It is denoted by <strong>&chi;2</strong>.</p>
+<p>The formula for the Chi-Square Test is given as:</p>
+<p><strong>&chi;2 = &sum;(O<sub>i</sub> &ndash; E<sub>i</sub>)2/E<sub>i</sub></strong></p>
+<p>Where,</p>
+<p>O<sub>i</sub>: Observed frequency<br />E<sub>i</sub>: Expected frequency<br />&sum;: Summation<br />&chi;2: Chi Square Value</p>
+    </div> 
+    </div>
+    <div class="container" style="height: auto !important;">
+        <div class="card">
+            <div class="card-header">
+                <h2 class="h3">How To Calculate the Chi Square By Hand?</h3>
+            </div>
+            <div class="card-body">
+                <p>Let's see the step-wise approach of calculating the value of chi-square from the listed points:</p>
+                <ul>
+                <li>First and foremost, take off (subtract) expected frequency from the related observed frequency ie., (O-E)</li>
+                <li>Now, continue step-1 by squaring each obtained value i.e,(O-E)^2.</li>
+                <li>Divide all the values in step 2 by the expected frequencies i.e., (O-E)^2/E.</li>
+                <li>Do a summation of the obtained values in step 3 to find the chi-square value.</li>
+                <li>Finally, we have to compare the calculated chi-square value with the critical chi-square value.</li>
+                </ul>
+                <p>Look at the below-solved example on how to find the chi-square test value manually and get familiar with the concept.</p>
+                <p><strong>Example:</strong></p>
+                <p>Based on the survey on cars owned by each family in the locality the data has been arranged in the following table.</p>
+                <table border="1">
+                <tbody>
+                <tr>
+                <td><strong>Number of Cars</strong></td>
+                <td><strong>O<sub>i</sub></strong></td>
+                <td><strong>E<sub>i</sub></strong></td>
+                </tr>
+                <tr>
+                <td>One car</td>
+                <td>20</td>
+                <td>15.6</td>
+                </tr>
+                <tr>
+                <td>Two cars</td>
+                <td>25</td>
+                <td>20</td>
+                </tr>
+                <tr>
+                <td>Three cars</td>
+                <td>5</td>
+                <td>7</td>
+                </tr>
+                <tr>
+                <td>Total</td>
+                <td>50</td>
+                </tr>
+                </tbody>
+                </table>
+                <p><strong>Solution:</strong></p>
+                <p>Let's set up the following table like this:</p>
+                <table border="1" cellspacing="1" cellpadding="1">
+                <tbody>
+                <tr>
+                <td><strong>Number of Cars</strong></td>
+                <td><strong>O<sub>i</sub></strong></td>
+                <td><strong>E<sub>i</sub></strong></td>
+                <td><strong>(O<sub>i</sub> &ndash; E<sub>i</sub>)<sup>2</sup></strong></td>
+                <td><strong>(O<sub>i</sub> &ndash; E<sub>i</sub>)<sup>2</sup>/E<sub>i</sub></strong></td>
+                </tr>
+                <tr>
+                <td>One car</td>
+                <td>20</td>
+                <td>15.6</td>
+                <td>19.36</td>
+                <td>1.24</td>
+                </tr>
+                <tr>
+                <td>Two cars</td>
+                <td>25</td>
+                <td>20</td>
+                <td>25</td>
+                <td>1.25</td>
+                </tr>
+                <tr>
+                <td>Three cars</td>
+                <td>5</td>
+                <td>7</td>
+                <td>4</td>
+                <td>0.57</td>
+                </tr>
+                <tr>
+                <td>Total</td>
+                <td>50</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>3.06</td>
+                </tr>
+                </tbody>
+                </table>
+                <p>Hence, &chi;<sup>2</sup>= &sum;(O<sub>i</sub> &ndash; E<sub>i</sub>)<sup>2</sup>/E<sub>i</sub> =<strong> 3.06</strong></p>
+            </div>
+        </div> 
+        </div> 
+{% if ot and ov and ev  %}
+<div class="container" style="height: auto !important;">
+<div class="card" id="chi_square">
+        <div class="card-header">
+            <h2 class="h2">Steps to Find Chi Square:</h2>
+        </div>
+
+        <div class="card-body">
+
+            <strong>Chi Square:-</strong>
+            <br>
+            <p class="btn btn-outline-secondary active text-justify">Chi Square X<sup>2</sup> = (ov - ev) / ev </p>
+            <br>
+            <strong>where:</strong>
+                    <ul>
+                        <li>ov is the Observed value,</li>
+                        <li>ev is the Expected value,</li>
+                    </ul>
+
+
+            <strong>Input values are:-</strong>
+            <p>ov = {{ov}} </p>
+            <p>ev = {{ev}} </p>
+            
+            
+            <p><b>Put values into formula</b></p>
+            
+            <p>X<sup>2</sup> =  ({{ov}} - {{ev}})<sup>2</sup> / {{ev}}</p>
+            
+            <b>X<sup>2</sup> = {{result}}</b>
+                         
+   </div>
+    </div>
+    <img src="{% static 'images/Statistics/chi-square-calculator.jpeg' %}" alt='chi-square-calculator'>
+</div>
+<div class="container" style="height: auto !important;">
+    <div class="card">
+        <div class="card-header">
+        <h3 class="h3">FAQs on Free & Handy Chi Square Online Calculator</h3>
+        </div>
+        <div class="card-body">
+        <!-- Question & Answer Starts --->
+      <p class="question"><strong>1. What is the chi-square probability?</strong></p>
+       <p class="answer">The chi-square or &chi;2-distribution or chi-squared distribution with k degrees of freedom in probability theory and statistics is the distribution of a sum of the squares of k independent standard normal random variables.</p><hr>
+       <p class="question"><strong>2. How do you calculate chi-square?</strong></p>
+       <p class="answer">Take a look at the above process of chi-square calculation and verify your answers from our free online chi-square calculator in just scants.</p><hr>  
+      <p class="question"><strong>3. What is a chi-square used for?</strong></p>
+      <p class="answer">The chi-square statistical test is utilized for comparing observed outcomes with expected outcomes. The main goal of this test is to find if a difference between observed data &amp; expected data is because of chance, or if it is as a result of a relationship between the variables you are studying.</p><hr>
+      <p class="question"><strong>4. What is a chi-square p-value?</strong></p>
+      <p class="answer">The probability of getting a chi-square as big or more than that in the current experiment is called p-value in a chi-square analysis.</p><hr>
+    </div>
+    </div>
+    </div> 
+    </div>
+    {% endif %}                  
+{% endblock content %}

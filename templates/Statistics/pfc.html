@@ -1,0 +1,206 @@
+{% extends 'base/statistics_base3.html' %}
+{%load static%}
+{%block meta%}
+<!-- HTML Defaults Broweser -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Bootstrap Stylesheet and Jquery, Google APIS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+<!-- Online Calculator Guru Site Fevicon -->
+<link rel="shortcut icon" href="https://onlinecalculator.guru/static/images/logo/Online-Calculator-Guru-Fevicon.png"
+    type="icon">
+<!-- Online Calculator Guru Project Style Sheet -->
+{%block css%}
+<link rel="stylesheet" href="https://onlinecalculator.guru/static/style.css">
+{%endblock%}
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+<!-- Meta Title, Description and Canonical URL Starts --->
+<title>Percentage Frequency Calculator</title>
+<meta name="description"
+    content="Percentage Frequency Calculator" />
+<link rel="canonical" href="{{request.build_absolute_uri}}">
+<!-- Meta Title, Description and Canonical URL ENDS --->
+
+<!-- OPEN GRAPH CONFIGURATIONS STARTS -->
+<!--  FACEBOOK CONFIGURATION STARTS  -->
+<meta content="https://www.facebook.com/OnlineCalculator-Guru-131572098650589/" property="og:url" />
+<meta property="og:title" content="Theoretical Yeild Calculator | Free Calculator to find Theoretical Yeild" />
+<meta property="og:description" content="Theoretical Yeild Calculator" />
+<meta content="" property="og:site_name" />
+<meta content="https://onlinecalculator.guru/static/images/Chemistry/Theoratical-Yield-Calculator.jpeg"
+    property="og:image" />
+<meta property="og:image:type" content="image/png" />
+<meta property="og:image:height" content="435" />
+<meta property="og:image:width" content="354" />
+<!--  FACEBOOK CONFIGURATION ENDS  -->
+<!-- TWITTER CARD CONFIGURATION STARTS  -->
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:site" content="https://twitter.com/onlinecalculator" />
+<meta name="twitter:title" content="Theoretical Yeild Calculator | Free Calculator to find Theoretical Yeild" />
+<meta name="twitter:description"
+    content="Magnetic force between wires Calculator makes it easy for you to find magnetic force between wires." />
+<meta name="twitter:image:src"
+    content="https://onlinecalculator.guru/static/images/Chemistry/Theoratical-Yield-Calculator.jpeg" />
+<meta property="twitter:image:height" content="435" />
+<meta property="twitter:image:width" content="354" />
+<!-- TWITTER CARD CONFIGURATION ENDS  -->
+<!--  LINKEDIN CONFIGURATION STARTS-->
+<meta property='og:title' content="Theoretical Yeild Calculatorr | Theoretical Yeild" />
+<meta property='og:image'
+    content="https://onlinecalculator.guru/static/images/Chemistry/Theoratical-Yield-Calculator.jpeg" />
+<meta property='og:description' content="Magnetic force between wires Calculator." />
+<meta property='og:url' content="https://www.linkedin.com/in/onlinecalculator/" />
+<!-- end of linkedin CONFIGURATIONS ENDS -->
+<!-- OPEN GRAPH CONFIGURATION ENDS -->
+<!-- FAQ SCHEMA STARTS -->
+
+{%endblock%}
+{%block content%}
+
+
+<style>
+  input {
+      text-align: right;
+  }
+</style>
+
+{%if go_to %}
+<a href="{{go_to}}" id="ddd"></a>
+{%endif%}
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+  document.getElementById('ddd').click();
+  });
+</script>
+
+    <div class="container" style="height: auto !important;">
+      <div class="card c1">
+          <div class="card-header">
+              <h1 class="h1">Percentage Frequency Calculator</h1>
+          </div>
+          <div class="card-body">
+              <ul class="messages">
+                  {% for message in messages %}
+                  <p {% if message.tags %} id="message_container" class="alert alert-danger text-center" {% endif %}
+                      style="color:red">{{ message }}</p>
+                  {% endfor %}
+              </ul>
+  
+              <form action="" method="POST" action="" >
+                  {% csrf_token %}
+                    <div class="col-auto">
+                    <div class="input-group mb-2">
+                      <div class="input-group-prepend">
+                          <div class="input-group-text"><strong>Dataset</strong></div>
+                      </div>
+                      <input type="text" name="data1"  class="form-control" id="inlineFormInputGroup" placeholder="Enter Data" value="{{ data1 }}" autofocus required>
+                   
+                  </div>
+
+
+                <div class="center col mt-2">
+                  <center><button type="submit" class="btn btn-primary" name="f1">Calculate</button>
+                      <button type="button" onclick="myFunction()" style="margin-top:5px;"
+                          class="btn btn-danger">Reset</button>
+                  </center>
+                </div>
+              
+              </form>   
+          </div>
+        </div>
+</div>
+<div id="clear" >
+    {% if id == 1 %}
+    <div class="card" id="Expected-calculator">
+        <div class="card-header">
+            <h2 class="h2">Percentage Frequency Calculator</h2>
+        </div>
+        {% if errors %}
+
+        <div class="card-body">
+            {% for error in errors %}
+            <h4>{{ error }}</h4>
+             {% endfor %}
+            
+        </div>
+
+        {% endif %}
+
+        {% if classwidth  %}
+        <div class="card-body">
+            <table class="table table-striped">
+                <tr>
+                    <th>Class</th>
+                    <th>class Boundries</th>
+                    <th>Frequency</th>
+                    <th>fi</th>
+                    <th>Percent</th>
+                </tr>
+                {% for i,j,k,l,m in data %}
+                    <tr>
+                        <td>{{ i.0 }} - {{ i.1 }} </td>
+                        <td>{{j.0 }} - {{ j.1 }}</td>
+                        <td>{{ k }}</td>
+                        <td>{{ l }}</td>
+                        <td> {{ m }}% </td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+        {% endif %}
+    </div>
+        
+    {% endif %}
+</div>
+<script>
+  {% comment %} document.getElementsByName("data1")[0].value = "1 1 1 1 1";
+  document.getElementsByName("data2")[0].value = "0.2 0.2 0.2 0.2 0.2"; {% endcomment %}
+
+  
+  {% if id == 1 %}
+   
+  var scrollDiv = document.getElementById("clear").offsetTop;
+  window.scrollTo({ top: scrollDiv, behavior: 'smooth'});
+  
+  {%endif%} 
+  
+      
+  
+  
+      var validNumber = new RegExp(/^\d*\.?-?\d*$/);
+      var fist_input = document.getElementById("inlineFormInputGroup").value;
+      function validateNumber(elem) {
+          console.log(elem)
+          if (validNumber.test(elem.value)) {
+              fist_input = elem.value;
+          } else {
+              elem.value = fist_input;
+          }
+      }
+  </script>
+  
+  <script>
+      function myFunction() {
+  
+          document.getElementsByName("data1")[0].value = "";
+          
+          
+          document.getElementById("clear").innerHTML = "";
+  
+  
+          
+  
+  
+  
+      }
+  </script>
+  <br>
+
+
+{% endblock %}

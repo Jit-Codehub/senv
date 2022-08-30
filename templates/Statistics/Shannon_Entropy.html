@@ -1,0 +1,220 @@
+{%extends 'base/statistics_base2.html'%}
+{%load static%}
+{%block meta%}
+<!-- HTML Defaults Broweser -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Bootstrap Stylesheet and Jquery, Google APIS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+<!-- Online Calculator Guru Site Fevicon -->
+<link rel="shortcut icon" href="https://onlinecalculator.guru/static/images/logo/Online-Calculator-Guru-Fevicon.png"
+    type="icon">
+<!-- Online Calculator Guru Project Style Sheet -->
+{%block css%}
+<link rel="stylesheet" href="/static/style.css">
+{%endblock css%}
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+<!-- Meta Title, Description and Canonical URL Starts --->
+<title>Shannon Entropy Calculator | How to Calculate Information Entropy?</title>
+<meta name="description"
+    content="Shannon Entropy calculator is a free and handy online tool that explains how to calculate the shannon entropy, step by step process and solved example." />
+<link rel="canonical" href="{{request.build_absolute_uri}}">
+<!-- Meta Title, Description and Canonical URL ENDS --->
+
+<!-- OPEN GRAPH CONFIGURATIONS STARTS -->
+<!--  FACEBOOK CONFIGURATION STARTS  -->
+<meta content="https://www.facebook.com/OnlineCalculator-Guru-131572098650589/" property="og:url" />
+<meta property="og:title" content="Shannon Entropy Calculator | How to Calculate Information Entropy?" />
+<meta property="og:description" content="Shannon Entropy calculator is a free and handy online tool that explains how to calculate the shannon entropy, step by step process and solved example." />
+<meta content="" property="og:site_name" />
+<meta content="https://onlinecalculator.guru/static/images/Statistics/Shannon-Entropy-Calculator.jpeg"
+    property="og:image" />
+<meta property="og:image:type" content="image/png" />
+<meta property="og:image:height" content="435" />
+<meta property="og:image:width" content="354" />
+<!--  FACEBOOK CONFIGURATION ENDS  -->
+<!-- TWITTER CARD CONFIGURATION STARTS  -->
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:site" content="https://twitter.com/onlinecalculator" />
+<meta name="twitter:title" content="Shannon Entropy Calculator | How to Calculate Information Entropy?" />
+<meta name="twitter:description"
+    content="Shannon Entropy calculator is a free and handy online tool that explains how to calculate the shannon entropy, step by step process and solved example." />
+<meta name="twitter:image:src"
+    content="https://onlinecalculator.guru/static/images/Statistics/Shannon-Entropy-Calculator.jpeg" />
+<meta property="twitter:image:height" content="435" />
+<meta property="twitter:image:width" content="354" />
+<!-- TWITTER CARD CONFIGURATION ENDS  -->
+<!--  LINKEDIN CONFIGURATION STARTS-->
+<meta property='og:title' content="Shannon Entropy Calculator | How to Calculate Information Entropy?" />
+<meta property='og:image'
+    content="https://onlinecalculator.guru/static/images/Statistics/Shannon-Entropy-Calculator.jpeg" />
+<meta property='og:description' content="Shannon Entropy calculator is a free and handy online tool that explains how to calculate the shannon entropy, step by step process and solved example." />
+<meta property='og:url' content="https://www.linkedin.com/in/onlinecalculator/" />
+<!-- end of linkedin CONFIGURATIONS ENDS -->
+<!-- OPEN GRAPH CONFIGURATION ENDS -->
+<!-- FAQ SCHEMA STARTS -->
+<script type="application/ld+json">{"@context": "https://schema.org","@type": "FAQPage","mainEntity": [{"@type": "Question","name":"1
+    How to calculate information entropy?
+    ","acceptedAnswer": {"@type": "Answer","text":" 
+    Information Entropy can be calculated by using the formula, H(x)= Σnn-1 p(xi) logb 1/p(xi)."}	}, {"@type": "Question","name":"2
+    What is shannon entropy in simple words?
+    ","acceptedAnswer": {"@type": "Answer","text":" 
+    Shannon entropy is a rate of uncertainty combined with random variables."}	}, {"@type": "Question","name":"3
+    How to use Shannon Entropy Calculator?
+    ","acceptedAnswer": {"@type": "Answer","text":"
+    Simply, enter the values in the input fields and click on the calculate button then you will get the answer instantly."}	}]}</script>
+{%endblock meta %}
+
+{% block content %}
+{% if x and ot %}
+<script>
+    $(document).ready(function () {
+
+        $("#hassle").click();
+        });
+</script>
+
+<button type="button" hidden id="hassle" onclick="location.href='#shannon_entropy'">ans1</button>
+{% endif %}
+
+
+<div class="container" style="height: auto !important;">
+    <div class="card c1">
+        <div class="card-header">
+            <h1 class="h1">Shannon Entropy Calculator</h1>
+        </div>
+        <div class="card-body">
+            <p>Given Shannon Entropy Calculator is the best tool that helps to find the average minimum number of bits that encodes a string based on the frequency. For this you need to provide the event probability as input and press the calculate button to get the output right away.</p>
+            {% if messages %}
+            <ul class="messages">
+            {% for message in messages %}
+                <p {% if message.tags %} id="message_container" class="alert alert-danger text-center" {% endif %}
+                    style="color:red">{{ message }}</p>
+                {% endfor %}
+            </ul>
+            {% endif %}
+            <form action="{% url 'shannon_entropy' %}" method="POST" id="my_form">
+                {% csrf_token %}
+                           
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1">Event Probabilities (sperated by comma)</span>
+            </div>
+            
+           <input style="margin-top: 5px;width:100%" id="x" name="x" value="{{x}}"   required="" oninput="validateNumber(this);" class="form-control" type="text" required width="48"> 
+       </div>
+        <div class=" center col mt-2 ">
+            <center><button type="submit" class="btn btn-primary">Calculate</button>
+              <a href="{% url 'shannon_entropy' %}" class="btn btn-warning" role="button" style="margin-top:5px;">Reset</a>      
+            </center>
+          </div>
+    <p><b>Shannon Entropy Calculator: </b>Getting stucked anywhere in the middle while calculating the shannon entropy? Don't fright, as we have shannon entropy calculator to use and get answers straight away. Take a look at the entire calculator article as we have provided definition, formula, steps and examples. Scroll down!!</p>
+</form>
+</div>
+</div>
+</div>
+
+{% if x and ot %}
+<div class="container" style="height: auto !important;">
+<div class="card" id="shannon_entropy">
+        <div class="card-header">
+            <h2 class="h2">Steps to Find Shannon Entropy:</h2>
+        </div>
+
+        <div class="card-body">
+
+            <strong>Shannon Entropy:-</strong>
+            <br>
+            <p class="btn btn-outline-secondary active text-justify">H(x)= Σ<sup>n</sup><sub>n-1</sub> p(x<sub>i</sub>) log<sub>b</sub> 1/p(x<sub>i</sub>)</p>
+            <br>
+            <strong>Where:</strong>
+                <ul>
+                    <li>x<sub>i</sub> is a elements of x.</li>
+                    <li>n is a number of elements.</li>
+                </ul>
+
+            <strong>Input values are:-</strong>
+            <p>Event Probabilities = {{x}} </p>
+            
+            {% if output %}
+                <b>Shannon Entropy = {{start}} x 10<sup>{{end}}</sup></b>
+            {% else %}
+                <p>Shannon Entropy = {{result}}</p>
+            {% endif %}
+            
+
+   </div>
+    </div>
+</div>
+<div class="container" style="height: auto !important;">
+    <div class="card" id="shannon_entropy">
+        <div class="card-header">
+            <h3 class="h3">What is Shannon Entropy (or) Information Entropy?</h3>
+        </div>
+            <div class="card-body">
+                <p>In Statistics, entropy is a rate of uncertainty combined with random variables. Shannon Entropy permits to evaluate the average minimum number of bits required to encode a string based on the frequency. Shannon entropy is important part of information theory. Entropy is denoted by the letter 'H(x)'. </p>
+                <p><b>Shannon Entropy Formula:</b></p>
+                <p>H(x)= Σ<sup>n</sup><sub>n-1</sub> p(x<sub>i</sub>) log<sub>b</sub> 1/p(x<sub>i</sub>)</p>
+                <p>p(x<sub>i</sub>) is a single probability event.</p>
+                <p>n is the number of elements. </p>
+            </div>
+    </div>
+</div>
+<div class="container" style="height: auto !important;">
+    <div class="card" id="shannon_entropy">
+        <div class="card-header">
+            <h3 class="h3">How to Calculate Entropy?</h3>
+        </div>
+            <div class="card-body">
+                <p>Here we are providing you some guidelines to find the information entropy. Follow below steps carefully.</p>
+                <ul>
+                    <li>First and foremost thing is copy the values in the given problem.</li>
+                    <li>Then, you need to find the probability values for the given problem and apply the formula.</li>
+                    <li>Substitute the values and simplify it.</li>
+                    <li>Finally, you will get the desired answer.</li>
+                </ul>
+            </div>
+    </div>
+</div>
+<div class="container" style="height: auto !important;">
+    <div class="card" id="shannon_entropy">
+        <div class="card-header">
+            <h3 class="h3">Shannon Entropy Calculation Example</h3>
+        </div>
+            <div class="card-body">
+                <p><b>Example</b></p>
+                <p><b>Question: </b>Find the Entropy for a sequence of numbers 1235678?</p>
+                <p><b>Solution:</b></p>
+                <p>Given, Sequence number is 1235678</p>
+                <p>p(1) = 1/7, p(2)= 1/7, p(3) = 1/7, p(5) = 1/7, p(6) = 1/7, p(7) = 1/7, p(8) = 1/7.</p>
+                <p>Using the formula,</p>
+                <p><b>H(x)= Σ<sup>n</sup><sub>n-1</sub> p(x<sub>i</sub>) log<sub>b</sub> 1/p(x<sub>i</sub>)</b></p>
+                <p>H(x)= [p(1)*log<sub>2</sub> 1/p(1) + p(2)*log<sub>2</sub> 1/p(2) + p(3)*log<sub>2</sub> 1/p(3) + p(5)*log<sub>2</sub> 1/p(5) + p(6)*log<sub>2</sub> 1/p(6) + p(7)*log<sub>2</sub> 1/p(7) + p(8)*log<sub>2</sub> 1/p(8)]</p>
+                <p>H(x)= [0.1*log<sub>2</sub> 1/0.1 + 0.1*log<sub>2</sub> 1/0.1 + 0.1*log<sub>2</sub> 1/0.1 + 0.1*log<sub>2</sub> 1/0.1 + 0.1*log<sub>2</sub> 1/0.1 + 0.1*log<sub>2</sub> 1/0.1 + 0.1*log<sub>2</sub> 1/0.1]</p>
+                <p>Thus, H(x)= 2.807</p>
+                <p>Look for more other statistics calculators that gives instant results, stay tuned to <a href="https://statisticscalculators.net/">statisticscalculators.net</a></p>
+                <img src="{% static 'images/Statistics/shannon-entropy-calculator.jpeg' %}" alt='shannon-entropy-calculator'>
+            </div>
+    </div>
+</div>
+<div class="container" style="height: auto !important;">
+    <div class="card" id="shannon_entropy">
+        <div class="card-header">
+            <h3 class="h3">FAQs on Shannon Entropy Calculator</h3>
+        </div>
+            <div class="card-body">
+                <!-- Question & Answer Starts --->
+        <p class="question"><strong>1. How to calculate information entropy?</strong></p>
+        <p class="answer">Information Entropy can be calculated by using the formula, H(x)= Σ<sup>n</sup><sub>n-1</sub> p(x<sub>i</sub>) log<sub>b</sub> 1/p(x<sub>i</sub>)</p><hr>
+        <p class="question"><strong>2. What is shannon entropy in simple words?</strong></p>
+        <p class="answer">Shannon entropy is a rate of uncertainty combined with random variables.</p><hr>  
+        <p class="question"><strong>3. How to use Shannon Entropy Calculator?</strong></p>
+        <p class="answer">Simply, enter the values in the input fields and click on the calculate button then you will get the answer instantly.</p><hr>
+    {% endif %}   
+             
+{% endblock content %}

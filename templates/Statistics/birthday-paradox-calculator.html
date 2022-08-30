@@ -1,0 +1,182 @@
+{%extends 'base/statistics_base2.html'%}
+{%load static%}
+{%block meta%}
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+  <link rel="shortcut icon" href="{% static 'images/logo/Statistics-Calc.png' %}" type="icon">
+  {%block css%}
+  <link rel="stylesheet" href="{% static 'style.css' %}">
+  {%endblock%}
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+	<!-- META DATA STARTS --->
+  <title>Birthday Paradox Calculator | How do you Calculate Birthday Paradox?</title>
+	<meta name="description" content="Birthday Paradox Calculator is a free tool that enables you to determine the probability that atleast two people fro a group share common birthdays. ">
+	<link rel="canonical" href="{{request.build_absolute_uri}}">
+<!-- META DATA ENDS --->
+ 
+<!-- OPEN GRAPH CONFIGURATIONS STARTS -->
+	<!--  FACEBOOK CONFIGURATION STARTS  -->
+	<meta content="https://www.facebook.com/OnlineCalculator-Guru-131572098650589/" property="og:url" />
+	<meta property="og:title" content="Birthday Paradox Calculator | How do you Calculate Birthday Paradox?"/>
+	<meta property="og:description" content="Birthday Paradox Calculator is a free tool that enables you to determine the probability that atleast two people fro a group share common birthdays."/>
+	<meta content="" property="og:site_name" />
+	<meta  content="https://Onlinecalculator.guru/static/images/Statistics/Birthday-Paradox-Calculator.jpeg" property="og:image" />
+	<meta property="og:image:type" content="image/png" />
+	<meta property="og:image:height" content="435" />
+	<meta property="og:image:width" content="354" />
+	<!--  FACEBOOK CONFIGURATION ENDS  -->
+	<!-- TWITTER CARD CONFIGURATION STARTS  -->
+	<meta name="twitter:card" content="summary"/>
+	<meta name="twitter:site" content="https://twitter.com/onlinecalculator"/>
+	<meta name="twitter:title" content="Birthday Paradox Calculator | How do you Calculate Birthday Paradox?"/>
+	<meta name="twitter:description" content="Birthday Paradox Calculator is a free tool that enables you to determine the probability that atleast two people fro a group share common birthdays."/>
+	<meta name="twitter:image:src" content="https://Onlinecalculator.guru/static/images/Statistics/Birthday-Paradox-Calculator.jpeg"/>
+	<meta property="twitter:image:height" content="435"/>
+	<meta property="twitter:image:width" content="354"/>
+	<!-- TWITTER CARD CONFIGURATION ENDS  -->
+	<!--  LINKEDIN CONFIGURATION STARTS-->
+	<meta property='og:title' content="Birthday Paradox Calculator | How do you Calculate Birthday Paradox?"/>
+	<meta property='og:image' content="https://Onlinecalculator.guru/static/images/Statistics/Birthday-Paradox-Calculator.jpeg"/>
+	<meta property='og:description' content="Birthday Paradox Calculator is a free tool that enables you to determine the probability that atleast two people fro a group share common birthdays."/>
+	<meta property='og:url' content="https://www.linkedin.com/in/onlinecalculator/" />
+	<!-- end of linkedin CONFIGURATIONS ENDS -->
+<!-- OPEN GRAPH CONFIGURATION ENDS -->
+<!-- FAQ SCHEMA STARTS -->
+<script type="application/ld+json">{"@context": "https://schema.org","@type": "FAQPage","mainEntity": [{"@type": "Question","name":"1.
+  What is the Birthday Paradox Formula?
+  ","acceptedAnswer": {"@type": "Answer","text":" The Formula for determining the Birthday Paradox is p(n) = 1 - (365! / (365n x (365 - n)!))"}	}, {"@type": "Question","name":"2.
+  What are the assumptions made to calculate the Birthday Probabilities?
+  ","acceptedAnswer": {"@type": "Answer","text":" Assumptions made in Birthday Probability Calculation is that birthdays are equally distributed over an year and leap years are ignored."}	}, {"@type": "Question","name":"3.
+  How does a Birthday Paradox Calculator work?
+  ","acceptedAnswer": {"@type": "Answer","text":" Birthday Paradox Calculator takes the number of people as input and on entering the calculate button gives you the birthday paradox."}	}]}</script>
+{%endblock%}
+{%block content%}
+<script>
+  $(document).ready(function(){
+  $(".btn-danger").on("click",function(){
+    $(".form-control").attr("value","");
+
+
+   });
+  });
+</script>
+<div class="container">
+  <button type="button" hidden id="hassle"  onclick="location.href='#get-birthday-paradox'">ans</button>
+	<div class="card c1">
+  	<div class="card-header">
+  <h1 class="h1">Birthday Paradox Calculator</h1>
+  </div>
+  <div class="card-body">
+    <p>Birthday Paradox Calculator is a handy tool that helps you compute the probability of sum of persons in a group sharing common birthdays. All you need to do is size of the group as inputs and then click on the calculate button to avail results in the blink of an eye. </p>
+    {% autoescape off %}
+            {% if messages %}
+                {% for message in messages %}
+                        <div class="row">
+                            <div class="col-md-6">
+                                <p class="alert alert-danger">{{message}}</p>
+                            </div>
+                        </div>
+                {% endfor %}
+                {% endif %}
+        {%endautoescape%}
+      <form action="{% url 'birthday-paradox' %}" id="myForm" onsubmit="return validate()" method="post">
+            {% csrf_token %}
+            <div class="input-group mb-2 mt-3">
+                  <div class="input-group-prepend">
+                <div class="input-group-text"><strong>Number of People</strong></div>
+                     <input type="text" pattern="-?\d*\.?\d*" id="inlineFormInputGroup" name="a" value="{{ a }}" oninput="validateNumber1(this);" placeholder="Enter the Number" class="form-control" required></div>
+            </div>
+
+
+                <div class=" center col mt-2 ">
+                <center><button type="submit" class="btn btn-primary"  class="form-control" >Calculate</button>
+                <button type="button" onclick="this.form.reset()" style="margin-top:5px;" class="btn btn-danger" class="form-control">Reset</button>
+                </center>
+            </div>
+          <div class="input-group mb-2 mt-3">
+                  <div class="input-group-prepend">
+                <div class="input-group-text in"><strong>Probability</strong></div>
+                     <input type="text" disabled id="inlineFormInputGroup" value="{{ d }}" oninput="validateNumber(this);" class="form-control" required></div>
+                    <b id="inlineFormInputGroup" class="form-control">%</b>
+                 </div>
+
+        </form>
+    <p><strong>Birthday Paradox Calculator:</strong> Imagine yourself going to a party and wondering whether anyone shares the common birthday date or not? Don't Panic anymore as we have come up with a wonderful online tool named Birthday Paradox Calculator that determines the probability of two people sharing the same birthdays in no time. Furthermore, alongside the calculator we will also give you brief on what is meant by birthday paradox, math behind the birthday probability problems, formula to calculate birthday probability, step by step procedure on how to find birthday probability in different scenarios. </p>
+  </div></div>
+  {% if answer %}
+  <div class="card c1" id="get-activation-energy">
+      <div class="card-header"><center class="h1">Detailed Answer</center></div>
+      <div class="card-body container">
+      {% for i,z in answer.items %}
+      {% if 'bold' in i %}
+      <p><b>{{ z }}</b></p>
+      {% else %}
+      <p>{{ z }}</p>
+      {% endif %}
+      {% endfor %}
+      {% endif %}
+    <div class="card">
+      <div class="card-header">
+    <h2 class="h2">What is meant by Birthday Paradox?</h2>
+    </div>
+    <div class="card-body">
+      <p>Birthday's Paradox is a mathematical problem put forward by Von Mises for finding the value of N in a Problem. For instance in a group of N people there is a probability of 50% such that atleast 2 people share same birthdays. Thus N = 23 and so is the Paradox.</p>
+      </div></div>
+      <div class="card">
+        <div class="card-header">
+      <h3 class="h3">Birthday Paradox Calculation Formulae</h3>
+      </div>
+      <div class="card-body">
+        <p>Go through the Birthday Paradox Calculation Formulas in various scenarios to decide the probability on your own. </p>
+        <p>Probability that birthdays of n persons are different. p<sup>-</sup>(n) = 365!/365<sup>n</sup>(365-n)!</p>
+      <p>Probability that one or more persons share same birthday p(n) =1-p<sup>-</sup>(n)</p>
+      </div></div>
+      <div class="card">
+        <div class="card-header">
+             <h3 class="h3">How do you get 50/50 Chance?</h3>
+        </div>
+        <div class="card-body">
+          <ul><li>The Probability of 2 people having different birthdays is P(A) = 364/365 </li>
+          <li>To find out the number of possible pairs in a group use the formula pairs = people * (people - 1) / 2 where: pairs - number of all possible pairs that can be formed in the group
+            people - number of people in the group</li>
+          <li>Raise the probability of 2 people not sharing a birthday to the power pairs i.e. P(B).</li>
+        <li>Now that we have determined the probability of no one sharing the birthday i.e. P(B). We need to figure out chance of atleast two people celebaring on the same date i.e. P(B'). Since both of them are complementary events their probabilities sums up 1 so subtract P(B) from 1 i.e. P(B') = 1 - P(B)</li></ul>
+          </div>
+        </div>
+      <div class="card">
+        <div class="card-header">
+             <h3 class="h3">FAQs on Birthday Probability</h3>
+        </div>
+        <div class="card-body"> 
+            <!-- Question & Answer Starts --->
+            <p class="question"><strong>1. What is the Birthday Paradox Formula?</strong></p>
+            <p class="answer">The Formula for determining the Birthday Paradox is p(n) = 1 - (365! / (365n x (365 - n)!))</p><hr>   
+            <p class="question"><strong>2. What are the assumptions made to calculate the Birthday Probabilities?</strong></p>
+            <p class="answer">Assumptions made in Birthday Probability Calculation is that birthdays are equally distributed over an year and leap years are ignored.</p><hr>   
+            <p class="question"><strong>3. How does a Birthday Paradox Calculator Work?</strong></p>
+            <p class="answer">Birthday Paradox Calculator takes the number of people as input and on entering the calculate button gives you the birthday paradox.</p>
+        
+        </div>
+    </div>
+</div>
+
+<script>
+    var validNumber = new RegExp(/^\d*\.?\d*$/);
+    var fist_input = document.getElementById("inlineFormInputGroup").value;
+    function validateNumber(elem) {
+      if (validNumber.test(elem.value)) {
+        fist_input = elem.value;
+      } else {
+        elem.value = fist_input;
+      }
+    }
+</script>
+
+
+
+{%endblock%}

@@ -1,0 +1,232 @@
+{%extends 'base/statistics_base2.html'%}
+{%load static%}
+  {%block meta%}
+    <!-- HTML Defaults Broweser -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Bootstrap Stylesheet and Jquery, Google APIS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <!-- Online Calculator Guru Site Fevicon -->
+    <link rel="shortcut icon" href="https://onlinecalculator.guru/static/images/logo/Online-Calculator-Guru-Fevicon.png" type="icon">
+    <!-- Online Calculator Guru Project Style Sheet -->
+    {%block css%}
+    <link rel="stylesheet" href="https://onlinecalculator.guru/static/style2.css">
+    {%endblock%}
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <!-- Meta Title, Description and Canonical URL Starts --->
+    <title>Quick Z-Score Calculator | Free Online & Handy Calculator to Find Z Score</title>
+    <meta name="description" content="Enter the input values like data sample, sample mean and size, data points in Z-Score Calculator & it finds the z value in split seconds."/>
+    <link rel="canonical" href="{{request.build_absolute_uri}}">
+    <!-- Meta Title, Description and Canonical URL ENDS --->
+ 
+    <!-- OPEN GRAPH CONFIGURATIONS STARTS -->
+	<!--  FACEBOOK CONFIGURATION STARTS  -->
+        <meta content="https://www.facebook.com/OnlineCalculator-Guru-131572098650589/" property="og:url" />
+        <meta property="og:title" content="Quick Z-Score Calculator | Free Online & Handy Calculator to Find Z Score"/>
+        <meta property="og:description" content="Enter the input values like data sample, sample mean and size, data points in Z-Score Calculator & it finds the z value in split seconds."/>
+        <meta content="" property="og:site_name" />
+        <meta  content="https://onlinecalculator.guru/static/images/Statistics/Z-Score-Calculator.jpeg" property="og:image" />
+        <meta property="og:image:type" content="image/png" />
+        <meta property="og:image:height" content="435" />
+        <meta property="og:image:width" content="354" />
+        <!--  FACEBOOK CONFIGURATION ENDS  -->
+        <!-- TWITTER CARD CONFIGURATION STARTS  -->
+        <meta name="twitter:card" content="summary"/>
+        <meta name="twitter:site" content="https://twitter.com/onlinecalculator"/>
+        <meta name="twitter:title" content="Quick Z-Score Calculator | Free Online & Handy Calculator to Find Z Score"/>
+        <meta name="twitter:description" content="Enter the input values like data sample, sample mean and size, data points in Z-Score Calculator & it finds the z value in split seconds."/>
+        <meta name="twitter:image:src" content="https://onlinecalculator.guru/static/images/Statistics/Z-Score-Calculator.jpeg"/>
+        <meta property="twitter:image:height" content="435"/>
+        <meta property="twitter:image:width" content="354"/>
+        <!-- TWITTER CARD CONFIGURATION ENDS  -->
+        <!--  LINKEDIN CONFIGURATION STARTS-->
+        <meta property='og:title' content="Quick Z-Score Calculator | Free Online & Handy Calculator to Find Z Score"/>
+        <meta property='og:image' content="https://onlinecalculator.guru/static/images/Statistics/Z-Score-Calculator.jpeg"/>
+        <meta property='og:description' content="Enter the input values like data sample, sample mean and size, data points in Z-Score Calculator & it finds the z value in split seconds."/>
+        <meta property='og:url' content="https://www.linkedin.com/in/onlinecalculator/" />
+        <!-- end of linkedin CONFIGURATIONS ENDS -->
+    <!-- OPEN GRAPH CONFIGURATION ENDS -->
+    <!-- FAQ SCHEMA STARTS -->
+    <script type="application/ld+json">{"@context": "https://schema.org","@type": "FAQPage","mainEntity": [{"@type": "Question","name":"1.
+        Where can I learn Z-score definition, formula, and calculation?
+        ","acceptedAnswer": {"@type": "Answer","text":"You can easily learn Z-score definition, formula, and calculation from our page along with a handy online calculator tool."} }, {"@type": "Question","name":"2.
+        What is the z score of 1?
+        ","acceptedAnswer": {"@type": "Answer","text":"A z-score of 1 is 1 standard deviation above the mean."} }, {"@type": "Question","name":"3.
+        How do you calculate the z score without a calculator?
+        ","acceptedAnswer": {"@type": "Answer","text":"Z score can be calculated without a calculator by using the formula ie., z = (x-μ)/σ where x is the raw score, μ is the population mean, and σ is the population standard deviation. Put the inputs values in the z score formula and immediately obtain the z score value."} }]}</script>
+    {%endblock%}
+    {%block content%}
+    <div class="container">
+        <div class="card c1">
+            <div class="card-header">
+                <h1 class="h1">Z-Score Calculator</h1>
+            </div>
+            <div class="card-body">
+                {%if go_tag%}
+                <a href="{{go_tag}}" id="ddd"></a>
+                {%endif%}
+                <p>Had no time to calculate the z score manually then take the help of our free online &amp; handy Z-Score Calculator as it finds the values in a matter of seconds. Simply drop your inputs in the respective fields and click on the calculate button to attain the z-score result in less time.</p>
+                <div class="box" id="z_score">
+                    <form method="POST">{% csrf_token %}
+                        <div class="row mx-auto my-auto">
+                            <div class="cell">
+                                <label for="input1">Enter the raw data point (x): </label>
+                            </div>
+                          </div>
+                        <div class="row mx-auto my-auto">
+                            <div class="cell">
+                                {%if input1%}
+                                    <input name="input1" type="text" required width="48"  value="{{input1}}">
+                                {%else%}
+                                    <input name="input1" type="text" required width="48"  value="396">
+                                {%endif%}
+                            </div>
+                        </div>
+                        <div class="row mx-auto my-auto">
+                            <div class="cell">
+                                <label for="input2">Enter the Population Mean (μ): </label>
+                            </div>
+                          </div>
+                        <div class="row mx-auto my-auto">
+                            <div class="cell">
+                                {%if input2%}
+                                    <input name="input2" type="text" required width="48"  value="{{input2}}">
+                                {%else%}
+                                    <input name="input2" type="text" required width="48"  value="400">
+                                {%endif%}
+                            </div>
+                        </div>
+                        <div class="row mx-auto my-auto">
+                            <div class="cell">
+                                <label for="input3">Enter the Population Standard Deviation (σ): </label>
+                            </div>
+                          </div>
+                        <div class="row mx-auto my-auto">
+                            <div class="cell">
+                                {%if input3%}
+                                    <input name="input3" type="text" required width="48"  value="{{input3}}">
+                                {%else%}
+                                    <input name="input3" type="text" required width="48"  value="20">
+                                {%endif%}
+                            </div>
+                        </div>
+                    <div class="col-auto mt-2 ml-3">
+                      <button type="submit" class="btn btn-primary mb-2">Calculate</button>
+                    </div>
+                    </form>
+                    {%if detailStep%}
+                      <hr>
+                      <p><strong>Answer:</strong></p>
+                      <div style="text-align: center;">
+                      {% autoescape off %}
+                      {{detailStep}}
+                      {%endautoescape%}
+                    
+                      </div>
+                      <hr>
+                  {%endif%}
+                      </div>
+                  {% autoescape off %}
+                      {% if messages %}
+                          {% for message in messages %}
+                              <div class="row">
+                                  <div class="col-md-6">
+                                      <p class="alert alert-danger">{{message}}</p>
+                                  </div>
+                              </div>
+                          {% endfor %}
+                      {% endif %}
+                  {%endautoescape%}
+                  <p><strong>Z-Score Calculator:</strong> Wondering how to find a z-score easily and quickly? Here is the best online calculator tool that calculates the z score by computing the input mean, standard deviation, data points, data samples at a faster pace. Want to know more about the concept of z-score? Grab the opportunity of learning what is z-score, formulas used to solve, steps to calculate z score value manually, and examples to get more knowledge on the concept from the z-score calculator.</p>            </div>
+        </div>
+        <div class="card">
+            <div class="card-header">
+            <h3 class="h2">What is Meant by Z Score & Its Formulas?</h2>
+            </div>
+            <div class="card-body">
+                <p>The definition of z score is as the distance between the mean score and the trail data points states in terms of standard deviation. The value of the z-score is utilized to explain the normal distribution.</p>
+                <p>The other names of z score in statistical data analysis are standard score, z value, normal score, and standardized score. For more information such as formula and process to calculate z score, step into our further modules.</p>
+                <h3>Z Score Formula</h3>
+                <p>1. The standard z score formula for a sample is: <strong>z = (x &ndash; &mu;) / &sigma;</strong></p>
+                <p>For instance, consider that you have a test score of 200. The test has a mean (&mu;) of 100 and a standard deviation (&sigma;) of 5. By taking a normal distribution, the z score would be:</p>
+                <p>z = (x &ndash; &mu;) / &sigma;<br />= (200 &ndash; 100) / 5 = 100/5 = 20.</p>
+                <p>The z score means how many standard deviations from the mean your score. Here, your score is 20 standard deviations above the mean.</p>
+                <p>2. The formula to calculate the z-score of a sample with a known population mean and standard deviation.</p>
+                <p><strong>z = (x<sub>mean</sub> - &mu;) / &sigma;/&radic;n</strong></p>
+                <p>Where</p>
+                <p>z is the z score value</p>
+                <p>x is the raw data point</p>
+                <p>x<sub>mean</sub> is the sample data set mean</p>
+                <p>n is the sample data set size</p>
+                <p>&mu; is the population mean</p>
+                <p>&sigma; is the population standard deviation</p>  
+            </div>
+        </div>
+        <div class="card">
+	    <div class="card-header">
+            <h2 class="h2">How to Find Z Score Manually?</h2>
+        </div>
+	    <div class="card-body">
+            <p>Follow the below simple steps and find z values manually with ease. Here are a few different ways to calculate the z score value. You can pick any of the methods as per the information you have in the given problem. So, check out the methods without any fail and get used to calculating the standard scores manually.</p>
+<h4>Finding Z Score By Data Points</h4>
+<ul>
+<li>Firstly, note down the data points, the population mean, population standard deviation from the given question.</li>
+<li>Now, take the population mean and subtract the data points from it.</li>
+<li>At last, divide the outcome by population SD to attain the z-score.</li>
+</ul>
+<h4>Calculating Z Value using Sample Mean and Size</h4>
+<ul>
+<li>After getting all the required inputs from the given question we have to continue with the next step.</li>
+<li>Subtract the sample mean from the population mean &amp; multiply it with the square root of data size.</li>
+<li>Once you have calculated the result of the above step, divide the result by the population standard deviation to get the output of the z score.</li>
+</ul>
+<h4>Steps to Find Standard Score using Data Sample</h4>
+<ul>
+<li>Lets' consider the input values to calculate the z score.</li>
+<li>At first, find the mean for the given data sample.</li>
+<li>Obtain the difference between the population mean and data sample mean.</li>
+<li>Do multiplication with the square root of data sample size.</li>
+<li>Finally, perform division for the result and population standard deviation to get the result of the z score.</li>
+</ul>
+<p>Let's dig deep into statistics concepts from our <a href="https://statisticscalculators.net/">statisticscalculators.net</a> online calculators for free of cost to assess your knowledge gap and improve your math skills.</p>
+<p><strong>Example:</strong></p>
+<p>During the exam, five kids scored 45, 50, 55, 62, and 75 points. Find the z score of the result 62?</p>
+<p><strong>Solution:</strong></p>
+<p>Given points are 45, 50, 55, 62, and 75 </p>
+<p>Now, find the mean of the points &mu; = (45+50+55+62+75) = 287/5 = 57.4</p>
+<p>Now, find the individal values of (x - &mu;)&sup2; for each result:</p>
+<p>(45-57.4)&sup2; = 153.76<br />(50-57.4)&sup2; = 54.76<br />(55-57.4)&sup2; = 5.76<br />(62-57.4)&sup2; = 21.16<br />(75-57.4)&sup2; = 309.76</p>
+<p>Calculate the SD of the data points (&sigma;) </p>
+<p>&sigma; = &radic;[(153.76+54.76+5.76+21.16+309.76)/5] <br />&sigma; = &radic;[ 545.2/5]<br />&sigma; = &radic;109.04<br />&sigma; = 10.4422</p>
+<p>Substitute these values in z score formula for x = 62</p>
+<p>z = (62 - 57.4) / 10.4422 <br />z = 0.44</p>
+<p>Hence, the z score value of the result 62 is<strong> 0.44</strong>.</p>
+<img src="{% static 'images/Statistics/z-score-calculator.jpeg' %}" alt='Z-Score Calculator'>
+        </div>
+    </div>
+    <div class="card">
+  	    <div class="card-header">
+      	<h3 class="h3">FAQs on Quick Z Score Online Calculator</h3>
+  	    </div>
+  	    <div class="card-body">
+      	<!-- Question & Answer Starts --->
+        <p class="question"><strong>1. Where can I learn Z-score definition, formula, and calculation?</strong></p>
+     	<p class="answer">You can easily learn Z-score definition, formula, and calculation from our page along with a handy online calculator tool. </p><hr>
+     	<p class="question"><strong>2. What is the z score of 1?</strong></p>
+     	<p class="answer">A z-score of 1 is 1 standard deviation above the mean. </p><hr>  
+        <p class="question"><strong>3. How do you calculate the z score without a calculator?</strong></p>
+        <p class="answer">Z score can be calculated without a calculator by using the formula ie., z = (x-μ)/σ where x is the raw score, μ is the population mean, and σ is the population standard deviation. Put the inputs values in the z score formula and immediately obtain the z score value.</p><hr>
+    	</div>
+    </div>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            document.getElementById('ddd').click();
+          });
+    </script>
+{%endblock%}
+  

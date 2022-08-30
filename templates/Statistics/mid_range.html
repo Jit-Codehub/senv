@@ -1,0 +1,186 @@
+{%extends 'base/statistics_base2.html'%}
+{%load static%}
+{%block meta%}
+<!-- HTML Defaults Broweser -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Bootstrap Stylesheet and Jquery, Google APIS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+<!-- Online Calculator Guru Site Fevicon -->
+<link rel="shortcut icon" href="https://onlinecalculator.guru/static/images/logo/Online-Calculator-Guru-Fevicon.png"
+    type="icon">
+<!-- Online Calculator Guru Project Style Sheet -->
+{%block css%}
+<link rel="stylesheet" href="https://onlinecalculator.guru/static/style.css">
+{%endblock css%}
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+<!-- Meta Title, Description and Canonical URL Starts --->
+<title>Mid Range Calculator with Steps | Definition, formula, how to find midrange</title>
+<meta name="description"
+    content="Want a free calculator to find the midrange of the given data set? Make use of our user-friendly Mid Range Calculator & get result in no time" />
+<link rel="canonical" href="{{request.build_absolute_uri}}">
+<!-- Meta Title, Description and Canonical URL ENDS --->
+
+<!-- OPEN GRAPH CONFIGURATIONS STARTS -->
+<!--  FACEBOOK CONFIGURATION STARTS  -->
+<meta content="https://www.facebook.com/OnlineCalculator-Guru-131572098650589/" property="og:url" />
+<meta property="og:title" content="Mid Range Calculator with Steps | Definition, formula, how to find midrange" />
+<meta property="og:description" content="Mid Range Calculator" />
+<meta content="" property="og:site_name" />
+<meta content="https://onlinecalculator.guru/static/images/Chemistry/Mid-range-Calculator.jpeg"
+    property="og:image" />
+<meta property="og:image:type" content="image/png" />
+<meta property="og:image:height" content="435" />
+<meta property="og:image:width" content="354" />
+<!--  FACEBOOK CONFIGURATION ENDS  -->
+<!-- TWITTER CARD CONFIGURATION STARTS  -->
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:site" content="https://twitter.com/onlinecalculator" />
+<meta name="twitter:title" content="Mid Range Calculator with Steps | Definition, formula, how to find midrange" />
+<meta name="twitter:description"
+    content="Want a free calculator to find the midrange of the given data set? Make use of our user-friendly Mid Range Calculator & get result in no time" />
+<meta name="twitter:image:src"
+    content="https://onlinecalculator.guru/static/images/Chemistry/Mid-range-Calculator.jpeg" />
+<meta property="twitter:image:height" content="435" />
+<meta property="twitter:image:width" content="354" />
+<!-- TWITTER CARD CONFIGURATION ENDS  -->
+<!--  LINKEDIN CONFIGURATION STARTS-->
+<meta property='og:title' content="Mid Range Calculator with Steps | Definition, formula, how to find midrange" />
+<meta property='og:image'
+    content="https://onlinecalculator.guru/static/images/Chemistry/Mid-range-Calculator.jpeg" />
+<meta property='og:description' content="Mid Range Calculator." />
+<meta property='og:url' content="https://www.linkedin.com/in/onlinecalculator/" />
+<!-- end of linkedin CONFIGURATIONS ENDS -->
+<!-- OPEN GRAPH CONFIGURATION ENDS -->
+<!-- FAQ SCHEMA STARTS -->
+<script type="application/ld+json">{"@context": "https://schema.org","@type": "FAQPage","mainEntity": [{"@type": "Question","name":"1.
+    How do you calculate midrange?
+    ","acceptedAnswer": {"@type": "Answer","text":"To calculate the midrange of the data set, simply sum up the biggest and lowest value of the data and divide the result by two."} }, {"@type": "Question","name":"2.
+    What is the midrange of the data?
+    ","acceptedAnswer": {"@type": "Answer","text":"The average of the lowest and highest numbers appearing in the range of given data is called the midrange of the data."} }, {"@type": "Question","name":"3.
+    What is the range and midrange in math?
+    ","acceptedAnswer": {"@type": "Answer","text":"In math, the difference between the largest and smallest numbers is called range and the Midrange is another interpretation of average, which is generally utilized in statistics."} }, {"@type": "Question","name":"4.
+    What is the midrange formula?
+    ","acceptedAnswer": {"@type": "Answer","text":"The formula to find the midrange = (high + low) / 2."} }, {"@type": "Question","name":"5.
+    How to find the midrange calculator?
+    ","acceptedAnswer": {"@type": "Answer","text":"Visit the statisticscalculators.net website and tap on the midrange calculator link from the list of online calculators on the homepage."} }]}
+</script>
+{%endblock meta %}
+
+{% block content %}
+{% if ot and x %}
+<script>
+    $(document).ready(function () {
+
+        $("#hassle").click();
+        });
+</script>
+
+<button type="button" hidden id="hassle" onclick="location.href='#mid_range'">ans1</button>
+{% endif %}
+
+
+<div class="container" style="height: auto !important;">
+    <div class="card c1">
+        <div class="card-header">
+            <h1 class="h1">Mid Range Calculator</h1>
+        </div>
+        <div class="card-body">
+            <p>The Statistical tool that is used to find the average of the highest and lowest values in the given data in no time is Mid Range Calculator. Just enter the data set in the input field and press the calculate button to avail the output immediately &amp; effortlessly.</p>
+            {% if messages %}
+            <ul class="messages">
+            {% for message in messages %}
+                <p {% if message.tags %} id="message_container" class="alert alert-danger text-center" {% endif %}
+                    style="color:red">{{ message }}</p>
+                {% endfor %}
+            </ul>
+            {% endif %}
+            <form action="{% url 'mid_range' %}" method="POST" id="my_form">
+                {% csrf_token %}
+                 </div>
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1">x Values (separated by comma)</span>
+            </div>
+            
+           <input style="margin-top: 5px;width:100%" id="x" name="x" value="{{x}}"   required="" o class="form-control" type="text" required width="48"> 
+       </div>
+
+        <div class=" center col mt-2 ">
+            <center><button type="submit" class="btn btn-primary">Calculate</button>
+              <a href="{% url 'mid_range' %}" class="btn btn-warning" role="button" style="margin-top:5px;">Reset</a>      
+            </center>
+          </div>
+          <p><strong>Mid Range Calculator:</strong>&nbsp;Feeling tough to calculate the midrange? Go with this article and find the best approach to find the mid-range of the statistical data easily. Here, we have provided an online Mid Range Statistics Calculator which is a one-stop destination to estimate the mid-extreme.</p>
+          <p>Also, you can learn the definition of midrange, formula, and how to calculate the mid range of the given data manually with solved examples. So, take the help from our handy midrange calculator with steps and gain more subject knowledge.</p>
+</div>
+</form>
+</div>
+</div>
+{% if x and ot %}
+<div class="container" style="height: auto !important;">
+    <div class="card" id="sample_mean">
+        <div class="card-header">
+                <h2 class="h2">What is Meant by Midrange in Statistics and its Formula?</h2>
+            </div>
+        <div class="card-body">
+            <p>In Statistics, the arithmetic mean of the maximum and minimum data values is called the midrange of the statistical data set. The other name of the midrange is mid-extreme and it is a measure of central tendency.</p>
+<h3>Mid Range Formula</h3>
+<p>The formula to find the mid range of the given statistical data is as follows:</p>
+<p><strong>M = X<sub>max</sub> + X<sub>min</sub> / 2</strong></p>
+<p>Where,</p>
+<p>M is midrange<br />X<sub>max</sub> is the maximum value in a data set<br />X<sub>min</sub> is the minimum value in a data set</p>               
+       </div>
+        </div>
+    </div>                      
+
+<div class="container" style="height: auto !important;">
+<div class="card" id="sample_mean">
+        <div class="card-header">
+            <h2 class="h2">How to Calculate the Midrange Manually with Steps?</h2>
+        </div>
+
+        <div class="card-body">
+            <p>To caluclate midrange, follow the below-listed steps carefully &amp; get the value of the mid range of a data set:</p>
+            <ul>
+            <li>First, arrange the given data set in ascending order or descending order.</li>
+            <li>Now, find the highest value and lowest value in the data set.</li>
+            <li>Add up the maximum x value and minimum x value.</li>
+            <li>Divide the result by two and calculate the mid-range value of the statistical data.</li>
+            </ul>
+            <p><strong>Example:</strong></p>
+            <p>Calculate the midrange for the data set values of 2, 6, 7, 11, 32.</p>
+            <p><strong>Solution:</strong></p>
+            <p>Given data set values are 2, 6, 7, 11, 32<br />The given set is arranged in ascending order<br />So, the lowest value is 2 and the highest value is 32<br />The formula to find the midrange is <br />M = maximum + minimum / 2<br />M = 32+2 / 2<br />M = 34/2<br />M = 17</p>
+            <p>Hence, the mid range of the data set values ie., 2, 6, 7, 11, 32 is 17.</p>
+            <img src="{% static 'images/Statistics/midrange-calculator.jpeg' %}" alt='midrange-calculator'>                       
+   </div>
+    </div>
+</div>
+<div class="container" style="height: auto !important;">
+    <div class="card" id="sample_mean">
+        <div class="card-header">
+                <h2 class="h3">FAQs on Free Online Midrange Statistics Calculator</h3>
+            </div>
+        <div class="card-body">
+         <!-- Question & Answer Starts --->
+<p class="question"><strong>1. How do you calculate midrange?</strong></p>
+<p class="answer">To calculate the midrange of the data set, simply sum up the biggest and lowest value of the data and divide the result by two.</p><hr>
+<p class="question"><strong>2. What is the midrange of the data?</strong></p>
+<p class="answer">The average of the lowest and highest numbers appearing in the range of given data is called the midrange of the data.</p><hr>  
+<p class="question"><strong>3. What is the range and midrange in math?</strong></p>
+<p class="answer">In math, the difference between the largest and smallest numbers is called range and the Midrange is another interpretation of average, which is generally utilized in statistics.</p><hr>   
+<p class="question"><strong>4. What is the midrange formula?</strong></p>
+<p class="answer">The formula to find the midrange = (high + low) / 2.</p><hr>  
+<p class="question"><strong>5. How to find the midrange calculator?</strong></p>
+<p class="answer">Visit the <a href="https://statisticscalculators.net/">statisticscalculators.net</a> website and tap on the midrange calculator link from the list of online calculators on the homepage.</p><hr>       
+       </div>
+        </div>
+    </div>
+    {% endif %}                 
+{% endblock content %} 

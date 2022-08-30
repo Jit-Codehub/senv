@@ -1,0 +1,172 @@
+{%extends 'base/statistics_base3.html'%}
+{%load static%}
+  {%block meta%}
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+  <link rel="shortcut icon" href="{% static 'images/logo/Online-Calculator-Guru-Fevicon.png' %}" type="icon">
+  {%block css%}
+  <link rel="stylesheet" href="{% static 'style.css' %}">
+  {%endblock%}
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <!-- META DATA STARTS --->
+    <title>Five Number Summary Calculator Find 5 Number Summary of {{inputEnter}}</title>
+    <meta name="description" content="Five Number Summary Calculator is quite easy tool that performs the Five (5) Number Summary of {{inputEnter}} & provides the results ie, {{finalAnswer}}">
+    <link rel="canonical" href="{{request.build_absolute_uri}}" >
+<!-- META DATA ENDS --->
+
+<!-- OPEN GRAPH CONFIGURATIONS STARTS -->
+    <!--  FACEBOOK CONFIGURATION STARTS  -->
+    <meta content="https://www.facebook.com/OnlineCalculator-Guru-131572098650589/" property="og:url" />
+    <meta property="og:title" content="Five Number Summary Calculator Find 5 Number Summary of {{inputEnter}}"/>
+    <meta property="og:description" content="Five Number Summary Calculator is quite easy tool that performs the Five (5) Number Summary of {{inputEnter}} & provides the results ie, {{finalAnswer}}"/>
+    <meta content="" property="og:site_name" />
+    <meta  content="https://onlinecalculator.guru/static/images/Statistics/Five-Number-Summary-Calculator.jpeg" property="og:image" />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:height" content="435" />
+    <meta property="og:image:width" content="354" />
+    <!--  FACEBOOK CONFIGURATION ENDS  -->
+    <!-- TWITTER CARD CONFIGURATION STARTS  -->
+    <meta name="twitter:card" content="summary"/>
+    <meta name="twitter:site" content="https://twitter.com/onlinecalculator"/>
+    <meta name="twitter:title" content="Five Number Summary Calculator Find 5 Number Summary of {{inputEnter}}"/>
+    <meta name="twitter:description" content="Five Number Summary Calculator is quite easy tool that performs the Five (5) Number Summary of {{inputEnter}} & provides the results ie, {{finalAnswer}}"/>
+    <meta name="twitter:image:src" content="https://onlinecalculator.guru/static/images/Statistics/Five-Number-Summary-Calculator.jpeg"/>
+    <meta property="twitter:image:height" content="435"/>
+    <meta property="twitter:image:width" content="354"/>
+    <!-- TWITTER CARD CONFIGURATION ENDS  -->
+    <!--  LINKEDIN CONFIGURATION STARTS-->
+    <meta property='og:title' content="Five Number Summary Calculator Find 5 Number Summary of {{inputEnter}}"/>
+    <meta property='og:image' content="https://onlinecalculator.guru/static/images/Statistics/Five-Number-Summary-Calculator.jpeg"/>
+    <meta property='og:description' content="Five Number Summary Calculator is quite easy tool that performs the Five (5) Number Summary of {{inputEnter}} & provides the results ie, {{finalAnswer}}"/>
+    <meta property='og:url' content="https://www.linkedin.com/in/onlinecalculator/" />
+    <!-- end of linkedin CONFIGURATIONS ENDS -->
+<!-- OPEN GRAPH CONFIGURATION ENDS -->
+<!-- FAQ SCHEMA STARTS -->
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How to do the Five Number Summary of {{inputEnter}}?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "You can calculate the 5 number summary of {{inputEnter}} by just arranging the set in ascending order and use the formulas to find the median, first quartile, and third quartile and get the exact results for five-set of observations easily and quickly by hand."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is the Five number summary of numbers {{inputEnter}}?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The Five number summary of numbers {{inputEnter}} is the minimum value is {{min_value}}, the maximum value is {{max_value}}, the median is {{median}}, the first quartile Q1 is {{first_quartile}}, and the third quartile Q3 is {{third_quartile}}."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Where do I get exact steps on the 5 number summary of {{inputEnter}}?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "You can find exact steps on the five (5) number summary of {{inputEnter}} on our page."
+        }
+      }]
+  }
+</script>
+{%endblock%}
+{%block content%}
+<div class="container">
+    <div class="card c1">
+      <div class="card-header">
+  <h1 class="h1">Determining Five Number Summary of {{inputEnter}}</h1>
+  </div>
+  <div class="card-body">
+    <p>Utilize the <a href="{% url 'five-summary' %}">Five Number Summary Calculator</a> and find the set of observations of a data ie., {{inputEnter}}, and displays the outcome as the min value is {{min_value}}, the max value is {{max_value}}, the median is {{median}}, Q1 is {{first_quartile}}, and Q3 is {{third_quartile}} in a fraction of seconds along with detailed solution steps.</p>
+    <p><b>Ex:</b> 32,45,12,17,43,68,75,8,11,29</p>
+    <form action="{% url 'five-summary' %}" method="POST" id="my_form" name="reg_to_scientific" onsubmit="go();">
+        {% csrf_token %}
+        <div class="form-row align-items-center">
+          <div class="col-auto">
+            <label class="sr-only" for="inlineFormInputGroup">Five Number Summary</label>
+            <div class="input-group mb-2">
+              <div class="input-group-prepend">
+                <div class="input-group-text"><strong>Five Number Summary of: </strong></div>
+              </div>
+              <input type="text" class="form-control" name="input1" id="inlineFormInputGroup" placeholder="Enter number" value="{{inputEnter}}">
+            </div>
+          </div>
+          <div class="col-auto">
+            <button type="submit" class="btn btn-primary mb-2">Calculate</button>
+          </div>
+        </div>
+    </form>
+</div></div>
+<div class="card">
+    <div class="card-header">
+<h2 class="h2">Elaborate Solution Steps for Finding 5 Number Summary of Numbers {{inputEnter}}</h2>
+</div>
+<div class="card-body">
+{% autoescape off %}
+{{ detailStep }}
+{% endautoescape %}
+</div>
+</div>
+<div class="row">
+  <div class="col-sm-6">
+    <div class="card">
+      <div class="card-header"><h3 class="h3">Five Number Summary Examples</h3></div>
+      <div class="card-body">
+        <ul>
+          {% for i,j in example1 %}
+          <li><a  href="{{i}}" title="{{j}}">{{j}}</a></li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-6">
+    <div class="card">
+      <div class="card-header"><h3 class="h3">Median of Numbers Examples</h3></div>
+      <div class="card-body">
+        <ul>
+          {% for i,j in example2 %}
+          <li><a  href="{{i}}" title="{{j}}">{{j}}</a></li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+  </div>
+  <img src="{% static 'images/Statistics/first-quartile-calculator.jpeg' %}" alt='first-quartile-calculator'>
+</div>
+<div class="card">
+  <div class="card-header">
+    <h3 class="h3">Frequently Asked Questions on Five Number Summary of {{inputEnter}}</h3>
+  </div>
+  <div class="card-body">
+      <p class="question"><strong>1. How to do the Five Number Summary of {{inputEnter}}?</strong></p>
+      <p class="answer">You can calculate the 5 number summary of {{inputEnter}} by just arranging the set in ascending order and use the formulas to find the median, first quartile, and third quartile and get the exact results for five-set of observations easily and quickly by hand.</p><hr>
+
+
+        <p class="question"><strong>2. What is the Five number summary of numbers {{inputEnter}}?</strong></p>
+        <p class="answer">The Five number summary of numbers {{inputEnter}} is the minimum value is {{min_value}}, the maximum value is {{max_value}}, the median is {{median}}, the first quartile Q1 is {{first_quartile}}, and the third quartile Q3 is {{third_quartile}}.</p><hr>
+
+
+        <p class="question"><strong>3. Where do I get exact steps on the 5 number summary of {{inputEnter}}?</strong></p>
+        <p class="answer">You can find exact steps on the five (5) number summary of {{inputEnter}} on our page.</p><hr>
+  </div>
+</div>
+</div>
+<!-- <div class="card">
+  <div class="card-header"><h2>More Examples</h2></div>
+  <div class="card-body">
+    {%for post1 in post%}
+      <li><a href="{% url 'five-summary-detail' post1.slug %}">{{post1.solutionTitle}}</a></li>
+      {%endfor%}
+  </div>
+</div> -->
+{%endblock%}

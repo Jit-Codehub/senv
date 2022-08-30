@@ -1,0 +1,226 @@
+{%extends 'base/statistics_base2.html'%}
+{%load static%}
+{%block meta%}
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+  <link rel="shortcut icon" href="{% static 'images/logo/Chemistry-Calc.png' %}" type="icon">
+  {%block css%}
+  <link rel="stylesheet" href="{% static 'style.css' %}">
+  {%endblock%}
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+	<!-- META DATA STARTS --->
+    <title>Pearson Correlation Coefficient Calculator Online | How to Find Pearson Coefficient?</title>
+	<meta name="description" content="Pearson Correlation Coefficient Calculator is a tool used to determine the correlation coefficient for given data values effortlessly and explains the steps.">
+	<link rel="canonical" href="{{request.build_absolute_uri}}">
+<!-- META DATA ENDS --->
+ 
+<!-- OPEN GRAPH CONFIGURATIONS STARTS -->
+	<!--  FACEBOOK CONFIGURATION STARTS  -->
+	<meta content="https://www.facebook.com/OnlineCalculator-Guru-131572098650589/" property="og:url" />
+	<meta property="og:title" content="Pearson Correlation Coefficient Calculator Online | How to Find Pearson Coefficient?"/>
+	<meta property="og:description" content="Pearson Correlation Coefficient Calculator is a tool used to determine the correlation coefficient for given data values effortlessly and explains the steps."/>
+	<meta content="" property="og:site_name" />
+  <meta  content="https://onlinecalculator.guru/static/images/Statistics/Pearson-Correlation-Calculator.jpeg" property="og:image" />
+	<meta property="og:image:type" content="image/png" />
+	<meta property="og:image:height" content="435" />
+	<meta property="og:image:width" content="354" />
+	<!--  FACEBOOK CONFIGURATION ENDS  -->
+	<!-- TWITTER CARD CONFIGURATION STARTS  -->
+	<meta name="twitter:card" content="summary"/>
+	<meta name="twitter:site" content="https://twitter.com/onlinecalculator"/>
+	<meta name="twitter:title" content="Pearson Correlation Coefficient Calculator Online | How to Find Pearson Coefficient?"/>
+	<meta name="twitter:description" content="Pearson Correlation Coefficient Calculator is a tool used to determine the correlation coefficient for given data values effortlessly and explains the steps."/>
+	<meta name="twitter:image:src" content="https://onlinecalculator.guru/static/images/Statistics/Pearson-Correlation-Calculator.jpeg"/>
+	<meta property="twitter:image:height" content="435"/>
+	<meta property="twitter:image:width" content="354"/>
+	<!-- TWITTER CARD CONFIGURATION ENDS  -->
+	<!--  LINKEDIN CONFIGURATION STARTS-->
+	<meta property='og:title' content="Pearson Correlation Coefficient Calculator Online | How to Find Pearson Coefficient?"/>
+  <meta property='og:image' content="https://onlinecalculator.guru/static/images/Statistics/Pearson-Correlation-Calculator.jpeg"/>
+	<meta property='og:description' content="Pearson Correlation Coefficient Calculator is a tool used to determine the correlation coefficient for given data values effortlessly and explains the steps."/>
+	<meta property='og:url' content="https://www.linkedin.com/in/onlinecalculator/" />
+	<!-- end of linkedin CONFIGURATIONS ENDS -->
+<!-- OPEN GRAPH CONFIGURATION ENDS -->
+<!-- FAQ SCHEMA STARTS -->
+<script type="application/ld+json">{"@context": "https://schema.org","@type": "FAQPage","mainEntity": [{"@type": "Question","name":"1.
+  What does Pearson's Correlation Coefficient tell you?
+  ","acceptedAnswer": {"@type": "Answer","text":" Pearson's Correlation Coefficient tells us the strength and direction of linear relation between two random variables."}	}, {"@type": "Question","name":"2.
+  What does a Pearson Coefficient of 0 mean?
+  ","acceptedAnswer": {"@type": "Answer","text":" Pearson Coefficient 0 tells us that there is no linear relationship between the data set present."}	}, {"@type": "Question","name":"3.
+  What is the formula for Pearson Correlation Coefficient?
+  ","acceptedAnswer": {"@type": "Answer","text":" The Formula for Pearson Correlation Coefficient is r = [n(∑xy) - (∑x)(∑y)] / √(n∑x² - (∑x)²) (n∑y² - (∑y)²)"}	}, {"@type": "Question","name":"4.
+  Is there any website that offers the Pearson Correlation Coefficient Calculator for free?
+  ","acceptedAnswer": {"@type": "Answer","text":" statisticscalculators.net is the best portal that offers the Pearson Correlation Coefficient Calculator for free to aid your calculations."}	}]}</script>
+{%endblock%}
+{%block content%} 
+<script>
+  $(document).ready(function(){
+   {% if e %}
+   $("#hassle").click();
+   {% endif %}
+   $(".btn-danger").on("click",function(){
+     $(".form-control").attr("value","");
+     $("#solve-pearson-correlation-coefficient").empty();
+    });
+   });
+</script>
+<div class="container">
+	<div class="card c1">
+    <button type="button" hidden id="hassle"  onclick="location.href='#solve-pearson-correlation-coefficient'">ans</button>
+  	<div class="card-header">
+  <h1 class="h1">Pearson Correlation Coefficient Calculator</h1>
+  </div>
+  <div class="card-body">
+    <p>Pearson Correlation Coefficient Calculator helps you determine the pearson correlation coefficient between two variables easily. All you need to do is enter the input values in the input sections allotted and tap on the calculate button to avail the pearson correlation coefficient in a matter of seconds.</p>
+     <p><strong>Pearson Correlation Coefficient Calculator:</strong> Are you worried on how to find the linear association between two variables? If so, don't fret as we have come up with a handy tool named pearson correlation coefficient calculator. This free online tool does make your computations simple and displays the pearson correlation coefficient value in seconds.</p>
+     {% autoescape off %}
+            {% if messages %}
+                {% for message in messages %}
+                        <div class="row">
+                            <div class="col-md-6">
+                                <p class="alert alert-danger">{{message}}</p>
+                            </div>
+                        </div>
+                {% endfor %}
+                {% endif %}
+        {%endautoescape%}
+      <form action="{% url 'pearson_coeff' %}" id="myForm" class="center"onsubmit="return validate()" method="post">
+            {% csrf_token %}
+            <div class="input-group mb-2 mt-3">
+                  <div class="input-group-prepend">
+                <div class="input-group-text"><strong>Data(x)</strong></div>
+                     <input type="text" id="inlineFormInputGroup" style="margin-top: 5px;width:95%" name="a" value="{{ a }}" oninput="validateNumber1(this);" size="250" placeholder="Enter the Data Values comma separated" class="form-control" required></div>
+            </div>
+             <div class="input-group mb-2 mt-3">
+                  <div class="input-group-prepend">
+                <div class="input-group-text"><strong>Data(y)</strong></div>
+                     <input type="text" id="inlineFormInputGroup" style="margin-top: 5px;width:95%" name="b" value="{{ b }}" oninput="validateNumber1(this);" size="250" placeholder="Enter the Data Values comma separated" class="form-control" required></div>
+            </div>
+                <div class=" center col mt-2 ">
+                <center><button type="submit" class="btn btn-primary"  class="form-control" >Calculate</button>
+                <button type="button" onclick="this.form.reset()" style="margin-top:5px;" class="btn btn-danger" class="form-control">Reset</button>
+                </center>
+            </div>
+          <div class="input-group mb-2 mt-3">
+                  <div class="input-group-prepend">
+                      <div class="input-group-text"><strong>Pearson Correlation Coefficient</strong></div>
+                     <input type="text" disabled id="inlineFormInputGroup" value="{{ coeff }}" oninput="validateNumber(this);" class="form-control" required></div>
+                 </div>
+
+        </form> 
+       
+     <p>In the further sections, we will explain you everything on what is meant by pearson correlation coefficient, its mathematical formula and properties, steps on how to find the pearson correlation coefficient by hand, solved examples on finding pearson coefficient. In addition, you will also learn about the interpretation of pearson coefficient, relation between pearson's r and linear regression.  </p>
+  </div>
+     </div>
+     {% if answer %}
+    <div class="card c1" id="solve-pearson-correlation-coefficient">
+        <div class="card-header"><center class="h1">Detailed Answer</center></div>
+        <div class="card-body container">
+        {% autoescape off %}
+        {% for i,z in answer.items %}
+        {% if 'bold' in i %}
+        <p><b>{{ z }}</b></p>
+        {% else %}
+        <p>{{ z }}</p>
+        {% endif %}
+        {% endfor %}
+        {% endautoescape %}
+        {% endif %}
+     <div class="card">
+      <div class="card-header">
+    <h2 class="h2">What is meant by Pearson Correlation Coefficient?</h2>
+    </div>
+    <div class="card-body">
+      <p>Pearson Correlation Coefficient is one of the types to determine the correlation coefficient. It is used to measure the strength and direction of linear relation between two random variables. Pearson's Correlation Coefficient is denoted by the symbol r and it is often called as Pearson's r.  </p>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-header">
+  <h2 class="h2">Pearson Correlation Coefficient Formula and Properties</h2>
+  </div>
+  <div class="card-body">
+    <p>Mathematical Formula of Pearson Correlation Coefficient r is nothing but the covariance of two variables divided by the product of their respective standard deviations.   </p>
+    <img src="https://drive.google.com/file/d/1KY1x7ZwKPMNDyEeYnePgxol5JHZwDPOh/view?usp=sharing" alt='Pearson Correlation Coefficient Formula'>
+  <ul><li>We can understand that based on Cauchy–Schwarz inequality absolute value of correlation coefficient never exceeds 1.</li>
+  <li>Correlation is symmetric i.e. relation between X and Y is same as Y and X.</li>
+<li>In case of variables being independent correlation is 0 but the converse is not true. </li></ul>
+  </div>
+</div>
+  <div class="card">
+    <div class="card-header">
+  <h3 class="h3">Interpretation of Pearson Correlation Coefficient</h3>
+  </div>
+  <div class="card-body">
+    <p>Sign of Pearson Correlation Coefficient determines the relationship direction. Go through below modules and see various cases</p>
+    <ul><li>If r is positive one variable increases the other also increases.</li>
+    <li>If r is negative one variables decreases as the other one increases. </li>
+    <li>Pearsons Value ranges from -1 to +<u>-</u>1</li>
+    <li>The close it is to +<u>-</u>1 the stronger is the relation between the variables. </li>
+    <li>If at all r equals -1 or +1 then all the data points lie on one line. </li>
+    <li>If r is equal to 0 there will be no relation between the data existing.</li>
+  </ul>
+  <img src="https://drive.google.com/file/d/1eZeICmRGXz7F5HsBvVddIRs8mxklonkr/view?usp=sharing" alt='Interpreting Pearson Correlation Coefficient'>
+  </div>
+    </div>
+    <div class="card">
+      <div class="card-header">
+    <h3 class="h3">How to find Pearson Correlation Coefficient Manually?</h3>
+    </div>
+    <div class="card-body">
+      <p>Go through the simple process listed below for finding the Pearson Correlation Coefficient r. They are along the lines</p>
+      <ul><li>Firstly, figure out the two data sets.</li>
+      <li>Later find the mean of both the data sets x and y i.e. x<sub>mean</sub>, y<sub>mean</sub></li>
+    <li>Now, find out the sums of squares x, y and their dot products.</li>
+  <li>Apply all the values found in the formula of pearson correlation coefficient.</li>
+<li>Perform basic math calculations and compute the value of r.</li></ul>
+    </div>
+      </div>
+  <div class="card">
+    <div class="card-header">
+  <h3 class="h3">How to use the Pearson Correlation Coefficient Calculator?</h3>
+  </div>
+  <div class="card-body">
+    <p>Follow the simple and easy steps listed below regarding the usage of pearson coefficient calculator. They are along the lines</p>
+  <ul><li>First and foremost step is to provide the data values x, y separated by commas in the input fields. </li>
+  <li>Later click on the calculate button to get the result pearson correlation coefficient.</li>
+<li>Finally, you will get the pearson correlation coefficient displayed in a new window showing the work.</li></ul> 
+</div>
+</div>
+<div class="card">
+  <div class="card-header">
+  <h3 class="h3">FAQs on Pearson Correlation Coefficient Calculator</h3>
+  </div>
+  <div class="card-body">
+  <!-- Question & Answer Starts --->
+  <p class="question"><strong>1. What does Pearson's Correlation Coefficient tell you?</strong></p>
+ <p class="answer">Pearson's Correlation Coefficient tells us the strength and direction of linear relation between two random variables.</p><hr>
+ <p class="question"><strong>2. What does a Pearson Coefficient of 0 mean?</strong></p>
+ <p class="answer">Pearson Coefficient 0 tells us that there is no linear relationship between the data set present.</p><hr>  
+<p class="question"><strong>3. What is the formula for Pearson Correlation Coefficient?</strong></p>
+ <p class="answer">The Formula for Pearson Correlation Coefficient is r = [n(∑xy) - (∑x)(∑y)] / √(n∑x² - (∑x)²) (n∑y² - (∑y)²)</p><hr>
+<p class="question"><strong>4. Is there any website that offers the Pearson Correlation Coefficient Calculator for free?</strong></p>
+<p class="answer"><a href ="statisticscalculators.net">statisticscalculators.net</a> is the best portal that offers the Pearson Correlation Coefficient Calculator for free to aid your calculations.</p>
+</div>
+</div>
+</div>
+
+<script>
+    var validNumber = new RegExp(/^\d*\.?\d*$/);
+    var fist_input = document.getElementById("inlineFormInputGroup").value;
+    function validateNumber(elem) {
+      if (validNumber.test(elem.value)) {
+        fist_input = elem.value;
+      } else {
+        elem.value = fist_input;
+      }
+    }
+</script>
+
+
+
+{%endblock%}

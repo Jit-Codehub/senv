@@ -1,0 +1,151 @@
+{%extends 'base/statistics_base2.html'%}
+{%load static%}
+{%block meta%}
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+  <link rel="shortcut icon" href="{% static 'images/logo/Chemistry-Calc.png' %}" type="icon">
+  {%block css%}
+  <link rel="stylesheet" href="{% static 'style.css' %}">
+  {%endblock%}
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+	<!-- META DATA STARTS --->
+    <title>Bayes Theorem Calculator | How to Find Activation Energy?</title>
+	<meta name="description" content="Bayes Theorem Calculator helps to calculate the minimum energy required for a chemical reaction to occur. Check the steps to calculate activation energy.">
+	<link rel="canonical" href="{{request.build_absolute_uri}}">
+<!-- META DATA ENDS --->
+ 
+<!-- OPEN GRAPH CONFIGURATIONS STARTS -->
+	<!--  FACEBOOK CONFIGURATION STARTS  -->
+	<meta content="https://www.facebook.com/OnlineCalculator-Guru-131572098650589/" property="og:url" />
+	<meta property="og:title" content="Bayes Theorem Calculator | How to Find Activation Energy?"/>
+	<meta property="og:description" content="Bayes Theorem Calculator helps to calculate the minimum energy required for a chemical reaction to occur. Check the steps to calculate activation energy."/>
+	<meta content="" property="og:site_name" />
+	<meta  content="https://chemistrycalc.com/static/images/Chemistry/pH-Calculator.jpeg" property="og:image" />
+	<meta property="og:image:type" content="image/png" />
+	<meta property="og:image:height" content="435" />
+	<meta property="og:image:width" content="354" />
+	<!--  FACEBOOK CONFIGURATION ENDS  -->
+	<!-- TWITTER CARD CONFIGURATION STARTS  -->
+	<meta name="twitter:card" content="summary"/>
+	<meta name="twitter:site" content="https://twitter.com/onlinecalculator"/>
+	<meta name="twitter:title" content="Bayes Theorem Calculator | How to Find Activation Energy?"/>
+	<meta name="twitter:description" content="Bayes Theorem Calculator helps to calculate the minimum energy required for a chemical reaction to occur. Check the steps to calculate activation energy."/>
+	<meta name="twitter:image:src" content="https://chemistrycalc.com/static/images/Chemistry/pH-Calculator.jpeg"/>
+	<meta property="twitter:image:height" content="435"/>
+	<meta property="twitter:image:width" content="354"/>
+	<!-- TWITTER CARD CONFIGURATION ENDS  -->
+	<!--  LINKEDIN CONFIGURATION STARTS-->
+	<meta property='og:title' content="Bayes Theorem Calculator | How to Find Activation Energy?"/>
+	<meta property='og:image' content="https://chemistrycalc.com/static/images/Chemistry/pH-Calculator.jpeg"/>
+	<meta property='og:description' content="Bayes Theorem Calculator helps to calculate the minimum energy required for a chemical reaction to occur. Check the steps to calculate activation energy."/>
+	<meta property='og:url' content="https://www.linkedin.com/in/onlinecalculator/" />
+	<!-- end of linkedin CONFIGURATIONS ENDS -->
+<!-- OPEN GRAPH CONFIGURATION ENDS -->
+<!-- FAQ SCHEMA STARTS -->
+{%endblock%}
+{%block content%}
+<script>
+        $(document).ready(function(){
+         {% if answer %}
+        $("#hassle").click();
+        {% endif %}
+        $(".btn-danger").on("click",function(){
+          $(".form-control").attr("value","");
+            $("#solve-bayes-theorem").empty();
+         });
+        });
+    </script>
+<div class="container">
+    <button type="button" hidden id="hassle"  onclick="location.href='#solve-bayes-theorem'">ans</button>
+	<div class="card c1">
+  	<div class="card-header">
+  <h1 class="h1">Bayes Theorem Calculator</h1>
+  </div>
+  <div class="card-body">
+      {% autoescape off %}
+            {% if messages %}
+                {% for message in messages %}
+                        <div class="row">
+                            <div class="col-md-6">
+                                <p class="alert alert-danger">{{message}}</p>
+                            </div>
+                        </div>
+                {% endfor %}
+                {% endif %}
+        {%endautoescape%}
+      <form action="{% url 'bayes-theorem' %}" id="myForm" onsubmit="return validate()" method="post">
+            {% csrf_token %}
+            <div class="input-group mb-2 mt-3">
+                  <div class="input-group-prepend">
+                <div class="input-group-text"><strong>P(A)</strong></div>
+                     <input type="text" pattern="-?\d*\.?\d*" id="inlineFormInputGroup" name="a" value="{{ a }}" oninput="validateNumber1(this);" placeholder="Enter the Number" class="form-control" required></div>
+                    <b id="inlineFormInputGroup" class="form-control">%</b>
+            </div>
+                <div class="input-group mb-2 mt-3">
+                  <div class="input-group-prepend">
+                <div class="input-group-text in"><strong>P(B)</strong></div>
+                     <input type="text" id="inlineFormInputGroup" placeholder="Enter the Number" value="{{ b }}" name="b" oninput="validateNumber(this);" class="form-control" required></div>
+                    <b id="inlineFormInputGroup" class="form-control">%</b>
+                 </div>
+                 <div class="input-group mb-2 mt-3">
+                  <div class="input-group-prepend">
+                <div class="input-group-text in"><strong>P(A/B)</strong></div>
+                     <input type="text"id="inlineFormInputGroup"  placeholder="Enter the Number" value="{{ c }}" name="c" oninput="validateNumber(this);" class="form-control" required></div>
+                    <b id="inlineFormInputGroup" class="form-control">%</b>
+                 </div>
+
+
+
+                <div class=" center col mt-2 ">
+                <center><button type="submit" class="btn btn-primary"  class="form-control" >Calculate</button>
+                <button type="button" onclick="this.form.reset()" style="margin-top:5px;" class="btn btn-danger" class="form-control">Reset</button>
+                </center>
+            </div>
+          <div class="input-group mb-2 mt-3">
+                  <div class="input-group-prepend">
+                      <div class="input-group-text"><strong>P(B/A)</strong></div>
+                     <input type="text" disabled id="inlineFormInputGroup" value="{{ d }}" oninput="validateNumber(this);" class="form-control" required></div>
+                <b id="inlineFormInputGroup" class="form-control">%</b>
+                 </div>
+
+        </form>
+
+    </div></div>
+    {% if answer %}
+    <div class="card c1" id="solve-bayes-theorem">
+        <div class="card-header"><center class="h1">Detailed Answer</center></div>
+        <div class="card-body container">
+        {% for i,z in answer.items %}
+        {% if 'bold' in i %}
+        <p><b>{{ z }}</b></p>
+        {% else %}
+        <p>{{ z }}</p>
+        {% endif %}
+        {% endfor %}
+        </div>
+    </div>
+    {% endif %}
+
+</div>
+
+
+<script>
+    var validNumber = new RegExp(/^\d*\.?\d*$/);
+    var fist_input = document.getElementById("inlineFormInputGroup").value;
+    function validateNumber(elem) {
+      if (validNumber.test(elem.value)) {
+        fist_input = elem.value;
+      } else {
+        elem.value = fist_input;
+      }
+    }
+</script>
+
+
+
+{%endblock%}

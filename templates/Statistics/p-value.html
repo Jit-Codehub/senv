@@ -1,0 +1,202 @@
+{%extends 'base/statistics_base2.html'%}
+{%load static%}
+{%block meta%}
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+  <link rel="shortcut icon" href="{% static 'images/logo/Chemistry-Calc.png' %}" type="icon">
+  {%block css%}
+  <link rel="stylesheet" href="{% static 'style.css' %}">
+  {%endblock%}
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+	<!-- META DATA STARTS --->
+    <title>p-value Calculator | How to Find Activation Energy?</title>
+	<meta name="description" content="p-value Calculator helps to calculate the minimum energy required for a chemical reaction to occur. Check the steps to calculate activation energy.">
+	<link rel="canonical" href="{{request.build_absolute_uri}}">
+<!-- META DATA ENDS --->
+ 
+<!-- OPEN GRAPH CONFIGURATIONS STARTS -->
+	<!--  FACEBOOK CONFIGURATION STARTS  -->
+	<meta content="https://www.facebook.com/OnlineCalculator-Guru-131572098650589/" property="og:url" />
+	<meta property="og:title" content="p-value Calculator | How to Find Activation Energy?"/>
+	<meta property="og:description" content="p-value Calculator helps to calculate the minimum energy required for a chemical reaction to occur. Check the steps to calculate activation energy."/>
+	<meta content="" property="og:site_name" />
+	<meta  content="https://chemistrycalc.com/static/images/Chemistry/pH-Calculator.jpeg" property="og:image" />
+	<meta property="og:image:type" content="image/png" />
+	<meta property="og:image:height" content="435" />
+	<meta property="og:image:width" content="354" />
+	<!--  FACEBOOK CONFIGURATION ENDS  -->
+	<!-- TWITTER CARD CONFIGURATION STARTS  -->
+	<meta name="twitter:card" content="summary"/>
+	<meta name="twitter:site" content="https://twitter.com/onlinecalculator"/>
+	<meta name="twitter:title" content="p-value Calculator | How to Find Activation Energy?"/>
+	<meta name="twitter:description" content="p-value Calculator helps to calculate the minimum energy required for a chemical reaction to occur. Check the steps to calculate activation energy."/>
+	<meta name="twitter:image:src" content="https://chemistrycalc.com/static/images/Chemistry/pH-Calculator.jpeg"/>
+	<meta property="twitter:image:height" content="435"/>
+	<meta property="twitter:image:width" content="354"/>
+	<!-- TWITTER CARD CONFIGURATION ENDS  -->
+	<!--  LINKEDIN CONFIGURATION STARTS-->
+	<meta property='og:title' content="p-value Calculator | How to Find Activation Energy?"/>
+	<meta property='og:image' content="https://chemistrycalc.com/static/images/Chemistry/pH-Calculator.jpeg"/>
+	<meta property='og:description' content="p-value Calculator helps to calculate the minimum energy required for a chemical reaction to occur. Check the steps to calculate activation energy."/>
+	<meta property='og:url' content="https://www.linkedin.com/in/onlinecalculator/" />
+	<!-- end of linkedin CONFIGURATIONS ENDS -->
+<!-- OPEN GRAPH CONFIGURATION ENDS -->
+<!-- FAQ SCHEMA STARTS -->
+{%endblock%}
+{%block content%}
+<script>
+       $(document).ready(function(){
+           {% if h_unit %}
+           var str="#"+"{{ h_unit }}"
+            $(str).attr("selected","selected");
+            var str="#"+"{{ w_unit }}"
+            $(str).attr("selected","selected");
+            var h_unit="{{ h_unit }}"
+            if(h_unit=="ts"){
+                    $('.score').html('<strong>Your t-score </strong>');
+                    $(".degree").css({"display":"block"})
+            }
+            else if(h_unit=="xr"){
+                    $('.score').html('<strong>Your χ2-Score </strong>');
+                    $(".degree").css({"display":"block"})
+            }
+            else{
+                 $(".degree").css({"display":"none"})
+            }
+           
+           {% endif %}
+        $(".unit").on("change",function(){
+            var unit=$(".unit").val();
+            if(unit=="ts"){
+                    $('.score').html('<strong>Your t-score </strong>');
+                    $(".degree").css({"display":"block"})
+            }
+            else if(unit=="xr"){
+                    $('.score').html('<strong>Your χ2-Score </strong>');
+                    $(".degree").css({"display":"block"})
+            }
+            else{
+                 $(".degree").css({"display":"none"})
+            }
+        });
+        $(".btn-danger").on("click",function(){
+          $(".form-control").attr("value","");
+            $("#t").attr("selected","selected");
+            var str="#zs"
+            $(str).attr("selected","selected");
+            $('.score').html('<strong>Your Z-score </strong>');
+                    $(".degree").css({"display":"none"})
+          $("#solve-p-value-calculator").empty();
+         });
+        });
+    </script>
+<div class="container">
+    <div class="card c1">
+  	<div class="card-header">
+  <h2 class="h1">P-value Calculator</h2>
+  </div>
+  <div class="card-body">
+      {% autoescape off %}
+            {% if messages %}
+                {% for message in messages %}
+                        <div class="row">
+                            <div class="col-md-6">
+                                <p class="alert alert-danger">{{message}}</p>
+                            </div>
+                        </div>
+                {% endfor %}
+                {% endif %}
+        {%endautoescape%}
+      <form action="{% url 'p-value-calculator' %}" id="myForm" class="center" method="post">
+            {% csrf_token %}
+            <div class="input-group mb-2 mt-3">
+                  <div class="input-group-prepend">
+                <div class="input-group-text"><strong>What do you want?</strong></div>
+                      <select name="w_unit" id="inlineFormInputGroup" class="form-control">
+                         <option value="t" id="t">Two Tailed p-value</option>
+                         <option value="l" id="l">Left Tailed p-value</option>
+                         <option value="r" id="r">Right Tailed p-value</option>
+                    
+                     </select>
+                     </div>
+            </div>
+             <div class="input-group mb-2 mt-3">
+                  <div class="input-group-prepend">
+                <div class="input-group-text"><strong>what do you have?</strong></div>
+                      <select name="h_unit" id="inlineFormInputGroup" class="form-control unit">
+                         <option value="zs" id="zs">Z-Score</option>
+                         <option value="ts" id="ts">t-Score</option>
+                         <option value="xr" id="xr">χ2-Score</option>
+                    
+                     </select>
+                     </div>
+            </div>
+             <div class="input-group mb-2 mt-3">
+                  <div class="input-group-prepend">
+                      <div class="input-group-text score"><strong>Your Z-Score</strong></div>
+                     <input type="text"  id="inlineFormInputGroup" name="score" value="{{ score }}" oninput="validateNumber(this);" class="form-control" required></div>
+              
+                 </div>
+            <div class="input-group mb-2 mt-3 degree" style="display:none;">
+                  <div class="input-group-prepend">
+                      <div class="input-group-text"><strong>Degree of Freedom</strong></div>
+                     <input type="text"  id="inlineFormInputGroup" name="de" value="{{ de }}" oninput="validateNumber(this);" class="form-control" ></div>
+              
+                 </div>
+                <div class=" center col mt-2 ">
+                <center><button type="submit" class="btn btn-primary"  class="form-control" >Calculate</button>
+                <button type="button" onclick="this.form.reset()" style="margin-top:5px;" class="btn btn-danger" class="form-control">Reset</button>
+                </center>
+            </div>
+         
+            <div class="input-group mb-2 mt-3">
+                  <div class="input-group-prepend">
+                      <div class="input-group-text"><strong>p-value</strong></div>
+                     <input type="text" disabled id="inlineFormInputGroup" value="{{ p }}" oninput="validateNumber(this);" class="form-control" required></div>
+                     
+                 </div>
+            
+                  
+        </form>
+
+    </div></div>
+    {% if answer %}
+    <div class="card c1" id="solve-p-value-calculator">
+        <div class="card-header"><center class="h1">Detailed Answer</center></div>
+        <div class="card-body container">
+        {% autoescape off %}
+        {% for i,z in answer.items %}
+        {% if 'bold' in i %}
+        <p><b>{{ z }}</b></p>
+        {% else %}
+        <p>{{ z }}</p>
+        {% endif %}
+        {% endfor %}
+        {% endautoescape %}
+        </div>
+    </div>
+    {% endif %}
+
+</div>
+
+
+<script>
+    var validNumber = new RegExp(/^\d*\.?\d*$/);
+    var fist_input = document.getElementById("inlineFormInputGroup").value;
+    function validateNumber(elem) {
+      if (validNumber.test(elem.value)) {
+        fist_input = elem.value;
+      } else {
+        elem.value = fist_input;
+      }
+    }
+</script>
+
+
+
+{%endblock%}

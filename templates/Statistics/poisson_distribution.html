@@ -1,0 +1,245 @@
+{%extends 'base/statistics_base2.html'%}
+{%load static%}
+{%block meta%}
+<!-- HTML Defaults Broweser -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Bootstrap Stylesheet and Jquery, Google APIS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+<!-- Online Calculator Guru Site Fevicon -->
+<link rel="shortcut icon" href="https://onlinecalculator.guru/static/images/logo/Online-Calculator-Guru-Fevicon.png"
+    type="icon">
+<!-- Online Calculator Guru Project Style Sheet -->
+{%block css%}
+<link rel="stylesheet" href="https://onlinecalculator.guru/static/style.css">
+{%endblock css%}
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+<!-- Meta Title, Description and Canonical URL Starts --->
+<title>Poisson Distribution Calculator | Free Calculator to Find Poisson Distribution</title>
+<meta name="description"
+    content="Poission distribution calculator is a free online tool to calculate the probability value for the given success rate. And also we have given definition, formulas and steps." />
+<link rel="canonical" href="{{request.build_absolute_uri}}">
+<!-- Meta Title, Description and Canonical URL ENDS --->
+
+<!-- OPEN GRAPH CONFIGURATIONS STARTS -->
+<!--  FACEBOOK CONFIGURATION STARTS  -->
+<meta content="https://www.facebook.com/OnlineCalculator-Guru-131572098650589/" property="og:url" />
+<meta property="og:title" content="Poisson Distribution Calculator | Free Calculator to Find Poisson Distribution" />
+<meta property="og:description" content="Poission distribution calculator is a free online tool to calculate the probability value for the given success rate. And also we have given definition, formulas and steps." />
+<meta content="" property="og:site_name" />
+<meta content="https://onlinecalculator.guru/static/images/Chemistry/Theoratical-Yield-Calculator.jpeg"
+    property="og:image" />
+<meta property="og:image:type" content="image/png" />
+<meta property="og:image:height" content="435" />
+<meta property="og:image:width" content="354" />
+<!--  FACEBOOK CONFIGURATION ENDS  -->
+<!-- TWITTER CARD CONFIGURATION STARTS  -->
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:site" content="https://twitter.com/onlinecalculator" />
+<meta name="twitter:title" content="Poisson Distribution Calculator | Free Calculator to find Poisson Distribution" />
+<meta name="twitter:description"
+    content="Poission distribution calculator is a free online tool to calculate the probability value for the given success rate. And also we have given definition, formulas and steps." />
+<meta name="twitter:image:src"
+    content="https://onlinecalculator.guru/static/images/Chemistry/Theoratical-Yield-Calculator.jpeg" />
+<meta property="twitter:image:height" content="435" />
+<meta property="twitter:image:width" content="354" />
+<!-- TWITTER CARD CONFIGURATION ENDS  -->
+<!--  LINKEDIN CONFIGURATION STARTS-->
+<meta property='og:title' content="Poisson Distribution Calculator | Free Calculator to find Poisson Distribution" />
+<meta property='og:image'
+    content="https://onlinecalculator.guru/static/images/Chemistry/Theoratical-Yield-Calculator.jpeg" />
+<meta property='og:description' content="Poission distribution calculator is a free online tool to calculate the probability value for the given success rate. And also we have given definition, formulas and steps." />
+<meta property='og:url' content="https://www.linkedin.com/in/onlinecalculator/" />
+<!-- end of linkedin CONFIGURATIONS ENDS -->
+<!-- OPEN GRAPH CONFIGURATION ENDS -->
+<!-- FAQ SCHEMA STARTS -->
+<script type="application/ld+json">{"@context": "https://schema.org","@type": "FAQPage","mainEntity": [{"@type": "Question","name":"1
+    What is Poisson Distribution Calculator?
+    ","acceptedAnswer": {"@type": "Answer","text":" 
+    Poisson distribution is a separate distribution that computes the probability of a given number of events using a specific time period."}	}, {"@type": "Question","name":"2
+    How do you calculate the Poisson distribution using calculator?
+    ","acceptedAnswer": {"@type": "Answer","text":" 
+    Simply, all you need to do is give the input values in the input fields and click on the calculate button to get the instant outcomes."}	}, {"@type": "Question","name":"3
+    What is the formula for calculating Poisson distribution?
+    ","acceptedAnswer": {"@type": "Answer","text":"
+    Formula for calculating the Poisson distribution is P(X=x) = (e<sup>-λ</sup> * λ<sup>x</sup>) / x!"}	}]}</script>
+{%endblock meta %}
+
+{% block content %}
+{% if ot and x and y %}
+<script>
+    $(document).ready(function () {
+
+        $("#hassle").click();
+        });
+</script>
+
+<button type="button" hidden id="hassle" onclick="location.href='#poisson_distribution'">ans1</button>
+{% endif %}
+
+
+<div class="container" style="height: auto !important;">
+    <div class="card c1">
+        <div class="card-header">
+            <h1 class="h1">Poisson Distribution Calculator</h1>
+        </div>
+        <div class="card-body">
+            <p>Go through this free online Poisson Distribution Calculator tool to calculate the probability of an event happening in a given time interval. For this, you need to do is give the input values in the below mentioned boxes and hit the calculate button which is in blue color and get the answers effectively.</p>
+            {% if messages %}
+            <ul class="messages">
+            {% for message in messages %}
+                <p {% if message.tags %} id="message_container" class="alert alert-danger text-center" {% endif %}
+                    style="color:red">{{ message }}</p>
+                {% endfor %}
+            </ul>
+            {% endif %}
+            <form action="{% url 'poisson_distribution' %}" method="POST" id="my_form">
+                {% csrf_token %}
+
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1">Number of occurrences (x)</span>
+            </div>
+            
+           <input style="margin-top: 5px;width:100%" id="x" name="x" value="{{x}}" min="0" required="" class="form-control" type="number" step="any" required width="48"> 
+       </div>
+       <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1">Rate of success (λ)</span>
+            </div>
+            
+           <input style="margin-top: 5px;width:100%" id="y" name="y" value="{{y}}" min="0" required="" class="form-control" type="number" step="any" required width="48"> 
+       </div>
+       
+        <div class=" center col mt-2 ">
+            <center><button type="submit" class="btn btn-primary">Calculate</button>
+              <a href="{% url 'poisson_distribution' %}" class="btn btn-warning" role="button" style="margin-top:5px;">Reset</a>      
+            </center>
+          </div>
+</div>
+<p><strong>Poission Distribution Calculator: </strong> Getting confused to calculate the probability of an event? Then this poisson distribution calculator tool is for you. It is very easy to use tool to calculate the individual and cumulative poisson probabilities very easily and effectively. Below we will see all the detailed information about this poisson distribution like definition, formulas, steps and also solved examples. Let's start!!</p>
+</form>
+</div>
+</div>
+
+{% if ot and x and y %}
+<div class="container" style="height: auto !important;">
+<div class="card" id="poisson_distribution">
+        <div class="card-header">
+            <h2 class="h2">Steps to Find Poisson Distribution:</h2>
+        </div>
+
+        <div class="card-body">
+
+            <strong>Poisson Distribution:-</strong>
+            <br>
+            <p class="btn btn-outline-secondary active text-justify">P(X = x) = e<sup>-λ</sup> λ<sup>x</sup> / x!</p>
+            <br>
+            <strong>where:</strong>
+                    <ul>
+                        <li>λ Rate of success,</li>
+                        <li>x Number of occurrences.</li>
+                    </ul>
+
+
+            <strong>Input values are:-</strong>
+            <p>λ = {{y}} </p>
+            <p>x = {{x}} </p>
+            
+            <p><b>Put values into formula</b></p>
+            
+            <p>P(X = x) = e<sup>-λ</sup> λ<sup>x</sup> / x!</p>
+
+            <p>P(X = x) = e<sup>-{{y}}</sup> {{y}}<sup>{{x}}</sup> / {{x}}!</p>
+
+            <b>Probability P(X = x) = {{result}}</b>
+
+                         
+   </div>
+    </div>
+    </div>
+<div class="container" style="height: auto !important;">
+        <div class="card" id="poisson_distribution">
+                <div class="card-header">
+                    <h3 class="h3">What do you Mean by Poisson Distribution</h3>
+                </div>
+        
+                <div class="card-body">
+                <p>Poisson distribution is a separate probability distribution that describes the probability of an event occurring with a specified time interval. These events are assumed to take place for a known average rate of success or the mean of distribution and independent of the last event.</p>
+                </div>
+        </div>
+</div>
+<div class="container" style="height: auto !important;">
+    <div class="card" id="poisson_distribution">
+            <div class="card-header">
+                <h3 class="h3">Poisson Distribution Formula</h3>
+            </div>
+    <div class="card-body">
+        <p>Let us see the Poisson distribution formula </p>
+        <p><b>P(X=x) = (e<sup>-λ</sup> * λ<sup>x</sup>) / x!</b></p>
+        <p>Where,</p>
+        <p>x=0,1,2,3,..,n</p>
+        <p>P(X=x) is Poisson probability</p>
+        <p>λ= mean or average rate</p>
+        <p>e is the Euler's number (e= 2.71)</p>
+        <p>Here, λ and x be the non-negative integers.</p>
+            
+    </div>
+    </div>
+</div>
+<div class="container" style="height: auto !important;">
+    <div class="card" id="poisson_distribution">
+            <div class="card-header">
+                <h3 class="h3">Steps to Calculate the Poisson Distribution</h3>
+            </div>
+    <div class="card-body">
+        <p>Here, follow these steps which are showed below to calculate the occurrences of events for Poisson distribution.</p>
+        <ul>
+            <li>First you need to write down the given values of mean and no.of occurrences.</li>
+            <li>After that, use the Poisson distribution formula, i.e. P(X = x) = (e<sup>-λ</sup> λ<sup>x</sup> )/x!.</li>
+            <li>Then simplify it and you will get the final answer.</li>
+        </ul>
+    </div>
+</div>
+</div>
+<div class="container" style="height: auto !important;">
+    <div class="card" id="poisson_distribution">
+            <div class="card-header">
+                <h3 class="h3">Sample Example for Poisson Distribution</h3>
+            </div>
+    <div class="card-body">
+        <p><b>Example</b></p>
+        <p><b>Question:</b> Find the probability of function x=5, if the value of the mean is 2</p>
+        <p><b>Solution</b></p>
+        <p>Given values is λ = 2, and x = 5.</p>
+        <p>Use the Poisson formula</p>
+        <p>P(X=x) = (e<sup>-λ</sup> * λ<sup>x</sup>) / x!</p>
+        <p>P(X = 5) = (e<sup>-2</sup>2<sup>5</sup> )/5!</p>
+        <p>P(X = 5) = 0.0361</p>
+        <p><a href="https://statisticscalculators.net/">Statisticscalculators.net</a> is the best website as we have various statistics calculators available in this site. Use them and make your work easy.</p>
+        <img src="{% static 'images/Statistics/poisson-distribution-calculator.jpeg' %}" alt='Poisson-distribution-calculator'>
+    </div>
+</div>
+</div>
+<div class="container" style="height: auto !important;">
+    <div class="card" id="poisson_distribution">
+            <div class="card-header">
+                <h3 class="h3">FAQs on Poisson Distribution Calculator</h3>
+            </div>
+    <div class="card-body">
+        <p>	<!-- Question & Answer Starts --->
+            <p class="question"><strong>1. What is Poisson Distribution Calculator?</strong></p>
+             <p class="answer">Poisson distribution is a separate distribution that computes the probability of a given number of events using a specific time period.</p><hr>
+             <p class="question"><strong>2. How do you calculate the Poisson distribution using calculator?</strong></p>
+             <p class="answer">Simply, all you need to do is give the input values in the input fields and click on the calculate button to get the instant outcomes.</p><hr>  
+            <p class="question"><strong>3. What is the formula for calculating Poisson distribution?</strong></p>
+             <p class="answer">Formula for calculating the Poisson distribution is P(X=x) = (e<sup>-λ</sup> * λ<sup>x</sup>) / x!</p><hr>
+            
+    {% endif %}
+                    
+{% endblock content %}
