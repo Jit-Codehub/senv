@@ -69,6 +69,7 @@ def webstories(request,story,category):
         if i['url']==webno:
             context['titles']=i
             # return render(request,'web_stories/webstory.html',context)
+            print(context)
             return render(request,'web_stories/ZZ.html',context)
     
 

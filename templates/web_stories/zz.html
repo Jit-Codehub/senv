@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html amp lang="en">
   <head>
+    {% load tags %}
     <meta charset="utf-8" />
     <script async src="https://cdn.ampproject.org/v0.js"></script>
     <script
@@ -8,8 +9,11 @@
       custom-element="amp-story"
       src="https://cdn.ampproject.org/v0/amp-story-1.0.js"
     ></script>
-    <title>Hello, amp-story</title>
-    <link rel="canonical" href="http://example.ampproject.org/my-story.html" />
+
+    <script async custom-element="amp-video" src="https://cdn.ampproject.org/v0/amp-video-0.1.js"></script>
+
+    <title>{{titles.title}}</title>
+    <link rel="canonical" href="{{request.build_absolute_uri}}" />
     <meta
       name="viewport"
       content="width=device-width,minimum-scale=1,initial-scale=1"
@@ -76,39 +80,85 @@
   <body>
     <amp-story
       standalone
-      title="Hello Story"
-      publisher="The AMP Team"
-      publisher-logo-src="https://example.com/logo/1x1.png"
-      poster-portrait-src="https://example.com/my-story/poster/3x4.jpg"
+      title="{{titles.title}}"
+      publisher="A+ Webstories Team"
+      publisher-logo-src="/media/web-stories/logo.png"
+      poster-portrait-src="/media/web-stories/poster-portrait-src.png"
     >
-      <amp-story-page id="my-first-page">
+
+    {% for d in data %}
+
+      <amp-story-page id="id-{{forloop.counter}}">
+
+
         <amp-story-grid-layer template="fill">
+
+          {% if d.video %}
+          <amp-video
+            autoplay
+            layout="responsive"
+            width="720"
+            height="1280"
+            
+            {% if d.poster %}
+            poster="/media/web-stories/webstory-{{webno}}/{{d.poster}}"
+            {% else %}
+            poster="/media/web-stories/poster-portrait-src.png"
+            {% endif %}
+
+            loop
+          >
+            <source
+              src="/media/web-stories/webstory-{{webno}}/{{d.video}}"
+              type="video/mp4"
+            />
+          </amp-video>
+
+          {% elif d.image %}
+
           <amp-img
-            src="https://example.ampproject.org/helloworld/bg1.jpg"
+            src="/media/web-stories/webstory-{{webno}}/{{d.image}}"
             width="900"
             height="1600"
             alt=""
           >
           </amp-img>
+
+          {% endif %}
         </amp-story-grid-layer>
+
+
         <amp-story-grid-layer template="vertical">
-          <h1>Hello, amp-story!</h1>
-        </amp-story-grid-layer>
-      </amp-story-page>
-      <amp-story-page id="my-second-page">
-        <amp-story-grid-layer template="fill">
-          <amp-img
-            src="https://example.ampproject.org/helloworld/bg2.gif"
-            width="900"
-            height="1600"
-            alt=""
-          >
+
+          <amp-img width="200" height="200" layout="responsive"
+            src="/media/web-stories/logo.png">
           </amp-img>
+
+        {% if forloop.counter == 1 %}
+          <h1>{{titles.title}}</h1>
+          <h4>A+ Webstories Team</h4>
+        {% elif forloop.counter != 1 %}
+
+          {% if d.subheading %}
+            {% for i in d.subheading %}
+              <h4>{{i}}</h4>
+            {% endfor %}
+          {% endif %}
+
+          {% if d.para %}
+            {% for i in d.para %}
+              <h4>{{i}}</h4>
+            {% endfor %}
+          {% endif %}
+
+        {% endif %}
+
         </amp-story-grid-layer>
-        <amp-story-grid-layer template="vertical">
-          <h1>The End</h1>
-        </amp-story-grid-layer>
+
+
       </amp-story-page>
+      
+    {% endfor %}
     </amp-story>
   </body>
 </html>
