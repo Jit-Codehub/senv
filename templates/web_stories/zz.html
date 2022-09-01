@@ -84,14 +84,8 @@
             word-break: break-word
       }
 
-      
-  
-
-
       .img-fill{
-            /* margin-top: 3%;
-            margin-left: 3%; */
-           margin: 3.2%;
+            margin: 3.2%;
             top: 0;
             left: 0;
             width: 34.08px;
@@ -99,7 +93,27 @@
   
       }
 
-    </style>
+      .container {
+        width: 200px;
+        height: 200px;
+        position: relative;
+        margin: 20px;
+      }
+      .box {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        opacity: 0.8; /* for demo purpose  */
+      }
+      .stack-top {
+        z-index: 9;
+        margin: 2px; /* for demo purpose  */
+        margin-top: 300px;
+        padding: 10px 10px 10px 10px;
+      }
+  </style>
 
 
   </head>
@@ -107,7 +121,7 @@
     <amp-story
       standalone
       title="{{titles.title}}"
-      publisher="A+ Webstories Team"
+      publisher="A+ webstories"
       publisher-logo-src="/media/web-stories/logo.png"
       poster-portrait-src="/media/web-stories/poster-portrait-src.png"
     >
@@ -118,6 +132,7 @@
 
 
         <amp-story-grid-layer template="fill">
+          
 
           {% if d.video %}
           <amp-video
@@ -141,45 +156,78 @@
           </amp-video>
 
           {% elif d.image %}
-
+          
           <amp-img
-            src="/media/web-stories/webstory-{{webno}}/{{d.image}}"
+            
             width="720"
             height="1280"
             alt=""
+            layout="responsive" 
+            animate-in="zoom-in"
+            animate-in-duration="10s"
+            scale-end="1.27"
+            src="/media/web-stories/webstory-{{webno}}/{{d.image}}"
           >
           </amp-img>
+       
+        
 
           {% endif %}
+        
         </amp-story-grid-layer>
 
 
         <amp-story-grid-layer template="vertical">
 
-          <!-- <div class="lgbfw pa" animate-in="whoosh-in-left" animate-in-duration="500ms" animate-in-delay="500ms" -->
-                    <!-- id="rmhhrkdzua"> -->
+          
           <amp-img width="200" height="200" layout="responsive" class="img-fill pa"
             src="/media/web-stories/logo.png">
           </amp-img>
-        <!-- </div> -->
+        
 
         {% if forloop.counter == 1 %}
-          <h1>{{titles.title}}</h1>
-          <h4>PINKVILLA</h4>
+        <div class="container">
+          <h1 style="
+          font-family: 'Futura-pt Bold';
+          font-size: 2.25em;
+          color: rgba(255, 255, 255, 1);
+        ">{{titles.title}}</h1>
+        </div>
+        
+          <h4 style="
+          font-family: 'Futura-pt Bold';
+          font-size: 1.5em;
+          text-align: center;
+          background-color: #1a237e;
+          color: rgba(255, 255, 255, 1);
+          margin-top: 80%;
+        ">A+ webstories</h4>
+        
         {% elif forloop.counter != 1 %}
-
+        <div class="box stack-top">
           {% if d.subheading %}
             {% for i in d.subheading %}
-              <h4>{{i}}</h4>
+              <h4 style="
+              font-family: 'Futura-pt Bold';
+              font-size: 1.5em;
+              text-align: center;
+              background-color: rgb(7, 154, 252);
+              color: rgba(255, 255, 255, 1);
+            ">{{i}}</h4>
             {% endfor %}
           {% endif %}
 
           {% if d.para %}
             {% for i in d.para %}
-              <h4>{{i}}</h4>
+              <h4 style="
+              font-family: 'Gilroy Semi Bold';
+              font-size: 1.3em;
+              background-color: rgba(0, 0, 0, 0.53);
+              color: rgba(255, 255, 255, 1);
+            ">{{i}}</h4>
             {% endfor %}
           {% endif %}
-
+        </div>
         {% endif %}
 
         </amp-story-grid-layer>
