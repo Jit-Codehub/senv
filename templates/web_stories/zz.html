@@ -76,6 +76,32 @@
         }
       </style></noscript
     >
+
+    <style amp-custom>
+
+      .pa {
+            position: absolute;
+            word-break: break-word
+      }
+
+      
+  
+
+
+      .img-fill{
+            /* margin-top: 3%;
+            margin-left: 3%; */
+           margin: 3.2%;
+            top: 0;
+            left: 0;
+            width: 34.08px;
+            height: 34.08px
+  
+      }
+
+    </style>
+
+
   </head>
   <body>
     <amp-story
@@ -118,8 +144,8 @@
 
           <amp-img
             src="/media/web-stories/webstory-{{webno}}/{{d.image}}"
-            width="900"
-            height="1600"
+            width="720"
+            height="1280"
             alt=""
           >
           </amp-img>
@@ -130,9 +156,12 @@
 
         <amp-story-grid-layer template="vertical">
 
-          <amp-img width="1862" height="437" layout="responsive"
+          <!-- <div class="lgbfw pa" animate-in="whoosh-in-left" animate-in-duration="500ms" animate-in-delay="500ms" -->
+                    <!-- id="rmhhrkdzua"> -->
+          <amp-img width="200" height="200" layout="responsive" class="img-fill pa"
             src="/media/web-stories/logo.png">
           </amp-img>
+        <!-- </div> -->
 
         {% if forloop.counter == 1 %}
           <h1>{{titles.title}}</h1>
