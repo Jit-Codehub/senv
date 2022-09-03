@@ -49,6 +49,36 @@ def pinkvilla(v_filename):
         if not os.path.exists(dir_path):
             os.mkdir(dir_path)
             soup = BeautifulSoup(r.content, 'html.parser')
+            #code added for posters
+            standAlone = soup.find('amp-story')
+            portrait = standAlone.get('poster-portrait-src')
+            landscape = standAlone.get('poster-landscape-src')
+            square = standAlone.get('poster-square-src')
+            print(portrait,landscape,square,sep='\n')
+            if portrait != None:
+                src="webstory-"+str(webstoryno)+"-portrait.jpg"
+                src=os.path.join(dir_path,src)
+                try:
+                    download(portrait,src)
+                except:
+                    print(portrait,src,webstoryno) 
+
+            if landscape != None:
+                src="webstory-"+str(webstoryno)+"-landscape.jpg"
+                src=os.path.join(dir_path,src)
+                try:
+                    download(landscape,src)
+                except:
+                    print(landscape,src,webstoryno)
+
+            if square != None:
+                src="webstory-"+str(webstoryno)+"-square.jpg"
+                src=os.path.join(dir_path,src)
+                try:
+                    download(square,src)
+                except:
+                    print(square,src,webstoryno)
+            #code ends here for poster
             stories=soup.findAll('amp-story-page')
             output=[]
             items=0
@@ -159,6 +189,37 @@ def vogue():
         if not os.path.exists(dir_path):
             os.mkdir(dir_path)
         soup = BeautifulSoup(r.content, 'html.parser')
+        #code added for posters
+        standAlone = soup.find('amp-story')
+        portrait = standAlone.get('poster-portrait-src')
+        landscape = standAlone.get('poster-landscape-src')
+        square = standAlone.get('poster-square-src')
+        print(portrait,landscape,square,sep='\n')
+        if portrait != None:
+            src="webstory-"+str(webstoryno)+"-portrait.jpg"
+            src=os.path.join(dir_path,src)
+            try:
+                download(portrait,src)
+            except:
+                print(portrait,src,webstoryno) 
+
+        if landscape != None:
+            src="webstory-"+str(webstoryno)+"-landscape.jpg"
+            src=os.path.join(dir_path,src)
+            try:
+                download(landscape,src)
+            except:
+                print(landscape,src,webstoryno)
+
+        if square != None:
+            src="webstory-"+str(webstoryno)+"-square.jpg"
+            src=os.path.join(dir_path,src)
+            try:
+                download(square,src)
+            except:
+                print(square,src,webstoryno)
+        #code ends here for poster
+
         stories=soup.findAll('amp-story-page')
         output=[]
         items=0
@@ -193,7 +254,6 @@ def vogue():
                 img_count+=1
                 story['image']=src
                 src=os.path.join(dir_path,src)
-                
                 try:
                     download(img_src,src)
                 except:
