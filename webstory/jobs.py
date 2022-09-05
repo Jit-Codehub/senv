@@ -9,8 +9,8 @@ scheduler.add_jobstore(DjangoJobStore(), "default")
 @register_job(scheduler, "interval",hours=1002, replace_existing=True)
 def usa_today_scrapper_job():
     pinkvilla('pinkvilla-entertainment')
-    # pinkvilla('pinkvilla-fashion')
-    # pinkvilla('pinkvilla-lifestyle')
+    pinkvilla('pinkvilla-fashion')
+    pinkvilla('pinkvilla-lifestyle')
     # vogue()
     
 register_events(scheduler)
